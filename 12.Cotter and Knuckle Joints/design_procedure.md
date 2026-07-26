@@ -1,6 +1,12 @@
 # Cotter and Knuckle Joints — Design Procedure & Guide
 
-A comprehensive, step-by-step design procedure for all types of cotter and knuckle joints. This document serves as the primary technical guidance for solving joint design problems with complete mathematical rigor, conditional branching, empirical ratio trees, and baked-in reference cheat sheets.
+> [!TIP]
+> **Zero-Memory Student Quick-Start Guide:**  
+> You do **NOT** need to memorize formulas or empirical ratios to solve cotter and knuckle joint design problems!  
+> 1. Extract the given axial load $P$ and material stresses from the question paper using the **[Symbol Legend](#11-symbol-legend--unit-conversion-rules)** below.
+> 2. Convert load to **Newtons ($\text{N}$)** ($P = \text{kN} \times 10^3\text{ N}$) and stresses to **$\text{N/mm}^2$** ($1\text{ MPa} = 1\text{ N/mm}^2$).
+> 3. Follow the numbered step-by-step algorithms verbatim for Socket-Spigot, Sleeve-Cotter, Gib-Cotter, or Knuckle Joints.
+> 4. Use the **[Baked Reference Cheat Sheet](#6-baked-reference-cheat-sheet)** at the end for instant lookup of empirical proportions.
 
 ---
 
@@ -16,14 +22,36 @@ A comprehensive, step-by-step design procedure for all types of cotter and knuck
 
 ## 1. Universal Inputs & Pre-Processing Checklist
 
-Before starting calculations, perform the following standardization steps:
+### 1.1 Symbol Legend & Unit Conversion Rules
 
-### 1.1 Load & Stress Standardization
-* **Axial Load ($P$):** Given in $\text{kN} \implies$ convert to $\text{N}$ ($P = \text{load in kN} \times 10^3\text{ N}$).
-* **Factor of Safety (FOS Handling):**
-  If ultimate strength values ($\sigma_{tu}, \tau_u, \sigma_{cu}$) are provided along with Factor of Safety ($\text{FOS}$):
-  $$\sigma_t = \frac{\sigma_{tu}}{\text{FOS}}, \quad \tau = \frac{\tau_u}{\text{FOS}}, \quad \sigma_c = \frac{\sigma_{cu}}{\text{FOS}}$$
-  *(Note: Any pin tensile strength $\sigma_{tu, \text{pin}}$ given in knuckle joints is superfluous data and should be ignored).*
+| Symbol | Parameter Name | Exam Unit | Conversion Rule |
+| :--- | :--- | :--- | :--- |
+| $P$ | Axial tensile / compressive load | $\text{kN}$ | Multiply $\text{kN} \times 10^3 \implies \mathbf{\text{Newtons (N)}}$ |
+| $\sigma_t$ | Allowable tensile stress | $\text{MPa}$ | $1\text{ MPa} = \mathbf{1\text{ N/mm}^2}$ |
+| $\tau$ | Allowable shear stress | $\text{MPa}$ | Use directly in $\text{N/mm}^2$ |
+| $\sigma_c$ | Allowable crushing / compressive stress | $\text{MPa}$ | Use directly in $\text{N/mm}^2$ |
+| $\text{FOS}$ | Factor of Safety | Ratio | If given with ultimate strength $\sigma_u$: $\sigma = \sigma_u / \text{FOS}$ |
+| $d$ | Diameter of main rod | $\text{mm}$ | $P = \frac{\pi}{4} d^2 \sigma_t \implies d = \sqrt{\frac{4P}{\pi \sigma_t}}$ |
+| $d_2$ | Diameter of spigot / enlarged rod end | $\text{mm}$ | Primary internal joint diameter |
+| $t$ | Thickness of cotter | $\text{mm}$ | Empirical trial: $t = d_2 / 4$ |
+| $d_1$ | Outside diameter of socket / sleeve | $\text{mm}$ | Outer joint body diameter |
+| $b$ | Width of cotter | $\text{mm}$ | Cotter double shear: $b = \frac{P}{2 t \tau}$ |
+| $d_4$ | Diameter of socket collar | $\text{mm}$ | Socket collar crushing: $P = (d_4 - d_2) t \sigma_c$ |
+| $c$ | Thickness of socket collar | $\text{mm}$ | Socket collar shear: $P = 2(d_4 - d_2) c \tau$ |
+| $a$ | Distance from slot end to rod end | $\text{mm}$ | Rod end shear: $P = 2 a d_2 \tau$ |
+| $d_3$ | Diameter of spigot collar / pin head | $\text{mm}$ | Spigot collar crushing: $P = \frac{\pi}{4}(d_3^2 - d_2^2) \sigma_c$ |
+| $t_1$ | Thickness of spigot collar / fork | $\text{mm}$ | Spigot collar shear: $P = \pi d_2 t_1 \tau$ |
+| $l$ | Length of cotter | $\text{mm}$ | Empirical: $l = 4d$ |
+| $e$ | Socket clearance / overhang | $\text{mm}$ | Empirical: $e = 1.2d$ |
+
+---
+
+### 1.2 Factor of Safety (FOS) Pre-Processing Rule
+If ultimate strength values ($\sigma_{tu}, \tau_u, \sigma_{cu}$) are provided along with Factor of Safety ($\text{FOS}$):
+$$\sigma_t = \frac{\sigma_{tu}}{\text{FOS}}, \quad \tau = \frac{\tau_u}{\text{FOS}}, \quad \sigma_c = \frac{\sigma_{cu}}{\text{FOS}}$$
+
+> [!NOTE]
+> **Knuckle Joint Exam Tip:** Any pin ultimate tensile strength $\sigma_{tu, \text{pin}}$ given in a knuckle joint problem is **superfluous data**. The knuckle pin is subjected to **double shear and bending**, NOT axial tension. Ignore $\sigma_{tu, \text{pin}}$!
 
 ---
 

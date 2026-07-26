@@ -1,6 +1,12 @@
 # Shaft Couplings — Design Procedure & Guide
 
-A comprehensive, step-by-step design procedure for all types of shaft couplings. This document serves as the primary technical guidance for solving coupling design problems with complete mathematical rigor, conditional branching, empirical proportions, intermediate safety checks, and baked-in standard lookup tables.
+> [!TIP]
+> **Zero-Memory Student Quick-Start Guide:**  
+> You do **NOT** need to memorize formulas or external tables to solve coupling design problems!  
+> 1. Extract the given values from the question paper using the **[Symbol Legend](#11-symbol-legend--unit-conversion-rules)** below.
+> 2. Convert all units to **$\text{N}$ and $\text{mm}$** ($1\text{ kW} = 10^3\text{ W}$, $1\text{ N}\cdot\text{m} = 10^3\text{ N}\cdot\text{mm}$, $1\text{ MPa} = 1\text{ N/mm}^2$).
+> 3. Identify the coupling type (Muff, Clamp, Rigid Flange, or Bushed-Pin Flexible) and follow the step-by-step numbered instructions verbatim.
+> 4. Plug numbers directly into the equations and look up key/thread sizes in the **[Baked Reference Tables](#6-baked-reference-tables)** at the end.
 
 ---
 
@@ -18,24 +24,36 @@ A comprehensive, step-by-step design procedure for all types of shaft couplings.
 
 ## 1. Universal Inputs & Pre-Processing Checklist
 
-Before embarking on component design, perform the following standardization steps:
+### 1.1 Symbol Legend & Unit Conversion Rules
 
-### 1.1 Unit Conversions & Torque Calculations
-* **Power ($P$):** Convert to Watts ($\text{kW} \times 10^3 \implies \text{W}$, $\text{MW} \times 10^6 \implies \text{W}$).
-* **Speed ($N$):** Speed in revolutions per minute ($\text{rpm}$).
-* **Mean Torque ($T_{\text{mean}}$):**
-  $$T_{\text{mean}} = \frac{60 P}{2 \pi N} \quad [\text{N}\cdot\text{m}] = \frac{60 P}{2 \pi N} \times 10^3 \quad [\text{N}\cdot\text{mm}]$$
-* **Maximum Design Torque ($T_{\max}$):**
-  Check if a service factor $K_s$ or overload percentage is specified:
-  $$T_{\max} = K_s \cdot T_{\text{mean}}$$
-  *(If no service factor is mentioned, set $T_{\max} = T_{\text{mean}}$).*
+| Symbol | Parameter Name | Exam Unit | Conversion Rule |
+| :--- | :--- | :--- | :--- |
+| $P$ | Power to be transmitted | $\text{kW}$ or $\text{MW}$ | Multiply $\text{kW} \times 10^3 \implies \text{Watts (W)}$ |
+| $N$ | Rotational speed | $\text{rpm}$ | Use directly in $\text{rpm}$ |
+| $T_{\text{mean}}$ | Mean torque | $\text{N}\cdot\text{m}$ | Multiply $\text{N}\cdot\text{m} \times 10^3 \implies \mathbf{N\cdot mm}$ |
+| $T_{\max}$ | Maximum design torque | $\text{N}\cdot\text{mm}$ | $T_{\max} = K_s \cdot T_{\text{mean}}$ |
+| $K_s$ | Service Factor / Overload Factor | Ratio (e.g. 1.25) | Given as $1.25$ or "$25\%$ overload" ($K_s = 1.25$) |
+| $\tau_s$ | Allowable shear stress of shaft | $\text{MPa}$ | $1\text{ MPa} = \mathbf{1\text{ N/mm}^2}$ |
+| $\tau_k, \sigma_{ck}$ | Allowable shear & crushing stress of key | $\text{MPa}$ | Use directly in $\text{N/mm}^2$ |
+| $\tau_b, \sigma_{tb}$ | Allowable shear & tensile stress of bolt | $\text{MPa}$ | Use directly in $\text{N/mm}^2$ |
+| $\tau_c$ | Allowable shear stress of Cast Iron | $\text{MPa}$ | Typically $8\text{ to }15\text{ MPa}$ |
+| $d$ | Shaft diameter | $\text{mm}$ | Primary shaft size |
+| $D$ | Hub outer diameter | $\text{mm}$ | Empirical: $D = 2d$ |
+| $L$ | Hub length | $\text{mm}$ | Empirical: $L = 1.5d$ |
+| $w, t, l$ | Key width, thickness, length | $\text{mm}$ | $w, t$ from Table 13.1, $l = L$ |
+| $D_1$ | Bolt pitch circle diameter (PCD) | $\text{mm}$ | Empirical: $D_1 = 3d$ |
+| $n$ | Number of bolts / pins | Integer | $3, 4, \text{ or } 6$ based on shaft diameter |
 
-### 1.2 Material Property Matrix
-Extract permissible stresses for all constituent parts:
-* Shaft Material: Tensile $\sigma_{ts}$, Shear $\tau_s$, Torsional Rigidity Modulus $G$.
-* Key Material: Shear $\tau_k$, Crushing/Compressive $\sigma_{ck}$.
-* Bolt Material: Tensile $\sigma_{tb}$, Shear $\tau_b$.
-* Muff/Flange Material (Cast Iron): Shear $\tau_c \le 8\text{ to }15\text{ MPa}$.
+---
+
+### 1.2 Torque Calculation Formula
+1. **Calculate Mean Torque:**
+   $$T_{\text{mean}} = \frac{60 \cdot P}{2 \pi \cdot N} \quad [\text{N}\cdot\text{m}]$$
+2. **Convert to $\text{N}\cdot\text{mm}$ & Apply Overload Factor:**
+   $$T_{\max} = K_s \cdot \left(T_{\text{mean}} \times 10^3\right) \quad [\text{N}\cdot\text{mm}]$$
+
+> [!CAUTION]
+> **Calculator Pitfall:** ALWAYS perform all stress calculations using torque in **$\text{N}\cdot\text{mm}$**, NOT $\text{N}\cdot\text{m}$! Forgetting to multiply by $10^3$ will give a shaft diameter that is 10 times too small.
 
 ---
 
