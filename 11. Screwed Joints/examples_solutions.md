@@ -1,6 +1,6 @@
 # Screwed Joints — Solved Examples Solutions
 
-Fully worked solutions for all examples in [11.Examples.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/11.%20Screwed%20Joints/11.Examples.md).
+Fully worked solutions for all examples in [11.Examples.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/11.%20Screwed%20Joints/11.Examples.md). Standard thread dimensions and stress areas are referenced from [Table 11.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/11.%20Screwed%20Joints/table_11_1_standard_screw_threads.md).
 
 ---
 
