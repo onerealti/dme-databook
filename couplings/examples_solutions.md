@@ -14,7 +14,7 @@ Design and make a neat dimensioned sketch of a muff coupling which is used to co
 ### Solution
 
 #### Design Torque ($T$)
-$$T = \frac{60 P}{2 \pi N} = \frac{60 \times 40 \times 10^3}{2 \pi \times 350} = 1091.35\text{ N}\cdot\text{m} = 1.09135 \times 10^6\text{ N}\cdot\text{mm}$$
+$$T = \frac{60 P}{2 \pi N} = \frac{60 \times 40 \times 10^3}{2 \pi \times 350} = 1091.35\text{ N}\cdot\text{m} \approx 1100 \times 10^3\text{ N}\cdot\text{mm}$$
 
 #### 1. Design for shaft
 Using the torsional shear strength formula for a solid shaft:
@@ -31,20 +31,26 @@ Treating the muff as a hollow shaft subjected to torque $T$:
 $$\tau_c = \frac{16 T D}{\pi (D^4 - d^4)} = \frac{16 \times 1.09135 \times 10^6 \times 125}{\pi (125^4 - 55^4)} = 2.96\text{ MPa} \le 15\text{ MPa} \quad \text{(Safe)}$$
 
 #### 3. Design for key
+Since allowable crushing stress is twice the allowable shear stress ($\sigma_c = 2 \tau = 80\text{ MPa} = 2 \times 40\text{ MPa}$), a **square key** of equal strength in shearing and crushing is adopted.
+
 From standard empirical tables for a $55\text{ mm}$ diameter shaft:
 * Width of key: $w = 18\text{ mm}$
-* Thickness of key: $t = 11\text{ mm}$
+* Thickness of key (square key): $t = w = 18\text{ mm}$
 * Length of key in each shaft end: $l = \frac{L}{2} = \frac{195}{2} = 97.5\text{ mm}$
 
 ##### Verification of Key Stresses:
 
 1. **Shearing of the key:**
-   $$\tau_k = \frac{2 T}{w \cdot d \cdot l} = \frac{2 \times 1.09135 \times 10^6}{18 \times 55 \times 97.5} = 22.6\text{ MPa} \le 40\text{ MPa} \quad \text{(Safe)}$$
+   $$T = l \cdot w \cdot \tau_s \cdot \frac{d}{2}$$
+   $$1100 \times 10^3 = 97.5 \times 18 \times \tau_s \times \frac{55}{2} = 48.2 \times 10^3 \tau_s$$
+   $$\tau_s = \frac{1100 \times 10^3}{48.2 \times 10^3} = \mathbf{22.8\text{ N/mm}^2} \le 40\text{ MPa} \quad \text{(Safe)}$$
 
 2. **Crushing of the key:**
-   $$\sigma_{ck} = \frac{4 T}{t \cdot d \cdot l} = \frac{4 \times 1.09135 \times 10^6}{11 \times 55 \times 97.5} = \mathbf{74.0\text{ MPa}} \le 80\text{ MPa} \quad \text{(Safe)}$$
+   $$T = l \cdot \frac{t}{2} \cdot \sigma_{cs} \cdot \frac{d}{2}$$
+   $$1100 \times 10^3 = 97.5 \times \frac{18}{2} \times \sigma_{cs} \times \frac{55}{2} = 24.1 \times 10^3 \sigma_{cs}$$
+   $$\sigma_{cs} = \frac{1100 \times 10^3}{24.1 \times 10^3} = \mathbf{45.6\text{ N/mm}^2} \le 80\text{ MPa} \quad \text{(Safe)}$$
 
-*Conclusion:* The key design is **100% correct, safe, and fully verified**.
+*Conclusion:* The induced stresses ($\tau_s = 22.8\text{ MPa} \le 40\text{ MPa}$ and $\sigma_{cs} = 45.6\text{ MPa} \le 80\text{ MPa}$) are well within safe permissible limits.
 
 ---
 
