@@ -163,26 +163,57 @@ Design a protective type of cast iron flange coupling for a steel shaft transmit
 ### Solution
 
 #### Design Torque ($T_{\max}$)
-$$T_{\text{mean}} = \frac{60 \times 15000}{2 \pi \times 200} = 716.2\text{ N}\cdot\text{m} \implies T_{\max} = 1.25 \times 716.2 = 895.25\text{ N}\cdot\text{m} = 8.9525 \times 10^5\text{ N}\cdot\text{mm}$$
+$$T_{\text{mean}} = \frac{60 P}{2 \pi N} = \frac{60 \times 15 \times 10^3}{2 \pi \times 200} = 716\text{ N}\cdot\text{m} = 716 \times 10^3\text{ N}\cdot\text{mm}$$
+$$T_{\max} = 1.25 T_{\text{mean}} = 1.25 \times 716 \times 10^3 = 895 \times 10^3\text{ N}\cdot\text{mm}$$
 
 #### 1. Design for hub
-$$d = \sqrt[3]{\frac{16 \times 8.9525 \times 10^5}{\pi \times 40}} = 48.5\text{ mm} \implies \mathbf{d = 50\text{ mm}}$$
-* Hub outer diameter: $D = 2d = 100\text{ mm}$, Length of hub: $L = 1.5d = 75\text{ mm}$.
+Using torsional shear strength for solid shaft:
+$$\tau_s = \frac{16 T_{\max}}{\pi d^3} \implies 895 \times 10^3 = \frac{\pi}{16} \times 40 \times d^3 = 7.86 d^3$$
+$$d^3 = \frac{895 \times 10^3}{7.86} = 113868 \implies d = 48.4\text{ mm} \quad \text{say } \mathbf{d = 50\text{ mm}}$$
+
+* Outer diameter of hub: $D = 2d = 2 \times 50 = 100\text{ mm}$
+* Length of hub: $L = 1.5d = 1.5 \times 50 = 75\text{ mm}$
+
+##### Check Induced Shear Stress in Cast Iron Hub (Hollow Shaft):
+$$T_{\max} = \frac{\pi}{16} \tau_c \left(\frac{D^4 - d^4}{D}\right) \implies 895 \times 10^3 = \frac{\pi}{16} \tau_c \left(\frac{100^4 - 50^4}{100}\right) = 184100 \tau_c$$
+$$\tau_c = \frac{895 \times 10^3}{184100} = \mathbf{4.86\text{ N/mm}^2 = 4.86\text{ MPa}} \le 14\text{ MPa} \quad \text{(Safe)}$$
 
 #### 2. Design for key
-From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 50\text{ mm}$: Square key $w = t = 16\text{ mm}, l = L = 75\text{ mm}$.
-* Shear Check: $\tau_k = \frac{2 \times 8.9525 \times 10^5}{16 \times 50 \times 75} = 29.8\text{ MPa} \le 40\text{ MPa} \quad \text{(Safe)}$
-* Crushing Check: $\sigma_{ck} = \frac{4 \times 8.9525 \times 10^5}{16 \times 50 \times 75} = 59.7\text{ MPa} \le 80\text{ MPa} \quad \text{(Safe)}$
+Since crushing stress is twice shear stress ($\sigma_{ck} = 2\tau_k = 80 = 2 \times 40$), a **square key** is used.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 50\text{ mm}$:
+* Width of key: $w = 16\text{ mm}$
+* Thickness of key (square key): $t = w = 16\text{ mm}$
+* Length of key: $l = L = 75\text{ mm}$
+
+##### Verification of Key Stresses:
+1. **Shearing of the key:**
+   $$T_{\max} = l \cdot w \cdot \tau_k \cdot \frac{d}{2} \implies 895 \times 10^3 = 75 \times 16 \times \tau_k \times \frac{50}{2} = 30 \times 10^3 \tau_k$$
+   $$\tau_k = \frac{895 \times 10^3}{30 \times 10^3} = \mathbf{29.8\text{ N/mm}^2 = 29.8\text{ MPa}} \le 40\text{ MPa} \quad \text{(Safe)}$$
+
+2. **Crushing of the key:**
+   $$T_{\max} = l \cdot \frac{t}{2} \cdot \sigma_{ck} \cdot \frac{d}{2} \implies 895 \times 10^3 = 75 \times \frac{16}{2} \times \sigma_{ck} \times \frac{50}{2} = 15 \times 10^3 \sigma_{ck}$$
+   $$\sigma_{ck} = \frac{895 \times 10^3}{15 \times 10^3} = \mathbf{59.6\text{ N/mm}^2 = 59.6\text{ MPa}} \le 80\text{ MPa} \quad \text{(Safe)}$$
 
 #### 3. Design for flange
-* Pitch circle diameter: $D_b = 3d = 150\text{ mm}$
-* Flange web thickness: $t_f = 0.5d = 25\text{ mm}$, Protective rim $t_p = 13\text{ mm}$, Outer dia $D_1 = 4d = 200\text{ mm}$.
-* Flange Shear Check: $\tau_{\text{flange}} = \frac{2 \times 8.9525 \times 10^5}{\pi \times 100^2 \times 25} = 2.28\text{ MPa} \le 14\text{ MPa} \quad \text{(Safe)}$
+* Flange web thickness: $t_f = 0.5d = 0.5 \times 50 = 25\text{ mm}$
+
+##### Check Induced Shear Stress in Flange:
+$$T_{\max} = \frac{\pi}{2} D^2 t_f \tau_c \implies 895 \times 10^3 = \frac{\pi}{2} (100)^2 \times 25 \times \tau_c = 392750 \tau_c$$
+$$\tau_c = \frac{895 \times 10^3}{392750} = \mathbf{2.5\text{ N/mm}^2 = 2.5\text{ MPa}} \le 14\text{ MPa} \quad \text{(Safe)}$$
 
 #### 4. Design for bolts
-Number of bolts $n = 4$ (for $d = 50\text{ mm}$).
-$$d_b = \sqrt{\frac{8 T_{\max}}{\pi n D_b \tau_b}} = \sqrt{\frac{8 \times 8.9525 \times 10^5}{\pi \times 4 \times 150 \times 30}} = 11.25\text{ mm} \implies \text{Use }\mathbf{\text{M12 bolts}}$$
-* Bolt Crushing Check: $\sigma_{cb} = \frac{2 \times 8.9525 \times 10^5}{4 \times 12 \times 25 \times 150} = 9.95\text{ MPa} \le 80\text{ MPa} \quad \text{(Safe)}$
+Let $d_1$ be the nominal diameter of bolts.
+* Number of bolts: $n = 4$ (for $d = 50\text{ mm}$)
+* Pitch circle diameter: $D_1 = 3d = 3 \times 50 = 150\text{ mm}$
+
+$$T_{\max} = n \cdot \frac{\pi}{4} d_1^2 \cdot \tau_b \cdot \frac{D_1}{2} \implies 895 \times 10^3 = 4 \times \frac{\pi}{4} d_1^2 \times 30 \times \frac{150}{2} = 7070 (d_1)^2$$
+$$(d_1)^2 = \frac{895 \times 10^3}{7070} = 126.6 \implies d_1 = 11.25\text{ mm}$$
+
+Assuming coarse threads, select nearest standard bolt size: **Use M 12 bolts**.
+
+##### Other Flange Proportions:
+* Outer diameter of flange: $D_2 = 4d = 4 \times 50 = 200\text{ mm}$
+* Thickness of protective circumferential flange: $t_p = 0.25d = 0.25 \times 50 = 12.5\text{ mm}$
 
 ---
 
