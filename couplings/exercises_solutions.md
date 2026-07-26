@@ -1,6 +1,6 @@
 # Shaft Couplings — Practice Exercises Solutions
 
-Fully worked, step-by-step solutions for all practice exercises in [exercises.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/couplings/exercises.md).
+Fully worked, step-by-step solutions for all practice exercises in [exercises.md](exercises.md).
 
 ---
 

@@ -1,6 +1,6 @@
 # Cotter and Knuckle Joints — Solved Examples Solutions
 
-Fully worked, step-by-step solutions for all examples in [examples.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/12.Cotter%20and%20Knuckle%20Joints/examples.md).
+Fully worked, step-by-step solutions for all examples in [examples.md](examples.md).
 
 ---
 

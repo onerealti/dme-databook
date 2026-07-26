@@ -1,6 +1,6 @@
 # Riveted Joints — Practice Exercises Solutions
 
-Fully worked solutions for all practice exercises in [exercises.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/Riveted%20Joints/exercises.md).
+Fully worked solutions for all practice exercises in [exercises.md](exercises.md).
 
 ---
 

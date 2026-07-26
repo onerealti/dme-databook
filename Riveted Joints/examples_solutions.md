@@ -1,6 +1,6 @@
 # Riveted Joints — Solved Examples Solutions
 
-Fully worked, step-by-step solutions for all examples in [examples.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/Riveted%20Joints/examples.md).
+Fully worked, step-by-step solutions for all examples in [examples.md](examples.md).
 
 ---
 

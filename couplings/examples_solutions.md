@@ -1,6 +1,6 @@
 # Shaft Couplings — Solved Examples Solutions
 
-Fully worked, step-by-step solutions for all examples in [examples.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/couplings/examples.md). Standard key proportions are referenced from [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md).
+Fully worked, step-by-step solutions for all examples in [examples.md](examples.md). Standard key proportions are referenced from [Table 13.1](../keys/table_13_1_standard_key_proportions.md) and thread dimensions from [Table 11.1](../11.%20Screwed%20Joints/table_11_1_standard_screw_threads.md).
 
 ---
 
@@ -33,7 +33,7 @@ $$\tau_c = \frac{16 T D}{\pi (D^4 - d^4)} = \frac{16 \times 1.09135 \times 10^6 
 #### 3. Design for key
 Since allowable crushing stress is twice the allowable shear stress ($\sigma_c = 2 \tau = 80\text{ MPa} = 2 \times 40\text{ MPa}$), a **square key** of equal strength in shearing and crushing is adopted.
 
-From standard [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for a $55\text{ mm}$ diameter shaft:
+From standard [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for a $55\text{ mm}$ diameter shaft:
 * Width of key: $w = 18\text{ mm}$
 * Thickness of key (square key): $t = w = 18\text{ mm}$
 * Length of key in each shaft end: $l = \frac{L}{2} = \frac{195}{2} = 97.5\text{ mm}$
@@ -60,7 +60,7 @@ Design a clamp coupling to transmit $30\text{ kW}$ at $100\text{ rpm}$. The allo
 ### Solution
 
 #### Design Torque ($T$)
-$$T = \frac{60 P}{2 \pi N} = \frac{60 \times 30 \times 10^3}{2 \pi \times 100} = 2864.8\text{ N}\cdot\text{m} = 2.8648 \times 10^6\text{ N}\cdot\text{mm}$$
+$$T = \frac{60 P}{2 \pi N} = \frac{60 \times 30 \times 10^3}{2 \pi \times 100} = 2864.8\text{ N}\cdot\text{m} \approx 2865 \times 10^3\text{ N}\cdot\text{mm}$$
 
 #### 1. Design for shaft
 $$d = \sqrt[3]{\frac{16 T}{\pi \tau_s}} = \sqrt[3]{\frac{16 \times 2.8648 \times 10^6}{\pi \times 40}} = 71.45\text{ mm} \implies \mathbf{d = 75\text{ mm}}$$
@@ -70,15 +70,19 @@ $$d = \sqrt[3]{\frac{16 T}{\pi \tau_s}} = \sqrt[3]{\frac{16 \times 2.8648 \times
 * Total length of muff: $L = 3.5d = 3.5 \times 75 = 262.5\text{ mm} \approx 265\text{ mm}$
 
 #### 3. Design for key
-From [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for $d = 75\text{ mm}$: $w = 22\text{ mm}$, $t = 14\text{ mm}$, $l = L = 265\text{ mm}$.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 75\text{ mm}$: $w = 22\text{ mm}$, $t = 14\text{ mm}$, $l = L = 265\text{ mm}$.
 * Shear stress check: $\tau_k = \frac{2 T}{w \cdot d \cdot L} = \frac{2 \times 2.8648 \times 10^6}{22 \times 75 \times 265} = 13.1\text{ MPa} \le 40\text{ MPa} \quad \text{(Safe)}$
 
 #### 4. Design for bolts
+Let $d_b$ be the root or core diameter of the bolt.
 Torque transmitted by friction between muff bore and shaft surface:
-$$T = \frac{\pi^2}{8} \cdot \mu \cdot d \cdot n \cdot \left(\frac{\pi}{4} d_b^2 \cdot \sigma_{tb}\right)$$
-$$d_b = \sqrt{\frac{8 T}{\pi^2 \mu n \sigma_{tb} d}} = \sqrt{\frac{8 \times 2.8648 \times 10^6}{\pi^2 \times 0.3 \times 6 \times 70 \times 75}} = 15.69\text{ mm}$$
+$$T = \frac{\pi^2}{16} \cdot \mu \cdot d \cdot \left(\frac{\pi}{4} d_b^2 \cdot \sigma_{tb}\right) \cdot n$$
+$$2865 \times 10^3 = \frac{\pi^2}{16} \times 0.3 \times 75 \times \left(\frac{\pi}{4} d_b^2 \times 70\right) \times 6 = 5830 \, d_b^2$$
+$$d_b^2 = \frac{2865 \times 10^3}{5830} = 492 \implies d_b = \mathbf{22.2\text{ mm}}$$
 
-*Selection:* Select **M20 bolts** ($d_b = 17.3\text{ mm} > 15.69\text{ mm}$).
+From [Table 11.1](../11.%20Screwed%20Joints/table_11_1_standard_screw_threads.md) (Design dimensions of screw threads for coarse series), the standard core diameter exceeding $22.2\text{ mm}$ is $d_c = 23.320\text{ mm}$, corresponding to nominal bolt diameter $d = 27\text{ mm}$.
+
+*Selection:* **Select M 27 bolts** ($d_c = 23.32\text{ mm} > 22.2\text{ mm}$).
 
 ---
 
@@ -104,7 +108,7 @@ $$d = \sqrt[3]{\frac{16 T_{\max}}{\pi \tau_s}} = \sqrt[3]{\frac{16 \times 2.1485
 * Length of hub: $L = 1.5d = 52.5\text{ mm} \approx 55\text{ mm}$
 
 #### 2. Design for key
-From [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for $d = 35\text{ mm}$: $w = 12\text{ mm}$, $t = 8\text{ mm}$, $l = L = 55\text{ mm}$.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 35\text{ mm}$: $w = 12\text{ mm}$, $t = 8\text{ mm}$, $l = L = 55\text{ mm}$.
 * Shear Check: $\tau_k = \frac{2 \times 2.1485 \times 10^5}{12 \times 35 \times 55} = 18.6\text{ MPa} \le 40\text{ MPa} \quad \text{(Safe)}$
 * Crushing Check: $\sigma_{ck} = \frac{4 \times 2.1485 \times 10^5}{8 \times 35 \times 55} = 55.8\text{ MPa} \le 80\text{ MPa} \quad \text{(Safe)}$
 
@@ -139,7 +143,7 @@ $$d = \sqrt[3]{\frac{16 \times 8.9525 \times 10^5}{\pi \times 40}} = 48.5\text{ 
 * Hub outer diameter: $D = 2d = 100\text{ mm}$, Length of hub: $L = 1.5d = 75\text{ mm}$.
 
 #### 2. Design for key
-From [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for $d = 50\text{ mm}$: Square key $w = t = 16\text{ mm}, l = L = 75\text{ mm}$.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 50\text{ mm}$: Square key $w = t = 16\text{ mm}, l = L = 75\text{ mm}$.
 * Shear Check: $\tau_k = \frac{2 \times 8.9525 \times 10^5}{16 \times 50 \times 75} = 29.8\text{ MPa} \le 40\text{ MPa} \quad \text{(Safe)}$
 * Crushing Check: $\sigma_{ck} = \frac{4 \times 8.9525 \times 10^5}{16 \times 50 \times 75} = 59.7\text{ MPa} \le 80\text{ MPa} \quad \text{(Safe)}$
 
@@ -175,7 +179,7 @@ $$T = \frac{60 \times 90 \times 10^3}{2 \pi \times 250} = 3437.7\text{ N}\cdot\t
 * Hub outer diameter: $D = 2d = 160\text{ mm}$, Length $L = 1.5d = 120\text{ mm}$.
 
 #### 2. Design for key
-From [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for $d = 80\text{ mm}$: $w = 25\text{ mm}, t = 14\text{ mm}, l = L = 120\text{ mm}$.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 80\text{ mm}$: $w = 25\text{ mm}, t = 14\text{ mm}, l = L = 120\text{ mm}$.
 
 #### 3. Design for flange
 * Pitch Circle Diameter: $D_b = 3d = 240\text{ mm}$
@@ -201,7 +205,7 @@ $$d = \sqrt[3]{\frac{16 T}{\pi \tau_s}} = \sqrt[3]{\frac{16 \times 2.5 \times 10
 * Hub outer diameter: $D = 2d = 50\text{ mm}$, Length $L = 1.5d = 37.5\text{ mm} \approx 40\text{ mm}$.
 
 #### 2. Design for key
-From [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for $d = 25\text{ mm}$: $w = 8\text{ mm}, t = 7\text{ mm}, l = L = 40\text{ mm}$.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 25\text{ mm}$: $w = 8\text{ mm}, t = 7\text{ mm}, l = L = 40\text{ mm}$.
 
 #### 3. Design for flange
 * Pitch Circle Diameter: $D_b = 3d = 75\text{ mm}$
@@ -232,7 +236,7 @@ $$T = \frac{\pi}{2} D^2 t_f \tau_c \quad (D = 2d = 70\text{ mm})$$
 $$800 \times 10^3 = \frac{\pi}{2} (70)^2 \times t_f \times 10 \implies \mathbf{t_f = 10.4\text{ mm} \approx 12\text{ mm}}$$
 
 #### 3. Key dimensions
-From [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for $d = 35\text{ mm}$: $w = 10\text{ mm}, t = 8\text{ mm}$.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 35\text{ mm}$: $w = 10\text{ mm}, t = 8\text{ mm}$.
 $$l = \frac{2 T}{w \cdot d \cdot \tau_k} = \frac{2 \times 800 \times 10^3}{10 \times 35 \times 46} = 49.7\text{ mm} \implies \mathbf{l = 50\text{ mm}}$$
 
 #### 4. Hub length
@@ -267,7 +271,7 @@ $$d = \sqrt[3]{\frac{16 T_{\max}}{\pi \tau_s}} = \sqrt[3]{\frac{16 \times 3.82 \
 * Hub outer diameter: $D = 2d = 80\text{ mm}$, Length $L = 1.5d = 60\text{ mm}$.
 
 #### 3. Design for key
-From [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for $d = 40\text{ mm}$: $w = 12\text{ mm}, t = 8\text{ mm}, l = L = 60\text{ mm}$.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 40\text{ mm}$: $w = 12\text{ mm}, t = 8\text{ mm}, l = L = 60\text{ mm}$.
 
 #### 4. Design for flange
 * Flange web thickness: $t_f = 0.5d = 20\text{ mm}$.

@@ -1,6 +1,6 @@
 # Keys — Solved Examples Solutions
 
-Fully worked solutions for all examples in [examples.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/examples.md). Standard key proportions are referenced from [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md).
+Fully worked solutions for all examples in [examples.md](examples.md). Standard key proportions are referenced from [Table 13.1](table_13_1_standard_key_proportions.md).
 
 ---
 
@@ -17,7 +17,7 @@ Design the rectangular key for a shaft of $50\text{ mm}$ diameter transmitting $
 $$T = \frac{60 P}{2 \pi N} = \frac{60 \times 25 \times 10^3}{2 \pi \times 250} = 954.93\text{ N}\cdot\text{m} = 9.5493 \times 10^5\text{ N}\cdot\text{mm}$$
 
 #### 2. Key Cross-Section ($w, t$)
-From standard [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for shaft diameter $d = 50\text{ mm}$:
+From standard [Table 13.1](table_13_1_standard_key_proportions.md) for shaft diameter $d = 50\text{ mm}$:
 * Width of key: $w = \mathbf{16\text{ mm}}$
 * Thickness of key: $t = \mathbf{10\text{ mm}}$
 
@@ -48,7 +48,7 @@ A $45\text{ mm}$ diameter shaft transmits $20\text{ kW}$ at $200\text{ rpm}$. De
 $$T = \frac{60 \times 20 \times 10^3}{2 \pi \times 200} = 954.93\text{ N}\cdot\text{m} = 9.5493 \times 10^5\text{ N}\cdot\text{mm}$$
 
 #### 2. Key Cross-Section ($w = t$)
-From [Table 13.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/keys/table_13_1_standard_key_proportions.md) for shaft $d = 45\text{ mm}$: $w = 16\text{ mm}$.
+From [Table 13.1](table_13_1_standard_key_proportions.md) for shaft $d = 45\text{ mm}$: $w = 16\text{ mm}$.
 For square key: $w = t = \mathbf{16\text{ mm}}$ (or $14\text{ mm}$ based on empirical $d/4$).
 
 #### 3. Length of key ($l$)

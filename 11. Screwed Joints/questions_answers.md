@@ -1,6 +1,6 @@
 # Screwed Joints — Theory Question Answers
 
-Detailed, exam-ready answers for review questions in [11.Questions.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/11.%20Screwed%20Joints/11.Questions.md).
+Detailed, exam-ready answers for review questions in [11.Questions.md](11.Questions.md).
 
 ---
 

@@ -1,6 +1,6 @@
 # Cotter and Knuckle Joints — Theory Question Answers
 
-Detailed, exam-ready answers for theoretical review questions in [questions.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/12.Cotter%20and%20Knuckle%20Joints/questions.md).
+Detailed, exam-ready answers for theoretical review questions in [questions.md](questions.md).
 
 ---
 

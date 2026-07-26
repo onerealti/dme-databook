@@ -1,6 +1,6 @@
 # Shafts — Practice Exercises Solutions
 
-Fully worked, step-by-step solutions for all 25 practice exercises in [exercises.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/shafts/exercises.md).
+Fully worked, step-by-step solutions for all 25 practice exercises in [exercises.md](exercises.md).
 
 ---
 

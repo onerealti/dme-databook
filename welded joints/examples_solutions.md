@@ -1,6 +1,6 @@
 # Welded Joints — Solved Examples Solutions
 
-Fully worked solutions for all in-scope examples in [examples.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/welded%20joints/examples.md).
+Fully worked solutions for all in-scope examples in [examples.md](examples.md).
 
 ---
 

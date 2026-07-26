@@ -1,6 +1,6 @@
 # Cotter and Knuckle Joints — Practice Exercises Solutions
 
-Fully worked, step-by-step solutions for all practice exercises in [exercises.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/12.Cotter%20and%20Knuckle%20Joints/exercises.md).
+Fully worked, step-by-step solutions for all practice exercises in [exercises.md](exercises.md).
 
 ---
 

@@ -1,6 +1,6 @@
 # Power Screws — Theory Question Answers
 
-Detailed, exam-ready answers for review questions in [questions.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/power%20screws/questions.md).
+Detailed, exam-ready answers for review questions in [questions.md](questions.md).
 
 ---
 

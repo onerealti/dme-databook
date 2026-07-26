@@ -1,6 +1,6 @@
 # Welded Joints — Practice Exercises Solutions
 
-Fully worked solutions for all in-scope practice exercises in [exercises.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/welded%20joints/exercises.md).
+Fully worked solutions for all in-scope practice exercises in [exercises.md](exercises.md).
 
 ---
 

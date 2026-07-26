@@ -1,6 +1,6 @@
 # Shafts — Solved Examples Solutions
 
-Fully worked solutions for all 22 examples in [examples.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/shafts/examples.md).
+Fully worked solutions for all 22 examples in [examples.md](examples.md).
 
 ---
 

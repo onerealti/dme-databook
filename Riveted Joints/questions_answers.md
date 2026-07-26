@@ -1,6 +1,6 @@
 # Riveted Joints — Theory Question Answers
 
-Detailed, exam-ready answers for all theoretical questions in [questions.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/Riveted%20Joints/questions.md).
+Detailed, exam-ready answers for all theoretical questions in [questions.md](questions.md).
 
 ---
 

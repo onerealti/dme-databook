@@ -1,6 +1,6 @@
 # Screwed Joints — Practice Exercises Solutions
 
-Fully worked, step-by-step solutions for all 20 practice exercises in [11.Exercises.md](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/11.%20Screwed%20Joints/11.Exercises.md). Standard thread dimensions and stress areas are referenced from [Table 11.1](file:///g:/Shared%20drives/Mech28/SEM%204/DME/markdowns/11.%20Screwed%20Joints/table_11_1_standard_screw_threads.md).
+Fully worked, step-by-step solutions for all 20 practice exercises in [11.Exercises.md](11.Exercises.md). Standard thread dimensions and stress areas are referenced from [Table 11.1](table_11_1_standard_screw_threads.md).
 
 ---
 
