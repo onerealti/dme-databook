@@ -220,58 +220,127 @@ Assuming coarse threads, select nearest standard bolt size: **Use M 12 bolts**.
 ## Example 13.8 (Flange Coupling with Rigidity Constraint)
 
 ### Problem Statement
-Design a CI flange coupling for a mild steel shaft transmitting $90\text{ kW}$ at $250\text{ rpm}$. Allowable shear stress in shaft $\tau_s = 40\text{ MPa}$, maximum twist $\theta \le 1^\circ$ in $L = 20d$, and allowable bolt shear stress $\tau_b = 30\text{ MPa}$. Take $G = 84\text{ GPa}$.
+Design and draw a cast iron flange coupling for a mild steel shaft transmitting $90\text{ kW}$ at $250\text{ rpm}$. The allowable shear stress in the shaft is $40\text{ MPa}$ and the angle of twist is not to exceed $1^\circ$ in a length of $20$ diameters. The allowable shear stress in the coupling bolts is $30\text{ MPa}$.
 
 ---
 
 ### Solution
 
 #### Design Torque ($T$)
-$$T = \frac{60 \times 90 \times 10^3}{2 \pi \times 250} = 3437.7\text{ N}\cdot\text{m} = 3.4377 \times 10^6\text{ N}\cdot\text{mm}$$
+$$T = \frac{60 P}{2 \pi N} = \frac{60 \times 90 \times 10^3}{2 \pi \times 250} = 3440\text{ N}\cdot\text{m} = 3440 \times 10^3\text{ N}\cdot\text{mm}$$
 
-#### 1. Design for hub
-1. **Strength Criterion:** $d = \sqrt[3]{\frac{16 T}{\pi \tau_s}} = 75.9\text{ mm}$
-2. **Rigidity Criterion ($\theta \le 1^\circ$ in $20d$):** $d = \sqrt[3]{\frac{32 T \times 3600}{\pi^2 G}} = 78.1\text{ mm}$
+#### 1. Shaft Diameter ($d$)
 
-*Select larger standard diameter:* **$d = 80\text{ mm}$**
-* Hub outer diameter: $D = 2d = 160\text{ mm}$, Length $L = 1.5d = 120\text{ mm}$.
+##### (a) Considering Strength of Shaft:
+$$T = \frac{\pi}{16} \tau_s d^3 \implies 3440 \times 10^3 = \frac{\pi}{16} \times 40 \times d^3 = 7.86 d^3$$
+$$d^3 = \frac{3440 \times 10^3}{7.86} = 0.438 \times 10^6 \implies d = 76\text{ mm}$$
 
-#### 2. Design for key
-From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 80\text{ mm}$: $w = 25\text{ mm}, t = 14\text{ mm}, l = L = 120\text{ mm}$.
+##### (b) Considering Rigidity of Shaft ($\theta = 1^\circ = 0.0175\text{ rad}$ in $L = 20d$, $G = 84\text{ kN/mm}^2$):
+$$\frac{T}{J} = \frac{G \theta}{L} \implies \frac{3440 \times 10^3}{\frac{\pi}{32} d^4} = \frac{84 \times 10^3 \times 0.0175}{20 d}$$
+$$d^3 = \frac{35 \times 10^6}{73.5} = 0.476 \times 10^6 \implies d = 78\text{ mm}$$
 
-#### 3. Design for flange
-* Pitch Circle Diameter: $D_b = 3d = 240\text{ mm}$
-* Flange Thickness: $t_f = 0.5d = 40\text{ mm}$, Outer Diameter $D_1 = 4d = 320\text{ mm}$.
+Taking the larger of the two values: $d = 78\text{ mm} \quad \text{say } \mathbf{d = 80\text{ mm}}$
 
-#### 4. Design for bolts
-Number of bolts $n = 6$ (for $d = 80\text{ mm}$).
-$$d_b = \sqrt{\frac{8 T}{\pi n D_b \tau_b}} = \sqrt{\frac{8 \times 3.4377 \times 10^6}{\pi \times 6 \times 240 \times 30}} = 14.23\text{ mm} \implies \text{Use }\mathbf{\text{M16 bolts}}$$
+#### 2. Design for hub
+* Outer diameter of hub: $D = 2d = 2 \times 80 = 160\text{ mm}$
+* Length of hub: $L = 1.5d = 1.5 \times 80 = 120\text{ mm}$
+
+##### Check Induced Shear Stress in Cast Iron Hub (Hollow Shaft):
+$$T = \frac{\pi}{16} \tau_c \left(\frac{D^4 - d^4}{D}\right) \implies 3440 \times 10^3 = \frac{\pi}{16} \tau_c \left(\frac{160^4 - 80^4}{160}\right) = 754 \times 10^3 \tau_c$$
+$$\tau_c = \frac{3440 \times 10^3}{754 \times 10^3} = \mathbf{4.56\text{ N/mm}^2 = 4.56\text{ MPa}} \le 14\text{ MPa} \quad \text{(Safe)}$$
+
+#### 3. Design for key
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 80\text{ mm}$:
+* Width of key: $w = 25\text{ mm}$
+* Thickness of key: $t = 14\text{ mm}$
+* Length of key: $l = L = 120\text{ mm}$
+
+##### Check Induced Shear Stress in Key:
+$$T = l \cdot w \cdot \tau_k \cdot \frac{d}{2} \implies 3440 \times 10^3 = 120 \times 25 \times \tau_k \times \frac{80}{2} = 120 \times 10^3 \tau_k$$
+$$\tau_k = \frac{3440 \times 10^3}{120 \times 10^3} = \mathbf{28.7\text{ N/mm}^2 = 28.7\text{ MPa}} \le 40\text{ MPa} \quad \text{(Safe)}$$
+
+#### 4. Design for flange
+* Flange web thickness: $t_f = 0.5d = 0.5 \times 80 = 40\text{ mm}$
+
+##### Check Induced Shear Stress in Flange:
+$$T = \frac{\pi}{2} D^2 t_f \tau_c \implies 3440 \times 10^3 = \frac{\pi}{2} (160)^2 \times 40 \times \tau_c = 1608 \times 10^3 \tau_c$$
+$$\tau_c = \frac{3440 \times 10^3}{1608 \times 10^3} = \mathbf{2.14\text{ N/mm}^2 = 2.14\text{ MPa}} \le 14\text{ MPa} \quad \text{(Safe)}$$
+
+#### 5. Design for bolts
+Let $d_1$ be the nominal diameter of bolts.
+* Number of bolts: $n = 4$
+* Pitch circle diameter: $D_1 = 3d = 3 \times 80 = 240\text{ mm}$
+
+$$T = n \cdot \frac{\pi}{4} d_1^2 \cdot \tau_b \cdot \frac{D_1}{2} \implies 3440 \times 10^3 = 4 \times \frac{\pi}{4} d_1^2 \times 30 \times \frac{240}{2} = 11311 (d_1)^2$$
+$$(d_1)^2 = \frac{3440 \times 10^3}{11311} = 304 \implies d_1 = 17.4\text{ mm}$$
+
+Assuming coarse threads, select standard nominal bolt diameter: **Use M 18 bolts**.
+
+##### Other Flange Proportions:
+* Outer diameter of flange: $D_2 = 4d = 4 \times 80 = 320\text{ mm}$
+* Thickness of protective circumferential flange: $t_p = 0.25d = 0.25 \times 80 = 20\text{ mm}$
 
 ---
 
 ## Example 13.9 (Rigid Flange Coupling — Given Torque)
 
 ### Problem Statement
-Design a rigid flange coupling to transmit a torque of $250\text{ N}\cdot\text{m}$ using 4 bolts. Permissible stresses: Shaft/Key shear $= 100\text{ MPa}$, Shaft/Key crushing $= 250\text{ MPa}$, Cast iron shear $= 15\text{ MPa}$, Bolt shear $= 100\text{ MPa}$.
+Design a cast iron flange coupling of the protective type to transmit a torque of $250\text{ N}\cdot\text{m}$ using 4 bolts. Permissible stresses: Shaft/Key shear $= 100\text{ MPa}$, Shaft/Key crushing $= 250\text{ MPa}$, Cast iron shear $= 200\text{ MPa}$, Bolt shear $= 100\text{ MPa}$.
 
 ---
 
 ### Solution
 
+#### Design Torque ($T$)
+$$T = 250\text{ N}\cdot\text{m} = 250 \times 10^3\text{ N}\cdot\text{mm}$$
+
 #### 1. Design for hub
-$$d = \sqrt[3]{\frac{16 T}{\pi \tau_s}} = \sqrt[3]{\frac{16 \times 2.5 \times 10^5}{\pi \times 100}} = 23.35\text{ mm} \implies \mathbf{d = 25\text{ mm}}$$
-* Hub outer diameter: $D = 2d = 50\text{ mm}$, Length $L = 1.5d = 37.5\text{ mm} \approx 40\text{ mm}$.
+Using torsional shear strength for solid shaft:
+$$\tau_s = \frac{16 T}{\pi d^3} \implies 250 \times 10^3 = \frac{\pi}{16} \times 100 \times d^3 = 19.64 d^3$$
+$$d^3 = \frac{250 \times 10^3}{19.64} = 12729 \implies d = 23.35\text{ mm} \quad \text{say } \mathbf{d = 25\text{ mm}}$$
+
+* Outer diameter of hub: $D = 2d = 2 \times 25 = 50\text{ mm}$
+* Length of hub: $L = 1.5d = 1.5 \times 25 = 37.5\text{ mm}$
+
+##### Check Induced Shear Stress in Cast Iron Hub (Hollow Shaft):
+$$T = \frac{\pi}{16} \tau_c \left(\frac{D^4 - d^4}{D}\right) \implies 250 \times 10^3 = \frac{\pi}{16} \tau_c \left(\frac{50^4 - 25^4}{50}\right) = 23013 \tau_c$$
+$$\tau_c = \frac{250 \times 10^3}{23013} = \mathbf{10.86\text{ N/mm}^2 = 10.86\text{ MPa}} \le 200\text{ MPa} \quad \text{(Safe)}$$
 
 #### 2. Design for key
-From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 25\text{ mm}$: $w = 8\text{ mm}, t = 7\text{ mm}, l = L = 40\text{ mm}$.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 25\text{ mm}$:
+* Width of key: $w = 10\text{ mm}$
+* Thickness of key: $t = 8\text{ mm}$
+* Length of key: $l = L = 37.5\text{ mm}$
+
+##### Verification of Key Stresses:
+1. **Shearing of the key:**
+   $$T = l \cdot w \cdot \tau_k \cdot \frac{d}{2} \implies 250 \times 10^3 = 37.5 \times 10 \times \tau_k \times \frac{25}{2} = 4688 \tau_k$$
+   $$\tau_k = \frac{250 \times 10^3}{4688} = \mathbf{53.3\text{ N/mm}^2 = 53.3\text{ MPa}} \le 100\text{ MPa} \quad \text{(Safe)}$$
+
+2. **Crushing of the key:**
+   $$T = l \cdot \frac{t}{2} \cdot \sigma_{ck} \cdot \frac{d}{2} \implies 250 \times 10^3 = 37.5 \times \frac{8}{2} \times \sigma_{ck} \times \frac{25}{2} = 1875 \sigma_{ck}$$
+   $$\sigma_{ck} = \frac{250 \times 10^3}{1875} = \mathbf{133.3\text{ N/mm}^2 = 133.3\text{ MPa}} \le 250\text{ MPa} \quad \text{(Safe)}$$
 
 #### 3. Design for flange
-* Pitch Circle Diameter: $D_b = 3d = 75\text{ mm}$
-* Flange Thickness: $t_f = 0.5d = 12.5\text{ mm} \approx 13\text{ mm}$.
+* Flange web thickness: $t_f = 0.5d = 0.5 \times 25 = 12.5\text{ mm}$
+
+##### Check Induced Shear Stress in Flange:
+$$T = \frac{\pi}{2} D^2 t_f \tau_c \implies 250 \times 10^3 = \frac{\pi}{2} (50)^2 \times 12.5 \times \tau_c = 49094 \tau_c$$
+$$\tau_c = \frac{250 \times 10^3}{49094} = \mathbf{5.1\text{ N/mm}^2 = 5.1\text{ MPa}} \le 200\text{ MPa} \quad \text{(Safe)}$$
 
 #### 4. Design for bolts
-Number of bolts $n = 4$.
-$$d_b = \sqrt{\frac{8 T}{\pi n D_b \tau_b}} = \sqrt{\frac{8 \times 2.5 \times 10^5}{\pi \times 4 \times 75 \times 100}} = 4.6\text{ mm} \implies \text{Use }\mathbf{\text{M6 bolts}}$$
+Let $d_1$ be the nominal diameter of bolts.
+* Number of bolts: $n = 4$
+* Pitch circle diameter: $D_1 = 3d = 3 \times 25 = 75\text{ mm}$
+
+$$T = n \cdot \frac{\pi}{4} d_1^2 \cdot \tau_b \cdot \frac{D_1}{2} \implies 250 \times 10^3 = 4 \times \frac{\pi}{4} d_1^2 \times 100 \times \frac{75}{2} = 11780 (d_1)^2$$
+$$(d_1)^2 = \frac{250 \times 10^3}{11780} = 21.22 \implies d_1 = 4.6\text{ mm}$$
+
+Assuming coarse threads, select standard nominal bolt diameter: **Use M 6 bolts**.
+
+##### Other Flange Proportions:
+* Outer diameter of flange: $D_2 = 4d = 4 \times 25 = 100\text{ mm}$
+* Thickness of protective circumferential flange: $t_p = 0.25d = 0.25 \times 25 = 6.25\text{ mm}$
 
 ---
 
@@ -285,23 +354,42 @@ Calculate: 1. Diameter of bolts, 2. Thickness of flanges, 3. Key dimensions, 4. 
 
 ### Solution
 
+#### Given Data
+$d = 35\text{ mm}$, $n = 6$, $D_1 = 125\text{ mm}$, $T = 800\text{ N}\cdot\text{m} = 800 \times 10^3\text{ N}\cdot\text{mm}$, $N = 350\text{ rpm}$, $\tau_s = 63\text{ MPa}$, $\tau_b = 56\text{ MPa}$, $\tau_c = 10\text{ MPa}$, $\tau_k = 46\text{ MPa}$.
+
+---
+
 #### 1. Diameter of bolts
-$$T = n \cdot \frac{\pi}{4} d_b^2 \cdot \tau_b \cdot \frac{D_b}{2} \implies 800 \times 10^3 = 6 \times \frac{\pi}{4} d_b^2 \times 56 \times 62.5$$
-$$d_b^2 = 48.5\text{ mm}^2 \implies d_b = 6.96\text{ mm} \implies \mathbf{\text{M8 bolts}}$$
+Let $d_1$ be the nominal/outside diameter of bolts.
+$$T = n \cdot \frac{\pi}{4} d_1^2 \cdot \tau_b \cdot \frac{D_1}{2} \implies 800 \times 10^3 = 6 \times \frac{\pi}{4} d_1^2 \times 56 \times \frac{125}{2} = 16495 (d_1)^2$$
+$$(d_1)^2 = \frac{800 \times 10^3}{16495} = 48.5 \implies d_1 = 6.96\text{ mm} \quad \text{say } \mathbf{8\text{ mm}} \implies \text{Use }\mathbf{\text{M 8 bolts}}$$
 
-#### 2. Thickness of flanges
-$$T = \frac{\pi}{2} D^2 t_f \tau_c \quad (D = 2d = 70\text{ mm})$$
-$$800 \times 10^3 = \frac{\pi}{2} (70)^2 \times t_f \times 10 \implies \mathbf{t_f = 10.4\text{ mm} \approx 12\text{ mm}}$$
+#### 2. Thickness of flanges ($t_f$)
+$D = 2d = 2 \times 35 = 70\text{ mm}$
+$$T = \frac{\pi}{2} D^2 t_f \tau_c \implies 800 \times 10^3 = \frac{\pi}{2} (70)^2 \times t_f \times 10 = 76980 t_f$$
+$$t_f = \frac{800 \times 10^3}{76980} = 10.4\text{ mm} \quad \text{say } \mathbf{12\text{ mm}}$$
 
-#### 3. Key dimensions
-From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 35\text{ mm}$: $w = 10\text{ mm}, t = 8\text{ mm}$.
-$$l = \frac{2 T}{w \cdot d \cdot \tau_k} = \frac{2 \times 800 \times 10^3}{10 \times 35 \times 46} = 49.7\text{ mm} \implies \mathbf{l = 50\text{ mm}}$$
+#### 3. Key dimensions ($w, t, l$)
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 35\text{ mm}$:
+* Width of key: $w = \mathbf{12\text{ mm}}$
+* Thickness of key: $t = \mathbf{8\text{ mm}}$
 
-#### 4. Hub length
-$$L = 1.5 d = 1.5 \times 35 = \mathbf{52.5\text{ mm} \approx 55\text{ mm}}$$
+Trial length of key equal to standard hub length ($L = 1.5d = 52.5\text{ mm}$): $l = 52.5\text{ mm}$.
 
-#### 5. Power transmitted
-$$P = \frac{2 \pi N T}{60} = \frac{2 \pi \times 350 \times 800}{60} = 29321.5\text{ W} = \mathbf{29.32\text{ kW}}$$
+##### Check Induced Shear Stress in Key for Trial Length ($l = 52.5\text{ mm}$):
+$$T = l \cdot w \cdot \tau_k \cdot \frac{d}{2} \implies 800 \times 10^3 = 52.5 \times 12 \times \tau_k \times \frac{35}{2} = 11025 \tau_k$$
+$$\tau_k = \frac{800 \times 10^3}{11025} = 72.5\text{ N/mm}^2 > 46\text{ MPa} \quad \text{(Unsafe!)}$$
+
+Since induced shear stress ($72.5\text{ MPa}$) exceeds safe limit ($46\text{ MPa}$), recalculate key length for allowable $\tau_k = 46\text{ MPa}$:
+$$800 \times 10^3 = l \times 12 \times 46 \times \frac{35}{2} = 9660 l$$
+$$l = \frac{800 \times 10^3}{9660} = 82.8\text{ mm} \quad \text{say } \mathbf{l = 85\text{ mm}}$$
+
+#### 4. Hub length ($L$)
+Since key length is taken equal to hub length:
+$$\mathbf{L = l = 85\text{ mm}}$$
+
+#### 5. Power transmitted ($P$)
+$$P = \frac{2 \pi N T}{60} = \frac{2 \pi \times 350 \times 800}{60} = 29325\text{ W} = \mathbf{29.325\text{ kW}}$$
 
 ---
 
@@ -314,23 +402,74 @@ Design a bushed-pin flexible coupling for $32\text{ kW}$ at $960\text{ rpm}$ wit
 
 ### Solution
 
+#### Given Data
+$P = 32\text{ kW} = 32 \times 10^3\text{ W}$, $N = 960\text{ rpm}$, $T_{\max} = 1.2 T_{\text{mean}}$, $\tau_s = \tau_k = \tau_b = 40\text{ MPa}$, $\sigma_{ck} = 80\text{ MPa}$, $\tau_c = 15\text{ MPa}$, $p_b = 0.8\text{ N/mm}^2$.
+
+---
+
 #### Design Torque ($T_{\max}$)
-$$T_{\text{mean}} = \frac{60 \times 32000}{2 \pi \times 960} = 318.3\text{ N}\cdot\text{m} \implies T_{\max} = 1.2 \times 318.3 = 382\text{ N}\cdot\text{m} = 3.82 \times 10^5\text{ N}\cdot\text{mm}$$
+$$T_{\text{mean}} = \frac{60 P}{2 \pi N} = \frac{60 \times 32 \times 10^3}{2 \pi \times 960} = 318.3\text{ N}\cdot\text{m}$$
+$$T_{\max} = 1.2 T_{\text{mean}} = 1.2 \times 318.3 = 382\text{ N}\cdot\text{m} = 382 \times 10^3\text{ N}\cdot\text{mm}$$
 
 #### 1. Design for pins and rubber bush
-* Pitch circle diameter: $D_b = 3.5 d = 140\text{ mm}$ (for $d = 40\text{ mm}$).
-* Number of pins: $n = 6$. Load per pin $W = \frac{2 T_{\max}}{n D_b} = \frac{2 \times 3.82 \times 10^5}{6 \times 140} = 909.5\text{ N}$.
-* Rubber bush outer diameter $d_2 = 40\text{ mm}$. Length of rubber bush $l_{\text{bush}} = \frac{W}{p_b d_2} = \frac{909.5}{0.8 \times 40} = 28.4\text{ mm} \approx 30\text{ mm}$.
-* Pin shank diameter $d_1$: Bending moment $M = W \left(\frac{l_{\text{bush}}}{2} + 5\text{ mm}\right) = 909.5 \times (15 + 5) = 18190\text{ N}\cdot\text{mm}$.
-  $$d_1 = \sqrt[3]{\frac{32 M}{\pi \sigma_b}} = \sqrt[3]{\frac{32 \times 18190}{\pi \times 80}} = 13.2\text{ mm} \implies \mathbf{d_1 = 20\text{ mm}}$$
+Using torsional shear strength for solid shaft:
+$$\tau_s = \frac{16 T_{\max}}{\pi d^3} \implies 382 \times 10^3 = \frac{\pi}{16} \times 40 \times d^3 = 7.86 d^3$$
+$$d^3 = \frac{382 \times 10^3}{7.86} = 48.6 \times 10^3 \implies d = 36.5\text{ mm} \quad \text{say } \mathbf{d = 40\text{ mm}}$$
+
+* Number of pins: $n = 6$
+* Pin shank diameter (incorporating bending allowance): $\mathbf{d_1 = 20\text{ mm}}$
+* Overall diameter of rubber bush ($24\text{ mm enlarged pin} + 2 \times 2\text{ mm brass} + 2 \times 6\text{ mm rubber}$): $\mathbf{d_2 = 40\text{ mm}}$
+* Pitch circle diameter of pins:
+  $$D_1 = 2d + d_2 + 2(6) = 2(40) + 40 + 12 = \mathbf{132\text{ mm}}$$
+
+##### Length of Bush ($l$) and Bearing Load ($W$):
+$$W = p_b \cdot d_2 \cdot l = 0.8 \times 40 \times l = 32 l\text{ N}$$
+$$T_{\max} = W \cdot n \cdot \frac{D_1}{2} \implies 382 \times 10^3 = 32l \times 6 \times \frac{132}{2} = 12672 l$$
+$$l = \frac{382 \times 10^3}{12672} = 30.1\text{ mm} \quad \text{say } \mathbf{l = 32\text{ mm}}$$
+$$W = 32 l = 32 \times 32 = \mathbf{1024\text{ N}}$$
+
+##### Stress Verification in Pin:
+1. **Direct Shear Stress:**
+   $$\tau = \frac{W}{\frac{\pi}{4} d_1^2} = \frac{1024}{\frac{\pi}{4} (20)^2} = \mathbf{3.26\text{ N/mm}^2}$$
+
+2. **Bending Moment ($M$) & Bending Stress ($\sigma_b$):**
+   $$M = W \left(\frac{l}{2} + 5\right) = 1024 \left(\frac{32}{2} + 5\right) = 21504\text{ N}\cdot\text{mm}$$
+   $$Z = \frac{\pi}{32} d_1^3 = \frac{\pi}{32} (20)^3 = 785.5\text{ mm}^3$$
+   $$\sigma_b = \frac{M}{Z} = \frac{21504}{785.5} = \mathbf{27.4\text{ N/mm}^2}$$
+
+3. **Maximum Principal Stress ($\sigma_{\max}$):**
+   $$\sigma_{\max} = \frac{1}{2}\left[\sigma_b + \sqrt{\sigma_b^2 + 4\tau^2}\right] = \frac{1}{2}\left[27.4 + \sqrt{(27.4)^2 + 4(3.26)^2}\right] = 13.7 + 14.1 = \mathbf{27.8\text{ N/mm}^2} \quad \text{(Safe)}$$
+
+4. **Maximum Shear Stress ($\tau_{\max}$):**
+   $$\tau_{\max} = \frac{1}{2}\sqrt{\sigma_b^2 + 4\tau^2} = \frac{1}{2}\sqrt{(27.4)^2 + 4(3.26)^2} = \mathbf{14.1\text{ N/mm}^2} \le 40\text{ MPa} \quad \text{(Safe)}$$
 
 #### 2. Design for hub
-$$d = \sqrt[3]{\frac{16 T_{\max}}{\pi \tau_s}} = \sqrt[3]{\frac{16 \times 3.82 \times 10^5}{\pi \times 40}} = 36.5\text{ mm} \implies \mathbf{d = 40\text{ mm}}$$
-* Hub outer diameter: $D = 2d = 80\text{ mm}$, Length $L = 1.5d = 60\text{ mm}$.
+* Outer diameter of hub: $D = 2d = 2 \times 40 = 80\text{ mm}$
+* Length of hub: $L = 1.5d = 1.5 \times 40 = 60\text{ mm}$
+
+##### Check Induced Shear Stress in Cast Iron Hub (Hollow Shaft):
+$$T_{\max} = \frac{\pi}{16} \tau_c \left(\frac{D^4 - d^4}{D}\right) \implies 382 \times 10^3 = \frac{\pi}{16} \tau_c \left(\frac{80^4 - 40^4}{80}\right) = 94.26 \times 10^3 \tau_c$$
+$$\tau_c = \frac{382 \times 10^3}{94.26 \times 10^3} = \mathbf{4.05\text{ N/mm}^2 = 4.05\text{ MPa}} \le 15\text{ MPa} \quad \text{(Safe)}$$
 
 #### 3. Design for key
-From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 40\text{ mm}$: $w = 12\text{ mm}, t = 8\text{ mm}, l = L = 60\text{ mm}$.
+Since crushing stress is twice shear stress ($\sigma_{ck} = 2\tau_k = 80 = 2 \times 40$), a **square key** is used.
+From [Table 13.1](../keys/table_13_1_standard_key_proportions.md) for $d = 40\text{ mm}$:
+* Width of key: $w = 14\text{ mm}$
+* Thickness of key (square key): $t = w = 14\text{ mm}$
+* Length of key: $l = L = 60\text{ mm}$
+
+##### Verification of Key Stresses:
+1. **Shearing of the key:**
+   $$T_{\max} = l \cdot w \cdot \tau_k \cdot \frac{d}{2} \implies 382 \times 10^3 = 60 \times 14 \times \tau_k \times \frac{40}{2} = 16800 \tau_k$$
+   $$\tau_k = \frac{382 \times 10^3}{16800} = \mathbf{22.74\text{ N/mm}^2 = 22.74\text{ MPa}} \le 40\text{ MPa} \quad \text{(Safe)}$$
+
+2. **Crushing of the key:**
+   $$T_{\max} = l \cdot \frac{t}{2} \cdot \sigma_{ck} \cdot \frac{d}{2} \implies 382 \times 10^3 = 60 \times \frac{14}{2} \times \sigma_{ck} \times \frac{40}{2} = 8400 \sigma_{ck}$$
+   $$\sigma_{ck} = \frac{382 \times 10^3}{8400} = \mathbf{45.48\text{ N/mm}^2 = 45.48\text{ MPa}} \le 80\text{ MPa} \quad \text{(Safe)}$$
 
 #### 4. Design for flange
-* Flange web thickness: $t_f = 0.5d = 20\text{ mm}$.
-* Flange Shear Check: $\tau_{\text{flange}} = \frac{2 T_{\max}}{\pi D^2 t_f} = \frac{2 \times 3.82 \times 10^5}{\pi \times 80^2 \times 20} = 1.9\text{ MPa} \le 15\text{ MPa} \quad \text{(Safe)}$
+* Flange web thickness: $t_f = 0.5d = 0.5 \times 40 = 20\text{ mm}$
+
+##### Check Induced Shear Stress in Flange:
+$$T_{\max} = \frac{\pi}{2} D^2 t_f \tau_c \implies 382 \times 10^3 = \frac{\pi}{2} (80)^2 \times 20 \times \tau_c = 201 \times 10^3 \tau_c$$
+$$\tau_c = \frac{382 \times 10^3}{201 \times 10^3} = \mathbf{1.9\text{ N/mm}^2 = 1.9\text{ MPa}} \le 15\text{ MPa} \quad \text{(Safe)}$$
