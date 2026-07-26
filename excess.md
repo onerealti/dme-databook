@@ -82,12 +82,6 @@ A universal coupling is used to connect two mild steel shafts transmitting a tor
 
 ## From `Cotter and Knuckle Joints/` — Gib & Cotter, Piston Rod, Foundation Bolt, Turnbuckle
 
-### Example 12.3 — Gib and Cotter (Big End of Connecting Rod)
-
-The big end of a connecting rod, as shown in Fig. 12.12, is subjected to a maximum load of $50\text{ kN}$. The diameter of the circular part of the rod adjacent to the strap end is $75\text{ mm}$. Design the joint, assuming:
-- Permissible tensile stress for the strap material ($\sigma_t$) = $25\text{ MPa}$
-- Permissible shear stress for the cotter and gib material ($\tau$) = $20\text{ MPa}$
-
 ### Example 12.4 — Gib and Cotter (Square Rods)
 
 Design a gib and cotter joint as shown in Fig. 12.13, to carry a maximum load of $35\text{ kN}$. Assuming that the gib, cotter, and rod are of the same material and have the following allowable stresses:

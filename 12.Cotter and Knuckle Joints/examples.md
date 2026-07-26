@@ -22,6 +22,14 @@ Design a sleeve and cotter joint to resist a tensile load of $60\text{ kN}$. All
 
 ---
 
+### Example 12.3
+
+The big end of a connecting rod is subjected to a maximum load of $50\text{ kN}$. The diameter of the circular part of the rod adjacent to the strap end is $75\text{ mm}$. Design the gib and cotter joint, assuming:
+- Permissible tensile stress for the strap material ($\sigma_t$) = $25\text{ MPa}$
+- Permissible shear stress for the cotter and gib material ($\tau$) = $20\text{ MPa}$
+
+---
+
 ### Example 12.7
 
 Design a knuckle joint to transmit $150\text{ kN}$. The design stresses may be taken as:
