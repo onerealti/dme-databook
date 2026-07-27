@@ -49,7 +49,16 @@ For the safe stresses mentioned below, calculate:
 - **Shaft material shear stress:** $63\text{ MPa}$
 - **Bolt material stress:** $56\text{ MPa}$
 - **Cast iron coupling stress:** $10\text{ MPa}$
-- **Key material stress:** $46\text{ MPa}$
+
+## Example 13.11
+The shaft and the flange of a marine engine are to be designed for flange coupling, in which the flange is forged on the end of the shaft. The following particulars are to be considered in the design:
+- **Power of the engine:** $3\text{ MW}$
+- **Speed of the engine:** $100\text{ rpm}$
+- **Permissible shear stress in bolts and shaft:** $60\text{ MPa}$
+- **Number of bolts used:** $8$
+- **Pitch circle diameter of bolts:** $1.6 \times \text{Diameter of shaft}$
+
+Find: 1. Diameter of shaft, 2. Diameter of bolts, 3. Thickness of flange, 4. Diameter of flange
 
 ## Example 13.12
 Design a bushed-pin type of flexible coupling to connect a pump shaft to a motor shaft transmitting $32\text{ kW}$ at $960\text{ rpm}$. The overall torque is $20\%$ more than mean torque.

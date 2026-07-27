@@ -393,6 +393,53 @@ $$P = \frac{2 \pi N T}{60} = \frac{2 \pi \times 350 \times 800}{60} = 29325\text
 
 ---
 
+## Example 13.11 (Marine Engine Flange Coupling)
+
+### Problem Statement
+The shaft and the flange of a marine engine are to be designed for flange coupling, in which the flange is forged on the end of the shaft. The following particulars are to be considered in the design:
+- **Power of the engine:** $3\text{ MW} = 3 \times 10^6\text{ W}$
+- **Speed of the engine:** $100\text{ rpm}$
+- **Permissible shear stress in bolts and shaft:** $60\text{ MPa}$
+- **Number of bolts used:** $8$
+- **Pitch circle diameter of bolts:** $1.6 \times \text{Diameter of shaft}$
+
+Find: 1. Diameter of shaft, 2. Diameter of bolts, 3. Thickness of flange, 4. Diameter of flange
+
+---
+
+### Solution
+
+#### Design Torque ($T$)
+$$T = \frac{60 P}{2 \pi N} = \frac{60 \times 3 \times 10^6}{2 \pi \times 100} = 286479\text{ N}\cdot\text{m} = 286.48 \times 10^6\text{ N}\cdot\text{mm}$$
+
+#### 1. Diameter of shaft ($d$)
+Using torsional shear strength formula for solid shaft:
+$$T = \frac{\pi}{16} \tau_s d^3 \implies 286.48 \times 10^6 = \frac{\pi}{16} \times 60 \times d^3 = 11.781 d^3$$
+$$d^3 = \frac{286.48 \times 10^6}{11.781} = 24.317 \times 10^6 \implies d = 290\text{ mm}$$
+
+*Standard marine shaft diameter selection:* **$d = 300\text{ mm}$**
+
+#### 2. Diameter of bolts ($d_1$)
+* Pitch circle diameter of bolts: $D_1 = 1.6 d = 1.6 \times 300 = 480\text{ mm}$
+* Torque capacity of $n = 8$ bolts in shear:
+  $$T = n \cdot \frac{\pi}{4} d_1^2 \cdot \tau_b \cdot \frac{D_1}{2} \implies 286.48 \times 10^6 = 8 \times \frac{\pi}{4} d_1^2 \times 60 \times \frac{480}{2} = 904778.6 (d_1)^2$$
+  $$(d_1)^2 = \frac{286.48 \times 10^6}{904778.6} = 316.6 \implies d_1 = 17.8\text{ mm}$$
+
+Using equal strength relation ($d_1 = \frac{d}{\sqrt{3.2 n}} = \frac{300}{\sqrt{25.6}} = 59.3\text{ mm}$):
+*Selection:* **$d_1 = 60\text{ mm}$** (Use $60\text{ mm}$ diameter tapered bolts).
+
+#### 3. Thickness of flange ($t_f$)
+* Empirical proportion: $t_f = 0.25 d = 0.25 \times 300 = \mathbf{75\text{ mm}}$
+
+##### Check Induced Shear Stress in Flange:
+$$T = \frac{\pi}{2} d^2 t_f \tau_c \implies 286.48 \times 10^6 = \frac{\pi}{2} (300)^2 \times 75 \times \tau_c = 10.6 \times 10^6 \tau_c$$
+$$\tau_c = \frac{286.48 \times 10^6}{10.6 \times 10^6} = \mathbf{27\text{ N/mm}^2 = 27\text{ MPa}} \le 60\text{ MPa} \quad \text{(Safe)}$$
+
+#### 4. Diameter of flange ($D_2$)
+* Outer diameter of marine flange: $D_2 = D_1 + 2.5 d_1 = 480 + 2.5(60) = \mathbf{630\text{ mm}}$
+
+---
+
 ## Example 13.12 (Bushed-Pin Flexible Coupling)
 
 ### Problem Statement

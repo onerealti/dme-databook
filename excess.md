@@ -51,17 +51,6 @@ All examples, exercises, blueprint sections, and questions that fall **outside**
 > 1. **Shaft Diameter:** $d = \sqrt[3]{\frac{16 T_{\max}}{\pi \tau_s}}$
 > 2. **Cross-Pin Diameter ($d_p$):** $d_p = \sqrt{\frac{2 T_{\max}}{\pi \tau_p d}}$
 
-### Example 13.11 — Marine Engine Flange Coupling
-
-The shaft and the flange of a marine engine are to be designed for flange coupling, in which the flange is forged on the end of the shaft. The following particulars are to be considered in the design:
-- **Power of the engine:** $3\text{ MW}$
-- **Speed of the engine:** $100\text{ rpm}$
-- **Permissible shear stress in bolts and shaft:** $60\text{ MPa}$
-- **Number of bolts used:** $8$
-- **Pitch circle diameter of bolts:** $1.6 \times \text{Diameter of shaft}$
-
-Find: 1. Diameter of shaft, 2. Diameter of bolts, 3. Thickness of flange, 4. Diameter of flange
-
 ### Exercise 10 — Marine Flange Coupling
 
 A marine type flange coupling is used to transmit $3.75\text{ MW}$ at $150\text{ rpm}$. The allowable shear stress in the shaft and bolts may be taken as $50\text{ MPa}$. Determine the shaft diameter and the diameter of the bolts.
