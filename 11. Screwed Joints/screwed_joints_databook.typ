@@ -1294,86 +1294,142 @@
 )
 
 #item-row(
-  [*1. Force Resolution & Net Turning Moment ($T_("net")$)* \ Horizontal and vertical force components],
+  [*1. Force Component Resolution ($W_H, W_V$)* \ Horizontal and vertical force components],
   [
     $
       #text(size: 20pt)[$W_H$] &= #text(size: 20pt)[$W sin theta$] \
-      &= 40 sin 60^deg \
-      &= 34.64 "kN" \
-      &= 34640 "N" \
+      &= 40 sin 60^deg = 40 times 0.866 \
+      &= 34.64 "kN" = 34640 "N" \
       #text(size: 20pt)[$W_V$] &= #text(size: 20pt)[$W cos theta$] \
-      &= 40 cos 60^deg \
-      &= 20 "kN" \
-      &= 20000 "N"
+      &= 40 cos 60^deg = 40 times 0.5 \
+      &= 20 "kN" = 20000 "N"
     $
-    #v(6pt)
+  ]
+)
+
+#item-row(
+  [*2. Net Turning Moment ($T_("net")$)* \ Clockwise turning moment about tilting edge E],
+  [
     $
-      T_H &= 34640 times 20 \
-      &= 692.8 times 10^3 "N"dot"mm" \
-      T_V &= 20000 times 175 \
-      &= 3500 times 10^3 "N"dot"mm" \
+      T_H &= W_H times 20 = 34640 times 20 \
+      &= 692.8 times 10^3 "N"dot"mm" quad ("Anticlockwise") \
+      T_V &= W_V times 175 = 20000 times 175 \
+      &= 3500 times 10^3 "N"dot"mm" quad ("Clockwise") \
       #text(size: 20pt)[$T_("net")$] &= #text(size: 20pt)[$T_V - T_H$] \
       &= (3500 - 692.8) times 10^3 \
-      &= 2807.2 times 10^3 "N"dot"mm"
+      &= 2807.2 times 10^3 "N"dot"mm" quad ("Clockwise")
     $
   ]
 )
 
 #item-row(
-  [*2. Fixing Bolts Sizing ($W_t, W_s, W_("te"), d_c$)* \ Direct & secondary load combination on critical top bolts],
+  [*3. Direct Loads per Bolt ($W_("t1"), W_s$)* \ Direct tensile load and direct shear load per bolt],
   [
     $
-      W_("t1") &= W_H / n \
-      &= 8660 "N" \
-      W_s &= W_V / n \
-      &= 5000 "N" \
-      w &= (T_("net")) / (2 (L_1^2 + L_2^2)) \
-      &= 38.99 "N/mm" \
-      W_("t2") &= w dot L_2 \
-      &= 38.99 times 180 \
-      &= 7020 "N" \
-      W_t &= W_("t1") + W_("t2") \
-      &= 8660 + 7020 \
-      &= 15680 "N"
+      #text(size: 20pt)[$W_("t1")$] &= #text(size: 20pt)[$W_H / n$] = 34640 / 4 = 8660 "N" \
+      #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$W_V / n$] = 20000 / 4 = 5000 "N"
     $
-    #v(6pt)
+  ]
+)
+
+#item-row(
+  [*4. Secondary Tensile Load on Upper Bolts ($W_("t2")$)* \ Secondary load per unit distance $w$ and upper bolt load],
+  [
     $
+      w &= T_("net") / (2 (L_1^2 + L_2^2)) = (2807.2 times 10^3) / (2 (60^2 + 180^2)) \
+      &= (2807.2 times 10^3) / 72000 = 39 "N/mm" \
+      #text(size: 20pt)[$W_("t2")$] &= #text(size: 20pt)[$w dot L_2$] = 39 times 180 = 7020 "N"
+    $
+  ]
+)
+
+#item-row(
+  [*5. Total Tensile & Equivalent Tensile Load ($W_t, W_("te")$)* \ Maximum Principal Stress Theory combination],
+  [
+    $
+      W_t &= W_("t1") + W_("t2") = 8660 + 7020 = 15680 "N" \
       #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$1/2 [W_t + sqrt(W_t^2 + 4 W_s^2)]$] \
       &= 1/2 [15680 + sqrt((15680)^2 + 4(5000)^2)] \
-      &= 17140 "N" \
-      d_c &= 17.65 "mm"
+      &= 1/2 [15680 + 18600] \
+      &= 17140 "N"
     $
   ]
 )
 
 #item-row(
-  [*3. Bracket Arm Thickness ($t$ via Principal Stress)* \ Arm stress combination],
+  [*6. Required Core Root Diameter ($d_c$) & Fastener Selection* \ Table 11.1 coarse series bolt selection],
   [
     $
-      Z &= 2817 t \
-      sigma_("t1") &= W_H / A \
-      &= 266.5 / t \
-      sigma_("t2") &= M_H / Z \
-      &= 430.4 / t \
-      sigma_("t3") &= M_V / Z \
-      &= 1420 / t \
-      sigma_t &= sigma_("t1") + sigma_("t2") + sigma_("t3") \
-      &= 2116.9 / t \
-      tau &= W_V / A \
-      &= 154 / t
+      17140 &= pi/4 (d_c)^2 times 70 = 55 (d_c)^2 \
+      (d_c)^2 &= 17140 / 55 = 311.64 \
+      #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$17.65 "mm"$]
     $
-    #v(6pt)
+    #v(4pt)
+    [*Select Fastener Designation: M 22 Bolt ($d_c = 18.933 "mm" > 17.65 "mm"$) quad bold("(Ans.)")*]
+  ]
+)
+
+#item-row(
+  [*7. Arm Section Area ($A$) & Section Modulus ($Z$)* \ Bracket arm cross-sectional properties for depth $b = 130 "mm"$],
+  [
     $
-      #text(size: 20pt)[$sigma_("t(max)")$] &= #text(size: 20pt)[$sigma_t / 2 + 1/2 sqrt(sigma_t^2 + 4 tau^2)$] \
-      70 &= 2128.05 / t \
-      t &= bold(31 "mm")
+      #text(size: 20pt)[$A$] &= #text(size: 20pt)[$b dot t$] = 130 t "mm"^2 \
+      #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$1/6 t b^2$] = 1/6 t (130)^2 = 2817 t "mm"^3
     $
   ]
 )
 
 #item-row(
-  [*4. Design Output*],
-  [*Final Design: M 22 Bolts, Bracket Arm Thickness $t = 31 "mm"$*]
+  [*8. Tensile and Shear Stresses in Arm ($sigma_t, tau$)* \ Direct and bending stress components in upper fibre],
+  [
+    $
+      sigma_("t1") &= W_H / A = 34640 / (130 t) = 266.5 / t \
+      sigma_("t2") &= M_H / Z = (34640 times 35) / (2817 t) = 430.4 / t \
+      sigma_("t3") &= M_V / Z = (20000 times 200) / (2817 t) = 1420 / t \
+      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$sigma_("t1") + sigma_("t2") + sigma_("t3")$] = (266.5 + 430.4 + 1420) / t = 2116.9 / t \
+      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$W_V / A$] = 20000 / (130 t) = 154 / t
+    $
+  ]
+)
+
+#item-row(
+  [*9. Maximum Principal Tensile Stress & Arm Thickness ($t$)* \ Thickness evaluation for allowable tensile stress $sigma_t = 70 "MPa"$],
+  [
+    $
+      #text(size: 20pt)[$sigma_("t(max)")$] &= #text(size: 20pt)[$sigma_t / 2 + 1/2 sqrt(sigma_t^2 + 4 tau^2)$] \
+      &= 1058.45 / t + 1069.6 / t = 2128.05 / t \
+      70 &= 2128.05 / t \
+      #text(size: 20pt)[$t$] &= #text(size: 20pt)[$2128.05 / 70$] = 30.4 "mm" quad &=> bold("Adopt Arm Thickness " t = 31 "mm" quad bold("(Ans.)"))
+    $
+  ]
+)
+
+#item-row(
+  [*10. Induced Shear Stress Verification ($tau_("max")$)* \ Maximum shear stress check for $t = 31 "mm"$],
+  [
+    $
+      #text(size: 20pt)[$tau_("max")$] &= #text(size: 20pt)[$1069.6 / t$] \
+      &= 1069.6 / 31 \
+      &= 34.5 "MPa" \
+      &<= 50 "MPa" quad bold("(SAFE)")
+    $
+  ]
+)
+
+#item-row(
+  [*11. Lower Fibre Compressive Stress Check ($sigma_c$)* \ Check arm thickness against allowable compressive stress $sigma_c = 105 "MPa"$],
+  [
+    $
+      sigma_c &= -sigma_("t1") + sigma_("t2") + sigma_("t3") = (-266.5 + 430.4 + 1420) / t = 1583.9 / t \
+      105 &= 1583.9 / t \
+      t &= 15.1 "mm" quad bold("(Governed by Tensile Limit ") t = 31 "mm"bold(")")
+    $
+  ]
+)
+
+#item-row(
+  [*12. Design Output*],
+  [*Final Fasteners: M 22 Bolts, Bracket Arm Dimensions $t = 31 "mm"$ for depth $b = 130 "mm"$*]
 )
 
 #figure-page(
