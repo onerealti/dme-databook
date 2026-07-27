@@ -299,17 +299,19 @@ The cylinder head of a steam engine is subjected to a steam pressure of $0.7\tex
 
 #### Step 1: Calculate External Load per Bolt ($P_2$)
 Total upward force acting on cylinder head:
-$$P_{\text{total}} = \frac{\pi}{4} D^2 \cdot p = \frac{\pi}{4} (300)^2 \times 0.7 = 49\,480\text{ N}$$
+$$P_{\text{total}} = \frac{\pi}{4} D^2 \cdot p = \frac{\pi}{4} (300)^2 \times 0.7 = 49\,490\text{ N}$$
 
 External load per bolt ($P_2$):
-$$P_2 = \frac{49\,480}{12} = 4124\text{ N}$$
+$$P_2 = \frac{49\,490}{12} = 4124\text{ N}$$
 
 #### Step 2: Formulate Resultant Axial Load ($P$)
 Initial tightening tension ($P_1$):
 $$P_1 = 2840 \cdot d \quad [\text{N}] \qquad (\text{where } d \text{ is nominal bolt diameter in mm})$$
 
+From Table 11.2 (soft copper gasket with long through bolts), minimum value of $K = 0.5$.
+
 Resultant axial load per bolt ($P$):
-$$P = P_1 + K \cdot P_2 = 2840 \cdot d + 0.5 \times 4124 = 2840 \cdot d + 2062 \quad [\text{N}]$$
+$$P = P_1 + K \cdot P_2 = 2840 \cdot d + 0.5 \times 4124 = (2840 \cdot d + 2062)\text{ N}$$
 
 #### Step 3: Resisting Load & Quadratic Equation for Bolt Size ($d$)
 Using thread relation $d_c = 0.84 \cdot d$:
@@ -318,13 +320,12 @@ $$P = \frac{\pi}{4} (d_c)^2 \cdot \sigma_t = \frac{\pi}{4} (0.84 \cdot d)^2 \tim
 Equating resultant load to resisting load:
 $$55.4 \cdot d^2 = 2840 \cdot d + 2062$$
 $$55.4 \cdot d^2 - 2840 \cdot d - 2062 = 0$$
-Dividing by $55.4$:
-$$d^2 - 51.3 \cdot d - 37.2 = 0$$
+$$\text{or } d^2 - 51.3 \cdot d - 37.2 = 0$$
 
 Solving quadratic equation for $d$:
-$$d = \frac{51.3 \pm \sqrt{(51.3)^2 - 4(1)(-37.2)}}{2} = \frac{51.3 \pm \sqrt{2631.69 + 148.8}}{2} = \frac{51.3 + 52.73}{2} = 52.01\text{ mm}$$
+$$d = \frac{51.3 \pm \sqrt{(51.3)^2 + 4(37.2)}}{2} = \frac{51.3 + 52.7}{2} = 52\text{ mm} \qquad (\text{Taking } + \text{ve sign})$$
 
-$$\textbf{Select M 52 Bolt } (d = 52\text{ mm})$$
+$$\mathbf{\text{Thus, we shall use a bolt of size M 52. Ans.}}$$
 
 
 ---

@@ -709,51 +709,74 @@
 )
 
 #item-row(
-  [*1. External Pressure Load per Bolt ($P_2$)* \ Upward steam pressure load shared by 12 bolts],
-  [
-    $
-      #text(size: 20pt)[$P_("total")$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \
-      &= pi/4 (300)^2 times 0.7 \
-      &= 49480 "N"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$P_2$] &= #text(size: 20pt)[$P_("total") / n$] \
-      &= 49480 / 12 \
-      &= 4124 "N"
-    $
-  ]
-)
-
-#item-row(
-  [*2. Resultant Axial Load per Bolt ($P$)* \ Initial tension $P_1 = 2840 d$ plus gasket compression load],
+  [*1. Total External Load on Cylinder Head ($P_("total")$)* \ Upward steam pressure force on 12 bolts],
   [$
-    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$P_1 + K dot P_2$] \
-    &= 2840 d + 0.5 times 4124 \
-    &= 2840 d + 2062 "N"
+    #text(size: 20pt)[$P_("total")$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \
+    &= pi/4 (300)^2 times 0.7 \
+    &= 49490 "N"
   $]
 )
 
 #item-row(
-  [*3. Core Resisting Capacity & Quadratic Equation* \ Core diameter relation $d_c = 0.84 d$],
+  [*2. External Load per Bolt ($P_2$)* \ External load shared per bolt],
   [$
-    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 (0.84 d)^2 dot sigma_t$] \
+    #text(size: 20pt)[$P_2$] &= #text(size: 20pt)[$P_("total") / n$] \
+    &= 49490 / 12 \
+    &= 4124 "N"
+  $]
+)
+
+#item-row(
+  [*3. Initial Tightening Tension ($P_1$)* \ Empirical tightening tension formula],
+  [$
+    #text(size: 20pt)[$P_1$] &= #text(size: 20pt)[$2840 d "N" quad (d "in mm")$]
+  $]
+)
+
+#item-row(
+  [*4. Gasket Compression Factor ($K$)* \ Table 11.2 for soft copper gasket with long through bolts],
+  [*Minimum Gasket Factor $K = 0.5$*]
+)
+
+#item-row(
+  [*5. Resultant Axial Load per Bolt ($P$)* \ Combined preload and gasket compression load],
+  [$
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$P_1 + K dot P_2$] \
+    &= 2840 d + 0.5 times 4124 \
+    &= (2840 d + 2062) "N"
+  $]
+)
+
+#item-row(
+  [*6. Resisting Load Capacity per Bolt ($P$)* \ Tensile strength with core diameter $d_c = 0.84 d$],
+  [$
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
+    &= pi/4 (0.84 d)^2 times 100 \
+    &= 55.4 d^2
+  $]
+)
+
+#item-row(
+  [*7. Governing Quadratic Equation for Size ($d$)* \ Equating resultant load to resisting load],
+  [$
     55.4 d^2 &= 2840 d + 2062 \
+    55.4 d^2 - 2840 d - 2062 &= 0 \
     d^2 - 51.3 d - 37.2 &= 0
   $]
 )
 
 #item-row(
-  [*4. Quadratic Diameter Solution ($d$)* \ Quadratic formula evaluation for nominal bolt diameter],
+  [*8. Quadratic Solution for Nominal Diameter ($d$)* \ Quadratic formula evaluation],
   [$
-    d &= (51.3 + sqrt((51.3)^2 - 4(1)(-37.2))) / 2 \
-    &= bold(52.01 "mm")
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$(51.3 + sqrt((51.3)^2 + 4(37.2))) / 2$] \
+    &= (51.3 + 52.7) / 2 \
+    &= 52 "mm"
   $]
 )
 
 #item-row(
-  [*5. Design Output*],
-  [*Select Fastener Designation: M 52 Bolt ($d = 52 "mm"$)*]
+  [*9. Design Output / Selected Bolt*],
+  [*Size of Bolt = M 52 Fasteners ($d = 52 "mm"$)*]
 )
 
 // ==========================================
