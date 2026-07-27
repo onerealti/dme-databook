@@ -566,8 +566,8 @@
       &= 60 [sqrt((60 + 6)/(60 - 6)) - 1] \
       &= 6.3 "mm"
     $
-    #v(10pt)
-    $ bold("Adopt Shell Thickness " t = 10 "mm") $
+    #v(6pt)
+    #text(weight: "bold")[Adopt Shell Thickness $t = 10 "mm"$]
   ]
 )
 
@@ -579,13 +579,13 @@
       &= pi/4 (120)^2 times 6 \
       &= 67860 "N"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$P_1$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_("tb")$] \
       &= pi/4 (20.32)^2 times 40 \
       &= 12973 "N"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$n$] &= #text(size: 20pt)[$P / P_1$] \
       &= 67860 / 12973 \
@@ -603,13 +603,13 @@
       &= 120 + 2(10) + 3(25) \
       &= 215 "mm"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$p_c$] &= #text(size: 20pt)[$(pi D_p) / n$] \
       &= (pi times 215) / 6 \
       &= 112.6 "mm"
     $
-    #v(10pt)
+    #v(6pt)
     $ 100 "mm" <= 112.6 "mm" <= 150 "mm" bold("(SAFE & SATISFACTORY)") $
   ]
 )
@@ -622,7 +622,7 @@
       &= 0.053 times 67860 times 215 \
       &= 773265 "N"dot"mm"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$D_o$] &= #text(size: 20pt)[$D_p + 3d_1$] \
       &= 290 "mm"
@@ -632,11 +632,12 @@
       #text(size: 20pt)[$w$] &= #text(size: 20pt)[$D_o - 2d_1$] \
       &= 240 "mm"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$1/6 w (t_1)^2$] \
       &= 40 (t_1)^2 \
       60 &= 773265 / (40 (t_1)^2) \
+      (t_1)^2 &= 322.2 \
       t_1 &= bold(18 "mm")
     $
   ]
