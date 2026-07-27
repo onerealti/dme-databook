@@ -42,19 +42,20 @@ Two machine parts are fastened together tightly by means of a $24\text{ mm}$ tap
 #### Given Data:
 * Nominal Bolt Diameter ($d$): $24\text{ mm}$ (M 24 Coarse Series)
 
-#### Step 1: Core Diameter & Core Area Lookup
-From **[Table 11.1: Standard Screw Threads (Coarse Series)](table_11_1_standard_screw_threads.md)**, the core diameter corresponding to **M 24** is:
+#### Step 1: Core Diameter & Area Lookup from Table 11.1
+From **[Table 11.1: Standard Screw Threads (Coarse Series)](table_11_1_standard_screw_threads.md)**, the core diameter of the thread corresponding to **M 24** is:
 $$d_c = 20.32\text{ mm}$$
 
-Core area of thread:
-$$A_c = \frac{\pi}{4} (d_c)^2 = \frac{\pi}{4} (20.32)^2 \approx 324.3\text{ mm}^2$$
+Let $\sigma_t$ = Stress set up in the bolt.
 
-#### Step 2: Initial Tightening Load ($P_i$)
-The initial tightening force for a fluid-tight joint / tap bolt is:
-$$P_i = 2840 \cdot d = 2840 \times 24 = 68\,160\text{ N}$$
+#### Step 2: Initial Tightening Load ($P$)
+We know that initial tension in the bolt,
+$$P = 2840 \cdot d = 2840 \times 24 = 68\,160\text{ N}$$
 
 #### Step 3: Initial Tightening Stress ($\sigma_t$)
-$$\sigma_t = \frac{P_i}{A_c} = \frac{68\,160\text{ N}}{324.3\text{ mm}^2} = \mathbf{210\text{ N/mm}^2 = 210\text{ MPa}}$$
+We also know that initial tension in the bolt ($P$),
+$$68\,160 = \frac{\pi}{4} (d_c)^2 \cdot \sigma_t = \frac{\pi}{4} (20.32)^2 \cdot \sigma_t = 324 \cdot \sigma_t$$
+$$\sigma_t = \frac{68\,160}{324} = \mathbf{210\text{ N/mm}^2 = 210\text{ MPa}}$$
 
 > **Note:** If using the effective stress area ($353\text{ mm}^2$) from Table 11.1, $\sigma_t = \frac{68160}{353} = 193\text{ MPa}$. Standard textbook solutions use thread root area $A_c = 324\text{ mm}^2$ giving $\mathbf{210\text{ MPa}}$.
 
