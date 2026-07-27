@@ -614,47 +614,44 @@ For supporting a travelling crane in a workshop, brackets are fixed on steel col
 
 ---
 
-#### Part 1: Design of Fixing Bolts (Combined Shear & Tension)
+#### Part 1: Design of Fastening Bolts (Combined Shear & Tension)
 
 1. **Direct Shear Load per Bolt ($W_s$):**
-   $$W_s = \frac{W}{n} = \frac{12\,000}{4} = 3000\text{ N} = 3\text{ kN}$$
+   $$W_s = \frac{W}{n} = \frac{12}{4} = 3\text{ kN}$$
 
-2. **Maximum Secondary Tensile Load on Upper Bolts ($W_t$):**
-   $$W_t = \frac{W \cdot L \cdot L_2}{2 \left( L_1^2 + L_2^2 \right)} = \frac{12 \times 400 \times 375}{2 \left( 50^2 + 375^2 \right)} = \frac{1\,800\,000}{286\,250} = 6.288\text{ kN} = 6288\text{ N}$$
+2. **Maximum Secondary Tensile Load on Upper Bolts 3 & 4 ($W_t$):**
+   $$W_t = \frac{W \cdot L \cdot L_2}{2 \left( L_1^2 + L_2^2 \right)} = \frac{12 \times 400 \times 375}{2 \left( 50^2 + 375^2 \right)} = 6.29\text{ kN}$$
 
 3. **Equivalent Tensile Load ($W_{te}$):**
-   Since bolts carry both direct shear ($W_s$) and secondary tension ($W_t$), apply Maximum Principal Stress Theory:
-   $$W_{te} = \frac{1}{2} \left[ W_t + \sqrt{W_t^2 + 4 W_s^2} \right]$$
-   $$W_{te} = \frac{1}{2} \left[ 6.29 + \sqrt{(6.29)^2 + 4(3)^2} \right] = \frac{1}{2} [6.29 + 8.69] = 7.49\text{ kN} = 7490\text{ N}$$
+   Using Maximum Principal Stress Theory:
+   $$W_{te} = \frac{1}{2} \left[ W_t + \sqrt{W_t^2 + 4 W_s^2} \right] = \frac{1}{2} \left[ 6.29 + \sqrt{(6.29)^2 + 4(3)^2} \right] = \frac{1}{2} (6.29 + 8.69) = 7.49\text{ kN} = 7490\text{ N}$$
 
 4. **Calculate Required Core Diameter ($d_c$):**
-   $$W_{te} = \frac{\pi}{4} (d_c)^2 \cdot \sigma_t$$
-   $$7490 = \frac{\pi}{4} (d_c)^2 \times 84 = 65.97 \cdot (d_c)^2$$
-   $$(d_c)^2 = \frac{7490}{65.97} = 113.5 \implies d_c = \sqrt{113.5} = 10.65\text{ mm}$$
+   $$W_{te} = \frac{\pi}{4} (d_c)^2 \cdot \sigma_t \implies 7490 = \frac{\pi}{4} (d_c)^2 \times 84 = 66 \cdot (d_c)^2$$
+   $$(d_c)^2 = \frac{7490}{66} = 113.5 \implies d_c = 10.65\text{ mm}$$
 
-5. **Select Standard Commercial Bolt from Table 11.1:**
-   From **[Table 11.1](table_11_1_standard_screw_threads.md)**:
-   * Next standard core diameter $d_c > 10.65\text{ mm}$ is **$d_c = 11.546\text{ mm}$**.
-   * Corresponding nominal bolt size: **$d = 14\text{ mm}$**.
-
-   $$\textbf{Select M 14 Bolts } (d = 14\text{ mm}, d_c = 11.546\text{ mm})$$
+5. **Select Standard Bolt from Table 11.1:**
+   From **[Table 11.1 (Coarse Series)](table_11_1_standard_screw_threads.md)**:
+   * Standard core diameter $d_c = 11.546\text{ mm} \implies \mathbf{\text{Size of bolt = M 14. Ans.}}$$
 
 ---
 
-#### Part 2: Rectangular Cross-Section of Bracket Arm ($t \times b$)
+#### Part 2: Cross-Section of Bracket Arm (Rectangular $t \times b$)
 
 1. **Maximum Bending Moment ($M$):**
-   $$M = W \cdot L = 12 \times 10^3 \times 400 = 4.8 \times 10^6\text{ N}\cdot\text{mm}$$
+   Assuming bracket arm extends up to steel column face:
+   $$M = 12 \times 10^3 \times 400 = 4.8 \times 10^6\text{ N}\cdot\text{mm}$$
 
-2. **Flexural Stress Equation:**
+2. **Flexural Stress & Section Modulus Equation:**
    $$Z = \frac{1}{6} \cdot t \cdot b^2$$
-   $$\sigma_t = \frac{M}{Z} \implies 84 = \frac{4.8 \times 10^6}{\frac{1}{6} \cdot t \cdot b^2} \implies t \cdot b^2 = \frac{28.8 \times 10^6}{84} = 342\,857\text{ mm}^3$$
+   $$\sigma_t = \frac{M}{Z} \implies 84 = \frac{4.8 \times 10^6}{\frac{1}{6} \cdot t \cdot b^2} = \frac{28.8 \times 10^6}{t \cdot b^2}$$
+   $$t \cdot b^2 = \frac{28.8 \times 10^6}{84} = 343 \times 10^3\text{ mm}^3$$
 
-3. **Determine Arm Dimensions:**
-   Assuming a standard bracket arm depth $b = 250\text{ mm}$:
-   $$t = \frac{342\,857}{(250)^2} = \frac{342\,857}{62\,500} = \mathbf{5.5\text{ mm}}$$
+3. **Determine Arm Thickness ($t$):**
+   Assuming depth of bracket arm $b = 250\text{ mm}$:
+   $$t = \frac{343 \times 10^3}{(250)^2} = \mathbf{5.5\text{ mm. Ans.}}$$
 
-$$\textbf{Final Design: M 14 Bolts, Bracket Arm Dimensions } 5.5\text{ mm} \times 250\text{ mm}$$
+$$\mathbf{\text{Final Design: M 14 Bolts, Bracket Arm Dimensions } 5.5\text{ mm} \times 250\text{ mm. Ans.}}$$
 
 
 ---

@@ -1198,65 +1198,81 @@
 )
 
 #item-row(
-  [*1. Direct Shear ($W_s$) & Secondary Tension ($W_t$)* \ Primary shear load and secondary tilting tension per bolt],
-  [
-    $
-      #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$W / n$] \
-      &= 12000 / 4 \
-      &= 3000 "N" \
-      &= 3 "kN"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$(W dot L dot L_2) / (2 (L_1^2 + L_2^2))$] \
-      &= (12 times 400 times 375) / (2 (50^2 + 375^2)) \
-      &= 6.288 "kN" \
-      &= 6288 "N"
-    $
-  ]
+  [*1. Direct Shear Load per Bolt ($W_s$)* \ Direct shear force carried per bolt],
+  [$
+    #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$W / n$] \
+    &= 12 / 4 \
+    &= 3 "kN"
+  $]
 )
 
 #item-row(
-  [*2. Equivalent Tensile Load ($W_("te")$)* \ Maximum Principal Stress Theory for combined shear & tension],
+  [*2. Maximum Secondary Tensile Load on Upper Bolts ($W_t$)* \ Tilting tension on critical upper bolts 3 & 4],
+  [$
+    #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$(W dot L dot L_2) / (2 (L_1^2 + L_2^2))$] \
+    &= (12 times 400 times 375) / (2 (50^2 + 375^2)) \
+    &= 6.29 "kN"
+  $]
+)
+
+#item-row(
+  [*3. Equivalent Tensile Load ($W_("te")$)* \ Maximum Principal Stress Theory for combined shear & tension],
   [$
     #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$1/2 [W_t + sqrt(W_t^2 + 4 W_s^2)]$] \
     &= 1/2 [6.29 + sqrt((6.29)^2 + 4(3)^2)] \
+    &= 1/2 [6.29 + 8.69] \
     &= 7.49 "kN" \
     &= 7490 "N"
   $]
 )
 
 #item-row(
-  [*3. Required Core Diameter ($d_c$) & Bolt Selection* \ Table 11.1 lookup for metric coarse thread],
+  [*4. Required Core Root Diameter ($d_c$)* \ Tensile stress capacity equation],
   [$
     #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
     7490 &= pi/4 (d_c)^2 times 84 \
+    &= 66 (d_c)^2 \
+    (d_c)^2 &= 7490 / 66 = 113.5 \
     #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$10.65 "mm"$]
   $]
 )
 
 #item-row(
-  [*4. Rectangular Cross-Section of Bracket Arm ($t times b$)* \ Bracket arm bending modulus],
-  [
-    $
-      M &= W dot L \
-      &= 12 times 10^3 times 400 \
-      &= 4.8 times 10^6 "N"dot"mm" \
-      #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$1/6 dot t dot b^2$] \
-      &= 1/6 dot t dot 250^2
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
-      84 &= (4.8 times 10^6) / (1/6 dot t dot 250^2) \
-      t &= bold(5.5 "mm")
-    $
-  ]
+  [*5. Standard Fastener Selection (Table 11.1)* \ Select standard metric coarse thread],
+  [*Select Fastener Designation: M 14 Bolt ($d_c = 11.546 "mm" > 10.65 "mm"$) quad bold("(Ans.)")*]
 )
 
 #item-row(
-  [*5. Design Output*],
-  [*Final Design: M 14 Bolts, Bracket Arm Dimensions $5.5 "mm" times 250 "mm"$*]
+  [*6. Maximum Bending Moment on Bracket Arm ($M$)* \ Moment about column face],
+  [$
+    #text(size: 20pt)[$M$] &= #text(size: 20pt)[$W dot L$] \
+    &= 12 times 10^3 times 400 \
+    &= 4.8 times 10^6 "N"dot"mm"
+  $]
+)
+
+#item-row(
+  [*7. Arm Section Modulus & Dimension Relation ($t dot b^2$)* \ Flexural stress equation for rectangular section ($Z = 1/6 t b^2$)],
+  [$
+    #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
+    84 &= (4.8 times 10^6) / (1/6 dot t dot b^2) = (28.8 times 10^6) / (t dot b^2) \
+    #text(size: 20pt)[$t dot b^2$] &= #text(size: 20pt)[$(28.8 times 10^6) / 84$] \
+    &= 343 times 10^3 "mm"^3
+  $]
+)
+
+#item-row(
+  [*8. Bracket Arm Thickness ($t$)* \ Assuming standard bracket depth $b = 250 "mm"$],
+  [$
+    #text(size: 20pt)[$t$] &= #text(size: 20pt)[$(343 times 10^3) / b^2$] \
+    &= (343 times 10^3) / (250)^2 \
+    &= bold(5.5 "mm" quad bold("(Ans.)"))
+  $]
+)
+
+#item-row(
+  [*9. Design Output*],
+  [*Fasteners: M 14 Bolts, Bracket Arm: $t = 5.5 "mm"$ for depth $b = 250 "mm"$*]
 )
 
 #figure-page(
