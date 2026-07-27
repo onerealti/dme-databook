@@ -471,7 +471,7 @@ $$\frac{\pi}{4} \left( D_o^2 - D^2 \right) = \frac{\pi}{4} D_c^2 \implies D_o^2 
 Solving for hole diameter $D$:
 $$D = \sqrt{D_o^2 - D_c^2} = \sqrt{(48)^2 - (41.795)^2} = \sqrt{2304 - 1746.82} = \sqrt{557.18} = \mathbf{23.64\text{ mm}}$$
 
-$$\textbf{Drill a central axial hole of diameter } D = 23.64\text{ mm}$$
+$$\mathbf{\text{Diameter of the hole, } D = \sqrt{(D_o)^2 - (D_c)^2} = \sqrt{(48)^2 - (41.795)^2} = 23.64\text{ mm. Ans.}}$$
 
 
 ---

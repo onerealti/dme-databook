@@ -977,8 +977,8 @@
 )
 
 #item-row(
-  [*4. Design Output*],
-  [*Drill Central Axial Hole of Diameter $D = 23.64 "mm"$*]
+  [*4. Design Output / Hole Diameter*],
+  [*Diameter of Hole $D = 23.64 "mm"quad bold("Ans.")$*]
 )
 
 #figure-page(
