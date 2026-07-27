@@ -145,6 +145,93 @@
 )
 
 // ==========================================
+// STANDARD REFERENCE TABLES (TABLE 11.1 & TABLE 11.2)
+// ==========================================
+#pagebreak()
+#section-heading("REF", "Standard Design Reference Tables (IS: 4218 - 1976)")
+
+#grid(
+  columns: (1.5fr, 1fr),
+  column-gutter: 20pt,
+  [
+    #text(weight: "bold", size: 14pt)[Table 11.1: Design Dimensions of Standard Metric Screw Threads]
+    #v(4pt)
+    #table(
+      columns: (auto, auto, auto, auto, auto, auto),
+      align: (center, center, center, center, center, center),
+      stroke: 0.4pt + rgb("#aaaaaa"),
+      fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
+      [*Thread*], [*Pitch $p$*], [*Nominal $d$*], [*Pitch $d_p$*], [*Core $d_c$*], [*Area $A_c$*],
+      [M 4], [0.7 mm], [4 mm], [3.545 mm], [3.141 mm], [8.78 mm²],
+      [M 5], [0.8 mm], [5 mm], [4.480 mm], [4.019 mm], [14.2 mm²],
+      [M 6], [1.0 mm], [6 mm], [5.350 mm], [4.773 mm], [20.1 mm²],
+      [M 8], [1.25 mm], [8 mm], [7.188 mm], [6.466 mm], [36.6 mm²],
+      [M 10], [1.5 mm], [10 mm], [9.026 mm], [8.160 mm], [58.3 mm²],
+      [M 12], [1.75 mm], [12 mm], [10.863 mm], [9.858 mm], [84.0 mm²],
+      [M 14], [2.0 mm], [14 mm], [12.701 mm], [11.546 mm], [115 mm²],
+      [M 16], [2.0 mm], [16 mm], [14.701 mm], [13.546 mm], [157 mm²],
+      [M 18], [2.5 mm], [18 mm], [16.376 mm], [14.933 mm], [192 mm²],
+      [M 20], [2.5 mm], [20 mm], [18.376 mm], [16.933 mm], [245 mm²],
+      [M 22], [2.5 mm], [22 mm], [20.376 mm], [18.933 mm], [303 mm²],
+      [M 24], [3.0 mm], [24 mm], [22.051 mm], [20.320 mm], [353 mm²],
+      [M 27], [3.0 mm], [27 mm], [25.051 mm], [23.320 mm], [459 mm²],
+      [M 30], [3.5 mm], [30 mm], [27.727 mm], [25.706 mm], [561 mm²],
+      [M 33], [3.5 mm], [33 mm], [30.727 mm], [28.706 mm], [694 mm²],
+      [M 36], [4.0 mm], [36 mm], [33.402 mm], [31.093 mm], [817 mm²],
+      [M 42], [4.5 mm], [42 mm], [39.077 mm], [36.416 mm], [1104 mm²],
+      [M 48], [5.0 mm], [48 mm], [44.752 mm], [41.795 mm], [1465 mm²],
+      [M 52], [5.0 mm], [52 mm], [48.752 mm], [45.795 mm], [1755 mm²],
+      [M 56], [5.5 mm], [56 mm], [52.428 mm], [49.177 mm], [2022 mm²]
+    )
+  ],
+  [
+    #text(weight: "bold", size: 14pt)[Table 11.2: Joint Factors ($K$)]
+    #v(4pt)
+    #table(
+      columns: (auto, auto),
+      align: (left, center),
+      stroke: 0.4pt + rgb("#aaaaaa"),
+      fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
+      [*Type of Joint / Gasket*], [*Value of $K$*],
+      [Metal to metal joint], [0.00 to 0.10],
+      [Hard copper gasket], [0.25 to 0.50],
+      [Soft copper gasket], [0.50 to 0.75],
+      [Soft packing (through bolts)], [0.75 to 1.00],
+      [Soft packing (studs)], [1.00]
+    )
+
+    #v(14pt)
+    #text(weight: "bold", size: 14pt)[Table 11.1 (Fine Series)]
+    #v(4pt)
+    #table(
+      columns: (auto, auto, auto, auto, auto),
+      align: (center, center, center, center, center),
+      stroke: 0.4pt + rgb("#aaaaaa"),
+      fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
+      [*Fine Thread*], [*Pitch $p$*], [*Nominal $d$*], [*Core $d_c$*], [*Area $A_c$*],
+      [M 8 x 1], [1.0 mm], [8 mm], [6.773 mm], [39.2 mm²],
+      [M 10 x 1.25], [1.25 mm], [10 mm], [8.466 mm], [61.6 mm²],
+      [M 12 x 1.25], [1.25 mm], [12 mm], [10.466 mm], [92.1 mm²],
+      [M 14 x 1.5], [1.5 mm], [14 mm], [12.160 mm], [125 mm²],
+      [M 16 x 1.5], [1.5 mm], [16 mm], [14.160 mm], [167 mm²],
+      [M 20 x 1.5], [1.5 mm], [20 mm], [18.160 mm], [272 mm²],
+      [M 24 x 2], [2.0 mm], [24 mm], [21.546 mm], [384 mm²]
+    )
+
+    #v(10pt)
+    #block(
+      width: 100%,
+      stroke: 0.5pt + rgb("#000000"),
+      inset: 8pt,
+      fill: rgb("#f8f9fa")
+    )[
+      #text(size: 11pt, weight: "bold")[Empirical Core Diameter Approximation:] \
+      #text(size: 10pt)[If table values are unavailable: \ $d_c approx 0.84 d$ \ $A_c approx pi/4 (0.84 d)^2$]
+    ]
+  ]
+)
+
+// ==========================================
 // SECTION 1
 // ==========================================
 #pagebreak()
@@ -175,7 +262,7 @@
 
 #item-row(
   [*3. Design Output*],
-  [*Safe Tensile Load P = 23.562 kN*]
+  [*Safe Tensile Load $P = 23.562 "kN"$*]
 )
 
 // ==========================================
@@ -219,7 +306,7 @@
 
 #item-row(
   [*4. Design Output*],
-  [*Tightening Stress σ_t = 210 MPa*]
+  [*Tightening Stress $sigma_t = 210 "MPa"$*]
 )
 
 // ==========================================
@@ -259,7 +346,7 @@
 
 #item-row(
   [*3. Design Output*],
-  [*Select Fastener Designation: M 33 Bolt (d = 33 mm, d_c = 28.706 mm)*]
+  [*Select Fastener Designation: M 33 Bolt ($d = 33 "mm", d_c = 28.706 "mm"$)*]
 )
 
 #figure-page(
@@ -315,7 +402,7 @@
 
 #item-row(
   [*4. Design Output*],
-  [*Select Fastener Designation: M 4 Bolt (d = 4 mm, d_c = 3.141 mm)*]
+  [*Select Fastener Designation: M 4 Bolt ($d = 4 "mm", d_c = 3.141 "mm"$)*]
 )
 
 // ==========================================
@@ -381,7 +468,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Select Fine Series Thread: M 20 x 1.5 (d = 20 mm, d_c = 18.376 mm)*]
+  [*Select Fine Series Thread: M 20 x 1.5 ($d = 20 "mm", d_c = 18.376 "mm"$)*]
 )
 
 // ==========================================
@@ -459,7 +546,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Use 12 Studs of M 24 Size (n = 12, M 24 Studs)*]
+  [*Use 12 Studs of M 24 Size ($n = 12$, M 24 Studs)*]
 )
 
 #figure-page(
@@ -569,7 +656,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Final Design: 6 Bolts of M 24 Size, Cover Plate Thickness t_1 = 18 mm*]
+  [*Final Design: 6 Bolts of M 24 Size, Cover Plate Thickness $t_1 = 18 "mm"$*]
 )
 
 // ==========================================
@@ -633,7 +720,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Select Fastener Designation: M 52 Bolt (d = 52 mm)*]
+  [*Select Fastener Designation: M 52 Bolt ($d = 52 "mm"$)*]
 )
 
 // ==========================================
@@ -737,7 +824,7 @@
 
 #item-row(
   [*7. Design Output*],
-  [*Select Fastener Designation: M 18 Bolt (d = 18 mm, d_c = 14.933 mm)*]
+  [*Select Fastener Designation: M 18 Bolt ($d = 18 "mm", d_c = 14.933 "mm"$)*]
 )
 
 // ==========================================
@@ -795,7 +882,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Select Fastener Designation: M 56 Bolt (d = 56 mm, d_c = 49.177 mm)*]
+  [*Select Fastener Designation: M 56 Bolt ($d = 56 "mm", d_c = 49.177 "mm"$)*]
 )
 
 #figure-page(
@@ -845,7 +932,7 @@
 
 #item-row(
   [*4. Design Output*],
-  [*Drill Central Axial Hole of Diameter D = 23.64 mm*]
+  [*Drill Central Axial Hole of Diameter $D = 23.64 "mm"$*]
 )
 
 #figure-page(
@@ -933,7 +1020,7 @@
 
 #item-row(
   [*6. Design Output*],
-  [*Select Fastener Designation: M 33 Bolt (d = 33 mm, d_c = 28.706 mm)*]
+  [*Select Fastener Designation: M 33 Bolt ($d = 33 "mm", d_c = 28.706 "mm"$)*]
 )
 
 #figure-page(
@@ -1078,7 +1165,7 @@
 
 #item-row(
   [*6. Design Output*],
-  [*Arm Tensile σ_t = 11.1 MPa, Arm Compressive σ_c = 15.46 MPa, Bolt Stress σ_tb = 40.6 MPa*]
+  [*Arm Tensile $sigma_t = 11.1 "MPa"$, Arm Compressive $sigma_c = 15.46 "MPa"$, Bolt Stress $sigma_"tb" = 40.6 "MPa"$*]
 )
 
 #figure-page(
@@ -1164,7 +1251,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Final Design: M 14 Bolts, Bracket Arm Dimensions 5.5 mm x 250 mm*]
+  [*Final Design: M 14 Bolts, Bracket Arm Dimensions $5.5 "mm" times 250 "mm"$*]
 )
 
 #figure-page(
@@ -1306,7 +1393,7 @@
 
 #item-row(
   [*4. Design Output*],
-  [*Final Design: M 22 Bolts, Bracket Arm Thickness t = 31 mm*]
+  [*Final Design: M 22 Bolts, Bracket Arm Thickness $t = 31 "mm"$*]
 )
 
 #figure-page(
@@ -1433,7 +1520,7 @@
 
 #item-row(
   [*4. Design Output*],
-  [*Final Design: M 10 Bolts, I-Section Arm Dimensions t = 10.4 mm, b = 31.2 mm*]
+  [*Final Design: M 10 Bolts, I-Section Arm Dimensions $t = 10.4 "mm", b = 31.2 "mm"$*]
 )
 
 // ==========================================
@@ -1494,7 +1581,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Select Fastener Designation: M 36 Bolt (d = 36 mm, d_c = 31.093 mm)*]
+  [*Select Fastener Designation: M 36 Bolt ($d = 36 "mm", d_c = 31.093 "mm"$)*]
 )
 
 #figure-page(
@@ -1552,7 +1639,7 @@
 
 #item-row(
   [*4. Design Output*],
-  [*Select Fastener Designation: M 52 Bolt (d = 52 mm, d_c = 45.795 mm)*]
+  [*Select Fastener Designation: M 52 Bolt ($d = 52 "mm", d_c = 45.795 "mm"$)*]
 )
 
 #figure-page(
@@ -1651,7 +1738,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Final Answers: (1) Maximum Distance e = 1.123 m, (2) Maximum Induced Stress σ_max = 79.65 MPa*]
+  [*Final Answers: (1) Maximum Distance $e = 1.123 "m"$, (2) Maximum Induced Stress $sigma_"max" = 79.65 "MPa"$*]
 )
 
 #figure-page(
@@ -1757,7 +1844,7 @@
 
 #item-row(
   [*5. Design Output*],
-  [*Final Answers: (1) D = 75 mm, (2) d = 65 mm, (3) Top Bolt W_t = 8.32 kN, (4) Max Shear Force = 8687 N*]
+  [*Final Answers: (1) $D = 75 "mm"$, (2) $d = 65 "mm"$, (3) Top Bolt $W_t = 8.32 "kN"$, (4) Max Shear Force $W_s = 8687 "N"$*]
 )
 
 #figure-page(
