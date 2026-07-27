@@ -186,21 +186,13 @@
 
 #section-overview(
   [*System Parameters* \ Nominal Tap Bolt Size: $d = 24 "mm"$ (M 24 Coarse Series) \ Clamped Rigid Machine Joint \ Neglect external separation load],
-  [*Design Protocol* \ Lookup core root diameter $d_c$ & stress area from Table 11.1 \ Calculate initial tightening load $P = 2840 d$ \ Calculate induced tensile stress $sigma_t = P / A_c$ (and $P / A_s$)]
+  [*Design Protocol* \ Lookup core root diameter $d_c$ from Table 11.1 \ Calculate initial tightening load $P = 2840 d$ \ Calculate induced tensile stress $sigma_t = P / (pi/4 d_c^2)$]
 )
 
 #item-row(
-  [*1. Core Root Diameter & Area Lookup ($d_c, A_c, A_s$)* \ Table 11.1 lookup for M 24 coarse thread],
+  [*1. Core Root Diameter Lookup ($d_c$)* \ Table 11.1 (coarse series) lookup for M 24 thread],
   [
-    $d_c = 20.32 "mm"$
-    #v(10pt)
-    $
-      #text(size: 20pt)[$A_c$] &= #text(size: 20pt)[$pi/4 d_c^2$] \
-      &= pi/4 (20.32)^2 \
-      &= 324.3 "mm"^2 \
-      &approx 324 "mm"^2 \
-      A_s quad ("Stress Area") &= 353 "mm"^2
-    $
+    $ #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$20.32 "mm"$] $
   ]
 )
 
@@ -214,26 +206,20 @@
 )
 
 #item-row(
-  [*3. Induced Tightening Stress ($sigma_t$)* \ Tensile stress induced in thread root area vs effective stress area],
-  [
-    $
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$P / A_c$] \
-      &= 68160 / 324 \
-      &= 210 "N/mm"^2 \
-      &= bold(210 "MPa" quad ("Standard Root Area"))
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$sigma_t, "alt"$] &= #text(size: 20pt)[$P / A_s$] \
-      &= 68160 / 353 \
-      &= bold(193 "MPa" quad ("Effective Stress Area"))
-    $
-  ]
+  [*3. Induced Tightening Stress ($sigma_t$)* \ Initial tension force balance equation],
+  [$
+    68160 &= pi/4 (d_c)^2 dot sigma_t \
+    &= pi/4 (20.32)^2 dot sigma_t \
+    &= 324 dot sigma_t \
+    #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$68160 / 324$] \
+    &= 210 "N/mm"^2 \
+    &= bold(210 "MPa")
+  $]
 )
 
 #item-row(
   [*4. Design Output*],
-  [*Tightening Stress σ_t = 210 MPa (Root Area A_c = 324 mm²) | σ_t = 193 MPa (Stress Area A_s = 353 mm²)*]
+  [*Tightening Stress σ_t = 210 MPa*]
 )
 
 // ==========================================
