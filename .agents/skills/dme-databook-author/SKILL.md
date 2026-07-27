@@ -288,6 +288,16 @@ $
   - `sigma` instead of `\sigma`
   - `overline(y)` instead of `\bar{y}`
 
+### Rule 10: Unified Section Mapping (1 Textbook Example = 1 Section)
+- **CRITICAL**: Each complete textbook solved problem MUST map 1-to-1 with a single Databook Section number (`SECTION 1`, `SECTION 2`, ...).
+- Do NOT split multi-part comprehensive problems (e.g., Part 1 Screw, Part 2 Nut, Part 3 Handle, Part 4 Body) into separate section numbers.
+- Consolidate all subsystem parts continuously within that single unified section using sequential item rows (`1.`, `2.`, ..., `25.`).
+
+### Rule 11: Clean Text Formatting in Summary & Header Blocks
+- In bracketed text mode (`[*...*]`), avoid placing complex inline math blocks containing commas or quotes.
+- In Typst text mode, `%` acts as a line comment starter unless written in clean text strings.
+- Design output summary rows MUST use clean plain text (e.g., `[*Screw Jack Summary: do = 46 mm, dc = 38 mm, Efficiency eta = 15.4%*]`).
+
 ---
 
 ## 5. Single-Page Overflow Guardrails
