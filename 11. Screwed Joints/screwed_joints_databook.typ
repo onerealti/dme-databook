@@ -256,7 +256,6 @@
   [$
     #text(size: 20pt)[$P$] &= #text(size: 20pt)[$A_c times sigma_t$] \
     &= 561 "mm"^2 times 42 "N/mm"^2 \
-    &= 23562 "N" \
     &= bold(23.562 "kN")
   $]
 )
@@ -296,11 +295,8 @@
 #item-row(
   [*3. Induced Tightening Stress ($sigma_t$)* \ Initial tension force balance equation],
   [$
-    68160 &= pi/4 (d_c)^2 dot sigma_t \
-    &= pi/4 (20.32)^2 dot sigma_t \
-    &= 324 dot sigma_t \
+    68160 &= pi/4 (20.32)^2 dot sigma_t \
     #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$68160 / 324$] \
-    &= 210 "N/mm"^2 \
     &= bold(210 "MPa")
   $]
 )
@@ -326,11 +322,7 @@
   [$
     #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
     60000 &= pi/4 (d_c)^2 times 100 \
-    &= 78.55 (d_c)^2 \
-    (d_c)^2 &= 60000 / 78.55 \
-    &= 763.84 \
-    d_c &= sqrt(763.84) \
-    &= 27.64 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$27.64 "mm"$]
   $]
 )
 
@@ -382,11 +374,7 @@
   [$
     #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$n dot [pi/4 (d_c)^2] dot tau$] \
     833.3 &= 4 dot [pi/4 (d_c)^2] times 30 \
-    &= 94.26 (d_c)^2 \
-    (d_c)^2 &= 833.3 / 94.26 \
-    &= 8.84 \
-    d_c &= sqrt(8.84) \
-    &= 2.97 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$2.97 "mm"$]
   $]
 )
 
@@ -448,11 +436,7 @@
   [$
     #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
     10997 &= pi/4 (d_c)^2 times 50 \
-    &= 39.27 (d_c)^2 \
-    (d_c)^2 &= 10997 / 39.27 \
-    &= 280 \
-    d_c &= sqrt(280) \
-    &= 16.7 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$16.7 "mm"$]
   $]
 )
 
@@ -574,7 +558,6 @@
     $
       #text(size: 20pt)[$t$] &= #text(size: 20pt)[$r [sqrt((sigma_t + p)/(sigma_t - p)) - 1]$] \
       &= 60 [sqrt((60 + 6)/(60 - 6)) - 1] \
-      &= 60 [sqrt(1.222) - 1] \
       &= 6.3 "mm"
     $
     #v(10pt)
@@ -648,9 +631,7 @@
       &= 1/6 times 240 times (t_1)^2 \
       &= 40 (t_1)^2 \
       60 &= 773265 / (40 (t_1)^2) \
-      (t_1)^2 &= 322.2 \
-      t_1 &= 17.95 "mm" \
-      &= bold(18 "mm")
+      t_1 &= bold(18 "mm")
     $
   ]
 )
@@ -700,11 +681,8 @@
 #item-row(
   [*3. Core Resisting Capacity & Quadratic Equation* \ Core diameter relation $d_c = 0.84 d$],
   [$
-    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
-    &= pi/4 (0.84 d)^2 times 100 \
-    &= 55.4 d^2 \
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 (0.84 d)^2 dot sigma_t$] \
     55.4 d^2 &= 2840 d + 2062 \
-    55.4 d^2 - 2840 d - 2062 &= 0 \
     d^2 - 51.3 d - 37.2 &= 0
   $]
 )
@@ -712,9 +690,7 @@
 #item-row(
   [*4. Quadratic Diameter Solution ($d$)* \ Quadratic formula evaluation for nominal bolt diameter],
   [$
-    d &= (51.3 plus.minus sqrt((51.3)^2 - 4(1)(-37.2))) / 2 \
-    &= (51.3 + sqrt(2631.69 + 148.8)) / 2 \
-    &= (51.3 + 52.73) / 2 \
+    d &= (51.3 + sqrt((51.3)^2 - 4(1)(-37.2))) / 2 \
     &= bold(52.01 "mm")
   $]
 )
@@ -804,11 +780,7 @@
   [$
     #text(size: 20pt)[$sigma_v$] &= #text(size: 20pt)[$(sigma_e / "F.S.") [1 - (sigma_m dot "F.S.") / sigma_y]$] \
     4220 / (d_c)^2 &= (240 / 2) [1 - (29534 / (d_c)^2) dot (2 / 330)] \
-    &= 120 [1 - 179.0 / (d_c)^2] \
-    (4220 + 21480) / (d_c)^2 &= 120 \
-    25700 / (d_c)^2 &= 120 \
-    d_c &= sqrt(214.17) \
-    &= 14.63 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$14.63 "mm"$]
   $]
 )
 
@@ -862,11 +834,7 @@
   [$
     #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
     102900 &= pi/4 (d_c)^2 times 56 \
-    &= 43.98 (d_c)^2 \
-    (d_c)^2 &= 102900 / 43.98 \
-    &= 2339.6 \
-    d_c &= sqrt(2339.6) \
-    &= 48.37 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$48.37 "mm"$]
   $]
 )
 
@@ -925,8 +893,6 @@
   [$
     #text(size: 20pt)[$D$] &= #text(size: 20pt)[$sqrt(D_o^2 - D_c^2)$] \
     &= sqrt((48)^2 - (41.795)^2) \
-    &= sqrt(2304 - 1746.82) \
-    &= sqrt(557.18) \
     &= bold(23.64 "mm")
   $]
 )
@@ -972,7 +938,6 @@
     $
       #text(size: 20pt)[$w$] &= #text(size: 20pt)[$(W dot L) / (2 (L_1^2 + L_2^2))$] \
       &= (30 times 500) / (2 (80^2 + 250^2)) \
-      &= 15000 / (2 (6400 + 62500)) \
       &= 0.10886 "kN/mm"
     $
     #v(10pt)
@@ -1000,11 +965,7 @@
   [$
     #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
     34715 &= pi/4 (d_c)^2 times 60 \
-    &= 47.12 (d_c)^2 \
-    (d_c)^2 &= 34715 / 47.12 \
-    &= 736.7 \
-    d_c &= sqrt(736.7) \
-    &= 27.14 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$27.14 "mm"$]
   $]
 )
 
@@ -1136,7 +1097,6 @@
     $
       #text(size: 20pt)[$w$] &= #text(size: 20pt)[$(W dot L) / (2 (L_1^2 + L_2^2))$] \
       &= (15000 times 525) / (2 (50^2 + 375^2)) \
-      &= 7875000 / 286250 \
       &= 27.5 "N/mm"
     $
     #v(10pt)
@@ -1159,7 +1119,6 @@
   [$
     #text(size: 20pt)[$sigma_("tb")$] &= #text(size: 20pt)[$W_t / (pi/4 (d_c)^2)$] \
     &= 14062.5 / (pi/4 (21)^2) \
-    &= 14062.5 / 346.36 \
     &= bold(40.6 "MPa")
   $]
 )
@@ -1202,7 +1161,6 @@
     $
       #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$(W dot L dot L_2) / (2 (L_1^2 + L_2^2))$] \
       &= (12 times 400 times 375) / (2 (50^2 + 375^2)) \
-      &= 1800000 / 286250 \
       &= 6.288 "kN" \
       &= 6288 "N"
     $
@@ -1214,7 +1172,6 @@
   [$
     #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$1/2 [W_t + sqrt(W_t^2 + 4 W_s^2)]$] \
     &= 1/2 [6.29 + sqrt((6.29)^2 + 4(3)^2)] \
-    &= 1/2 [6.29 + 8.69] \
     &= 7.49 "kN" \
     &= 7490 "N"
   $]
@@ -1225,11 +1182,7 @@
   [$
     #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
     7490 &= pi/4 (d_c)^2 times 84 \
-    &= 65.97 (d_c)^2 \
-    (d_c)^2 &= 7490 / 65.97 \
-    &= 113.5 \
-    d_c &= sqrt(113.5) \
-    &= 10.65 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$10.65 "mm"$]
   $]
 )
 
@@ -1240,12 +1193,8 @@
     #v(10pt)
     $
       #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
-      84 &= (4.8 times 10^6) / (1/6 dot t dot b^2) \
-      t dot b^2 &= (28.8 times 10^6) / 84 \
-      &= 342857 "mm"^3 \
-      t &= 342857 / (250)^2 \
-      &= 342857 / 62500 \
-      &= bold(5.5 "mm")
+      84 &= (4.8 times 10^6) / (1/6 dot t dot 250^2) \
+      t &= bold(5.5 "mm")
     $
   ]
 )
@@ -1291,13 +1240,6 @@
     $
     #v(10pt)
     $
-      T_H &= 34640 times 20 \
-      &= 692.8 times 10^3 "N"dot"mm" \
-      T_V &= 20000 times 175 \
-      &= 3500 times 10^3 "N"dot"mm"
-    $
-    #v(10pt)
-    $
       #text(size: 20pt)[$T_("net")$] &= #text(size: 20pt)[$T_V - T_H$] \
       &= (3500 - 692.8) times 10^3 \
       &= 2807.2 times 10^3 "N"dot"mm"
@@ -1321,13 +1263,12 @@
     $
       #text(size: 20pt)[$w$] &= #text(size: 20pt)[$(T_("net")) / (2 (L_1^2 + L_2^2))$] \
       &= (2807.2 times 10^3) / (2 (60^2 + 180^2)) \
-      &= 38.99 "N/mm" \
-      &approx 39 "N/mm"
+      &= 38.99 "N/mm"
     $
     #v(10pt)
     $
       #text(size: 20pt)[$W_("t2")$] &= #text(size: 20pt)[$w dot L_2$] \
-      &= 39 times 180 \
+      &= 38.99 times 180 \
       &= 7020 "N"
     $
     #v(10pt)
@@ -1341,8 +1282,6 @@
       #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$1/2 [W_t + sqrt(W_t^2 + 4 W_s^2)]$] \
       &= 1/2 [15680 + sqrt((15680)^2 + 4(5000)^2)] \
       &= 17140 "N" \
-      (d_c)^2 &= 17140 / 55 \
-      &= 311.64 \
       d_c &= 17.65 "mm"
     $
   ]
@@ -1352,42 +1291,19 @@
   [*3. Bracket Arm Thickness ($t$ via Principal Stress)* \ Stresses in upper arm fibre for $b = 130 "mm"$ ($Z = 2817 t$)],
   [
     $
-      #text(size: 20pt)[$sigma_("t1")$] &= #text(size: 20pt)[$W_H / A$] \
-      &= 34640 / (130 t) \
-      &= 266.5 / t
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$sigma_("t2")$] &= #text(size: 20pt)[$M_H / Z$] \
-      &= (34640 times 35) / (2817 t) \
-      &= 430.4 / t
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$sigma_("t3")$] &= #text(size: 20pt)[$M_V / Z$] \
-      &= (20000 times 200) / (2817 t) \
-      &= 1420 / t
-    $
-    #v(10pt)
-    $
       #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$sigma_("t1") + sigma_("t2") + sigma_("t3")$] \
-      &= (266.5 + 430.4 + 1420) / t \
       &= 2116.9 / t
     $
     #v(10pt)
     $
       #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$W_V / A$] \
-      &= 20000 / (130 t) \
       &= 154 / t
     $
     #v(10pt)
     $
       #text(size: 20pt)[$sigma_("t(max)")$] &= #text(size: 20pt)[$sigma_t / 2 + 1/2 sqrt(sigma_t^2 + 4 tau^2)$] \
-      &= 1058.45 / t + 1069.6 / t \
-      &= 2128.05 / t \
       70 &= 2128.05 / t \
-      t &= 30.4 "mm" \
-      &= bold(31 "mm")
+      t &= bold(31 "mm")
     $
   ]
 )
@@ -1435,11 +1351,6 @@
     $
     #v(10pt)
     $
-      T_H &= 433 "N"dot"m" quad ("Clockwise") \
-      T_V &= 1500 "N"dot"m" quad ("Counterclockwise")
-    $
-    #v(10pt)
-    $
       #text(size: 20pt)[$T_("net")$] &= #text(size: 20pt)[$T_V - T_H$] \
       &= 1500 - 433 \
       &= 1067 "N"dot"m"
@@ -1482,8 +1393,6 @@
       #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$1/2 [W_t + sqrt(W_t^2 + 4 W_s^2)]$] \
       &= 1/2 [4600 + sqrt((4600)^2 + 4(1250)^2)] \
       &= 4920 "N" \
-      (d_c)^2 &= 4920 / 78.55 \
-      &= 62.63 \
       d_c &= 7.91 "mm"
     $
   ]
@@ -1492,24 +1401,6 @@
 #item-row(
   [*3. Dimensions of I-Section Bracket Arm ($t$ and $b = 3t$)* \ Cross-section area $A = 9 t^2$, section modulus $Z = 10.7 t^3$],
   [
-    $
-      #text(size: 20pt)[$sigma_("t1")$] &= #text(size: 20pt)[$W_H / A$] \
-      &= 8660 / (9 t^2) \
-      &= 962 / t^2
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$sigma_("t2")$] &= #text(size: 20pt)[$M_H / Z$] \
-      &= (433 times 10^3) / (10.7 t^3) \
-      &= (40.5 times 10^3) / t^3
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$sigma_("t3")$] &= #text(size: 20pt)[$M_V / Z$] \
-      &= (1500 times 10^3) / (10.7 t^3) \
-      &= (140.2 times 10^3) / t^3
-    $
-    #v(10pt)
     $
       #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$sigma_("t1") - sigma_("t2") + sigma_("t3")$] \
       &= 962 / t^2 + (99.7 times 10^3) / t^3 \
@@ -1549,9 +1440,6 @@
   [$
     #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$(2 dot W dot L dot (R + r)) / (n (2 R^2 + r^2))$] \
     &= (2 times (100000) times 4 times (1 + 0.8)) / (8 times (2(1)^2 + 0.8^2)) \
-    &= (800000 times 1.8) / (8 times 2.64) \
-    &= 1440000 / 21.12 \
-    &= 68.18 times 10^3 "N" \
     &= 68180 "N"
   $]
 )
@@ -1561,11 +1449,7 @@
   [$
     #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
     68180 &= pi/4 (d_c)^2 times 100 \
-    &= 78.54 (d_c)^2 \
-    (d_c)^2 &= 68180 / 78.54 \
-    &= 868.1 \
-    d_c &= sqrt(868.1) \
-    &= 29.46 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$29.46 "mm"$]
   $]
 )
 
@@ -1608,8 +1492,6 @@
   [$
     #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$(2 dot W dot L dot [R + r cos(180^deg / n)]) / (n (2 R^2 + r^2))$] \
     &= (2 times (400000) times 250 times [325 + 250 cos 45^deg]) / (4 times (2(325)^2 + (250)^2)) \
-    &= (200 times 10^6 times [325 + 176.78]) / (4 times 273750) \
-    &= (200 times 10^6 times 501.78) / 1095000 \
     &= 91643 "N"
   $]
 )
@@ -1619,11 +1501,7 @@
   [$
     #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
     91643 &= pi/4 (d_c)^2 times 60 \
-    &= 47.13 (d_c)^2 \
-    (d_c)^2 &= 91643 / 47.13 \
-    &= 1944.5 \
-    d_c &= sqrt(1944.5) \
-    &= 44.1 "mm"
+    #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$44.1 "mm"$]
   $]
 )
 
@@ -1672,7 +1550,6 @@
     #v(10pt)
     $
       #text(size: 20pt)[$L_1$] &= #text(size: 20pt)[$R - r cos 45^deg$] \
-      &= 0.3 - 0.25(0.7071) \
       &= 0.123 "m"
     $
     #v(10pt)
@@ -1682,14 +1559,7 @@
     $
     #v(10pt)
     $
-      #text(size: 20pt)[$w$] &= #text(size: 20pt)[$P_("max") / L_2$] \
-      &= 48.66 / 0.477 \
-      &= 102 "kN/m"
-    $
-    #v(10pt)
-    $
       #text(size: 20pt)[$M_("res")$] &= #text(size: 20pt)[$2 dot w dot [L_1^2 + L_2^2]$] \
-      &= 2 times 102 times [(0.123)^2 + (0.477)^2] \
       &= 49.4 "kN"dot"m"
     $
   ]
@@ -1700,10 +1570,7 @@
   [$
     #text(size: 20pt)[$M_("overturn")$] &= #text(size: 20pt)[$W (e - R)$] \
     60(e - 0.3) &= 49.4 \
-    e - 0.3 &= 49.4 / 60 \
-    &= 0.8233 "m" \
-    e &= 0.8233 + 0.3 \
-    &= bold(1.123 "m")
+    #text(size: 20pt)[$e$] &= #text(size: 20pt)[$bold(1.123 "m")$]
   $]
 )
 
@@ -1711,11 +1578,8 @@
   [*3. Line Y-Y Analysis (In-Line with Bolts)* \ Distances: $L_1 = 0.05 "m", L_2 = 0.3 "m", L_3 = 0.55 "m"$],
   [$
     #text(size: 20pt)[$M_("res")$] &= #text(size: 20pt)[$w dot [L_1^2 + 2 L_2^2 + L_3^2]$] \
-    &= w dot [(0.05)^2 + 2(0.3)^2 + (0.55)^2] \
-    &= 0.485 dot w \
-    0.485 dot w &= 49.4 \
-    w &= 49.4 / 0.485 \
-    &= 102 "kN/m"
+    49.4 &= 0.485 dot w \
+    w &= 102 "kN/m"
   $]
 )
 
@@ -1765,19 +1629,13 @@
   [
     $
       #text(size: 20pt)[$T_e$] &= #text(size: 20pt)[$sqrt(M^2 + T^2)$] \
-      &= sqrt((3.7125 times 10^6)^2 + (3.375 times 10^6)^2) \
       &= 5.017 times 10^6 "N"dot"mm"
     $
     #v(10pt)
     $
       #text(size: 20pt)[$T_e$] &= #text(size: 20pt)[$pi/16 D^3 dot tau$] \
       5.017 times 10^6 &= pi/16 D^3 times 65 \
-      &= 12.76 D^3 \
-      D^3 &= (5.017 times 10^6) / 12.76 \
-      &= 393.2 times 10^3 \
-      D &= root(3, 393.2 times 10^3) \
-      &= 73.24 "mm" \
-      &= bold(75 "mm")
+      D &= bold(75 "mm")
     $
   ]
 )
@@ -1787,12 +1645,7 @@
   [$
     #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
     110 &= (2.8688 times 10^6) / (pi/32 d^3) \
-    &= (2.8688 times 10^6) / (0.0982 d^3) \
-    d^3 &= (29.214 times 10^6) / 110 \
-    &= 265.58 times 10^3 \
-    d &= root(3, 265.58 times 10^3) \
-    &= 64.28 "mm" \
-    &= bold(65 "mm")
+    d &= bold(65 "mm")
   $]
 )
 
@@ -1800,23 +1653,14 @@
   [*3. Tensile Load on Each Top Bolt ($W_t$)* \ Tilting distances $L_1 = 37.5 "mm", L_2 = 237.5 "mm"$],
   [
     $
-      #text(size: 20pt)[$M_("res")$] &= #text(size: 20pt)[$2 dot w dot (L_1^2 + L_2^2)$] \
-      &= 2 dot w dot (37.5^2 + 237.5^2) \
-      &= 115625 dot w
-    $
-    #v(10pt)
-    $
       #text(size: 20pt)[$M_("overturn")$] &= #text(size: 20pt)[$W dot L$] \
       &= 13500 times 300 \
-      &= 4.05 times 10^6 "N"dot"mm" \
-      w &= (4.05 times 10^6) / 115625 \
-      &= 35.03 "N/mm"
+      &= 4.05 times 10^6 "N"dot"mm"
     $
     #v(10pt)
     $
       #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$w dot L_2$] \
       &= 35.03 times 237.5 \
-      &= 8320 "N" \
       &= bold(8.32 "kN")
     $
   ]
