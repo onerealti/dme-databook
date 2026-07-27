@@ -127,8 +127,8 @@ Open 2-column split with a thin vertical center divider line (`0.5pt`).
 }
 ```
 
-### 3.4 Non-Breakable Figure Page Container (`figure-page`)
-Guarantees header, mechanical diagram, and caption stay together on a single dedicated landscape page.
+### 3.4 Dedicated Single-Figure Page Container (`figure-page`)
+Guarantees header, mechanical diagram, and caption stay together on a dedicated landscape page with enlarged bounds (`width: 85%, height: 420pt`). Each diagram receives its own dedicated page for maximum legibility.
 
 ```typst
 #let figure-page(sec-num, title, fig-path, caption, second-fig: "", second-caption: "") = {
@@ -138,7 +138,7 @@ Guarantees header, mechanical diagram, and caption stay together on a single ded
     #v(2pt)
     #if second-fig == "" [
       #align(center)[
-        #image(fig-path, width: 55%, height: 340pt, fit: "contain")
+        #image(fig-path, width: 85%, height: 420pt, fit: "contain")
         #v(6pt)
         #text(weight: "bold", size: 14pt)[#caption]
       ]
@@ -275,6 +275,19 @@ $
 )
 ```
 
+### Rule 8: Dedicated Single-Figure Pages
+- Every schematic diagram, structural detail, or force distribution vector plot MUST be placed on its own dedicated `#figure-page` call with container bounds `width: 85%, height: 420pt`.
+- Avoid combining multiple diagrams into side-by-side grids on a single page unless explicitly instructed. Separate figure pages guarantee maximum image clarity and legibility.
+
+### Rule 9: Strict Native Typst Math Symbols (No TeX Backslashes)
+- **CRITICAL**: Never use LaTeX/TeX backslashes inside Typst equation blocks or bracketed content labels (`[*...*]`).
+- Backslashes in content strings cause string-escape syntax errors (e.g., `\theta` parses `\t` as tab, causing `unknown variable: heta`).
+- Always use native Typst math symbols:
+  - `theta` instead of `\theta`
+  - `tau` instead of `\tau`
+  - `sigma` instead of `\sigma`
+  - `overline(y)` instead of `\bar{y}`
+
 ---
 
 ## 5. Single-Page Overflow Guardrails
@@ -286,8 +299,8 @@ To guarantee 100% protection against vertical or horizontal content spillover:
    #show image: set image(fit: "contain")
    ```
 2. **Constrained Figure Heights**:
-   - Single Figure: `height: 340pt`, `width: 55%`.
-   - Dual Figures: `height: 310pt`, `width: 85%`.
+   - Single Figure: `height: 420pt`, `width: 85%`.
+   - Dual Figures (if requested): `height: 310pt`, `width: 85%`.
 3. **Table Widths**:
    - Use fractional column widths `columns: (1fr, 1fr, ...)` so tables automatically span `100%` of printable width without horizontal clipping.
 4. **Tuned Vertical Spacing**:
