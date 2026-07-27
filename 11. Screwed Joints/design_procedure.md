@@ -1,241 +1,264 @@
-# Screwed Joints — Design Procedure Manual
+# Screwed Joints — Design Procedure & Guide
 
-This manual provides a step-by-step master engineering procedure for analyzing and designing screwed joints under static, fatigue, and eccentric loading conditions, aligned with the **PC402ME (Unit-V)** syllabus and standard textbook conventions.
-
----
-
-## Stage 1: Preliminary Force Resolution & Component System Classification
-
-Before sizing bolts or analyzing joint failure, the mechanical loading system must be resolved into fundamental axial, bending, torsional, and shear force components acting on the joint and bracket arms.
-
-### 1.1 Force Resolution for Inclined Loading
-When an external force $W$ acts on a bracket at an angle $\theta$ to the vertical axis:
-
-1. **Horizontal Force Component ($W_H$):**
-   $$W_H = W \cdot \sin\theta \quad [\text{N}]$$
-   *Acts parallel to the bolt axis, inducing direct tension on all bolts and a turning moment about the bolt centroid.*
-
-2. **Vertical Force Component ($W_V$):**
-   $$W_V = W \cdot \cos\theta \quad [\text{N}]$$
-   *Acts perpendicular to the bolt axis, inducing direct shear on all bolts and an overturning moment about the lower edge.*
+> [!TIP]
+> **Zero-Memory Student Quick-Start Guide:**  
+> You do **NOT** need to memorize formulas, quadratic equations, or thread tables to solve screwed joint design problems!  
+> 1. Extract the given values from the question paper using the **[Symbol Legend](#11-symbol-legend--unit-conversion-rules)** below.
+> 2. Convert all units to **$\text{N}$ and $\text{mm}$** ($1\text{ kN} = 10^3\text{ N}$, $1\text{ N}\cdot\text{m} = 10^3\text{ N}\cdot\text{mm}$, $1\text{ MPa} = 1\text{ N/mm}^2$).
+> 3. Identify the joint branch (Preloaded Joint, Cylinder Cover Studs, Uniform Strength Bolt, Soderberg Fatigue, or Eccentric Loading Cases A through E) and follow the step-by-step numbered instructions verbatim.
+> 4. Plug numbers directly into the equations and look up thread dimensions in the **[Baked Reference Tables](#7-baked-reference-tables)** at the end.
 
 ---
 
-### 1.2 Screwed Fastener Classification & Thread Geometry
-* **Through Bolt:** Used when clearance holes are accessible from both ends. Fastened using a standard hexagonal nut.
-* **Tap Bolt:** Screwed directly into a threaded hole in one of the connected components without a nut.
-* **Stud:** A rod threaded at both ends. The metal end is permanently screwed into a tapped casting, while the nut end secures a removable cover plate (e.g., steam engine cylinder covers).
-
-#### Thread Nomenclature & Stress Area:
-* **Nominal Major Diameter ($d$ or $D_o$):** Largest diameter of the thread form.
-* **Core / Minor Diameter ($d_c$ or $D_c$):** Smallest diameter at the thread root. Standard approximation:
-  $$d_c \approx 0.84 \cdot d$$
-* **Tensile Stress Area ($A_c$):** Effective load-bearing cross-sectional area:
-  $$A_c = \frac{\pi}{4} (d_c)^2 \quad [\text{mm}^2]$$
-  *(Refer to [Table 11.1: Standard Screw Threads](table_11_1_standard_screw_threads.md) for exact core area values).*
+## Table of Contents
+1. [Universal Inputs & Pre-Processing Checklist](#1-universal-inputs--pre-processing-checklist)
+2. [Branch A: Preloaded Fastener Sizing & Gasket Factor Design](#2-branch-a-preloaded-fastener-sizing--gasket-factor-design)
+3. [Branch B: Cylinder Head Cover Stud Layout & Leak-Proof Pitch Check](#3-branch-b-cylinder-head-cover-stud-layout--leak-proof-pitch-check)
+4. [Branch C: Bolts of Uniform Strength & Strain Energy Absorbance](#4-branch-c-bolts-of-uniform-strength--strain-energy-absorbance)
+5. [Branch D: Soderberg Fatigue Design for Preloaded Fasteners](#5-branch-d-soderberg-fatigue-design-for-preloaded-fasteners)
+6. [Branch E: Master Eccentric Loading Procedures (Cases A through E)](#6-branch-e-master-eccentric-loading-procedures-cases-a-through-e)
+7. [Baked Reference Tables](#7-baked-reference-tables)
+   - [Table 11.1: Basic Dimensions of Standard ISO Metric Screw Threads](#table-111-basic-dimensions-of-standard-iso-metric-screw-threads)
+   - [Table 11.2: Gasket Factor ($K$) for Various Types of Joints](#table-112-gasket-factor-k-for-various-types-of-joints)
 
 ---
 
-### 1.3 Locking Devices (Vibration Anti-Loosening)
-Threaded joints are naturally self-locking under static forces. Under dynamic vibration or cyclic shock, thread friction drops, requiring locking devices:
+## 1. Universal Inputs & Pre-Processing Checklist
 
-| Locking Device Type | Working Principle | Typical Engineering Applications |
-| :--- | :--- | :--- |
-| **Jam Nut (Lock Nut)** | Dual nuts tightened against each other create opposing axial thread friction | Shaft bearings, connecting rods |
-| **Castle Nut & Split Pin** | Positive mechanical lock via cotter pin passed through bolt cross-hole and nut slots | Automotive stub axles, crane hooks |
-| **Spring Washer** | Exerts continuous elastic axial force against nut face | High-vibration machinery, pumps |
-| **Locking Plate / Tab Washer** | Deformable metal tabs folded against flange edge and nut flat | Aircraft structures, gearboxes |
+### 1.1 Symbol Legend & Unit Conversion Rules
 
----
-
-## Stage 2: Stress Analysis & Sizing under Static & Fluctuating Preload
-
-### 2.1 Stresses Due to Initial Tightening ($F_i$)
-When a bolt is tightened with a spanner before external service load is applied, it is subjected to an initial tightening tensile force $F_i$:
-
-1. **Fluid-Tight Joints (Engine Cylinders, Pressure Vessels):**
-   $$F_i = 2840 \cdot d \quad [\text{N}] \qquad (d = \text{nominal bolt diameter in mm})$$
-
-2. **Ordinary Engineering Joints (Non-Fluid Tight):**
-   $$F_i = 1420 \cdot d \quad [\text{N}]$$
-
-3. **Initial Tensile Stress ($\sigma_i$):**
-   $$\sigma_i = \frac{F_i}{A_c} = \frac{2840 \cdot d}{\frac{\pi}{4} (d_c)^2} \quad [\text{N/mm}^2]$$
+| Symbol | Parameter Name | Exam Unit | Conversion Rule |
+| :--- | :--- | :--- | :--- |
+| $W, P_e$ | External applied service load | $\text{kN}$ or $\text{N}$ | Multiply $\text{kN} \times 10^3 \implies \mathbf{N}$ |
+| $p$ | Internal fluid pressure | $\text{MPa}$ or $\text{N/mm}^2$ | Use directly in $\text{N/mm}^2$ ($1\text{ bar} = 0.1\text{ N/mm}^2$) |
+| $D$ | Internal cylinder diameter | $\text{mm}$ | Primary pressure vessel size |
+| $\sigma_t, \sigma_c, \tau$ | Allowable bolt stresses | $\text{MPa}$ | $1\text{ MPa} = \mathbf{1\text{ N/mm}^2}$ |
+| $\sigma_y, \sigma_e$ | Yield strength & endurance limit | $\text{MPa}$ | Used for Soderberg fatigue calculations |
+| $F_i$ | Initial tightening preload | $\text{N}$ | $F_i = 2840 \cdot d$ (fluid-tight) or $1420 \cdot d$ (ordinary) |
+| $K$ | Gasket factor ratio | Ratio | Look up in [Table 11.2](#table-112-gasket-factor-k-for-various-types-of-joints) |
+| $d, d_c, A_c$ | Nominal diameter, Core diameter & Stress area | $\text{mm, mm}^2$ | Look up in [Table 11.1](#table-111-basic-dimensions-of-standard-iso-metric-screw-threads) |
+| $L, e$ | Eccentric load distance / bracket arm | $\text{mm}$ | Distance from load line to tilting edge or C.G. |
 
 ---
 
-### 2.2 Combined Preload & External Service Load
+> [!CAUTION]
+> **Calculator Pitfall:** ALWAYS perform all stress calculations using load in **$\text{N}$** and torque/moments in **$\text{N}\cdot\text{mm}$**, NOT $\text{kN}$ or $\text{N}\cdot\text{m}$! For initial tightening of fluid-tight joints, ALWAYS use $F_i = 2840 \cdot d$.
 
-When a preloaded bolt is subjected to an external tensile load $P_e$:
+---
 
-$$\text{Total Resultant Axial Load on Bolt } (P_{\text{total}}) = F_i + K \cdot P_e$$
+## 2. Branch A: Preloaded Fastener Sizing & Gasket Factor Design
 
-where $K$ is the **Gasket Stiffness Ratio** (referenced from **[Table 11.2](table_11_2_gasket_factors.md)**):
-$$K = \frac{k_b}{k_b + k_m}$$
+### Step 1: Preload & Resultant Load Equations
+When a bolt is preloaded with initial tightening force $F_i = 2840 \cdot d$ and subjected to external tensile load $P_e$:
+$$P_{\text{total}} = F_i + K \cdot P_e = 2840 \cdot d + K \cdot P_e \quad [\text{N}]$$
 
-* **Metal-to-Metal Joint (No Gasket):** $K = 0.00 \sim 0.10$
-* **Hard Copper Gasket with Long Bolts:** $K = 0.25 \sim 0.50$
-* **Soft Copper Gasket:** $K = 0.50 \sim 0.75$
-* **Soft Packing with Studs:** $K = 1.00$
+Look up gasket factor $K$ from **[Table 11.2](#table-112-gasket-factor-k-for-various-types-of-joints)** ($K = 0.00 \sim 1.00$).
 
-#### Sizing Quadratic Equation for Preloaded Bolts:
-Equating total resultant load to allowable tensile strength ($P_{\text{total}} = A_c \cdot \sigma_t$):
-$$2840 \cdot d + K \cdot P_e = \frac{\pi}{4} (0.84 d)^2 \cdot \sigma_t = 0.5542 \cdot \sigma_t \cdot d^2$$
+---
+
+### Step 2: Sizing Quadratic Equation Formulation
+Equate total load to allowable tensile strength ($P_{\text{total}} = A_c \cdot \sigma_t = \frac{\pi}{4}(0.84 d)^2 \sigma_t$):
 
 $$0.5542 \cdot \sigma_t \cdot d^2 - 2840 \cdot d - K \cdot P_e = 0$$
 
-Solve this quadratic equation for nominal diameter $d$, then select the next standard commercial size from **[Table 11.1](table_11_1_standard_screw_threads.md)**.
+Solve this quadratic equation for nominal diameter $d$:
+$$d = \frac{2840 + \sqrt{(-2840)^2 - 4 (0.5542 \sigma_t) (-K P_e)}}{2 (0.5542 \sigma_t)} \quad [\text{mm}]$$
+
+Select the next higher standard commercial size $d$ from **[Table 11.1](#table-111-basic-dimensions-of-standard-iso-metric-screw-threads)**.
 
 ---
 
-### 2.3 Cylinder Cover Stud Design & Leak-Proof Pitch Check
+## 3. Branch B: Cylinder Head Cover Stud Layout & Leak-Proof Pitch Check
 
-For steam engine cylinder covers, pump casings, and pressure vessels:
+### Step 1: Total External Pressure Load ($P_e$)
+$$P_e = \frac{\pi}{4} D^2 \cdot p \quad [\text{N}] \qquad (D = \text{cylinder diameter in mm}, p = \text{fluid pressure in N/mm}^2)$$
 
+---
+
+### Step 2: Empirical Stud Count ($n$) & Load per Stud
 1. **Empirical Number of Studs ($n$):**
-   $$n = 0.02 \cdot D + 4 \quad \text{to} \quad 0.04 \cdot D + 4 \qquad (\text{Average: } n = 0.03 \cdot D + 2)$$
-   *(where $D$ is internal cylinder diameter in mm)*
+   $$n = 0.03 \cdot D + 2 \quad \implies \text{Round UP to next even integer}$$
+2. **External Tensile Load per Stud ($P_{e1}$):**
+   $$P_{e1} = \frac{P_e}{n} = \frac{\frac{\pi}{4} D^2 \cdot p}{n} \quad [\text{N}]$$
 
-2. **Pitch Circle Diameter ($D_p$):**
-   $$D_p = D + 2 d_1 + 12\text{ mm} \qquad (d_1 = \text{nominal stud diameter})$$
+---
 
-3. **Leak-Proof Pitch Verification ($p_c$):**
-   Circumferential pitch between adjacent studs:
+### Step 3: Solve Quadratic Equation for Stud Diameter ($d$)
+$$0.5542 \cdot \sigma_t \cdot d^2 - 2840 \cdot d - K \cdot P_{e1} = 0 \implies d \quad [\text{mm}]$$
+Look up standard nominal diameter $d$ and core diameter $d_1 = d_c$ from **[Table 11.1](#table-111-basic-dimensions-of-standard-iso-metric-screw-threads)**.
+
+---
+
+### Step 4: Pitch Circle Diameter ($D_p$) & Mandatory Leak-Proof Pitch Check
+1. **Pitch Circle Diameter ($D_p$):**
+   $$D_p = D + 2 d_1 + 12\text{ mm} \quad [\text{mm}]$$
+2. **Circumferential Pitch ($p_c$):**
    $$p_c = \frac{\pi \cdot D_p}{n} \quad [\text{mm}]$$
 
-   **Leak-Proof Pitch Criteria:**
-   $$20 \sqrt{d_1} \le p_c \le 30 \sqrt{d_1} \quad [\text{mm}]$$
-   *If $p_c > 30 \sqrt{d_1}$, increase the number of studs $n$ to prevent fluid leakage between studs.*
+> [!IMPORTANT]
+> **Mandatory Leak-Proof Condition Check:**  
+> Verify that pitch $p_c$ satisfies the leak-proof bounds:
+> $$20 \sqrt{d_1} \le p_c \le 30 \sqrt{d_1}$$
+> *If $p_c > 30 \sqrt{d_1} \implies$ Increase stud count $n$ to reduce pitch and re-verify.*
 
 ---
 
-### 2.4 Fatigue Design under Fluctuating Loading (Soderberg Criterion)
-When cylinder pressure fluctuates between $P_{\min}$ and $P_{\max}$:
+## 4. Branch C: Bolts of Uniform Strength & Strain Energy Absorbance
 
-1. **Mean Load ($P_m$) & Variable Load ($P_v$):**
-   $$P_m = \frac{P_{\max} + P_{\min}}{2}, \qquad P_v = \frac{P_{\max} - P_{\min}}{2}$$
-
-2. **Soderberg Failure Criterion Equation:**
-   $$\frac{1}{FOS} = \frac{\sigma_m}{\sigma_y} + \frac{K_f \cdot \sigma_v}{\sigma_e}$$
-   * **Mean Tensile Stress ($\sigma_m$):** $\sigma_m = \frac{P_m}{A_c}$
-   * **Variable Tensile Stress ($\sigma_v$):** $\sigma_v = \frac{P_v}{A_c}$
-   * **Yield Strength ($\sigma_y$):** Material yield strength in tension
-   * **Endurance Limit ($\sigma_e$):** Material endurance limit under reversed axial loading
-   * **Fatigue Stress Concentration Factor ($K_f$):** $K_f = 2.5 \sim 3.0$ for threaded fasteners
-   * **Factor of Safety ($FOS$):** Specified design safety factor
+Under impact or dynamic shock loading, standard bolts concentrate strain energy in the threaded portion. A bolt of uniform strength absorbs maximum strain energy throughout its length.
 
 ---
 
-## Stage 3: Bolts of Uniform Strength
-
-Standard bolts tend to fail at the first engaged thread root because the small core cross-sectional area $A_c$ absorbs almost all impact strain energy. To distribute shock and impact energy uniformly along the entire bolt length:
-
-### Method 1: Reduced Shank Diameter
-Turn down the unthreaded shank diameter to match the thread core diameter $d_c$:
-$$d_{\text{shank}} = d_c$$
-
-### Method 2: Drilled Central Axial Hole
-Drill a central axial hole of diameter $D_h$ through the unthreaded shank down to the thread engagement region:
-$$\frac{\pi}{4} \left( d^2 - D_h^2 \right) = \frac{\pi}{4} (d_c)^2$$
-
-$$D_h = \sqrt{d^2 - d_c^2} \quad [\text{mm}]$$
-
-#### Strain Energy Capacity ($U$):
-$$U = \frac{\sigma^2}{2 E} \cdot V \quad [\text{N}\cdot\text{mm}]$$
-*(Where $V$ is total bolt volume and $E$ is Young's Modulus).*
+### Method 1: Reduced Shank Diameter ($d_{\text{shank}}$)
+Machine the unthreaded shank down to the core diameter $d_c$:
+$$d_{\text{shank}} = d_c \approx 0.84 d \quad [\text{mm}]$$
 
 ---
 
-## Stage 4: Design of Eccentrically Loaded Bolted Joints
-
-### Case A: Eccentric Load Parallel to Bolt Axis (Wall / Pillar Brackets)
-
-1. **Direct Tensile Load per Bolt ($W_{t1}$):**
-   $$W_{t1} = \frac{W}{n} \quad [\text{N}] \qquad (n = \text{total number of bolts})$$
-
-2. **Secondary Tensile Load due to Turning Moment ($W_{t2}$):**
-   The bracket tilts about its lower edge $E-E$:
-   * **Unit Load per Unit Distance ($w$):**
-     $$w = \frac{W \cdot L}{\sum n_i \cdot L_i^2} \quad [\text{N/mm}]$$
-     *(where $L_i$ is distance of bolt row $i$ from tilting edge $E-E$, and $n_i$ is number of bolts in row $i$)*
-
-   * **Secondary Tensile Load on Critical Top Bolt at Distance $L_{\max}$:**
-     $$W_{t2} = w \cdot L_{\max} \quad [\text{N}]$$
-
-3. **Total Maximum Tensile Load on Critical Bolt ($W_t$):**
-   $$W_t = W_{t1} + W_{t2} \quad [\text{N}]$$
-
-4. **Required Core Area ($A_c$):**
-   $$A_c = \frac{W_t}{\sigma_t} \implies \text{Select standard bolt size from Table 11.1}$$
+### Method 2: Central Drilled Axial Hole ($D_h$)
+Drill an axial hole from the bolt head down to the thread junction:
+$$D_h = \sqrt{d_o^2 - d_c^2} \quad [\text{mm}]$$
 
 ---
 
-### Case B: Eccentric Load Perpendicular to Bolt Axis in Plane of Bolts (Coplanar Shear)
+### Strain Energy Capacity Formula ($U$)
+$$U = \frac{\sigma^2}{2E} \cdot V \quad [\text{N}\cdot\text{mm}]$$
+*(where $\sigma$ is uniform stress, $E$ is Young's Modulus, $V$ is total shank volume).*
 
-1. **Direct Shear Load per Bolt ($W_{s1}$):**
+---
+
+## 5. Branch D: Soderberg Fatigue Design for Preloaded Fasteners
+
+When a preloaded bolt is subjected to a cyclic external load fluctuating between $P_{\min}$ and $P_{\max}$:
+
+1. **Maximum Resultant Load:** $P_1 = F_i + K \cdot P_{\max}$
+2. **Minimum Resultant Load:** $P_2 = F_i + K \cdot P_{\min}$
+3. **Mean Load ($P_m$) & Variable Load ($P_v$):**
+   $$P_m = \frac{P_1 + P_2}{2} = F_i + K \left[ \frac{P_{\max} + P_{\min}}{2} \right]$$
+   $$P_v = \frac{P_1 - P_2}{2} = K \left[ \frac{P_{\max} - P_{\min}}{2} \right]$$
+
+---
+
+### Soderberg Failure Criterion Equation
+$$\frac{A_c}{\text{FOS}} = \frac{P_m}{\sigma_y} + \frac{K_f \cdot P_v}{\sigma_e}$$
+
+Solve for required stress area $A_c$, then select matching thread from **[Table 11.1](#table-111-basic-dimensions-of-standard-iso-metric-screw-threads)**.
+
+---
+
+## 6. Branch E: Master Eccentric Loading Procedures (Cases A through E)
+
+```
+                     ┌──────────────────────────────────────────┐
+                     │    ECCENTRIC BOLTED JOINT CASE ROUTER    │
+                     └────────────────────┬─────────────────────┘
+                                          │
+    ┌──────────────────┬──────────────────┼──────────────────┬──────────────────┐
+    ▼                  ▼                  ▼                  ▼                  ▼
+┌──────────────┐ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+│    CASE A    │ │    CASE B    │ │    CASE C    │ │    CASE D    │ │    CASE E    │
+│ Load Parallel│ │ Coplanar Shear│ │ Combined Shear│ │ Circular Base│ │ Bracket Arm  │
+│ Tilting Edge │ │ Rotation C.G.│ │  + Tension   │ │ Outer Tangent│ │ Cross-Section│
+└──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘ └──────────────┘
+```
+
+---
+
+### Case A: Load Parallel to Bolt Axis (Tilting about Edge $E-E$)
+
+1. **Direct Tensile Force per Bolt ($W_{t1}$):**
+   $$W_{t1} = \frac{W}{n} \quad [\text{N}]$$
+
+2. **Tilting Unit Load Constant ($w$):**
+   $$w = \frac{W \cdot L}{\sum n_i L_i^2} = \frac{W \cdot L}{2 (L_1^2 + L_2^2 + \dots + L_n^2)} \quad [\text{N/mm}]$$
+
+3. **Maximum Secondary Tension on Furthest Bolts ($W_{t2}$):**
+   $$W_{t2} = w \cdot L_{\max} \quad [\text{N}]$$
+
+4. **Total Tensile Load ($W_t$):**
+   $$W_t = W_{t1} + W_{t2} = \frac{W}{n} + \frac{W \cdot L \cdot L_{\max}}{\sum n_i L_i^2} \le A_c \cdot \sigma_t \implies d_c$$
+
+---
+
+### Case B: Coplanar Shear Loading (Rotation about C.G.)
+
+1. **Primary Direct Shear Force per Bolt ($W_{s1}$):**
    $$W_{s1} = \frac{W}{n} \quad [\text{N}]$$
 
-2. **Secondary Shear Load due to Eccentric Rotation ($W_{s2}$):**
-   The load causes turning about the centroid $G$ of the bolt layout:
+2. **Secondary Torsional Shear Force ($W_{s2}$):**
    $$W_{s2} = \frac{W \cdot e \cdot r_i}{\sum r_i^2} \quad [\text{N}]$$
-   *(where $r_i$ is radial distance from centroid $G$ to bolt $i$, and $e$ is load eccentricity)*
 
-3. **Resultant Maximum Shear Load on Critical Bolt ($W_s$):**
-   Apply vector addition for primary and secondary shear vectors:
-   $$W_s = \sqrt{W_{s1}^2 + W_{s2}^2 + 2 W_{s1} W_{s2} \cos\theta} \quad [\text{N}]$$
-   *(where $\theta$ is the angle between $W_{s1}$ and $W_{s2}$ vectors)*
+3. **Resultant Shear Force on Critical Bolt ($W_s$):**
+   $$W_s = \sqrt{W_{s1}^2 + W_{s2}^2 + 2 W_{s1} W_{s2} \cos\theta} \le A_c \cdot \tau \implies d_c$$
 
 ---
 
-### Case C: Combined Shear and Tension (Inclined Loading Brackets)
+### Case C: Combined Shear & Tension (Principal Stress Theory)
 
-When critical bolts carry both direct tension ($W_t$) and direct shear ($W_s$):
+When a bolt carries both direct shear $W_s$ and direct tension $W_t$:
 
 1. **Equivalent Tensile Load ($W_{te}$) — Maximum Principal Stress Theory:**
-   $$W_{te} = \frac{1}{2} \left[ W_t + \sqrt{W_t^2 + 4 W_s^2} \right] \quad [\text{N}]$$
+   $$W_{te} = \frac{1}{2} \left[ W_t + \sqrt{W_t^2 + 4 W_s^2} \right] \le A_c \cdot \sigma_t \implies d_c$$
 
 2. **Equivalent Shear Load ($W_{se}$) — Maximum Shear Stress Theory:**
-   $$W_{se} = \frac{1}{2} \sqrt{W_t^2 + 4 W_s^2} \quad [\text{N}]$$
-
-3. **Calculate Core Diameter ($d_c$) & Select Bolt:**
-   $$W_{te} = \frac{\pi}{4} (d_c)^2 \cdot \sigma_t \implies d_c = \sqrt{\frac{4 W_{te}}{\pi \cdot \sigma_t}} \quad [\text{mm}]$$
+   $$W_{se} = \frac{1}{2} \sqrt{W_t^2 + 4 W_s^2} \le A_c \cdot \tau \implies d_c$$
 
 ---
 
-### Case D: Circular Base Foundation & Flange Bolts (Pillar Cranes & Flanged Bearings)
+### Case D: Circular Base Foundation Flanges (Tilting about Outer Edge)
 
-For $n$ bolts equally spaced on a bolt circle radius $r$ around a circular base flange of radius $R$:
+For circular foundation flanges with $n$ bolts arranged on pitch circle radius $r$ tilting about outer base radius $R$:
 
-1. **Tilting about Outer Base Tangent ($A-A$):**
-   Overturning distance $L = e - R$. Maximum tensile load on critical bolt:
-   $$W_t = \frac{2 \cdot W \cdot L \cdot \left[ R + r \cos\left( \frac{180^\circ}{n} \right) \right]}{n \left( 2 R^2 + r^2 \right)} \quad [\text{N}]$$
-
-2. **Core Diameter & Bolt Selection:**
-   $$A_c = \frac{W_t}{\sigma_t} \implies \text{Select M-series bolt size from Table 11.1}$$
+$$W_t = \frac{2 \cdot W \cdot L \cdot [R + r \cos(180^\circ/n)]}{n \cdot (2 R^2 + r^2)} \le A_c \cdot \sigma_t \implies d_c$$
 
 ---
 
-### Case E: Cross-Sectional Sizing of Bracket Arms
+### Case E: Bracket Arm Cross-Section Sizing
 
-1. **Rectangular Arm ($t \times b$ under Bending Moment $M = W \cdot L$):**
-   Section modulus $Z = \frac{1}{6} \cdot t \cdot b^2$.
-   $$\sigma_t = \frac{M}{Z} = \frac{6 M}{t \cdot b^2} \implies t = \frac{6 M}{\sigma_t \cdot b^2} \quad [\text{mm}]$$
+1. **Rectangular Cross-Section ($t \times b$, $b = 2t \sim 3t$):**
+   $$M = W \cdot L = \frac{1}{6} t \cdot b^2 \cdot \sigma_t \implies t = \sqrt[3]{\frac{6 M}{\sigma_t \cdot (b/t)^2}}$$
 
-2. **Solid Circular Arm ($D$) under Combined Bending ($M$) and Torsion ($T$):**
-   $$T_e = \sqrt{M^2 + T^2} = \frac{\pi}{16} D^3 \cdot \tau \implies D = \sqrt[3]{\frac{16 T_e}{\pi \cdot \tau}} \quad [\text{mm}]$$
-
-3. **T-Section or I-Section Arm under Inclined Pull:**
-   * Calculate centroid $\bar{y}$ and moment of inertia $I_{GG}$.
-   * Combine bending tensile stress $\sigma_b = \frac{M \cdot y}{I_{GG}}$ and direct stress $\sigma_d = \frac{W_H}{A}$.
-   * Equate net stress to safe tensile stress $\sigma_t$.
+2. **Solid Circular Section ($D_{\text{arm}}$) under Combined Bending ($M$) and Torsion ($T$):**
+   $$T_e = \sqrt{M^2 + T^2} = \frac{\pi}{16} D_{\text{arm}}^3 \cdot \tau \implies D_{\text{arm}} = \sqrt[3]{\frac{16 T_e}{\pi \tau}}$$
 
 ---
 
-## Master Engineering Design Flowchart Checklist
+## 7. Baked Reference Tables
 
-1. **Identify Load System:** Pure tension $\to$ Combined pre-load $\to$ Eccentric parallel $\to$ Coplanar shear $\to$ Circular foundation.
-2. **Resolve Force Components:** Determine $W_H = W \sin\theta$ and $W_V = W \cos\theta$.
-3. **Calculate Secondary Forces:** Find unit load $w$ for tilting moments or secondary shear $W_{s2}$ for eccentric rotation.
-4. **Apply Failure Theory:** Combine $W_t$ and $W_s$ using Equivalent Tensile Load $W_{te} = \frac{1}{2} [W_t + \sqrt{W_t^2 + 4 W_s^2}]$.
-5. **Table Lookup:** Select standard nominal bolt size $d$ and stress area $A_c$ from **[Table 11.1](table_11_1_standard_screw_threads.md)**.
-6. **Leak-Proof Verification:** Verify pitch condition $20 \sqrt{d_1} \le p_c \le 30 \sqrt{d_1}$ for cylinder covers.
+### Table 11.1: Basic Dimensions of Standard ISO Metric Screw Threads
+
+Standard dimensions for normal coarse series ISO metric screw threads according to **IS: 4218 - 1976**.
+
+| Designation | Nominal Diameter $d$ (mm) | Pitch $p$ (mm) | Core Diameter $d_c$ (mm) | Stress Area $A_c$ ($\text{mm}^2$) |
+| :---: | :---: | :---: | :---: | :---: |
+| **M 6** | 6 | 1.00 | 4.773 | 20.1 |
+| **M 8** | 8 | 1.25 | 6.466 | 36.6 |
+| **M 10** | 10 | 1.50 | 8.160 | 58.0 |
+| **M 12** | 12 | 1.75 | 9.858 | 84.3 |
+| **M 14** | 14 | 2.00 | 11.546 | 115.0 |
+| **M 16** | 16 | 2.00 | 13.546 | 157.0 |
+| **M 18** | 18 | 2.50 | 14.933 | 192.0 |
+| **M 20** | 20 | 2.50 | 16.933 | 245.0 |
+| **M 22** | 22 | 2.50 | 18.933 | 303.0 |
+| **M 24** | 24 | 3.00 | 20.319 | 353.0 |
+| **M 27** | 27 | 3.00 | 23.319 | 459.0 |
+| **M 30** | 30 | 3.50 | 25.706 | 561.0 |
+| **M 33** | 33 | 3.50 | 28.706 | 694.0 |
+| **M 36** | 36 | 4.00 | 31.093 | 817.0 |
+| **M 39** | 39 | 4.00 | 34.093 | 976.0 |
+| **M 42** | 42 | 4.50 | 36.479 | 1121.0 |
+| **M 48** | 48 | 5.00 | 41.866 | 1473.0 |
+
+---
+
+### Table 11.2: Gasket Factor ($K$) for Various Types of Joints
+
+Values of gasket factor $K = \frac{k_b}{k_b + k_m}$ for various joint gasket materials:
+
+| Type of Joint / Gasket Material | Gasket Factor $K$ |
+| :--- | :---: |
+| **Metal to metal joint with through bolts** | $0.00 \sim 0.10$ |
+| **Hard copper gasket with long through bolts** | $0.25 \sim 0.50$ |
+| **Soft copper gasket with long through bolts** | $0.50 \sim 0.75$ |
+| **Soft packing with through bolts** | $0.75 \sim 1.00$ |
+| **Soft packing with studs** | $1.00$ |
