@@ -1078,25 +1078,16 @@
   [*1. Centroid ($overline(y)$) & Section Area ($A$)* \ T-section geometry evaluation],
   [
     $
-      A_1 &= 135 times 25 \
-      &= 3375 "mm"^2 \
-      A_2 &= 175 times 25 \
-      &= 4375 "mm"^2
-    $
-    #v(6pt)
-    $
+      A_1 &= 135 times 25 = 3375 "mm"^2 \
+      A_2 &= 175 times 25 = 4375 "mm"^2 \
       #text(size: 20pt)[$A$] &= #text(size: 20pt)[$A_1 + A_2$] \
       &= 7750 "mm"^2
     $
-    #v(6pt)
+    #v(4pt)
     $
       #text(size: 20pt)[$overline(y)$] &= #text(size: 20pt)[$(A_1 y_1 + A_2 y_2) / A$] \
       &= (3375 times 12.5 + 4375 times 112.5) / 7750 \
-      &= 68.95 "mm" \
-      &approx 69 "mm" \
-      y_1 &= 69 "mm" quad ("Top") \
-      y_2 &= 200 - 69 \
-      &= 131 "mm" quad ("Bottom")
+      &= 69 "mm" quad ("Top " y_1 = 69 "mm", "Bottom " y_2 = 131 "mm")
     $
   ]
 )
@@ -1107,93 +1098,83 @@
     $
       #text(size: 20pt)[$I_("GG")$] &= #text(size: 20pt)[$sum (I_i + A_i d_i^2)$] \
       &= [(135(25)^3)/12 + 3375(56.5)^2] + [(25(175)^3)/12 + 4375(43.5)^2] \
-      &= 30.4 times 10^6 "mm"^4
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$Z_1$] &= #text(size: 20pt)[$I_("GG") / y_1$] \
-      &= (30.4 times 10^6) / 69 \
-      &= 440.6 times 10^3 "mm"^3
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$Z_2$] &= #text(size: 20pt)[$I_("GG") / y_2$] \
-      &= (30.4 times 10^6) / 131 \
-      &= 232 times 10^3 "mm"^3
+      &= 30.4 times 10^6 "mm"^4 \
+      #text(size: 20pt)[$Z_1$] &= #text(size: 20pt)[$I_("GG") / y_1$] = (30.4 times 10^6) / 69 = 440.6 times 10^3 "mm"^3 \
+      #text(size: 20pt)[$Z_2$] &= #text(size: 20pt)[$I_("GG") / y_2$] = (30.4 times 10^6) / 131 = 232 times 10^3 "mm"^3
     $
   ]
 )
 
 #item-row(
-  [*3. Bracket Arm Stresses at Section X-X* \ Bending moment and direct stress combination],
-  [
-    $
-      M &= 15000(200 + 69) \
-      &= 4.035 times 10^6 "N"dot"mm" \
-      sigma_("b1") &= M / Z_1 \
-      &= 9.16 "N/mm"^2 \
-      sigma_("b2") &= M / Z_2 \
-      &= 17.4 "N/mm"^2 \
-      sigma_("t1") &= W / A \
-      &= 1.94 "N/mm"^2
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$sigma_("b1") + sigma_("t1")$] \
-      &= 9.16 + 1.94 \
-      &= bold(11.1 "MPa" quad ("Tensile"))
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$sigma_("b2") - sigma_("t1")$] \
-      &= 17.4 - 1.94 \
-      &= bold(15.46 "MPa" quad ("Compressive"))
-    $
-  ]
+  [*3. Bending Moment at Section X-X ($M$)* \ Moment exerted on bracket arm section],
+  [$
+    #text(size: 20pt)[$M$] &= #text(size: 20pt)[$W (200 + overline(y))$] \
+    &= 15 times 10^3 (200 + 69) \
+    &= 4035 times 10^3 "N"dot"mm"
+  $]
 )
 
 #item-row(
-  [*4. Fastening Bolt Loads ($W_("t1"), W_("t2"), W_t$)* \ Tilting edge $EE$ load allocation],
-  [
-    $
-      L_1 &= 50 "mm" \
-      L_2 &= 375 "mm" \
-      L &= 525 "mm" \
-      W_("t1") &= W / n \
-      &= 15000 / 4 \
-      &= 3750 "N" \
-      w &= (W dot L) / (2 (L_1^2 + L_2^2)) \
-      &= 27.5 "N/mm" \
-      W_("t2") &= w dot L_2 \
-      &= 27.5 times 375 \
-      &= 10312.5 "N"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$W_("t1") + W_("t2")$] \
-      &= 3750 + 10312.5 \
-      &= 14062.5 "N"
-    $
-  ]
+  [*4. Maximum Tensile Stress at Section X-X ($sigma_t$)* \ Bending tensile plus direct tensile stress in flange],
+  [$
+    #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z_1 + W / A$] \
+    &= (4035 times 10^3) / (440.6 times 10^3) + 15000 / 7750 \
+    &= 9.16 + 1.94 \
+    &= bold(11.1 "MPa" quad bold("(Ans.)"))
+  $]
 )
 
 #item-row(
-  [*5. Maximum Tensile Stress in Fastening Bolts ($sigma_("tb")$)* \ Bolt stress evaluation],
-  [
-    $
-      d_c &= 0.84 d \
-      &= 0.84 times 25 \
-      &= 21 "mm" \
-      #text(size: 20pt)[$sigma_("tb")$] &= #text(size: 20pt)[$W_t / (pi/4 (d_c)^2)$] \
-      &= 14062.5 / (pi/4 (21)^2) \
-      &= bold(40.6 "MPa")
-    $
-  ]
+  [*5. Maximum Compressive Stress at Section X-X ($sigma_c$)* \ Bending compressive minus direct tensile stress in web],
+  [$
+    #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$M / Z_2 - W / A$] \
+    &= (4035 times 10^3) / (232 times 10^3) - 1.94 \
+    &= 17.4 - 1.94 \
+    &= bold(15.46 "MPa" quad bold("(Ans.)"))
+  $]
 )
 
 #item-row(
-  [*6. Design Output*],
-  [*Arm Tensile $sigma_t = 11.1 "MPa"$, Arm Compressive $sigma_c = 15.46 "MPa"$, Bolt Stress $sigma_"tb" = 40.6 "MPa"$*]
+  [*6. Direct Tensile Load per Bolt ($W_("t1")$)* \ Direct shear/tension shared equally by 4 bolts],
+  [$
+    #text(size: 20pt)[$W_("t1")$] &= #text(size: 20pt)[$W / n$] \
+    &= 15000 / 4 \
+    &= 3750 "N"
+  $]
+)
+
+#item-row(
+  [*7. Secondary Load per Unit Distance ($w$) & Load ($W_("t2")$)* \ Secondary tension on critical upper bolts 2 & 3],
+  [$
+    #text(size: 20pt)[$w$] &= #text(size: 20pt)[$(W dot L) / (2 (L_1^2 + L_2^2))$] \
+    &= (15000 times 525) / (2 (50^2 + 375^2)) \
+    &= 27.5 "N/mm" \
+    #text(size: 20pt)[$W_("t2")$] &= #text(size: 20pt)[$w dot L_2$] = 27.5 times 375 = 10312 "N"
+  $]
+)
+
+#item-row(
+  [*8. Total Tensile Load on Critical Bolts ($W_t$)* \ Combined direct and secondary load on bolts 2 & 3],
+  [$
+    #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$W_("t1") + W_("t2")$] \
+    &= 3750 + 10312 \
+    &= 14062 "N"
+  $]
+)
+
+#item-row(
+  [*9. Maximum Tensile Stress in Fastening Bolts ($sigma_("tb")$)* \ Core diameter stress evaluation ($d_c = 0.84 d = 21 "mm"$)],
+  [$
+    #text(size: 20pt)[$sigma_("tb")$] &= #text(size: 20pt)[$W_t / (pi/4 (d_c)^2)$] \
+    &= 14062 / (pi/4 (21)^2) \
+    &= 14062 / 346.4 \
+    &= bold(40.6 "MPa" quad bold("(Ans.)"))
+  $]
+)
+
+#item-row(
+  [*10. Design Output*],
+  [*Arm Tensile $sigma_t = 11.1 "MPa"$, Arm Compressive $sigma_c = 15.46 "MPa"$, Bolt Stress $sigma_("tb") = 40.6 "MPa"$*]
 )
 
 #figure-page(

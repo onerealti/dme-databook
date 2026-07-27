@@ -548,45 +548,47 @@ A crane runway bracket supports a wheel load of $15\text{ kN}$. Determine the te
 1. **Centroid ($\bar{y}$) & Area ($A$):**
    * Top Flange: $135\text{ mm} \times 25\text{ mm} \implies A_1 = 3375\text{ mm}^2$
    * Web: $175\text{ mm} \times 25\text{ mm} \implies A_2 = 4375\text{ mm}^2$
-   * Total Area ($A$): $A_1 + A_2 = 7750\text{ mm}^2$
    * Centroid from top flange ($\bar{y}$):
-     $$\bar{y} = \frac{3375 \times 12.5 + 4375 \times (25 + 87.5)}{7750} = \frac{42\,187.5 + 492\,187.5}{7750} = 68.95\text{ mm} \approx 69\text{ mm}$$
-     $$y_1 = 69\text{ mm} \quad (\text{Top}), \qquad y_2 = 200 - 69 = 131\text{ mm} \quad (\text{Bottom})$$
+     $$\bar{y} = \frac{135 \times 25 \times 12.5 + 175 \times 25 \times (25 + 87.5)}{135 \times 25 + 175 \times 25} = 69\text{ mm}$$
+     $$y_1 = \bar{y} = 69\text{ mm} \quad (\text{Top}), \qquad y_2 = 175 + 25 - 69 = 131\text{ mm} \quad (\text{Bottom})$$
 
 2. **Moment of Inertia ($I_{GG}$) & Section Moduli ($Z_1, Z_2$):**
-   $$I_{GG} = \left[ \frac{135(25)^3}{12} + 3375(69 - 12.5)^2 \right] + \left[ \frac{25(175)^3}{12} + 4375(112.5 - 69)^2 \right] = 30.4 \times 10^6\text{ mm}^4$$
-   * Tensile Section Modulus: $Z_1 = \frac{30.4 \times 10^6}{69} = 440.6 \times 10^3\text{ mm}^3$
-   * Compressive Section Modulus: $Z_2 = \frac{30.4 \times 10^6}{131} = 232 \times 10^3\text{ mm}^3$
+   $$I_{GG} = \left[ \frac{135(25)^3}{12} + 135 \times 25 (69 - 12.5)^2 \right] + \left[ \frac{25(175)^3}{12} + 175 \times 25 (200 - 69 - 87.5)^2 \right] = 30.4 \times 10^6\text{ mm}^4$$
+   * Tensile Section Modulus: $Z_1 = \frac{I_{GG}}{y_1} = \frac{30.4 \times 10^6}{69} = 440.6 \times 10^3\text{ mm}^3$
+   * Compressive Section Modulus: $Z_2 = \frac{I_{GG}}{y_2} = \frac{30.4 \times 10^6}{131} = 232 \times 10^3\text{ mm}^3$
 
 3. **Bending Moment ($M$) & Combined Stresses:**
-   * Bending moment: $M = 15 \times 10^3 \times (200 + 69) = 4.035 \times 10^6\text{ N}\cdot\text{mm}$
-   * Bending tensile stress: $\sigma_{b1} = \frac{4.035 \times 10^6}{440.6 \times 10^3} = 9.16\text{ N/mm}^2$
-   * Bending compressive stress: $\sigma_{b2} = \frac{4.035 \times 10^6}{232 \times 10^3} = 17.4\text{ N/mm}^2$
-   * Direct tensile stress: $\sigma_{t1} = \frac{W}{A} = \frac{15\,000}{7750} = 1.94\text{ N/mm}^2$
+   * Bending moment: $M = 15 \times 10^3 (200 + 69) = 4035 \times 10^3\text{ N}\cdot\text{mm}$
+   * Maximum bending tensile stress in flange: $\sigma_{b1} = \frac{M}{Z_1} = \frac{4035 \times 10^3}{440.6 \times 10^3} = 9.16\text{ N/mm}^2$
+   * Maximum bending compressive stress in web: $\sigma_{b2} = \frac{M}{Z_2} = \frac{4035 \times 10^3}{232 \times 10^3} = 17.4\text{ N/mm}^2$
+   * Direct tensile stress: $\sigma_{t1} = \frac{W}{A} = \frac{15 \times 10^3}{135 \times 25 + 175 \times 25} = 1.94\text{ N/mm}^2$
 
-   * **Maximum Tensile Stress at X-X:**
-     $$\sigma_t = \sigma_{b1} + \sigma_{t1} = 9.16 + 1.94 = \mathbf{11.1\text{ MPa}}$$
-   * **Maximum Compressive Stress at X-X:**
-     $$\sigma_c = \sigma_{b2} - \sigma_{t1} = 17.4 - 1.94 = \mathbf{15.46\text{ MPa}}$$
+   * **Maximum Tensile Stress at Section X-X (Flange):**
+     $$\sigma_t = \sigma_{b1} + \sigma_{t1} = 9.16 + 1.94 = \mathbf{11.1\text{ N/mm}^2 = 11.1\text{ MPa. Ans.}}$$
+   * **Maximum Compressive Stress at Section X-X (Web):**
+     $$\sigma_c = \sigma_{b2} - \sigma_{t1} = 17.4 - 1.94 = \mathbf{15.46\text{ N/mm}^2 = 15.46\text{ MPa. Ans.}}$$
 
 ---
 
-#### Part 2: Maximum Tensile Stress in Fastening Bolts ($\sigma_{tb}$)
+#### Part 2: Maximum Stress in Fastening Bolts ($\sigma_{tb}$)
 
 1. **Direct Tensile Load per Bolt ($W_{t1}$):**
-   $$W_{t1} = \frac{W}{n} = \frac{15\,000}{4} = 3750\text{ N}$$
+   $$W_{t1} = \frac{W}{n} = \frac{15 \times 10^3}{4} = 3750\text{ N}$$
 
-2. **Secondary Tensile Load on Critical Upper Bolts 2 & 3 ($W_{t2}$):**
-   * Tilting edge $EE$: $L_1 = 50\text{ mm}$, $L_2 = 50 + 325 = 375\text{ mm}$
-   * Total load arm from tilting edge $EE$: $L = 100 + 50 + 325 + 50 = 525\text{ mm}$
-   * Load per unit distance ($w$):
-     $$w = \frac{W \cdot L}{2 \left( L_1^2 + L_2^2 \right)} = \frac{15\,000 \times 525}{2 \left( 50^2 + 375^2 \right)} = \frac{7\,875\,000}{286\,250} = 27.5\text{ N/mm}$$
-   * Secondary load on top bolts: $W_{t2} = w \cdot L_2 = 27.5 \times 375 = 10\,312.5\text{ N}$$
+2. **Secondary Load per Unit Distance ($w$) & Secondary Load ($W_{t2}$):**
+   * Distances from tilting edge $EE$: $L_1 = 50\text{ mm}$, $L_2 = 50 + 325 = 375\text{ mm}$, Load arm $L = 100 + 50 + 325 + 50 = 525\text{ mm}$
+   * Secondary load per unit distance:
+     $$w = \frac{W \cdot L}{2 \left( L_1^2 + L_2^2 \right)} = \frac{15 \times 10^3 (100 + 50 + 325 + 50)}{2 \left( 50^2 + 375^2 \right)} = 27.5\text{ N/mm}$$
+   * Secondary tensile load on critical bolts 2 & 3:
+     $$W_{t2} = w \times L_2 = 27.5 \times 375 = 10\,312\text{ N}$$
 
-3. **Total Maximum Tensile Load & Bolt Stress ($\sigma_{tb}$):**
-   $$W_t = W_{t1} + W_{t2} = 3750 + 10\,312.5 = 14\,062.5\text{ N}$$
-   Using core diameter relation $d_c = 0.84 \cdot d = 0.84 \times 25 = 21\text{ mm}$:
-   $$\sigma_{tb} = \frac{W_t}{\frac{\pi}{4} (d_c)^2} = \frac{14\,062.5}{\frac{\pi}{4} (21)^2} = \frac{14\,062.5}{346.36} = \mathbf{40.6\text{ N/mm}^2 = 40.6\text{ MPa}}$$
+3. **Total Tensile Load & Maximum Bolt Stress ($\sigma_{tb}$):**
+   * Total tensile load on bolts 2 & 3:
+     $$W_t = W_{t1} + W_{t2} = 3750 + 10\,312 = 14\,062\text{ N}$$
+   * Core area of bolt ($d_c = 0.84 d = 0.84 \times 25 = 21\text{ mm}$):
+     $$W_t = \frac{\pi}{4} (d_c)^2 \cdot \sigma_{tb} \implies 14\,062 = \frac{\pi}{4} (0.84 \times 25)^2 \cdot \sigma_{tb} = 346.4 \cdot \sigma_{tb}$$
+   * Maximum stress in bolts:
+     $$\sigma_{tb} = \frac{14\,062}{346.4} = \mathbf{40.6\text{ N/mm}^2 = 40.6\text{ MPa. Ans.}}$$
 
 
 ---
