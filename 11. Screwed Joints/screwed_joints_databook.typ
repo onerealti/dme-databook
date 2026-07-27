@@ -31,44 +31,46 @@
   }
 )
 
-#set text(font: ("Times New Roman", "Georgia"), size: 16pt, fill: rgb("#000000"))
-#set par(justify: false, leading: 1em)
-#show math.equation: set block(spacing: 14pt)
+#set text(font: ("Times New Roman", "Georgia"), size: 15pt, fill: rgb("#000000"))
+#set par(justify: false, leading: 0.9em)
+#show math.equation: set block(spacing: 8pt)
 #show math.equation.where(block: true): set align(left)
+#show image: set image(fit: "contain")
+#show table: set table(stroke: 0.4pt + rgb("#aaaaaa"))
 
 // Custom Clean Section Header
 #let section-heading(sec-num, title) = {
-  v(8pt)
-  text(weight: "bold", size: 20pt)[SECTION #sec-num: #title]
   v(4pt)
+  text(weight: "bold", size: 18pt)[SECTION #sec-num: #title]
+  v(2pt)
   line(length: 100%, stroke: 1pt + rgb("#000000"))
-  v(12pt)
+  v(6pt)
 }
 
 // Section Overview Component (Unboxed & Vertically Stacked Parameters & Protocol)
 #let section-overview(sys-params, design-proto) = {
   v(2pt)
   sys-params
-  v(6pt)
+  v(3pt)
   design-proto
-  v(8pt)
+  v(4pt)
   line(length: 100%, stroke: 0.5pt + rgb("#000000"))
-  v(10pt)
+  v(6pt)
 }
 
 // Parallel Item Row Component (Open 2-Column Split with Vertical Center Divider Line)
 #let item-row(left-desc, right-math) = {
-  v(6pt)
+  v(3pt)
   grid(
     columns: (1fr, 1.2fr),
-    column-gutter: 24pt,
+    column-gutter: 20pt,
     stroke: (x, y) => if x == 0 { (right: 0.5pt + rgb("#aaaaaa")) },
-    inset: (right: 12pt),
+    inset: (right: 10pt),
     align: (left + top, left + top),
     [#left-desc],
     [#right-math]
   )
-  v(6pt)
+  v(3pt)
   line(length: 100%, stroke: 0.3pt + rgb("#cccccc"))
 }
 
@@ -196,7 +198,7 @@
   [M 8 x 1], [1.0 mm], [8.0 mm], [7.350 mm], [6.773 mm], [39.2 mm²],
   [M 10 x 1.25], [1.25 mm], [10.0 mm], [9.188 mm], [8.466 mm], [61.6 mm²],
   [M 12 x 1.25], [1.25 mm], [12.0 mm], [11.184 mm], [10.466 mm], [92.1 mm²],
-  [M 14 x 1.5], [1.5 mm], [14.0 mm], [13.026 mm], [12.160 mm], [125 mm²],
+  [M 14 x 1.5], [1.5 mm], [14.0 mm], [12.160 mm], [125 mm²], [125 mm²],
   [M 16 x 1.5], [1.5 mm], [16.0 mm], [15.026 mm], [14.160 mm], [167 mm²],
   [M 20 x 1.5], [1.5 mm], [20.0 mm], [19.026 mm], [18.160 mm], [272 mm²],
   [M 24 x 2], [2.0 mm], [24.0 mm], [22.701 mm], [21.546 mm], [384 mm²]
@@ -327,13 +329,14 @@
 )
 
 #item-row(
-  [*2. Standard Thread Selection (Table 11.1)* \ Select standard coarse series thread with $d_c >= 27.64 "mm"$],
+  [*2. Standard Thread Selection (Table 11.1)* \ Select standard coarse series thread],
   [
-    $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
-    #v(10pt)
-    $ d_c &= 28.706 "mm" $
-    #v(6pt)
-    $ d &= 33 "mm" $
+    $
+      d_("c, std") &>= d_c \
+      &= 27.64 "mm" \
+      d_c &= 28.706 "mm" \
+      d &= 33 "mm"
+    $
   ]
 )
 
@@ -379,13 +382,14 @@
 )
 
 #item-row(
-  [*3. Standard Thread Selection (Table 11.1)* \ Select standard coarse series thread with $d_c >= 2.97 "mm"$],
+  [*3. Standard Thread Selection (Table 11.1)* \ Select standard coarse series thread],
   [
-    $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
-    #v(10pt)
-    $ d_c &= 3.141 "mm" $
-    #v(6pt)
-    $ d &= 4 "mm" $
+    $
+      d_("c, std") &>= d_c \
+      &= 2.97 "mm" \
+      d_c &= 3.141 "mm" \
+      d &= 4 "mm"
+    $
   ]
 )
 
@@ -441,13 +445,14 @@
 )
 
 #item-row(
-  [*4. Standard Fine Thread Selection (Table 11.1)* \ Select fine series metric thread with $d_c >= 16.7 "mm"$],
+  [*4. Standard Fine Thread Selection (Table 11.1)* \ Select fine series metric thread],
   [
-    $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
-    #v(10pt)
-    $ d_c &= 18.376 "mm" $
-    #v(6pt)
-    Fine thread: M 20 x 1.5
+    $
+      d_("c, std") &>= d_c \
+      &= 16.7 "mm" \
+      d_c &= 18.376 "mm" \
+      "Fine thread: M 20" times 1.5
+    $
   ]
 )
 
@@ -477,7 +482,7 @@
 )
 
 #item-row(
-  [*2. Capacity per M 24 Stud ($P_1$) & Stud Count ($n$)* \ Resisting force capacity per M 24 stud ($d_c = 20.32 "mm"$)],
+  [*2. Capacity per M 24 Stud ($P_1$) & Stud Count ($n$)* \ Resisting force capacity per M 24 stud],
   [
     $
       #text(size: 20pt)[$P_1$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_t$] \
@@ -488,13 +493,14 @@
     $
       #text(size: 20pt)[$n$] &= #text(size: 20pt)[$P / P_1$] \
       &= 120265 / 10700 \
-      &= 11.24 => bold(n = 12 "studs")
+      &= 11.24 \
+      &=> bold(n = 12 "studs")
     $
   ]
 )
 
 #item-row(
-  [*3. Pitch Circle Diameter ($D_p$) & Circumferential Pitch ($p_c$)* \ Flange wall $t = 10 "mm"$, stud hole $d_1 = 25 "mm"$],
+  [*3. Pitch Circle Diameter ($D_p$) & Circumferential Pitch ($p_c$)* \ Pitch circle geometry],
   [
     $
       #text(size: 20pt)[$D_p$] &= #text(size: 20pt)[$D + 2t + 3d_1$] \
@@ -511,7 +517,7 @@
 )
 
 #item-row(
-  [*4. Leak-Proof Pitch Verification* \ Empirical leak-tight pitch limits ($d_1$ in mm)],
+  [*4. Leak-Proof Pitch Verification* \ Empirical leak-tight pitch limits],
   [
     $
       #text(size: 20pt)[$p_c, "min"$] &= #text(size: 20pt)[$20 sqrt(d_1)$] \
@@ -566,7 +572,7 @@
 )
 
 #item-row(
-  [*2. Fixing Bolts Sizing & Count ($n$)* \ Upward pressure load $P$ and M 24 bolt capacity ($d_c = 20.32 "mm"$)],
+  [*2. Fixing Bolts Sizing & Count ($n$)* \ Upward pressure load $P$ and bolt capacity],
   [
     $
       #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \
@@ -583,13 +589,14 @@
     $
       #text(size: 20pt)[$n$] &= #text(size: 20pt)[$P / P_1$] \
       &= 67860 / 12973 \
-      &= 5.23 => bold(n = 6 "bolts")
+      &= 5.23 \
+      &=> bold(n = 6 "bolts")
     $
   ]
 )
 
 #item-row(
-  [*3. PCD & Leak-Proof Pitch Verification* \ Bolt hole $d_1 = 25 "mm"$ for M 24 bolts],
+  [*3. PCD & Leak-Proof Pitch Verification* \ Pitch circle verification],
   [
     $
       #text(size: 20pt)[$D_p$] &= #text(size: 20pt)[$D + 2t + 3d_1$] \
@@ -608,7 +615,7 @@
 )
 
 #item-row(
-  [*4. Cover Plate Thickness ($t_1$)* \ Bending moment $M = 0.053 P D_p$ and section modulus $Z = 1/6 w (t_1)^2$],
+  [*4. Cover Plate Thickness ($t_1$)* \ Bending moment and section modulus evaluation],
   [
     $
       #text(size: 20pt)[$M$] &= #text(size: 20pt)[$0.053 P D_p$] \
@@ -620,7 +627,7 @@
       #text(size: 20pt)[$D_o$] &= #text(size: 20pt)[$D_p + 3d_1$] \
       &= 290 "mm"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$w$] &= #text(size: 20pt)[$D_o - 2d_1$] \
       &= 240 "mm"
@@ -628,7 +635,6 @@
     #v(10pt)
     $
       #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$1/6 w (t_1)^2$] \
-      &= 1/6 times 240 times (t_1)^2 \
       &= 40 (t_1)^2 \
       60 &= 773265 / (40 (t_1)^2) \
       t_1 &= bold(18 "mm")
@@ -763,13 +769,11 @@
   [
     $
       #text(size: 20pt)[$sigma_m$] &= #text(size: 20pt)[$P_m / A_c$] \
-      &= 23196 / (0.7854 (d_c)^2) \
       &= 29534 / (d_c)^2 "N/mm"^2
     $
     #v(10pt)
     $
       #text(size: 20pt)[$sigma_v$] &= #text(size: 20pt)[$P_v / A_c$] \
-      &= 3314 / (0.7854 (d_c)^2) \
       &= 4220 / (d_c)^2 "N/mm"^2
     $
   ]
@@ -785,13 +789,14 @@
 )
 
 #item-row(
-  [*6. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread with $d_c >= 14.63 "mm"$],
+  [*6. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread],
   [
-    $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
-    #v(10pt)
-    $ d_c &= 14.933 "mm" $
-    #v(6pt)
-    $ d &= 18 "mm" $
+    $
+      d_("c, std") &>= d_c \
+      &= 14.63 "mm" \
+      d_c &= 14.933 "mm" \
+      d &= 18 "mm"
+    $
   ]
 )
 
@@ -839,13 +844,14 @@
 )
 
 #item-row(
-  [*4. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread with $d_c >= 48.37 "mm"$],
+  [*4. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread],
   [
-    $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
-    #v(10pt)
-    $ d_c &= 49.177 "mm" $
-    #v(6pt)
-    $ d &= 56 "mm" $
+    $
+      d_("c, std") &>= d_c \
+      &= 48.37 "mm" \
+      d_c &= 49.177 "mm" \
+      d &= 56 "mm"
+    $
   ]
 )
 
@@ -970,13 +976,14 @@
 )
 
 #item-row(
-  [*5. Standard Thread Selection (Table 11.1)* \ Select standard coarse series thread with $d_c >= 27.14 "mm"$],
+  [*5. Standard Thread Selection (Table 11.1)* \ Select standard coarse series thread],
   [
-    $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
-    #v(10pt)
-    $ d_c &= 28.706 "mm" $
-    #v(6pt)
-    $ d &= 33 "mm" $
+    $
+      d_("c, std") &>= d_c \
+      &= 27.14 "mm" \
+      d_c &= 28.706 "mm" \
+      d &= 33 "mm"
+    $
   ]
 )
 
@@ -1007,22 +1014,25 @@
   [*1. Centroid ($overline(y)$) & Section Area ($A$)* \ T-section geometry evaluation],
   [
     $
-      A_1 &= 135 times 25 = 3375 "mm"^2 \
-      A_2 &= 175 times 25 = 4375 "mm"^2
+      A_1 &= 135 times 25 \
+      &= 3375 "mm"^2 \
+      A_2 &= 175 times 25 \
+      &= 4375 "mm"^2
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$A$] &= #text(size: 20pt)[$A_1 + A_2$] \
       &= 7750 "mm"^2
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$overline(y)$] &= #text(size: 20pt)[$(A_1 y_1 + A_2 y_2) / A$] \
       &= (3375 times 12.5 + 4375 times 112.5) / 7750 \
       &= 68.95 "mm" \
       &approx 69 "mm" \
       y_1 &= 69 "mm" quad ("Top") \
-      y_2 &= 200 - 69 = 131 "mm" quad ("Bottom")
+      y_2 &= 200 - 69 \
+      &= 131 "mm" quad ("Bottom")
     $
   ]
 )
@@ -1035,13 +1045,13 @@
       &= [(135(25)^3)/12 + 3375(56.5)^2] + [(25(175)^3)/12 + 4375(43.5)^2] \
       &= 30.4 times 10^6 "mm"^4
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$Z_1$] &= #text(size: 20pt)[$I_("GG") / y_1$] \
       &= (30.4 times 10^6) / 69 \
       &= 440.6 times 10^3 "mm"^3
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$Z_2$] &= #text(size: 20pt)[$I_("GG") / y_2$] \
       &= (30.4 times 10^6) / 131 \
@@ -1051,32 +1061,25 @@
 )
 
 #item-row(
-  [*3. Bracket Arm Stresses at Section X-X* \ Bending moment $M = 15000(200 + 69) = 4.035 times 10^6 "N"dot"mm"$],
+  [*3. Bracket Arm Stresses at Section X-X* \ Bending moment and direct stress combination],
   [
     $
-      #text(size: 20pt)[$sigma_("b1")$] &= #text(size: 20pt)[$M / Z_1$] \
-      &= (4.035 times 10^6) / (440.6 times 10^3) \
-      &= 9.16 "N/mm"^2
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$sigma_("b2")$] &= #text(size: 20pt)[$M / Z_2$] \
-      &= (4.035 times 10^6) / (232 times 10^3) \
-      &= 17.4 "N/mm"^2
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$sigma_("t1")$] &= #text(size: 20pt)[$W / A$] \
-      &= 15000 / 7750 \
+      M &= 15000(200 + 69) \
+      &= 4.035 times 10^6 "N"dot"mm" \
+      sigma_("b1") &= M / Z_1 \
+      &= 9.16 "N/mm"^2 \
+      sigma_("b2") &= M / Z_2 \
+      &= 17.4 "N/mm"^2 \
+      sigma_("t1") &= W / A \
       &= 1.94 "N/mm"^2
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$sigma_("b1") + sigma_("t1")$] \
       &= 9.16 + 1.94 \
       &= bold(11.1 "MPa" quad ("Tensile"))
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$sigma_("b2") - sigma_("t1")$] \
       &= 17.4 - 1.94 \
@@ -1086,26 +1089,22 @@
 )
 
 #item-row(
-  [*4. Fastening Bolt Loads ($W_("t1"), W_("t2"), W_t$)* \ Tilting edge $EE$: $L_1 = 50 "mm", L_2 = 375 "mm", L = 525 "mm"$],
+  [*4. Fastening Bolt Loads ($W_("t1"), W_("t2"), W_t$)* \ Tilting edge $EE$ load allocation],
   [
     $
-      #text(size: 20pt)[$W_("t1")$] &= #text(size: 20pt)[$W / n$] \
+      L_1 &= 50 "mm" \
+      L_2 &= 375 "mm" \
+      L &= 525 "mm" \
+      W_("t1") &= W / n \
       &= 15000 / 4 \
-      &= 3750 "N"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$w$] &= #text(size: 20pt)[$(W dot L) / (2 (L_1^2 + L_2^2))$] \
-      &= (15000 times 525) / (2 (50^2 + 375^2)) \
-      &= 27.5 "N/mm"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$W_("t2")$] &= #text(size: 20pt)[$w dot L_2$] \
+      &= 3750 "N" \
+      w &= (W dot L) / (2 (L_1^2 + L_2^2)) \
+      &= 27.5 "N/mm" \
+      W_("t2") &= w dot L_2 \
       &= 27.5 times 375 \
       &= 10312.5 "N"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$W_("t1") + W_("t2")$] \
       &= 3750 + 10312.5 \
@@ -1115,12 +1114,17 @@
 )
 
 #item-row(
-  [*5. Maximum Tensile Stress in Fastening Bolts ($sigma_("tb")$)* \ Bolt core diameter $d_c = 0.84 d = 0.84 times 25 = 21 "mm"$],
-  [$
-    #text(size: 20pt)[$sigma_("tb")$] &= #text(size: 20pt)[$W_t / (pi/4 (d_c)^2)$] \
-    &= 14062.5 / (pi/4 (21)^2) \
-    &= bold(40.6 "MPa")
-  $]
+  [*5. Maximum Tensile Stress in Fastening Bolts ($sigma_("tb")$)* \ Bolt stress evaluation],
+  [
+    $
+      d_c &= 0.84 d \
+      &= 0.84 times 25 \
+      &= 21 "mm" \
+      #text(size: 20pt)[$sigma_("tb")$] &= #text(size: 20pt)[$W_t / (pi/4 (d_c)^2)$] \
+      &= 14062.5 / (pi/4 (21)^2) \
+      &= bold(40.6 "MPa")
+    $
+  ]
 )
 
 #item-row(
@@ -1157,7 +1161,7 @@
       &= 3000 "N" \
       &= 3 "kN"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$(W dot L dot L_2) / (2 (L_1^2 + L_2^2))$] \
       &= (12 times 400 times 375) / (2 (50^2 + 375^2)) \
@@ -1187,10 +1191,16 @@
 )
 
 #item-row(
-  [*4. Rectangular Cross-Section of Bracket Arm ($t times b$)* \ Bending moment $M = W dot L = 12 times 10^3 times 400 = 4.8 times 10^6 "N"dot"mm"$],
+  [*4. Rectangular Cross-Section of Bracket Arm ($t times b$)* \ Bracket arm bending modulus],
   [
-    $ #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$1/6 dot t dot b^2$] $
-    #v(10pt)
+    $
+      M &= W dot L \
+      &= 12 times 10^3 times 400 \
+      &= 4.8 times 10^6 "N"dot"mm" \
+      #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$1/6 dot t dot b^2$] \
+      &= 1/6 dot t dot 250^2
+    $
+    #v(6pt)
     $
       #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
       84 &= (4.8 times 10^6) / (1/6 dot t dot 250^2) \
@@ -1229,17 +1239,18 @@
       #text(size: 20pt)[$W_H$] &= #text(size: 20pt)[$W sin theta$] \
       &= 40 sin 60^deg \
       &= 34.64 "kN" \
-      &= 34640 "N"
-    $
-    #v(10pt)
-    $
+      &= 34640 "N" \
       #text(size: 20pt)[$W_V$] &= #text(size: 20pt)[$W cos theta$] \
       &= 40 cos 60^deg \
       &= 20 "kN" \
       &= 20000 "N"
     $
-    #v(10pt)
+    #v(6pt)
     $
+      T_H &= 34640 times 20 \
+      &= 692.8 times 10^3 "N"dot"mm" \
+      T_V &= 20000 times 175 \
+      &= 3500 times 10^3 "N"dot"mm" \
       #text(size: 20pt)[$T_("net")$] &= #text(size: 20pt)[$T_V - T_H$] \
       &= (3500 - 692.8) times 10^3 \
       &= 2807.2 times 10^3 "N"dot"mm"
@@ -1251,33 +1262,20 @@
   [*2. Fixing Bolts Sizing ($W_t, W_s, W_("te"), d_c$)* \ Direct & secondary load combination on critical top bolts],
   [
     $
-      #text(size: 20pt)[$W_("t1")$] &= #text(size: 20pt)[$W_H / n$] \
-      &= 8660 "N"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$W_V / n$] \
-      &= 5000 "N"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$w$] &= #text(size: 20pt)[$(T_("net")) / (2 (L_1^2 + L_2^2))$] \
-      &= (2807.2 times 10^3) / (2 (60^2 + 180^2)) \
-      &= 38.99 "N/mm"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$W_("t2")$] &= #text(size: 20pt)[$w dot L_2$] \
+      W_("t1") &= W_H / n \
+      &= 8660 "N" \
+      W_s &= W_V / n \
+      &= 5000 "N" \
+      w &= (T_("net")) / (2 (L_1^2 + L_2^2)) \
+      &= 38.99 "N/mm" \
+      W_("t2") &= w dot L_2 \
       &= 38.99 times 180 \
-      &= 7020 "N"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$W_("t1") + W_("t2")$] \
+      &= 7020 "N" \
+      W_t &= W_("t1") + W_("t2") \
       &= 8660 + 7020 \
       &= 15680 "N"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$1/2 [W_t + sqrt(W_t^2 + 4 W_s^2)]$] \
       &= 1/2 [15680 + sqrt((15680)^2 + 4(5000)^2)] \
@@ -1288,18 +1286,22 @@
 )
 
 #item-row(
-  [*3. Bracket Arm Thickness ($t$ via Principal Stress)* \ Stresses in upper arm fibre for $b = 130 "mm"$ ($Z = 2817 t$)],
+  [*3. Bracket Arm Thickness ($t$ via Principal Stress)* \ Arm stress combination],
   [
     $
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$sigma_("t1") + sigma_("t2") + sigma_("t3")$] \
-      &= 2116.9 / t
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$W_V / A$] \
+      Z &= 2817 t \
+      sigma_("t1") &= W_H / A \
+      &= 266.5 / t \
+      sigma_("t2") &= M_H / Z \
+      &= 430.4 / t \
+      sigma_("t3") &= M_V / Z \
+      &= 1420 / t \
+      sigma_t &= sigma_("t1") + sigma_("t2") + sigma_("t3") \
+      &= 2116.9 / t \
+      tau &= W_V / A \
       &= 154 / t
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$sigma_("t(max)")$] &= #text(size: 20pt)[$sigma_t / 2 + 1/2 sqrt(sigma_t^2 + 4 tau^2)$] \
       70 &= 2128.05 / t \
@@ -1340,17 +1342,16 @@
       #text(size: 20pt)[$W_H$] &= #text(size: 20pt)[$W sin theta$] \
       &= 10 sin 60^deg \
       &= 8.66 "kN" \
-      &= 8660 "N"
-    $
-    #v(10pt)
-    $
+      &= 8660 "N" \
       #text(size: 20pt)[$W_V$] &= #text(size: 20pt)[$W cos theta$] \
       &= 10 cos 60^deg \
       &= 5 "kN" \
       &= 5000 "N"
     $
-    #v(10pt)
+    #v(6pt)
     $
+      T_H &= 433 "N"dot"m" \
+      T_V &= 1500 "N"dot"m" \
       #text(size: 20pt)[$T_("net")$] &= #text(size: 20pt)[$T_V - T_H$] \
       &= 1500 - 433 \
       &= 1067 "N"dot"m"
@@ -1359,36 +1360,25 @@
 )
 
 #item-row(
-  [*2. Fixing Bolts Sizing ($W_t, W_s, W_("te"), d_c$)* \ Bolt distances $L_1 = 0.0375 "m", L_2 = 0.2125 "m"$],
+  [*2. Fixing Bolts Sizing ($W_t, W_s, W_("te"), d_c$)* \ Bolt load calculations],
   [
     $
-      #text(size: 20pt)[$W_("t1")$] &= #text(size: 20pt)[$W_H / n$] \
-      &= 2165 "N"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$W_V / n$] \
-      &= 1250 "N"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$w$] &= #text(size: 20pt)[$(T_("net")) / (2 (L_1^2 + L_2^2))$] \
-      &= 1067 / (2 (0.0375^2 + 0.2125^2)) \
-      &= 11470 "N/m"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$W_("t2")$] &= #text(size: 20pt)[$w dot L_2$] \
+      L_1 &= 0.0375 "m" \
+      L_2 &= 0.2125 "m" \
+      W_("t1") &= W_H / n \
+      &= 2165 "N" \
+      W_s &= W_V / n \
+      &= 1250 "N" \
+      w &= (T_("net")) / (2 (L_1^2 + L_2^2)) \
+      &= 11470 "N/m" \
+      W_("t2") &= w dot L_2 \
       &= 11470 times 0.2125 \
-      &= 2435 "N"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$W_("t1") + W_("t2")$] \
+      &= 2435 "N" \
+      W_t &= W_("t1") + W_("t2") \
       &= 2165 + 2435 \
       &= 4600 "N"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$1/2 [W_t + sqrt(W_t^2 + 4 W_s^2)]$] \
       &= 1/2 [4600 + sqrt((4600)^2 + 4(1250)^2)] \
@@ -1399,11 +1389,21 @@
 )
 
 #item-row(
-  [*3. Dimensions of I-Section Bracket Arm ($t$ and $b = 3t$)* \ Cross-section area $A = 9 t^2$, section modulus $Z = 10.7 t^3$],
+  [*3. Dimensions of I-Section Bracket Arm ($t$ and $b = 3t$)* \ Arm section stress equation],
   [
     $
+      A &= 9 t^2 \
+      Z &= 10.7 t^3 \
+      sigma_("t1") &= W_H / A \
+      &= 962 / t^2 \
+      sigma_("t2") &= M_H / Z \
+      &= (40.5 times 10^3) / t^3 \
+      sigma_("t3") &= M_V / Z \
+      &= (140.2 times 10^3) / t^3
+    $
+    #v(6pt)
+    $
       #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$sigma_("t1") - sigma_("t2") + sigma_("t3")$] \
-      &= 962 / t^2 + (99.7 times 10^3) / t^3 \
       100 &= 962 / t^2 + (99.7 times 10^3) / t^3 => bold(t = 10.4 "mm") \
       bold(b = 3t = 31.2 "mm")
     $
@@ -1454,13 +1454,14 @@
 )
 
 #item-row(
-  [*4. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread with $d_c >= 29.46 "mm"$],
+  [*4. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread],
   [
-    $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
-    #v(10pt)
-    $ d_c &= 31.093 "mm" $
-    #v(6pt)
-    $ d &= 36 "mm" $
+    $
+      d_("c, std") &>= d_c \
+      &= 29.46 "mm" \
+      d_c &= 31.093 "mm" \
+      d &= 36 "mm"
+    $
   ]
 )
 
@@ -1506,13 +1507,14 @@
 )
 
 #item-row(
-  [*3. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread with $d_c >= 44.1 "mm"$],
+  [*3. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread],
   [
-    $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
-    #v(10pt)
-    $ d_c &= 45.795 "mm" $
-    #v(6pt)
-    $ d &= 52 "mm" $
+    $
+      d_("c, std") &>= d_c \
+      &= 44.1 "mm" \
+      d_c &= 45.795 "mm" \
+      d &= 52 "mm"
+    $
   ]
 )
 
@@ -1540,24 +1542,22 @@
 )
 
 #item-row(
-  [*1. Line X-X Analysis ($45^deg$ Tilting)* \ Tensile capacity $P_("cap") = 561 times 60 = 33.66 "kN"$, direct load $W_("t1") = 60 / 4 = 15 "kN"$],
+  [*1. Line X-X Analysis ($45^deg$ Tilting)* \ Tilting moment equilibrium about axis X-X],
   [
     $
-      #text(size: 20pt)[$P_("max")$] &= #text(size: 20pt)[$P_("cap") + W_("t1")$] \
+      P_("cap") &= 561 times 60 \
+      &= 33.66 "kN" \
+      W_("t1") &= 60 / 4 \
+      &= 15 "kN" \
+      P_("max") &= P_("cap") + W_("t1") \
       &= 33.66 + 15 \
-      &= 48.66 "kN"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$L_1$] &= #text(size: 20pt)[$R - r cos 45^deg$] \
-      &= 0.123 "m"
-    $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$L_2$] &= #text(size: 20pt)[$R + r cos 45^deg$] \
+      &= 48.66 "kN" \
+      L_1 &= R - r cos 45^deg \
+      &= 0.123 "m" \
+      L_2 &= R + r cos 45^deg \
       &= 0.477 "m"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$M_("res")$] &= #text(size: 20pt)[$2 dot w dot [L_1^2 + L_2^2]$] \
       &= 49.4 "kN"dot"m"
@@ -1566,7 +1566,7 @@
 )
 
 #item-row(
-  [*2. Maximum Load Distance ($e$)* \ Overturning moment $M_("overturn") = W (e - R) = 60(e - 0.3)$],
+  [*2. Maximum Load Distance ($e$)* \ Overturning moment equation],
   [$
     #text(size: 20pt)[$M_("overturn")$] &= #text(size: 20pt)[$W (e - R)$] \
     60(e - 0.3) &= 49.4 \
@@ -1575,7 +1575,7 @@
 )
 
 #item-row(
-  [*3. Line Y-Y Analysis (In-Line with Bolts)* \ Distances: $L_1 = 0.05 "m", L_2 = 0.3 "m", L_3 = 0.55 "m"$],
+  [*3. Line Y-Y Analysis (In-Line with Bolts)* \ Tilting moment equilibrium about axis Y-Y],
   [$
     #text(size: 20pt)[$M_("res")$] &= #text(size: 20pt)[$w dot [L_1^2 + 2 L_2^2 + L_3^2]$] \
     49.4 &= 0.485 dot w \
@@ -1584,15 +1584,18 @@
 )
 
 #item-row(
-  [*4. Line Y-Y Maximum Induced Stress ($sigma_("max")$)* \ Secondary load $W_("t2") = w dot L_3 = 102 times 0.55 = 56.1 "kN"$],
+  [*4. Line Y-Y Maximum Induced Stress ($sigma_("max")$)* \ Net load and induced tensile stress on critical bolt],
   [
     $
-      #text(size: 20pt)[$P_("net")$] &= #text(size: 20pt)[$W_("t2") - W_("t1")$] \
+      W_("t2") &= w dot L_3 \
+      &= 102 times 0.55 \
+      &= 56.1 "kN" \
+      P_("net") &= W_("t2") - W_("t1") \
       &= 56.1 - 15 \
       &= 41.1 "kN" \
       &= 41100 "N"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$sigma_("max")$] &= #text(size: 20pt)[$P_("net") / A_c$] \
       &= 41100 / 516 \
@@ -1625,13 +1628,17 @@
 )
 
 #item-row(
-  [*1. Diameter $D$ for Arm (Combined Bending + Torsion)* \ $M = 13500 times (300 - 25) = 3.7125 times 10^6 "N"dot"mm"$ \ \ $T = 13500 times 250 = 3.375 times 10^6 "N"dot"mm"$],
+  [*1. Diameter $D$ for Arm (Combined Bending + Torsion)* \ Structural moment and torque resolution],
   [
     $
+      M &= 13500 times (300 - 25) \
+      &= 3.7125 times 10^6 "N"dot"mm" \
+      T &= 13500 times 250 \
+      &= 3.375 times 10^6 "N"dot"mm" \
       #text(size: 20pt)[$T_e$] &= #text(size: 20pt)[$sqrt(M^2 + T^2)$] \
       &= 5.017 times 10^6 "N"dot"mm"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$T_e$] &= #text(size: 20pt)[$pi/16 D^3 dot tau$] \
       5.017 times 10^6 &= pi/16 D^3 times 65 \
@@ -1641,23 +1648,28 @@
 )
 
 #item-row(
-  [*2. Diameter $d$ for Arm (Pure Bending)* \ Bending moment $M = 13500 times (250 - 37.5) = 2.8688 times 10^6 "N"dot"mm"$],
-  [$
-    #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
-    110 &= (2.8688 times 10^6) / (pi/32 d^3) \
-    d &= bold(65 "mm")
-  $]
+  [*2. Diameter $d$ for Arm (Pure Bending)* \ Pure bending arm evaluation],
+  [
+    $
+      M &= 13500 times (250 - 37.5) \
+      &= 2.8688 times 10^6 "N"dot"mm" \
+      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
+      110 &= (2.8688 times 10^6) / (pi/32 d^3) \
+      d &= bold(65 "mm")
+    $
+  ]
 )
 
 #item-row(
-  [*3. Tensile Load on Each Top Bolt ($W_t$)* \ Tilting distances $L_1 = 37.5 "mm", L_2 = 237.5 "mm"$],
+  [*3. Tensile Load on Each Top Bolt ($W_t$)* \ Overturning moment equilibrium],
   [
     $
-      #text(size: 20pt)[$M_("overturn")$] &= #text(size: 20pt)[$W dot L$] \
+      M_("overturn") &= W dot L \
       &= 13500 times 300 \
-      &= 4.05 times 10^6 "N"dot"mm"
+      &= 4.05 times 10^6 "N"dot"mm" \
+      w &= 35.03 "N/mm"
     $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$w dot L_2$] \
       &= 35.03 times 237.5 \
@@ -1667,19 +1679,17 @@
 )
 
 #item-row(
-  [*4. Maximum Shearing Force on Each Bolt ($W_s$)* \ Primary shear $W_("s1") = 13500 / 4 = 3375 "N"$, radial dist $r_i = sqrt(100^2 + 100^2) = 141.4 "mm"$],
+  [*4. Maximum Shearing Force on Each Bolt ($W_s$)* \ Vector sum of primary and secondary shear],
   [
     $
-      #text(size: 20pt)[$W_("s2")$] &= #text(size: 20pt)[$(W dot e dot r_i) / (sum r_i^2)$] \
-      &= (13500 times 250 times 141.4) / (4 times (141.4)^2) \
+      W_("s1") &= 13500 / 4 \
+      &= 3375 "N" \
+      r_i &= sqrt(100^2 + 100^2) \
+      &= 141.4 "mm" \
+      W_("s2") &= (W dot e dot r_i) / (sum r_i^2) \
       &= 5967 "N"
     $
-    #v(10pt)
-    $
-      #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$sqrt(W_("s1")^2 + W_("s2")^2 - 2 W_("s1") W_("s2") cos theta)$] \
-      W_s quad ("Bolts 1 & 4") &= 4303 "N"
-    $
-    #v(10pt)
+    #v(6pt)
     $
       #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$sqrt(W_("s1")^2 + W_("s2")^2 + 2 W_("s1") W_("s2") cos theta)$] \
       W_s quad ("Bolts 2 & 3") &= bold(8687 "N")
