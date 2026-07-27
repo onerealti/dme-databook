@@ -130,8 +130,8 @@
       #text(size: 20pt)[$W$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_c$] \
       80000 &= pi/4 (d_c)^2 times 100 \
       &= 78.55 (d_c)^2 \
-      (d_c)^2 &= 80000 / 78.55 = 1018.5 \
-      #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$31.9 "mm"$] quad &=> 32 "mm"
+      #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$31.9 "mm"$] \
+      &=> 32 "mm"
     $
   ]
 )
@@ -154,11 +154,13 @@
   [*3. Helix Angle ($alpha$) & Thread Torque ($T_1$)* \ Torque to rotate screw against thread friction],
   [
     $
-      tan alpha &= p / (pi dot d) = 8 / (pi times 42) = 0.0606 \
-      #text(size: 20pt)[$T_1$] &= #text(size: 20pt)[$W dot tan(alpha + phi) dot d/2$] \
+      tan alpha &= p / (pi dot d) \
+      &= 8 / (pi times 42) \
+      &= 0.0606 \
+      #text(size: 20pt)[$T_1 = W dot tan(alpha + phi) dot d/2$] \
       &= 80000 times [(0.0606 + 0.14) / (1 - (0.0606)(0.14))] times 21 \
       &= 80000 times [0.2006 / 0.9915] times 21 \
-      &= bold(340 times 10^3 "N"dot"mm" quad bold("(Ans.)"))
+      &= 340 times 10^3 "N"dot"mm"
     $
   ]
 )
@@ -167,10 +169,10 @@
   [*4. Direct Compressive & Torsional Shear Stresses ($sigma_c, tau$)* \ Stress components in spindle body],
   [
     $
-      #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$W / (pi/4 (d_c)^2)$] \
+      #text(size: 20pt)[$sigma_c = W / (pi/4 (d_c)^2)$] \
       &= 80000 / (pi/4 (38)^2) \
       &= 70.53 "N/mm"^2 \
-      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$(16 T_1) / (pi (d_c)^3)$] \
+      #text(size: 20pt)[$tau = (16 T_1) / (pi (d_c)^3)$] \
       &= (16 times 340 times 10^3) / (pi (38)^3) \
       &= 31.55 "N/mm"^2
     $
@@ -181,10 +183,10 @@
   [*5. Maximum Principal Compressive Stress ($sigma_("c(max)")$)* \ Combined stress evaluation for allowable $sigma_c = 100 "MPa"$],
   [
     $
-      #text(size: 20pt)[$sigma_("c(max)")$] &= #text(size: 20pt)[$sigma_c / 2 + 1/2 sqrt(sigma_c^2 + 4 tau^2)$] \
+      #text(size: 20pt)[$sigma_("c(max)") = sigma_c / 2 + 1/2 sqrt(sigma_c^2 + 4 tau^2)$] \
       &= 35.265 + 1/2 sqrt((70.53)^2 + 4(31.55)^2) \
       &= 35.265 + 47.315 \
-      &= bold(82.58 "MPa") &<= 100 "MPa" quad bold("(SAFE)")
+      &= 82.58 "MPa" &<= 100 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -193,9 +195,9 @@
   [*6. Maximum Shear Stress ($tau_("max")$)* \ Maximum shear stress check for allowable $tau = 60 "MPa"$],
   [
     $
-      #text(size: 20pt)[$tau_("max")$] &= #text(size: 20pt)[$1/2 sqrt(sigma_c^2 + 4 tau^2)$] \
+      #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_c^2 + 4 tau^2)$] \
       &= 1/2 (94.63) \
-      &= bold(47.32 "MPa") &<= 60 "MPa" quad bold("(SAFE)")
+      &= 47.32 "MPa" &<= 60 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -204,11 +206,16 @@
   [*7. Spindle Buckling Check ($W_("cr")$)* \ J.B. Johnson formula for unsupported length $L = 440 "mm"$],
   [
     $
-      L &= H_1 + h/2 = 400 + 40 = 440 "mm", quad k = 0.25 d_c = 9.5 "mm" \
-      #text(size: 20pt)[$W_("cr")$] &= #text(size: 20pt)[$A_c dot sigma_y [1 - (sigma_y / (4 pi^2 E C)) (L/k)^2]$] \
+      L &= H_1 + h/2 \
+      &= 400 + 40 \
+      &= 440 "mm" \
+      k &= 0.25 d_c \
+      &= 9.5 "mm" \
+      #text(size: 20pt)[$W_("cr") = A_c dot sigma_y [1 - (sigma_y / (4 pi^2 E C)) (L/k)^2]$] \
       &= 1134.1 times 200 \
       &quad times [1 - (200 / (4 pi^2 (2.1 times 10^5)(0.25))) (440 / 9.5)^2] \
-      &= 226852 times [1 - 0.207] = bold(179.89 "kN") &> 80 "kN" quad bold("(SAFE)")
+      &= 226852 times [1 - 0.207] \
+      &= 179.89 "kN" &> 80 "kN" quad bold("(SAFE)")
     $
   ]
 )
@@ -218,16 +225,20 @@
   [*8. Thread Count ($n$) & Nut Height ($h$)* \ Bearing pressure equation ($p_b = 18 "N/mm"^2$)],
   [
     $
-      18 &= (80000) / (pi/4 (46^2 - 38^2) dot n) = 80000 / (527.78 n) \
-      n &= 80000 / (18 times 527.78) = 8.4 quad &=> bold(n = 10 "threads") \
-      #text(size: 20pt)[$h$] &= #text(size: 20pt)[$n dot p$] = 10 times 8 = bold(80 "mm" quad bold("(Ans.)"))
+      18 &= (80000) / (pi/4 (46^2 - 38^2) dot n) \
+      &= 80000 / (527.78 n) \
+      n &= 80000 / (18 times 527.78) \
+      &= 8.4 \
+      &=> n = 10 "threads" \
+      #text(size: 20pt)[$h = n dot p$] \
+      &= 10 times 8 \
+      &= 80 "mm"
     $
   ]
 )
 
 #item-row(
-  [*9. Thread Shear Stress in Screw ($tau_("screw")$)* \ Shear check on screw threads ($t = p/2 = 4 "mm"$)],
-  [
+  [*9. Thread Shear Stress in Screw ($tau_("screw")$)* \ Shear check on screw threads ($t = p/2 = 4 "mm"$)],[
     $
       #text(size: 20pt)[$tau_("screw")$] &= #text(size: 20pt)[$W / (pi dot d_c dot t dot n)$] \
       &= 80000 / (pi times 38 times 4 times 10) \
@@ -266,7 +277,8 @@
       W &= pi/4 (D_2^2 - D_1^2) dot sigma_("c(nut)") \
       80000 &= pi/4 (D_2^2 - 65^2) times 45 = 35.3 (D_2^2 - 4225) \
       D_2^2 - 4225 &= 80000 / 35.3 = 2266 \
-      #text(size: 20pt)[$D_2$] &= #text(size: 20pt)[$sqrt(6491)$] = 80.6 "mm" quad &=> bold(D_2 = 82 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$D_2$] &= #text(size: 20pt)[$sqrt(6491)$] = 80.6 "mm" \
+      &=> bold(D_2 = 82 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -277,7 +289,8 @@
     $
       W &= pi dot D_1 dot t_1 dot tau_("nut") \
       80000 &= pi times 65 times t_1 times 40 = 8170 t_1 \
-      #text(size: 20pt)[$t_1$] &= #text(size: 20pt)[$80000 / 8170$] = 9.8 "mm" quad &=> bold(t_1 = 10 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$t_1$] &= #text(size: 20pt)[$80000 / 8170$] = 9.8 "mm" \
+      &=> bold(t_1 = 10 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -287,7 +300,8 @@
   [*14. Swivel Cup Head & Pin Diameters ($D_3, D_4$)* \ Empirical proportions for cup bearing],
   [
     $
-      #text(size: 20pt)[$D_3$] &= #text(size: 20pt)[$1.75 d_o$] = 1.75 times 46 = 80.5 "mm" quad &=> bold(D_3 = 82 "mm" quad bold("(Ans.)")) \
+      #text(size: 20pt)[$D_3$] &= #text(size: 20pt)[$1.75 d_o$] = 1.75 times 46 = 80.5 "mm" \
+      &=> bold(D_3 = 82 "mm" quad bold("(Ans.)")) \
       #text(size: 20pt)[$D_4$] &= #text(size: 20pt)[$20 "mm"$] quad bold("(Loose Fit Pin in Cup)")
     $
   ]
@@ -323,7 +337,8 @@
       M &= F dot L = 300 times 2250 = 675 times 10^3 "N"dot"mm" \
       675 times 10^3 &= pi/32 D^3 times 100 = 9.82 D^3 \
       D^3 &= (675 times 10^3) / 9.82 = 68.74 times 10^3 \
-      #text(size: 20pt)[$D$] &= #text(size: 20pt)[$40.96 "mm"$] quad &=> bold(D = 42 "mm" quad bold("(Ans.)")) \
+      #text(size: 20pt)[$D$] &= #text(size: 20pt)[$40.96 "mm"$] \
+      &=> bold(D = 42 "mm" quad bold("(Ans.)")) \
       #text(size: 20pt)[$H$] &= #text(size: 20pt)[$2 D$] = 2 times 42 = bold(84 "mm" quad bold("(Ans.)"))
     $
   ]
@@ -355,7 +370,8 @@
   [*20. Body Wall Thickness ($t_3$)* \ Empirical relation for cast iron body wall],
   [
     $
-      #text(size: 20pt)[$t_3$] &= #text(size: 20pt)[$0.25 d_o$] = 0.25 times 46 = 11.5 "mm" quad &=> bold(t_3 = 12 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$t_3$] &= #text(size: 20pt)[$0.25 d_o$] = 0.25 times 46 = 11.5 "mm" \
+      &=> bold(t_3 = 12 "mm" quad bold("(Ans.)"))
     $
   ]
 )

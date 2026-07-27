@@ -209,19 +209,44 @@ $
 )
 ```
 
-### Rule 3: Streamlined Arithmetic Derivations
-- Remove redundant intermediate arithmetic calculation steps.
-- Transition directly from **General Formula** → **Numerical Substitution** → **Final Result**.
+### Rule 3: 3-Step Derivation Pattern — No Intermediate Simplification Lines
 
+Every solved equation follows exactly **3 steps**:
+1. **Formula line**: `#text(size: 20pt)[$P = ...$]` — the governing formula at 20pt
+2. **Substitution line**: values plugged in (`X &= formula_with_numbers`)
+3. **Answer line**: solved variable (`var &= result "unit"`), then `&=> adopted` if rounding
+
+**FORBIDDEN intermediate steps** — `&= simplified_product` lines between substitution and solve MUST be removed:
+- `&= 39.3 d^2` (RHS simplification before rearranging)
+- `&= 1540 b`, `&= 3380 sigma_t`, `&= 4248 tau` (product expansion before dividing)
+
+**CORRECT (3 steps only):**
 ```typst
 $
-  #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
-  60 &= 773265 / (40 (t_1)^2) \
-  (t_1)^2 &= 773265 / (40 times 60) \
-  &= 322 \
-  t_1 &= bold(18 "mm")
+  #text(size: 20pt)[$P = pi/4 d^2 dot sigma_t$] \
+  30000 &= pi/4 d^2 (50) \
+  d^2 &= 30000 / 39.3 \
+  d &= 27.6 "mm" \
+  &=> d = 28 "mm"
 $
 ```
+
+**INCORRECT (extra intermediate — forbidden):**
+```typst
+$
+  #text(size: 20pt)[$P = pi/4 d^2 dot sigma_t$] \
+  30000 &= pi/4 d^2 (50) \
+  &= 39.3 d^2 \              // ← REMOVE: intermediate simplification
+  d^2 &= 30000 / 39.3 \
+  d &= 27.6 "mm" \
+  &=> d = 28 "mm"
+$
+```
+
+**Lines that ARE kept** (final numerical answers, not intermediate):
+- `&= 35.7 "mm"` after `d &= sqrt(1273)` — this IS the answer
+- `&= 0.55 times 65` after `#text(size: 20pt)[$b_1 = 0.55 B$]` — substitution step
+- `&= 35.75 "mm"` after `&= 0.55 times 65` — result of substitution
 
 ### Rule 4: Multi-Character Subscript Quoting
 - In Typst, multi-character math subscripts MUST be quoted inside double quotes `"..."` or wrapped in parentheses to prevent syntax parsing errors.
@@ -252,13 +277,14 @@ $ sigma_("tb"), P_("max, bolt"), d_("c, std") $
 #table(...)
 ```
 
-### Rule 6: Enlarged Primary Variable & General Formula
-- The first line of every equation block must enlarge both the **primary output variable** (left of `&=`) and the **general symbolic formula** (right of `&=`) using `#text(size: 20pt)[...]`.
-- Subsequent substitution and result lines use the default text size.
+### Rule 6: Primary Formula Sizing Hierarchy (`#text(size: 20pt)[...]`)
+- **CRITICAL SIZING HIERARCHY**:
+  1. **Primary Governing Formula (TOP Line)**: MUST be wrapped in `#text(size: 20pt)[$P = \text{Formula}$]` at the top of the math block so the key equation stands out.
+  2. **Calculation Content & Answers (Subsequent Lines)**: Intermediate numerical substitutions, evaluation steps, and answer values MUST remain standard size (15pt). DO NOT wrap numbers or calculation steps in `#text(size: 20pt)[...]`.
 
 ```typst
 $
-  #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \
+  #text(size: 20pt)[$P = pi/4 D^2 dot p$] \
   &= pi/4 (120)^2 times 6 \
   &= 67860 "N"
 $
@@ -298,7 +324,7 @@ $
 - In Typst text mode, `%` acts as a line comment starter unless written in clean text strings.
 - Design output summary rows MUST use clean plain text (e.g., `[*Screw Jack Summary: do = 46 mm, dc = 38 mm, Efficiency eta = 15.4%*]`).
 
-### Rule 12: Multiline Selection Callouts (No Inline `quad &=>` Overflow)
+### Rule 12: Multiline Selection Callouts & Vertical Empirical Proportions (No Inline Overflow)
 - **CRITICAL**: Fastener selections, bolt choices (`&=> bold("Select M 12 Bolts")`), or size adoptions MUST be placed on a **dedicated new line** using `\` inside math blocks:
   ```typst
   // CORRECT (Zero Horizontal Overflow):
@@ -308,7 +334,36 @@ $
   // INCORRECT (Pushes text past right page margin):
   d_1 &= 11.25 "mm" quad &=> bold("Select M 12 Bolts")
   ```
-- Never append `quad &=>` horizontally to the end of an active calculation line.
+- **Vertical Empirical Proportions**: Never chain empirical dimensions horizontally with `quad`. Every empirical dimension ($d_1, d_2, d_3, t, t_1, t_2$) MUST be vertically aligned line-by-line with `&=`, and each formula and its result on **separate lines** (Rule 1 compliance):
+  ```typst
+  // CORRECT — single = per line, formula and result separated:
+  d_1 &= d \
+  &= 52 "mm" \
+  d_2 &= 2 d \
+  &= 104 "mm" \
+  d_3 &= 1.5 d \
+  &= 78 "mm" \
+  t &= 1.25 d \
+  &= 65 "mm" \
+  t_1 &= 0.75 d \
+  &= 40 "mm" \
+  t_2 &= 0.5 d \
+  &= 26 "mm"
+
+  // INCORRECT — two = signs on one line (violates Rule 1):
+  d_1 &= d = 52 "mm" \
+  d_2 &= 2 d = 104 "mm" \
+  ```
+
+### Rule 13: Native Tool Usage Discipline
+- Do NOT generate or execute scratch Python scripts for viewing, editing, or auditing databook files.
+- Use workspace native tools (`view_file`, `replace_file_content`, `grep_search`, `list_dir`) exclusively to inspect and modify `.typ` files.
+
+### Rule 14: Strict Bolding Policy & No Artificial `(Ans.)` Annotations
+- **FORBIDDEN**: Never append `(Ans.)` or `bold("(Ans.)")` to any equation line, result string, or calculation output. Keep all math and values completely clean without artificial suffix markers.
+- **Bolding Policy**:
+  - Do NOT bold arbitrary intermediate variables, calculations, or un-selected numbers.
+  - ONLY bold standard adopted dimensions/selected sizes (e.g. `d = 50 "mm"`), safety status evaluations (`"(SAFE)"`, `"(UNSAFE)"`), and step title headers.
 
 ---
 
@@ -337,7 +392,10 @@ To guarantee 100% protection against vertical or horizontal content spillover:
 Before completing any `.typ` databook document, perform this 7-point verification:
 
 - [ ] **1. Clean Compilation**: Execute `typst compile file.typ` and verify zero errors/warnings.
-- [ ] **2. Single Equals Check**: Audit all math blocks to ensure no line contains multiple `=` signs.
+- [ ] **2. Single Equals + No Intermediates Check**: Audit ALL math blocks for:
+  - No line contains more than one `=` sign (including lines outside `#text(size: 20pt)[...]`)
+  - No `&= simplified_product` intermediate lines exist between substitution and solve (e.g. `&= 39.3 d^2`, `&= 1540 b`)
+  - `#text(size: 20pt)[$formula$]` lines must NOT have extra `= value` appended after the closing `]`
 - [ ] **3. 1-to-1 Label Alignment**: Confirm every formula step has a dedicated left-side label in its own `#item-row`.
 - [ ] **4. Column Scoping**: Verify zero math expressions sit in `left-desc` (all math must be in `right-math`).
 - [ ] **5. Page Bounds & Section Parameter Check**: Verify each section's items fit on 1 landscape page without spilling, and verify that `#figure-page(sec-num, ...)` section string strictly matches the active Section number.
