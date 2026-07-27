@@ -82,7 +82,7 @@
     #v(2pt)
     #if second-fig == "" [
       #align(center)[
-        #image(fig-path, width: 55%, height: 340pt, fit: "contain")
+        #image(fig-path, width: 85%, height: 420pt, fit: "contain")
         #v(6pt)
         #text(weight: "bold", size: 14pt)[#caption]
       ]
@@ -1179,11 +1179,16 @@
 
 #figure-page(
   "13",
-  "Crane Runway T-Bracket",
+  "Crane Runway T-Bracket Structure",
   "Figures/fig 11.32.png",
-  "Figure 11.32: Crane Runway T-Bracket Structure",
-  second-fig: "Figures/fig 11.33 (diagram in solution of Eg. 11.13).png",
-  second-caption: "Figure 11.33: T-Section Stress Distribution Diagram"
+  "Figure 11.32: Crane Runway T-Bracket Structure"
+)
+
+#figure-page(
+  "13",
+  "Crane Runway T-Bracket Stress Distribution",
+  "Figures/fig 11.33 (diagram in solution of Eg. 11.13).png",
+  "Figure 11.33: T-Section Stress Distribution Diagram"
 )
 
 // ==========================================
@@ -1434,11 +1439,16 @@
 
 #figure-page(
   "15",
-  "Inclined Load Bracket",
+  "Inclined Load Bracket Structure",
   "Figures/fig 11.36.png",
-  "Figure 11.36: Wall Bracket under Inclined Load",
-  second-fig: "Figures/fig 11.37 (diagram in solution of Eg. 11.15).png",
-  second-caption: "Figure 11.37: Load Resolution & Moment Arm Diagram"
+  "Figure 11.36: Wall Bracket under Inclined Load"
+)
+
+#figure-page(
+  "15",
+  "Inclined Load Bracket Force Resolution",
+  "Figures/fig 11.37 (diagram in solution of Eg. 11.15).png",
+  "Figure 11.37: Load Resolution & Moment Arm Diagram"
 )
 
 // ==========================================
@@ -1453,83 +1463,131 @@
 )
 
 #item-row(
-  [*1. Force Resolution & Net Turning Moment ($T_("net")$)* \ Component forces and net moment about tilting edge $E$],
+  [*1. Force Component Resolution ($W_H, W_V$)* \ Horizontal pull and vertical load components],
   [
     $
       #text(size: 20pt)[$W_H$] &= #text(size: 20pt)[$W sin theta$] \
-      &= 10 sin 60^deg \
-      &= 8.66 "kN" \
-      &= 8660 "N" \
+      &= 10 sin 60^deg = 10 times 0.866 \
+      &= 8.66 "kN" = 8660 "N" \
       #text(size: 20pt)[$W_V$] &= #text(size: 20pt)[$W cos theta$] \
-      &= 10 cos 60^deg \
-      &= 5 "kN" \
-      &= 5000 "N"
+      &= 10 cos 60^deg = 10 times 0.5 \
+      &= 5 "kN" = 5000 "N"
     $
-    #v(6pt)
+  ]
+)
+
+#item-row(
+  [*2. Net Turning Moment ($T_("net")$)* \ Counterclockwise turning moment about tilting edge E],
+  [
     $
-      T_H &= 433 "N"dot"m" \
-      T_V &= 1500 "N"dot"m" \
+      T_H &= W_H times 0.05 = 8660 times 0.05 \
+      &= 433 "N"dot"m" quad ("Clockwise") \
+      T_V &= W_V times 0.3 = 5000 times 0.3 \
+      &= 1500 "N"dot"m" quad ("Anticlockwise") \
       #text(size: 20pt)[$T_("net")$] &= #text(size: 20pt)[$T_V - T_H$] \
       &= 1500 - 433 \
-      &= 1067 "N"dot"m"
+      &= 1067 "N"dot"m" quad ("Anticlockwise")
     $
   ]
 )
 
 #item-row(
-  [*2. Fixing Bolts Sizing ($W_t, W_s, W_("te"), d_c$)* \ Bolt load calculations],
+  [*3. Direct Loads per Bolt ($W_("t1"), W_s$)* \ Direct tensile load and direct shear load per bolt],
   [
     $
-      L_1 &= 0.0375 "m" \
-      L_2 &= 0.2125 "m" \
-      W_("t1") &= W_H / n \
-      &= 2165 "N" \
-      W_s &= W_V / n \
-      &= 1250 "N" \
-      w &= (T_("net")) / (2 (L_1^2 + L_2^2)) \
-      &= 11470 "N/m" \
-      W_("t2") &= w dot L_2 \
-      &= 11470 times 0.2125 \
-      &= 2435 "N" \
-      W_t &= W_("t1") + W_("t2") \
-      &= 2165 + 2435 \
-      &= 4600 "N"
+      #text(size: 20pt)[$W_("t1")$] &= #text(size: 20pt)[$W_H / n$] = 8660 / 4 = 2165 "N" \
+      #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$W_V / n$] = 5000 / 4 = 1250 "N"
     $
-    #v(6pt)
+  ]
+)
+
+#item-row(
+  [*4. Secondary Tensile Load on Upper Bolts ($W_("t2")$)* \ Tilting edge distances $L_1 = 0.0375 "m", L_2 = 0.2125 "m"$],
+  [
     $
+      w &= T_("net") / (2 (L_1^2 + L_2^2)) = 1067 / (2 (0.0375^2 + 0.2125^2)) \
+      &= 1067 / 0.093 = 11470 "N/m" \
+      #text(size: 20pt)[$W_("t2")$] &= #text(size: 20pt)[$w dot L_2$] = 11470 times 0.2125 = 2435 "N"
+    $
+  ]
+)
+
+#item-row(
+  [*5. Total Tensile & Equivalent Tensile Load ($W_t, W_("te")$)* \ Maximum Principal Stress Theory combination],
+  [
+    $
+      W_t &= W_("t1") + W_("t2") = 2165 + 2435 = 4600 "N" \
       #text(size: 20pt)[$W_("te")$] &= #text(size: 20pt)[$1/2 [W_t + sqrt(W_t^2 + 4 W_s^2)]$] \
       &= 1/2 [4600 + sqrt((4600)^2 + 4(1250)^2)] \
-      &= 4920 "N" \
-      d_c &= 7.91 "mm"
+      &= 1/2 [4600 + 5240] \
+      &= 4920 "N"
     $
   ]
 )
 
 #item-row(
-  [*3. Dimensions of I-Section Bracket Arm ($t$ and $b = 3t$)* \ Arm section stress equation],
+  [*6. Required Core Root Diameter ($d_c$) & Fastener Selection* \ Table 11.1 coarse series bolt selection],
   [
     $
-      A &= 9 t^2 \
-      Z &= 10.7 t^3 \
-      sigma_("t1") &= W_H / A \
-      &= 962 / t^2 \
-      sigma_("t2") &= M_H / Z \
-      &= (40.5 times 10^3) / t^3 \
-      sigma_("t3") &= M_V / Z \
-      &= (140.2 times 10^3) / t^3
+      4920 &= pi/4 (d_c)^2 times 100 = 78.55 (d_c)^2 \
+      (d_c)^2 &= 4920 / 78.55 = 62.6 \
+      #text(size: 20pt)[$d_c$] &= #text(size: 20pt)[$7.91 "mm"$]
     $
-    #v(6pt)
+    #v(4pt)
+    [*Select Fastener Designation: M 10 Bolt ($d_c = 8.18 "mm" > 7.91 "mm"$) quad bold("(Ans.)")*]
+  ]
+)
+
+#item-row(
+  [*7. I-Section Arm Section Area ($A$) & Modulus ($Z$)* \ Geometrical properties for flange width $b = 3t$],
+  [
     $
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$sigma_("t1") - sigma_("t2") + sigma_("t3")$] \
-      100 &= 962 / t^2 + (99.7 times 10^3) / t^3 => bold(t = 10.4 "mm") \
-      bold(b = 3t = 31.2 "mm")
+      #text(size: 20pt)[$A$] &= #text(size: 20pt)[$3 b dot t$] = 3(3t)t = 9 t^2 "mm"^2 \
+      #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$I / (1.5 t)$] = (321 t^4 / 12) / (1.5 t) = 10.7 t^3 "mm"^3
     $
   ]
 )
 
 #item-row(
-  [*4. Design Output*],
-  [*Final Design: M 10 Bolts, I-Section Arm Dimensions $t = 10.4 "mm", b = 31.2 "mm"$*]
+  [*8. Tensile and Bending Stresses in Arm ($sigma_("t1"), sigma_("t2"), sigma_("t3")$)* \ Direct and bending stress components in top flange],
+  [
+    $
+      sigma_("t1") &= W_H / A = 8660 / (9 t^2) = 962 / t^2 \
+      sigma_("t2") &= M_H / Z = (433 times 10^3) / (10.7 t^3) = (40.5 times 10^3) / t^3 \
+      sigma_("t3") &= M_V / Z = (1500 times 10^3) / (10.7 t^3) = (140.2 times 10^3) / t^3
+    $
+  ]
+)
+
+#item-row(
+  [*9. Net Tensile Stress & Arm Dimensions ($t, b$)* \ Hit-and-trial solution for allowable tensile stress $sigma_t = 100 "MPa"$],
+  [
+    $
+      sigma_t &= sigma_("t1") - sigma_("t2") + sigma_("t3") = 962 / t^2 + (99.7 times 10^3) / t^3 \
+      100 &= 962 / t^2 + (99.7 times 10^3) / t^3 \
+      #text(size: 20pt)[$t$] &= #text(size: 20pt)[$10.4 "mm"$] quad &=> bold("Adopt Arm Thickness " t = 10.4 "mm" quad bold("(Ans.)")) \
+      #text(size: 20pt)[$b$] &= #text(size: 20pt)[$3t$] = 3 times 10.4 = bold(31.2 "mm" quad bold("(Ans.)"))
+    $
+  ]
+)
+
+#item-row(
+  [*10. Design Output*],
+  [*Final Fasteners: M 10 Bolts, I-Section Arm Dimensions $t = 10.4 "mm", b = 31.2 "mm"$*]
+)
+
+#figure-page(
+  "16",
+  "Offset I-Section Bracket Structure",
+  "Figures/fig 11.38.png",
+  "Figure 11.38: Offset Bracket with I-Section Arm"
+)
+
+#figure-page(
+  "16",
+  "Offset I-Section Bracket Load Distribution",
+  "Figures/fig 11.39 (diagram in solution of Eg. 11.16).png",
+  "Figure 11.39: Load Distribution and Force Moment Diagram"
 )
 
 // ==========================================
