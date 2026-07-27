@@ -12,7 +12,7 @@
 
 ## Table of Contents
 1. [Universal Inputs & Pre-Processing Checklist](#1-universal-inputs--pre-processing-checklist)
-2. [Branch A: Complete 14-Step Screw Jack Design Procedure](#2-branch-a-complete-14-step-screw-jack-design-procedure)
+2. [Branch A: Complete 15-Step Screw Jack & Power Screw Design Procedure](#2-branch-a-complete-15-step-screw-jack-design-procedure)
 3. [Branch B: Differential Screw Analysis Procedure](#3-branch-b-differential-screw-analysis-procedure)
 4. [Branch C: Compound Screw Analysis Procedure](#4-branch-c-compound-screw-analysis-procedure)
 5. [Baked Reference Tables](#5-baked-reference-tables)
@@ -28,18 +28,24 @@
 | :--- | :--- | :--- | :--- |
 | $W$ | Load to be lifted or lowered | $\text{kN}$ or $\text{N}$ | Multiply $\text{kN} \times 10^3 \implies \mathbf{N}$ |
 | $H_1$ | Maximum lift height | $\text{mm}$ or $\text{m}$ | Multiply $\text{m} \times 10^3 \implies \mathbf{mm}$ |
+| $n_s$ | Number of thread starts | Integer | $n_s = 1$ (single), $2$ (double), $3$ (triple) |
+| $L$ | Lead of screw threads | $\text{mm}$ | $L = n_s \cdot p$ ($L = p$ for single-start) |
+| $\theta$ | Semi-thread angle | Degrees | $\theta = 0^\circ$ (Square), $14.5^\circ$ (Acme), $15^\circ$ (ISO Trapezoidal) |
+| $\mu' = \tan\phi'$ | Virtual coefficient of thread friction | Ratio | $\mu' = \mu / \cos\theta$ ($\mu' = \mu$ for square thread) |
 | $\sigma_{ec}, \sigma_c$ | Yield / Permissible compressive stress of screw | $\text{MPa}$ | $1\text{ MPa} = \mathbf{1\text{ N/mm}^2}$ (If FOS given, $\sigma_c = \sigma_{ec}/\text{FOS}$) |
 | $\tau_e, \tau$ | Yield / Permissible shear stress of screw | $\text{MPa}$ | $1\text{ MPa} = \mathbf{1\text{ N/mm}^2}$ (If FOS given, $\tau = \tau_e/\text{FOS}$) |
 | $\sigma_{t(\text{nut})}, \sigma_{c(\text{nut})}$ | Permissible tensile & compressive stress of nut | $\text{MPa}$ | Use directly in $\text{N/mm}^2$ |
 | $\tau_{\text{nut}}, p_b$ | Permissible shear stress & bearing pressure of nut | $\text{MPa}$ | Use directly in $\text{N/mm}^2$ |
 | $\sigma_b$ | Allowable bending stress of handle material | $\text{MPa}$ | Use directly in $\text{N/mm}^2$ |
-| $\mu = \tan\phi$ | Coefficient of friction between screw and nut | Ratio | Given directly (e.g., $0.12 \text{ or } 0.15$) |
-| $\mu_1$ | Coefficient of collar friction at swivel cup | Ratio | Usually $\mu_1 = \mu = 0.15$ |
+| $\mu$ | Friction coefficient between screw and nut | Ratio | Given directly (e.g., $0.10 \text{ to } 0.15$) |
+| $\mu_1$ | Friction coefficient at collar / swivel cup | Ratio | Usually $\mu_1 = \mu$ ($\mu_1 \approx 0$ if ball bearing used) |
 | $d_o, d_c, d, p$ | Nominal, Core, Mean diameter & Pitch of screw | $\text{mm}$ | Look up in [Table 17.1](#5-baked-reference-tables) |
-| $T_1$ | Thread friction torque to rotate screw | $\text{N}\cdot\text{mm}$ | Primary torque calculation |
-| $T_2$ | Swivel cup bearing collar friction torque | $\text{N}\cdot\text{mm}$ | Secondary collar torque |
+| $T_1$ | Thread friction torque (raising load) | $\text{N}\cdot\text{mm}$ | Primary torque calculation |
+| $T_{\text{lower}}$ | Thread friction torque (lowering load) | $\text{N}\cdot\text{mm}$ | Torque to lower load against thread friction |
+| $T_2$ | Swivel cup / collar friction torque | $\text{N}\cdot\text{mm}$ | Secondary collar torque |
 | $T_{\text{total}}$ | Total operating torque ($T_1 + T_2$) | $\text{N}\cdot\text{mm}$ | Total resistance torque |
-| $F$ | Effort applied by operator at end of handle | $\text{N}$ | Standard assumption: $F = 300\text{ N}$ |
+| $F$ | Effort applied by operator at handle | $\text{N}$ | Standard assumption: $F = 300\text{ N}$ |
+| $P$ | Power required for motor-driven screws | $\text{kW}$ or $\text{W}$ | $P = T_{\text{total}} \cdot \omega = \frac{T_{\text{total}} \cdot 2\pi N}{60 \times 10^3}$ |
 
 ---
 
@@ -50,7 +56,7 @@
 
 ## 2. Branch A: Complete 14-Step Screw Jack Design Procedure
 
-![Fig 17.11: Complete Front Sectional Assembly of Screw Jack](Fig%2017.11 Screw%20Jack.png)
+![Fig 17.11: Complete Front Sectional Assembly of Screw Jack](Fig%2017.11%20Screw%20Jack.png)
 
 ---
 
@@ -69,13 +75,23 @@
 
 ---
 
-### Step 2: Thread Friction Torque ($T_1$) & Direct Stresses
-1. Compute helix angle $\alpha$ and friction angle $\phi$:
-   $$\tan\alpha = \frac{p}{\pi \cdot d}, \qquad \tan\phi = \mu$$
-2. Calculate torque required to rotate screw against thread friction ($T_1$):
-   $$T_1 = W \cdot \left[ \frac{\tan\alpha + \tan\phi}{1 - \tan\alpha \tan\phi} \right] \cdot \frac{d}{2} \quad [\text{N}\cdot\text{mm}]$$
-3. Direct compressive stress: $\sigma_c = \frac{W}{\frac{\pi}{4} (d_c)^2} \quad [\text{N/mm}^2]$
-4. Torsional shear stress: $\tau = \frac{16 T_1}{\pi (d_c)^3} \quad [\text{N/mm}^2]$
+### Step 2: Thread Friction Torque ($T_1, T_{\text{lower}}$) & Direct Stresses
+1. Compute Lead ($L$) and helix angle ($\alpha$):
+   $$L = n_s \cdot p \quad (L = p \text{ for single-start}), \qquad \tan\alpha = \frac{L}{\pi \cdot d}$$
+2. Compute Virtual Friction Angle ($\phi'$) for thread form:
+   $$\mu' = \frac{\mu}{\cos\theta} = \tan\phi' \qquad (\theta = 0^\circ \text{ for Square}, 14.5^\circ \text{ for Acme}, 15^\circ \text{ for ISO Trapezoidal})$$
+3. **Torque Required to Raise Load ($T_1$):**
+   $$T_1 = W \cdot \left[ \frac{\tan\alpha + \mu'}{1 - \mu' \tan\alpha} \right] \cdot \frac{d}{2} = W \cdot \tan(\alpha + \phi') \cdot \frac{d}{2} \quad [\text{N}\cdot\text{mm}]$$
+4. **Torque Required to Lower Load ($T_{\text{lower}}$):**
+   $$T_{\text{lower}} = W \cdot \left[ \frac{\mu' - \tan\alpha}{1 + \mu' \tan\alpha} \right] \cdot \frac{d}{2} = W \cdot \tan(\phi' - \alpha) \cdot \frac{d}{2} \quad [\text{N}\cdot\text{mm}]$$
+
+> [!TIP]
+> **Self-Locking vs. Overhauling Gate:**  
+> * **Self-Locking Screw ($\mu' \ge \tan\alpha$ or $\phi' \ge \alpha$):** $T_{\text{lower}} > 0$. The screw will NOT rotate back down under load. Efficiency $\eta_{\text{screw}} \le 50\%$.  
+> * **Overhauling Screw ($\tan\alpha > \mu'$ or $\alpha > \phi'$):** $T_{\text{lower}} < 0$. The load will descend on its own unless an opposing holding torque is applied. Efficiency $\eta_{\text{screw}} > 50\%$.
+
+5. Direct compressive stress: $\sigma_c = \frac{W}{\frac{\pi}{4} (d_c)^2} \quad [\text{N/mm}^2]$
+6. Torsional shear stress: $\tau = \frac{16 T_1}{\pi (d_c)^3} \quad [\text{N/mm}^2]$
 
 ---
 
@@ -97,7 +113,8 @@ Calculate maximum combined stresses in the screw spindle:
 ### Step 4: Design of Nut ($n, h$)
 1. Number of threads in contact ($n$) based on bearing pressure $p_b \le 18\text{ N/mm}^2$:
    $$p_b = \frac{W}{\frac{\pi}{4} (d_o^2 - d_c^2) \cdot n} \implies n = \frac{4 W}{\pi (d_o^2 - d_c^2) \cdot p_b}$$
-   *Always **ROUND UP** $n$ to the next integer (e.g. $8.42 \implies \mathbf{n = 10\text{ threads}}$).*
+   *Always **ROUND UP** $n$ to the next integer (e.g. $8.42 \implies \mathbf{n = 10\text{ threads}}$).*  
+   *(Design Rule: Recommended range $4 \le n \le 10$. Threads beyond 10 carry minimal additional load due to axial elasticity).*
 
 2. Height of nut ($h$):
    $$h = n \cdot p \quad [\text{mm}]$$
@@ -121,31 +138,38 @@ Thread thickness $t = p/2$:
 
 ---
 
-### Step 7: Head Diameter ($D_3$) & Swivel Cup Pin ($D_4$)
+### Step 7: Head Diameter ($D_3$) & Swivel Cup Proportions ($D_4$)
 * Head diameter: $D_3 = 1.75 \cdot d_o \quad [\text{mm}]$
 * Cup seat & pin diameter: $D_4 \approx 20\text{ mm} \sim 25\text{ mm}$ (or $0.25 D_3$)
+* **Empirical proportions for cup:**
+  * Height of cup $\approx 50\text{ mm}$
+  * Thickness of cup $\approx 10\text{ mm}$
+  * Outer diameter at top of cup $\approx 160\text{ mm}$ (or $2 D_3$)
 
 ---
 
-### Step 8: Swivel Cup Bearing Friction Torque ($T_2$)
-* **Uniform Pressure Condition (Standard New Cup):**
+### Step 8: Swivel Cup / Collar Friction Torque ($T_2$)
+* **Uniform Pressure Condition (Standard New Cup / Collar):**
   $$T_2 = \frac{2}{3} \cdot \mu_1 \cdot W \cdot \left[ \frac{(D_3/2)^3 - (D_4/2)^3}{(D_3/2)^2 - (D_4/2)^2} \right] \quad [\text{N}\cdot\text{mm}]$$
-* **Uniform Wear Condition (Worn Cup):**
+* **Uniform Wear Condition (Worn Cup / Collar):**
   $$T_2 = \mu_1 \cdot W \cdot \left[ \frac{D_3/2 + D_4/2}{2} \right] = \mu_1 \cdot W \cdot R_{\text{mean}} \quad [\text{N}\cdot\text{mm}]$$
+* **Ball / Roller Thrust Bearing:**  
+  $$T_2 \approx 0 \quad (\text{Collar friction is negligible})$$
 
 ---
 
-### Step 9: Total Operating Torque ($T$) & Handle Length ($L$)
+### Step 9: Total Operating Torque ($T$) & Handle Length ($L_h$)
 1. Total torque acting on handle:
    $$T = T_1 + T_2 \quad [\text{N}\cdot\text{mm}]$$
-2. Handle length ($L$) for effort $F = 300\text{ N}$ applied by one operator:
-   $$L' = \frac{T}{F} = \frac{T}{300\text{ N}} \quad [\text{mm}]$$
-   Add allowance for hand gripping: $L = L' + \text{gripping allowance}$ *(e.g. $2203\text{ mm} \implies \mathbf{L = 2250\text{ mm}}$)*.
+2. Handle length ($L_h$) for effort $F = 300\text{ N}$ applied by one operator:
+   $$L_h' = \frac{T}{F} = \frac{T}{300\text{ N}} \quad [\text{mm}]$$
+   Add allowance for hand gripping: $L_h = L_h' + \text{gripping allowance}$ *(e.g. $2203\text{ mm} \implies \mathbf{L_h = 2250\text{ mm}}$)*.
 
 ---
 
 ### Step 10: Handle Diameter ($D$) under Bending Moment ($M$)
-Bending moment $M = F \cdot L = 300 \cdot L \quad [\text{N}\cdot\text{mm}]$:
+Bending moment $M = F \cdot L_h = 300 \cdot L_h \quad [\text{N}\cdot\text{mm}]$.  
+*(Assuming handle material is same as screw material, allowable bending stress $\sigma_b = \sigma_t = \sigma_{et}/\text{FOS} = 100\text{ N/mm}^2$)*:
 $$M = \frac{\pi}{32} D^3 \cdot \sigma_b \implies D = \sqrt[3]{\frac{32 M}{\pi \cdot \sigma_b}} \quad [\text{mm}]$$
 *Round $D$ up to next whole mm (e.g. $40.96 \implies \mathbf{D = 42\text{ mm}}$).*
 
@@ -159,8 +183,8 @@ $$H = 2 \cdot D \quad [\text{mm}]$$
 ### Step 12: Check Screw Spindle for Buckling (J.B. Johnson Strut Formula)
 * Effective column length: $L_{\text{eff}} = H_1 + \frac{h}{2} \quad [\text{mm}]$
 * Radius of gyration: $k = 0.25 \cdot d_c \quad [\text{mm}]$
-* Critical buckling load ($C = 0.25$ for Fix-Free end condition):
-  $$W_{cr} = A_y \cdot \sigma_y \left[ 1 - \frac{\sigma_y}{4 \pi^2 E \cdot (0.25)} \left( \frac{L_{\text{eff}}}{k} \right)^2 \right] \quad [\text{N}]$$
+* Critical buckling load ($C = 0.25$ for Fix-Free end condition, $\sigma_y = \sigma_{et}$, $E = 2.1 \times 10^5\text{ N/mm}^2$):
+  $$W_{cr} = A_c \cdot \sigma_y \left[ 1 - \frac{\sigma_y}{4 \pi^2 E \cdot (0.25)} \left( \frac{L_{\text{eff}}}{k} \right)^2 \right] \quad [\text{N}]$$
 
 > [!IMPORTANT]
 > **Buckling Verification Check:**  
@@ -170,7 +194,7 @@ $$H = 2 \cdot D \quad [\text{mm}]$$
 
 ### Step 13: Empirical Proportions for Screw Jack Body
 * Top inside diameter: $D_5 = 1.5 \cdot D_2 \quad [\text{mm}]$
-* Wall thickness: $t_3 = 0.25 \cdot d_o \approx 12\text{ mm}$
+* Body wall thickness: $t_3 = 0.25 \cdot d_o \quad [\text{mm}]$ *(e.g. $0.25 \times 46 = 11.5 \implies \mathbf{12\text{ mm}}$)*
 * Bottom inside diameter: $D_6 = 2.25 \cdot D_2 \quad [\text{mm}]$
 * Bottom base outer diameter: $D_7 = 1.75 \cdot D_6 \quad [\text{mm}]$
 * Base flange thickness: $t_2 = 2 \cdot t_1 \quad [\text{mm}]$
@@ -178,10 +202,23 @@ $$H = 2 \cdot D \quad [\text{mm}]$$
 
 ---
 
-### Step 14: Calculate Overall Screw Jack Efficiency ($\eta$)
-* Torque required without friction: $T_0 = W \cdot \tan\alpha \cdot \frac{d}{2} \quad [\text{N}\cdot\text{mm}]$
-* Overall efficiency:
-  $$\eta = \frac{T_0}{T_{\text{total}}} = \frac{T_0}{T_1 + T_2} \times 100\%$$
+### Step 14: Efficiency of Screw Spindle & Overall System ($\eta$)
+* Torque required without friction:
+  $$T_0 = W \cdot \tan\alpha \cdot \frac{d}{2} = \frac{W \cdot L}{2\pi} \quad [\text{N}\cdot\text{mm}]$$
+* **Screw Thread Efficiency Alone:**
+  $$\eta_{\text{screw}} = \frac{\tan\alpha}{\tan(\alpha + \phi')} \times 100\%$$
+* **Maximum Theoretical Thread Efficiency:**
+  $$\eta_{\max} = \frac{1 - \sin\phi'}{1 + \sin\phi'} \times 100\% \qquad \left(\text{at optimal helix angle } \alpha = 45^\circ - \frac{\phi'}{2}\right)$$
+* **Overall Jack / System Efficiency:**
+  $$\eta_{\text{overall}} = \frac{T_0}{T_{\text{total}}} = \frac{T_0}{T_1 + T_2} \times 100\%$$
+
+---
+
+### Step 15: Motor Power Calculation (For Motor-Driven Power Screws)
+For machine power screws driven by electric motors at rotational speed $N \text{ [rpm]}$:
+* Angular velocity: $\omega = \frac{2\pi N}{60} \quad [\text{rad/s}]$
+* Power required to drive screw:
+  $$P = T_{\text{total}} \cdot \omega = \frac{T_{\text{total}} \cdot 2\pi N}{60 \times 10^3} \quad [\text{kW}] \qquad (\text{with } T_{\text{total}} \text{ in } \text{N}\cdot\text{m})$$
 
 ---
 
