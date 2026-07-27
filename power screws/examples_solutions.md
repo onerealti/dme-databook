@@ -45,8 +45,11 @@ Design the screw jack completely, including:
    $$W = \frac{\pi}{4} (d_c)^2 \cdot \sigma_c \implies 80 \times 10^3 = \frac{\pi}{4} (d_c)^2 \times 100 = 78.55 \cdot (d_c)^2$$
    $$(d_c)^2 = \frac{80 \times 10^3}{78.55} = 1018.5 \implies d_c = 31.9\text{ mm} \approx 32\text{ mm}$$
 
+> [!NOTE]
+> **Standard Core Diameter Selection Note (Table 17.1):**  
+> From standard square thread tables, the immediate next higher standard core diameter above $32\text{ mm}$ is $d_c = 33\text{ mm}$. However, taking $d_c = 33\text{ mm}$ yields combined principal stresses that exceed the permissible limits. Therefore, the core diameter is selected as **$d_c = 38\text{ mm}$**.
+
 2. **Standard Square Thread Selection:**
-   To safely resist additional torsional shear stress due to friction torque, select a larger standard normal series square thread:
    * Core diameter: $d_c = \mathbf{38\text{ mm}}$
    * Nominal (outside) diameter: $d_o = \mathbf{46\text{ mm}}$
    * Pitch of threads: $p = \mathbf{8\text{ mm}}$
@@ -55,82 +58,92 @@ Design the screw jack completely, including:
 
 3. **Helix Angle ($\alpha$) & Torque ($T_1$) to Raise Load:**
    * Helix angle:
-     $$\tan\alpha = \frac{p}{\pi \cdot d} = \frac{8}{\pi \times 42} = 0.06063$$
+     $$\tan\alpha = \frac{p}{\pi \cdot d} = \frac{8}{\pi \times 42} = 0.0606$$
    * Friction coefficient: $\tan\phi = \mu = 0.14$
    * Torque to rotate screw against thread friction ($T_1$):
-     $$T_1 = P \cdot \frac{d}{2} = W \cdot \tan(\alpha + \phi) \cdot \frac{d}{2} = W \cdot \left[ \frac{\tan\alpha + \tan\phi}{1 - \tan\alpha \tan\phi} \right] \cdot \frac{d}{2}$$
-     $$T_1 = 80 \times 10^3 \times \left[ \frac{0.06063 + 0.14}{1 - (0.06063)(0.14)} \right] \times \frac{42}{2} = 80 \times 10^3 \times \left[ \frac{0.20063}{0.9915} \right] \times 21 = 340 \times 10^3\text{ N}\cdot\text{mm}$$
+     $$T_1 = W \cdot \tan(\alpha + \phi) \cdot \frac{d}{2} = W \cdot \left[ \frac{\tan\alpha + \tan\phi}{1 - \tan\alpha \tan\phi} \right] \cdot \frac{d}{2}$$
+     $$T_1 = 80 \times 10^3 \times \left[ \frac{0.0606 + 0.14}{1 - (0.0606)(0.14)} \right] \times \frac{42}{2} = 80 \times 10^3 \times \left[ \frac{0.2006}{0.9915} \right] \times 21 = \mathbf{340 \times 10^3\text{ N}\cdot\text{mm}}$$
 
 4. **Principal Stresses Verification:**
    * Direct compressive stress ($\sigma_c$):
      $$\sigma_c = \frac{W}{\frac{\pi}{4} (d_c)^2} = \frac{80 \times 10^3}{\frac{\pi}{4} (38)^2} = \frac{80 \times 10^3}{1134.1} = 70.53\text{ N/mm}^2$$
    * Torsional shear stress ($\tau$):
-     $$\tau = \frac{16 T_1}{\pi (d_c)^3} = \frac{16 \times 340 \times 10^3}{\pi (38)^3} = \frac{5.44 \times 10^6}{172\,573} = 31.52\text{ N/mm}^2$$
+     $$\tau = \frac{16 T_1}{\pi (d_c)^3} = \frac{16 \times 340 \times 10^3}{\pi (38)^3} = 31.55\text{ N/mm}^2$$
    * Maximum principal compressive stress ($\sigma_{c(\max)}$):
-     $$\sigma_{c(\max)} = \frac{\sigma_c}{2} + \frac{1}{2} \sqrt{\sigma_c^2 + 4 \tau^2} = \frac{70.53}{2} + \frac{1}{2} \sqrt{(70.53)^2 + 4(31.52)^2}$$
-     $$\sigma_{c(\max)} = 35.265 + \frac{1}{2} \sqrt{4974.5 + 3974.0} = 35.265 + 47.30 = \mathbf{82.57\text{ MPa} \le 100\text{ MPa}} \quad (\mathbf{SAFE})$$
+     $$\sigma_{c(\max)} = \frac{\sigma_c}{2} + \frac{1}{2} \sqrt{\sigma_c^2 + 4 \tau^2} = \frac{70.53}{2} + \frac{1}{2} \sqrt{(70.53)^2 + 4(31.55)^2}$$
+     $$\sigma_{c(\max)} = 35.265 + \frac{1}{2}(94.63) = \mathbf{82.58\text{ MPa} \le 100\text{ MPa}} \quad (\mathbf{SAFE})$$
    * Maximum shear stress ($\tau_{\max}$):
-     $$\tau_{\max} = \frac{1}{2} \sqrt{\sigma_c^2 + 4 \tau^2} = 47.30\text{ MPa} \le 60\text{ MPa} \quad (\mathbf{SAFE})$$
+     $$\tau_{\max} = \frac{1}{2} \sqrt{\sigma_c^2 + 4 \tau^2} = \frac{1}{2}(94.63) = \mathbf{47.315\text{ MPa} \le 60\text{ MPa}} \quad (\mathbf{SAFE})$$
 
 ---
 
 ### Part 2: Design of Nut
 
 1. **Number of Threads ($n$) & Height of Nut ($h$):**
-   * Bearing pressure equation:
-     $$p_b = \frac{W}{\frac{\pi}{4} (d_o^2 - d_c^2) \cdot n} \implies 18 = \frac{80 \times 10^3}{\frac{\pi}{4} (46^2 - 38^2) \cdot n} = \frac{80 \times 10^3}{527.78 \cdot n}$$
-     $$n = \frac{80 \times 10^3}{18 \times 527.78} = 8.42 \implies \mathbf{n = 10\text{ threads}}$$
+   * Bearing pressure equation ($p_b = 18\text{ N/mm}^2$):
+     $$18 = \frac{80 \times 10^3}{\frac{\pi}{4} (46^2 - 38^2) \cdot n} = \frac{80 \times 10^3}{527.78 \cdot n} \implies n = \frac{80 \times 10^3}{18 \times 527.78} = 8.4 \implies \mathbf{n = 10\text{ threads}}$$
    * Height of nut ($h$):
      $$h = n \cdot p = 10 \times 8 = \mathbf{80\text{ mm}}$$
 
-2. **Thread Shear Checks:**
+2. **Thread Shear Stress Checks:**
+   * Thread thickness: $t = p/2 = 8/2 = 4\text{ mm}$
    * Shear stress in screw threads ($\tau_{\text{screw}}$):
-     $$\tau_{\text{screw}} = \frac{W}{\pi \cdot d_c \cdot t \cdot n} = \frac{80 \times 10^3}{\pi \times 38 \times 4 \times 10} = \mathbf{16.75\text{ MPa} \le 60\text{ MPa}} \quad (\mathbf{SAFE})$$
+     $$\tau_{\text{screw}} = \frac{W}{\pi \cdot d_c \cdot t \cdot n} = \frac{80 \times 10^3}{\pi \times 38 \times 4 \times 10} = \mathbf{16.15\text{ MPa} \le 60\text{ MPa}} \quad (\mathbf{SAFE})$$
    * Shear stress in nut threads ($\tau_{\text{nut}}$):
      $$\tau_{\text{nut}} = \frac{W}{\pi \cdot d_o \cdot t \cdot n} = \frac{80 \times 10^3}{\pi \times 46 \times 4 \times 10} = \mathbf{13.84\text{ MPa} \le 40\text{ MPa}} \quad (\mathbf{SAFE})$$
 
 3. **Nut Outer Diameter ($D_1$):**
    Considering tearing of nut body at allowable tension $\sigma_{t(\text{nut})} = 50\text{ MPa}$:
-   $$W = \frac{\pi}{4} \left( D_1^2 - d_o^2 \right) \cdot \sigma_{t(\text{nut})} \implies 80 \times 10^3 = \frac{\pi}{4} \left( D_1^2 - 46^2 \right) \times 50 = 39.27 \left( D_1^2 - 2116 \right)$$
-   $$D_1^2 - 2116 = \frac{80 \times 10^3}{39.27} = 2037 \implies D_1^2 = 4153 \implies \mathbf{D_1 = 65\text{ mm}}$$
+   $$W = \frac{\pi}{4} \left( D_1^2 - d_o^2 \right) \cdot \sigma_{t(\text{nut})} \implies 80 \times 10^3 = \frac{\pi}{4} \left( D_1^2 - 46^2 \right) \times 50 = 39.3 \left( D_1^2 - 2116 \right)$$
+   $$D_1^2 - 2116 = \frac{80 \times 10^3}{39.3} = 2036 \implies D_1^2 = 4152 \implies \mathbf{D_1 = 65\text{ mm}}$$
 
 4. **Nut Collar Dimensions ($D_2, t_1$):**
    * Outside diameter of collar ($D_2$) by crushing at allowable compression $\sigma_{c(\text{nut})} = 45\text{ MPa}$:
-     $$W = \frac{\pi}{4} \left( D_2^2 - D_1^2 \right) \cdot \sigma_{c(\text{nut})} \implies 80 \times 10^3 = \frac{\pi}{4} \left( D_2^2 - 65^2 \right) \times 45 = 35.34 \left( D_2^2 - 4225 \right)$$
-     $$D_2^2 - 4225 = \frac{80 \times 10^3}{35.34} = 2264 \implies D_2^2 = 6489 \implies D_2 = 80.55\text{ mm} \implies \mathbf{D_2 = 82\text{ mm}}$$
+     $$W = \frac{\pi}{4} \left( D_2^2 - D_1^2 \right) \cdot \sigma_{c(\text{nut})} \implies 80 \times 10^3 = \frac{\pi}{4} \left( D_2^2 - 65^2 \right) \times 45 = 35.3 \left( D_2^2 - 4225 \right)$$
+     $$D_2^2 - 4225 = \frac{80 \times 10^3}{35.3} = 2266 \implies D_2^2 = 6491 \implies D_2 = 80.6\text{ mm} \implies \mathbf{D_2 = 82\text{ mm}}$$
    * Collar thickness ($t_1$) by shearing at allowable shear $\tau_{\text{nut}} = 40\text{ MPa}$:
-     $$W = \pi \cdot D_1 \cdot t_1 \cdot \tau_{\text{nut}} \implies 80 \times 10^3 = \pi \times 65 \times t_1 \times 40 = 8168 \cdot t_1$$
-     $$t_1 = \frac{80 \times 10^3}{8168} = 9.8\text{ mm} \implies \mathbf{t_1 = 10\text{ mm}}$$
+     $$W = \pi \cdot D_1 \cdot t_1 \cdot \tau_{\text{nut}} \implies 80 \times 10^3 = \pi \times 65 \times t_1 \times 40 = 8170 \cdot t_1$$
+     $$t_1 = \frac{80 \times 10^3}{8170} = 9.8\text{ mm} \implies \mathbf{t_1 = 10\text{ mm}}$$
 
 ---
 
 ### Part 3: Design of Handle and Cup
 
-1. **Cup Head Diameter ($D_3$):**
-   $$D_3 = 1.75 \cdot d_o = 1.75 \times 46 = 80.5\text{ mm} \implies \mathbf{D_3 = 82\text{ mm}}$$
+1. **Cup Head Diameter ($D_3$) & Cup Empirical Dimensions:**
+   * Head diameter: $D_3 = 1.75 \cdot d_o = 1.75 \times 46 = 80.5\text{ mm} \implies \mathbf{D_3 = 82\text{ mm}}$
+   * Pin diameter for swivel cup: $D_4 = \mathbf{20\text{ mm}}$ (loose fit in cup).
+   * **Other empirical cup proportions:**
+     * Height of cup = $\mathbf{50\text{ mm}}$
+     * Thickness of cup = $\mathbf{10\text{ mm}}$
+     * Outer diameter at top of cup = $\mathbf{160\text{ mm}}$
 
 2. **Friction Torque at Swivel Cup Collar ($T_2$):**
-   Assuming uniform pressure between cup bearing radii $R_1 = 41\text{ mm}$ and $R_2 = 10\text{ mm}$ ($\mu_1 = 0.14$):
-   $$T_2 = \frac{2}{3} \cdot \mu_1 \cdot W \cdot \left[ \frac{R_1^3 - R_2^3}{R_1^2 - R_2^2} \right] = \frac{2}{3} (0.14)(80 \times 10^3) \cdot \left[ \frac{41^3 - 10^3}{41^2 - 10^2} \right]$$
-   $$T_2 = 7466.7 \times \left[ \frac{68\,921 - 1000}{1681 - 100} \right] = 7466.7 \times \frac{67\,921}{1581} = 321 \times 10^3\text{ N}\cdot\text{mm}$$
+   Assuming uniform pressure between cup bearing radii $R_1 = 41\text{ mm}$ and $R_2 = 10\text{ mm}$ ($\mu_1 = \mu = 0.14$):
+   $$T_2 = \frac{2}{3} \cdot \mu_1 \cdot W \cdot \left[ \frac{R_1^3 - R_2^3}{R_1^2 - R_2^2} \right] = \frac{2}{3} (0.14)(80 \times 10^3) \cdot \left[ \frac{(41)^3 - (10)^3}{(41)^2 - (10)^2} \right]$$
+   $$T_2 = 7.47 \times 10^3 \times \left[ \frac{68\,921 - 1000}{1681 - 100} \right] = 7.47 \times 10^3 \times \frac{67\,921}{1581} = \mathbf{321 \times 10^3\text{ N}\cdot\text{mm}}$$
 
 3. **Total Operating Torque ($T$) & Handle Length ($L$):**
-   $$T = T_1 + T_2 = 340 \times 10^3 + 321 \times 10^3 = 661 \times 10^3\text{ N}\cdot\text{mm}$$
+   $$T = T_1 + T_2 = 340 \times 10^3 + 321 \times 10^3 = \mathbf{661 \times 10^3\text{ N}\cdot\text{mm}}$$
    Taking force applied by one operator $F = 300\text{ N}$:
-   $$\text{Lever Length } L = \frac{T}{F} = \frac{661 \times 10^3}{300} = 2203\text{ mm} \implies \mathbf{L = 2250\text{ mm}}$$
+   $$\text{Lever Length } L' = \frac{T}{F} = \frac{661 \times 10^3}{300} = 2203\text{ mm} \implies \mathbf{L = 2250\text{ mm}} \quad (\text{with gripping allowance})$$
 
 4. **Handle Diameter ($D$) & Head Height ($H$):**
-   Bending moment $M = F \cdot L = 300 \times 2250 = 675 \times 10^3\text{ N}\cdot\text{mm}$.
+   Bending moment $M = F \cdot L = 300 \times 2250 = 675 \times 10^3\text{ N}\cdot\text{mm}$.  
+   *(Allowable bending stress $\sigma_b = \sigma_t = \sigma_{et}/2 = 100\text{ N/mm}^2$ assuming handle material is same as screw).*
    $$M = \frac{\pi}{32} D^3 \cdot \sigma_b \implies 675 \times 10^3 = \frac{\pi}{32} D^3 \times 100 = 9.82 \cdot D^3$$
    $$D^3 = \frac{675 \times 10^3}{9.82} = 68.74 \times 10^3 \implies D = 40.96\text{ mm} \implies \mathbf{D = 42\text{ mm}}$$
    $$\text{Head Height } H = 2 D = 2 \times 42 = \mathbf{84\text{ mm}}$$
 
-5. **Euler Buckling Check of Screw Spindle:**
-   Effective length $L_{\text{eff}} = H_1 + \frac{h}{2} = 400 + \frac{80}{2} = 440\text{ mm}$. End conditions: One end fixed, other end free ($C = 0.25$).
-   * Radius of gyration $k = 0.25 d_c = 0.25 \times 38 = 9.5\text{ mm}$.
-   * Slenderness ratio: $\frac{L_{\text{eff}}}{k} = \frac{440}{9.5} = 46.3$.
-   * Critical Euler/J.B. Johnson buckling load:
-     $$W_{cr} = 179\,894\text{ N} > 80\,000\text{ N} \quad (\mathbf{SAFE \text{ AGAINST BUCKLING}})$$
+5. **Euler / J.B. Johnson Buckling Check of Screw Spindle:**
+   * Maximum lift height $H_1 = 400\text{ mm}$, nut height $h = 80\text{ mm}$.
+   * Unsupported length of screw spindle: $L = H_1 + \frac{h}{2} = 400 + \frac{80}{2} = 440\text{ mm}$.
+   * End conditions: One end fixed in nut, other end free at swivel cup ($C = 0.25$).
+   * Core cross-sectional area: $A_c = \frac{\pi}{4}(38)^2 = 1134.1\text{ mm}^2$.
+   * Radius of gyration: $k = 0.25 d_c = 0.25 \times 38 = 9.5\text{ mm}$.
+   * Critical buckling load using J.B. Johnson formula ($\sigma_y = \sigma_{et} = 200\text{ N/mm}^2, E = 2.1 \times 10^5\text{ N/mm}^2$):
+     $$W_{cr} = A_c \cdot \sigma_y \left[ 1 - \frac{\sigma_y}{4 \pi^2 E \cdot C} \left( \frac{L}{k} \right)^2 \right]$$
+     $$W_{cr} = 226\,852 \times \left[ 1 - \frac{200}{4 \pi^2 (2.1 \times 10^5)(0.25)} \left( \frac{440}{9.5} \right)^2 \right] = 226\,852 \times [1 - 0.207] = \mathbf{179\,894\text{ N}}$$
+     $$\mathbf{W_{cr} = 179.89\text{ kN} > 80\text{ kN}} \quad (\mathbf{SAFE \text{ AGAINST BUCKLING}})$$
 
 ---
 
@@ -138,17 +151,17 @@ Design the screw jack completely, including:
 
 1. **Body Proportions:**
    * Inside diameter at top: $D_5 = 1.5 D_2 = 1.5 \times 82 = \mathbf{123\text{ mm}}$
-   * Body wall thickness: $t_3 = 0.25 d_o = 0.25 \times 46 = \mathbf{12\text{ mm}}$
+   * Body wall thickness: $t_3 = 0.25 d_o = 0.25 \times 46 = 11.5 \implies \mathbf{12\text{ mm}}$
    * Inside diameter at bottom: $D_6 = 2.25 D_2 = 2.25 \times 82 = \mathbf{185\text{ mm}}$
    * Outer base diameter: $D_7 = 1.75 D_6 = 1.75 \times 185 = \mathbf{320\text{ mm}}$
-   * Base thickness: $t_2 = 2 t_1 = 2 \times 10 = \mathbf{20\text{ mm}}$
+   * Base flange thickness: $t_2 = 2 t_1 = 2 \times 10 = \mathbf{20\text{ mm}}$
    * Total body height: $H_{\text{body}} = H_1 + h + 100\text{ mm} = 400 + 80 + 100 = \mathbf{580\text{ mm}}$
 
 2. **Screw Jack Efficiency ($\eta$):**
    * Torque required without friction ($T_0$):
-     $$T_0 = W \cdot \tan\alpha \cdot \frac{d}{2} = 80 \times 10^3 \times 0.06063 \times 21 = 101\,858\text{ N}\cdot\text{mm}$$
+     $$T_0 = W \cdot \tan\alpha \cdot \frac{d}{2} = 80 \times 10^3 \times 0.0606 \times 21 = \mathbf{101\,808\text{ N}\cdot\text{mm}}$$
    * Overall efficiency:
-     $$\eta = \frac{T_0}{T} = \frac{101\,858}{661 \times 10^3} = 0.154 = \mathbf{15.4\%}$$
+     $$\eta = \frac{T_0}{T} = \frac{101\,808}{661 \times 10^3} = 0.154 = \mathbf{15.4\%}$$
 
 $$\mathbf{\text{Final Design Summary: Screw } d_c = 38\text{ mm}, d_o = 46\text{ mm}, p = 8\text{ mm}; \text{ Nut Height } = 80\text{ mm}; \text{ Handle } = 42\text{ mm} \times 2250\text{ mm}; \eta = 15.4\%}$$
 
