@@ -10,6 +10,8 @@ Design and draw a cotter joint to support a load varying from $30\text{ kN}$ in 
 - **Shear stress** ($\tau$) = $35\text{ MPa}$
 - **Crushing stress** ($\sigma_c$) = $90\text{ MPa}$
 
+![Socket and Spigot Cotter Joint](fig%2012.1%20Socket%20%26%20Spigot%20cotter%20joint.png)
+
 ---
 
 ### Example 12.2
@@ -20,6 +22,8 @@ Design a sleeve and cotter joint to resist a tensile load of $60\text{ kN}$. All
 - $\tau = 70\text{ MPa}$
 - $\sigma_c = 125\text{ MPa}$
 
+![Sleeve and Cotter Joint](fig%2012.9.%20Sleeve%20%26%20cotter%20joint.png)
+
 ---
 
 ### Example 12.3
@@ -27,6 +31,8 @@ Design a sleeve and cotter joint to resist a tensile load of $60\text{ kN}$. All
 The big end of a connecting rod is subjected to a maximum load of $50\text{ kN}$. The diameter of the circular part of the rod adjacent to the strap end is $75\text{ mm}$. Design the gib and cotter joint, assuming:
 - Permissible tensile stress for the strap material ($\sigma_t$) = $25\text{ MPa}$
 - Permissible shear stress for the cotter and gib material ($\tau$) = $20\text{ MPa}$
+
+![Gib and Cotter Joint](Fig.%2012.12.%20Gib%20and%20cotter%20joint%20for%20strap%20end%20of%20a%20connecting%20rod..png)
 
 ---
 
@@ -37,6 +43,8 @@ Design a knuckle joint to transmit $150\text{ kN}$. The design stresses may be t
 - **Tension** ($\sigma_t$) = $75\text{ MPa}$
 - **Shear** ($\tau$) = $60\text{ MPa}$
 - **Compression / Crushing** ($\sigma_c$) = $150\text{ MPa}$
+
+![Knuckle Joint](Fig.%2012.16.%20Kunckle%20joint..png)
 
 ---
 
@@ -49,4 +57,7 @@ Design a knuckle joint for a tie rod of a circular section to sustain a maximum 
 - **Factor of Safety (FOS)** = $6$
 
 Determine the tie rod section and pin section.
+
+![Knuckle Joint Assembly](Fig.%2012.16.%20Kunckle%20joint..png)
+
 

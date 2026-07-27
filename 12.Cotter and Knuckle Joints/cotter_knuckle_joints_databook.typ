@@ -131,7 +131,8 @@
       #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 d^2 dot sigma_t$] \
       30000 &= pi/4 d^2 (50) = 39.3 d^2 \
       d^2 &= 30000 / 39.3 = 763 \
-      #text(size: 20pt)[$d$] &= #text(size: 20pt)[$27.6 "mm"$] quad &=> bold(d = 28 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$d$] &= #text(size: 20pt)[$27.6 "mm"$] \
+      &=> bold(d = 28 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -168,7 +169,8 @@
       P &= [pi/4 (d_1^2 - d_2^2) - (d_1 - d_2) t] sigma_t \
       30000 &= [pi/4 (d_1^2 - 40^2) - (d_1 - 40)(10)] 50 \
       0.7854 d_1^2 - 10 d_1 - 1854.6 &= 0 \
-      #text(size: 20pt)[$d_1$] &= #text(size: 20pt)[$49.9 "mm"$] quad &=> bold(d_1 = 50 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$d_1$] &= #text(size: 20pt)[$49.9 "mm"$] \
+      &=> bold(d_1 = 50 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -191,7 +193,8 @@
       P &= (d_4 - d_2) t dot sigma_c \
       30000 &= (d_4 - 40) times 10 times 90 = 900 (d_4 - 40) \
       d_4 - 40 &= 30000 / 900 = 33.3 \
-      #text(size: 20pt)[$d_4$] &= #text(size: 20pt)[$73.3 "mm"$] quad &=> bold(d_4 = 75 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$d_4$] &= #text(size: 20pt)[$73.3 "mm"$] \
+      &=> bold(d_4 = 75 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -213,7 +216,8 @@
     $
       P &= 2 a dot d_2 dot tau \
       30000 &= 2 a times 40 times 35 = 2800 a \
-      #text(size: 20pt)[$a$] &= #text(size: 20pt)[$30000 / 2800$] = 10.7 "mm" quad &=> bold(a = 11 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$a$] &= #text(size: 20pt)[$30000 / 2800$] = 10.7 "mm" \
+      &=> bold(a = 11 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -236,7 +240,8 @@
     $
       P &= pi d_2 dot t_1 dot tau \
       30000 &= pi times 40 times t_1 times 35 = 4400 t_1 \
-      #text(size: 20pt)[$t_1$] &= #text(size: 20pt)[$30000 / 4400$] = 6.8 "mm" quad &=> bold(t_1 = 8 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$t_1$] &= #text(size: 20pt)[$30000 / 4400$] = 6.8 "mm" \
+      &=> bold(t_1 = 8 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -246,7 +251,8 @@
   [
     $
       #text(size: 20pt)[$l$] &= #text(size: 20pt)[$4 d$] = 4 times 28 = bold(112 "mm" quad bold("(Ans.)")) \
-      #text(size: 20pt)[$e$] &= #text(size: 20pt)[$1.2 d$] = 1.2 times 28 = 33.6 "mm" quad &=> bold(e = 34 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$e$] &= #text(size: 20pt)[$1.2 d$] = 1.2 times 28 = 33.6 "mm" \
+      &=> bold(e = 34 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -255,6 +261,8 @@
   [*12. Complete Design Output*],
   [*Socket & Spigot Joint Summary: d = 28 mm, d2 = 40 mm, t = 10 mm, d1 = 50 mm, b = 43 mm, d4 = 75 mm, c = 12 mm, a = 11 mm, d3 = 45 mm, t1 = 8 mm, l = 112 mm, e = 34 mm*]
 )
+
+#figure-page("1", "Socket and Spigot Cotter Joint Assembly", "fig 12.1 Socket & Spigot cotter joint.png", "Figure 12.1: Socket & Spigot Cotter Joint Assembly & Proportions")
 
 // ==========================================
 // SECTION 2: SLEEVE & COTTER JOINT (EX 12.2)
@@ -274,7 +282,8 @@
       #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 d^2 dot sigma_t$] \
       60000 &= pi/4 d^2 (60) = 47.13 d^2 \
       d^2 &= 60000 / 47.13 = 1273 \
-      #text(size: 20pt)[$d$] &= #text(size: 20pt)[$35.7 "mm"$] quad &=> bold(d = 36 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$d$] &= #text(size: 20pt)[$35.7 "mm"$] \
+      &=> bold(d = 36 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -286,7 +295,8 @@
       P &= [pi/4 d_2^2 - d_2 t] sigma_t \
       60000 &= [pi/4 d_2^2 - d_2 (d_2/4)] 60 = 32.13 (d_2)^2 \
       (d_2)^2 &= 60000 / 32.13 = 1867 \
-      #text(size: 20pt)[$d_2$] &= #text(size: 20pt)[$43.2 "mm"$] quad &=> bold(d_2 = 44 "mm" quad bold("(Ans.)")) \
+      #text(size: 20pt)[$d_2$] &= #text(size: 20pt)[$43.2 "mm"$] \
+      &=> bold(d_2 = 44 "mm" quad bold("(Ans.)")) \
       #text(size: 20pt)[$t$] &= #text(size: 20pt)[$44 / 4$] = bold(11 "mm" quad bold("(Ans.)"))
     $
   ]
@@ -310,7 +320,8 @@
       P &= [pi/4 (d_1^2 - d_2^2) - (d_1 - d_2) t] sigma_t \
       60000 &= [pi/4 (d_1^2 - 44^2) - (d_1 - 44)(11)] 60 \
       0.7854 d_1^2 - 11 d_1 - 1036.7 &= 0 \
-      #text(size: 20pt)[$d_1$] &= #text(size: 20pt)[$58.4 "mm"$] quad &=> bold(d_1 = 60 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$d_1$] &= #text(size: 20pt)[$58.4 "mm"$] \
+      &=> bold(d_1 = 60 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -321,7 +332,8 @@
     $
       P &= 2 b dot t dot tau \
       60000 &= 2 b times 11 times 70 = 1540 b \
-      #text(size: 20pt)[$b$] &= #text(size: 20pt)[$60000 / 1540$] = 38.96 "mm" quad &=> bold(b = 40 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$b$] &= #text(size: 20pt)[$60000 / 1540$] = 38.96 "mm" \
+      &=> bold(b = 40 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -332,7 +344,8 @@
     $
       P &= 2 a dot d_2 dot tau \
       60000 &= 2 a times 44 times 70 = 6160 a \
-      #text(size: 20pt)[$a$] &= #text(size: 20pt)[$60000 / 6160$] = 9.74 "mm" quad &=> bold(a = 10 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$a$] &= #text(size: 20pt)[$60000 / 6160$] = 9.74 "mm" \
+      &=> bold(a = 10 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -343,7 +356,8 @@
     $
       P &= 2 (d_1 - d_2) c dot tau \
       60000 &= 2 (60 - 44) c times 70 = 2240 c \
-      #text(size: 20pt)[$c$] &= #text(size: 20pt)[$60000 / 2240$] = 26.78 "mm" quad &=> bold(c = 28 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$c$] &= #text(size: 20pt)[$26.78 "mm"$] \
+      &=> bold(c = 28 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -352,6 +366,8 @@
   [*8. Complete Design Output*],
   [*Sleeve & Cotter Joint Summary: d = 36 mm, d2 = 44 mm, t = 11 mm, d1 = 60 mm, b = 40 mm, a = 10 mm, c = 28 mm*]
 )
+
+#figure-page("2", "Sleeve and Cotter Joint Assembly", "fig 12.9. Sleeve & cotter joint.png", "Figure 12.9: Sleeve & Cotter Joint Assembly & Proportions")
 
 // ==========================================
 // SECTION 3: GIB & COTTER JOINT FOR CONNECTING ROD (EX 12.3)
@@ -369,7 +385,8 @@
   [
     $
       #text(size: 20pt)[$B_1$] &= #text(size: 20pt)[$d$] = bold(75 "mm" quad bold("(Ans.)")) \
-      #text(size: 20pt)[$t$] &= #text(size: 20pt)[$B_1 / 4$] = 75 / 4 = 18.75 "mm" quad &=> bold(t = 20 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$t$] &= #text(size: 20pt)[$B_1 / 4$] = 75 / 4 = 18.75 "mm" \
+      &=> bold(t = 20 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -380,7 +397,8 @@
     $
       P &= 2 B_1 dot t_1 dot sigma_t \
       50000 &= 2 times 75 times t_1 times 25 = 3750 t_1 \
-      #text(size: 20pt)[$t_1$] &= #text(size: 20pt)[$50000 / 3750$] = 13.3 "mm" quad &=> bold(t_1 = 15 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$t_1$] &= #text(size: 20pt)[$50000 / 3750$] = 13.3 "mm" \
+      &=> bold(t_1 = 15 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -392,7 +410,8 @@
       2 t_3 (B_1 - t) &= 2 t_1 B_1 \
       2 t_3 (75 - 20) &= 2 times 15 times 75 \
       110 t_3 &= 2250 \
-      #text(size: 20pt)[$t_3$] &= #text(size: 20pt)[$2250 / 110$] = 20.45 "mm" quad &=> bold(t_3 = 21 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$t_3$] &= #text(size: 20pt)[$2250 / 110$] = 20.45 "mm" \
+      &=> bold(t_3 = 21 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -403,7 +422,8 @@
     $
       P &= 2 B dot t dot tau \
       50000 &= 2 B times 20 times 20 = 800 B \
-      #text(size: 20pt)[$B$] &= #text(size: 20pt)[$50000 / 800$] = 62.5 "mm" quad &=> bold(B = 65 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$B$] &= #text(size: 20pt)[$50000 / 800$] = 62.5 "mm" \
+      &=> bold(B = 65 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -412,8 +432,10 @@
   [*5. Division of Width between Gib ($b_1$) & Cotter ($b$)* \ Empirical proportions ($55\%$ gib, $45\%$ cotter)],
   [
     $
-      #text(size: 20pt)[$b_1$] &= #text(size: 20pt)[$0.55 B$] = 0.55 times 65 = 35.75 "mm" quad &=> bold(b_1 = 36 "mm" quad bold("(Ans.)")) \
-      #text(size: 20pt)[$b$] &= #text(size: 20pt)[$0.45 B$] = 0.45 times 65 = 29.25 "mm" quad &=> bold(b = 30 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$b_1$] &= #text(size: 20pt)[$0.55 B$] = 0.55 times 65 = 35.75 "mm" \
+      &=> bold(b_1 = 36 "mm" quad bold("(Ans.)")) \
+      #text(size: 20pt)[$b$] &= #text(size: 20pt)[$0.45 B$] = 0.45 times 65 = 29.25 "mm" \
+      &=> bold(b = 30 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -422,9 +444,11 @@
   [*6. Empirical Proportions ($t_4, l_1, l_2$)* \ Strap end, rod end, and overhang dimensions],
   [
     $
-      #text(size: 20pt)[$t_4$] &= #text(size: 20pt)[$1.25 t_1$] = 1.25 times 15 = 18.75 "mm" quad &=> bold(t_4 = 20 "mm" quad bold("(Ans.)")) \
+      #text(size: 20pt)[$t_4$] &= #text(size: 20pt)[$1.25 t_1$] = 1.25 times 15 = 18.75 "mm" \
+      &=> bold(t_4 = 20 "mm" quad bold("(Ans.)")) \
       #text(size: 20pt)[$l_1$] &= #text(size: 20pt)[$2 t_1$] = 2 times 15 = bold(30 "mm" quad bold("(Ans.)")) \
-      #text(size: 20pt)[$l_2$] &= #text(size: 20pt)[$2.5 t_1$] = 2.5 times 15 = 37.5 "mm" quad &=> bold(l_2 = 40 "mm" quad bold("(Ans.)"))
+      #text(size: 20pt)[$l_2$] &= #text(size: 20pt)[$2.5 t_1$] = 2.5 times 15 = 37.5 "mm" \
+      &=> bold(l_2 = 40 "mm" quad bold("(Ans.)"))
     $
   ]
 )
@@ -437,7 +461,7 @@
 #figure-page(
   "3",
   "Gib and Cotter Joint Assembly",
-  "fig 12.12.png",
+  "Fig. 12.12. Gib and cotter joint for strap end of a connecting rod..png",
   "Figure 12.12: Gib and Cotter Joint Construction for Connecting Rod Big End"
 )
 
@@ -551,8 +575,8 @@
 #figure-page(
   "4",
   "Knuckle Joint Assembly",
-  "fig 12.13.jpeg",
-  "Figure 12.13: Knuckle Joint Construction & Pin Assembly Details"
+  "Fig. 12.16. Kunckle joint..png",
+  "Figure 12.16: Knuckle Joint Construction & Pin Assembly Details"
 )
 
 // ==========================================
@@ -621,6 +645,6 @@
 #figure-page(
   "5",
   "Knuckle Joint Assembly",
-  "fig 12.13.jpeg",
-  "Figure 12.13: Knuckle Joint Fork & Pin Details"
+  "Fig. 12.16. Kunckle joint..png",
+  "Figure 12.16: Knuckle Joint Fork & Pin Details"
 )
