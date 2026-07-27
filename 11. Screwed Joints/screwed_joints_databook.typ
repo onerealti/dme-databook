@@ -4,20 +4,31 @@
 #set page(
   paper: "a4",
   flipped: true,
-  margin: (top: 45pt, bottom: 50pt, left: 35pt, right: 35pt),
-  header: block(width: 100%)[
-    #line(length: 100%, stroke: 1.5pt + rgb("#000000"))
-  ],
-  footer: context block(width: 100%)[
-    #grid(
-      columns: (1fr, auto),
-      align: (left + horizon, right + horizon),
-      [#text(fill: rgb("#000000"), size: 12pt, weight: "bold")[DESIGN DATA BOOK — SCREWED JOINTS & FASTENERS]],
-      [#text(fill: rgb("#000000"), weight: "bold", size: 12pt)[Page #counter(page).display("1 of 1", both: true)]]
+  margin: (top: 30pt, bottom: 25pt, left: 55pt, right: 30pt),
+  header: none,
+  footer: none,
+  background: context {
+    // Perpendicular Side-Margin Header & Page Numbers (Vertical Binder Orientation)
+    place(
+      top + left,
+      dx: 24pt,
+      dy: 30pt,
+      rotate(
+        90deg,
+        origin: top + left,
+        block(width: 535pt)[
+          #grid(
+            columns: (1fr, auto),
+            align: (left + horizon, right + horizon),
+            [#text(fill: rgb("#000000"), size: 11pt, weight: "bold")[DESIGN DATA BOOK — SCREWED JOINTS & FASTENERS]],
+            [#text(fill: rgb("#000000"), weight: "bold", size: 11pt)[Page #counter(page).display("1 of 1", both: true)]]
+          )
+          #v(3pt)
+          #line(length: 100%, stroke: 1.2pt + rgb("#000000"))
+        ]
+      )
     )
-    #v(4pt)
-    #line(length: 100%, stroke: 1.5pt + rgb("#000000"))
-  ]
+  }
 )
 
 #set text(font: ("Times New Roman", "Georgia"), size: 16pt, fill: rgb("#000000"))
@@ -34,22 +45,14 @@
   v(12pt)
 }
 
-// Section Overview Box Component (Unified Header Box for Parameters & Protocol)
+// Section Overview Component (Unboxed & Vertically Stacked Parameters & Protocol)
 #let section-overview(sys-params, design-proto) = {
   v(2pt)
-  block(
-    width: 100%,
-    stroke: 0.8pt + rgb("#000000"),
-    inset: 10pt,
-    fill: rgb("#f8f9fa")
-  )[
-    #grid(
-      columns: (1.1fr, 1fr),
-      column-gutter: 24pt,
-      [#sys-params],
-      [#design-proto]
-    )
-  ]
+  sys-params
+  v(6pt)
+  design-proto
+  v(8pt)
+  line(length: 100%, stroke: 0.5pt + rgb("#000000"))
   v(10pt)
 }
 
@@ -69,16 +72,15 @@
   line(length: 100%, stroke: 0.3pt + rgb("#cccccc"))
 }
 
-// Dedicated Figure Page Component (Guaranteed Single Page Layout - Max Enlarged Figures)
+// Dedicated Figure Page Component (Guaranteed Single Page Layout - Heading, Image & Caption within strict bounds)
 #let figure-page(sec-num, title, fig-path, caption, second-fig: "", second-caption: "") = {
   pagebreak()
-  v(-4pt)
-  section-heading(sec-num, title + " — MECHANICAL DIAGRAM")
-  v(4pt)
   block(width: 100%, breakable: false)[
+    #section-heading(sec-num, title + " — MECHANICAL DIAGRAM")
+    #v(2pt)
     #if second-fig == "" [
       #align(center)[
-        #image(fig-path, width: 72%)
+        #image(fig-path, width: 55%, height: 340pt, fit: "contain")
         #v(6pt)
         #text(weight: "bold", size: 14pt)[#caption]
       ]
@@ -88,12 +90,12 @@
         gutter: 12pt,
         align: center + horizon,
         [
-          #image(fig-path, width: 88%)
+          #image(fig-path, width: 85%, height: 310pt, fit: "contain")
           #v(6pt)
           #text(weight: "bold", size: 13pt)[#caption]
         ],
         [
-          #image(second-fig, width: 88%)
+          #image(second-fig, width: 85%, height: 310pt, fit: "contain")
           #v(6pt)
           #text(weight: "bold", size: 13pt)[#second-caption]
         ]
@@ -146,90 +148,89 @@
 
 // ==========================================
 // STANDARD REFERENCE TABLES (TABLE 11.1 & TABLE 11.2)
+// SEQUENTIAL STACKED LAYOUT (ONE AFTER ANOTHER)
 // ==========================================
 #pagebreak()
-#section-heading("REF", "Standard Design Reference Tables (IS: 4218 - 1976)")
+#section-heading("REF 1", "Table 11.1 — Standard Screw Threads (Coarse Series)")
 
-#grid(
-  columns: (1.5fr, 1fr),
-  column-gutter: 20pt,
-  [
-    #text(weight: "bold", size: 14pt)[Table 11.1: Design Dimensions of Standard Metric Screw Threads]
-    #v(4pt)
-    #table(
-      columns: (auto, auto, auto, auto, auto, auto),
-      align: (center, center, center, center, center, center),
-      stroke: 0.4pt + rgb("#aaaaaa"),
-      fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
-      [*Thread*], [*Pitch $p$*], [*Nominal $d$*], [*Pitch $d_p$*], [*Core $d_c$*], [*Area $A_c$*],
-      [M 4], [0.7 mm], [4 mm], [3.545 mm], [3.141 mm], [8.78 mm²],
-      [M 5], [0.8 mm], [5 mm], [4.480 mm], [4.019 mm], [14.2 mm²],
-      [M 6], [1.0 mm], [6 mm], [5.350 mm], [4.773 mm], [20.1 mm²],
-      [M 8], [1.25 mm], [8 mm], [7.188 mm], [6.466 mm], [36.6 mm²],
-      [M 10], [1.5 mm], [10 mm], [9.026 mm], [8.160 mm], [58.3 mm²],
-      [M 12], [1.75 mm], [12 mm], [10.863 mm], [9.858 mm], [84.0 mm²],
-      [M 14], [2.0 mm], [14 mm], [12.701 mm], [11.546 mm], [115 mm²],
-      [M 16], [2.0 mm], [16 mm], [14.701 mm], [13.546 mm], [157 mm²],
-      [M 18], [2.5 mm], [18 mm], [16.376 mm], [14.933 mm], [192 mm²],
-      [M 20], [2.5 mm], [20 mm], [18.376 mm], [16.933 mm], [245 mm²],
-      [M 22], [2.5 mm], [22 mm], [20.376 mm], [18.933 mm], [303 mm²],
-      [M 24], [3.0 mm], [24 mm], [22.051 mm], [20.320 mm], [353 mm²],
-      [M 27], [3.0 mm], [27 mm], [25.051 mm], [23.320 mm], [459 mm²],
-      [M 30], [3.5 mm], [30 mm], [27.727 mm], [25.706 mm], [561 mm²],
-      [M 33], [3.5 mm], [33 mm], [30.727 mm], [28.706 mm], [694 mm²],
-      [M 36], [4.0 mm], [36 mm], [33.402 mm], [31.093 mm], [817 mm²],
-      [M 42], [4.5 mm], [42 mm], [39.077 mm], [36.416 mm], [1104 mm²],
-      [M 48], [5.0 mm], [48 mm], [44.752 mm], [41.795 mm], [1465 mm²],
-      [M 52], [5.0 mm], [52 mm], [48.752 mm], [45.795 mm], [1755 mm²],
-      [M 56], [5.5 mm], [56 mm], [52.428 mm], [49.177 mm], [2022 mm²]
-    )
-  ],
-  [
-    #text(weight: "bold", size: 14pt)[Table 11.2: Joint Factors ($K$)]
-    #v(4pt)
-    #table(
-      columns: (auto, auto),
-      align: (left, center),
-      stroke: 0.4pt + rgb("#aaaaaa"),
-      fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
-      [*Type of Joint / Gasket*], [*Value of $K$*],
-      [Metal to metal joint], [0.00 to 0.10],
-      [Hard copper gasket], [0.25 to 0.50],
-      [Soft copper gasket], [0.50 to 0.75],
-      [Soft packing (through bolts)], [0.75 to 1.00],
-      [Soft packing (studs)], [1.00]
-    )
-
-    #v(14pt)
-    #text(weight: "bold", size: 14pt)[Table 11.1 (Fine Series)]
-    #v(4pt)
-    #table(
-      columns: (auto, auto, auto, auto, auto),
-      align: (center, center, center, center, center),
-      stroke: 0.4pt + rgb("#aaaaaa"),
-      fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
-      [*Fine Thread*], [*Pitch $p$*], [*Nominal $d$*], [*Core $d_c$*], [*Area $A_c$*],
-      [M 8 x 1], [1.0 mm], [8 mm], [6.773 mm], [39.2 mm²],
-      [M 10 x 1.25], [1.25 mm], [10 mm], [8.466 mm], [61.6 mm²],
-      [M 12 x 1.25], [1.25 mm], [12 mm], [10.466 mm], [92.1 mm²],
-      [M 14 x 1.5], [1.5 mm], [14 mm], [12.160 mm], [125 mm²],
-      [M 16 x 1.5], [1.5 mm], [16 mm], [14.160 mm], [167 mm²],
-      [M 20 x 1.5], [1.5 mm], [20 mm], [18.160 mm], [272 mm²],
-      [M 24 x 2], [2.0 mm], [24 mm], [21.546 mm], [384 mm²]
-    )
-
-    #v(10pt)
-    #block(
-      width: 100%,
-      stroke: 0.5pt + rgb("#000000"),
-      inset: 8pt,
-      fill: rgb("#f8f9fa")
-    )[
-      #text(size: 11pt, weight: "bold")[Empirical Core Diameter Approximation:] \
-      #text(size: 10pt)[If table values are unavailable: \ $d_c approx 0.84 d$ \ $A_c approx pi/4 (0.84 d)^2$]
-    ]
-  ]
+#v(4pt)
+#table(
+  columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1.2fr),
+  align: (center, center, center, center, center, center, center),
+  stroke: 0.4pt + rgb("#aaaaaa"),
+  fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
+  [*Designation*], [*Pitch $p$*], [*Nominal $d$*], [*Pitch $d_p$*], [*Core $d_c$*], [*Depth $h$*], [*Stress Area $A_c$*],
+  [M 4], [0.7 mm], [4.0 mm], [3.545 mm], [3.141 mm], [0.429 mm], [8.78 mm²],
+  [M 5], [0.8 mm], [5.0 mm], [4.480 mm], [4.019 mm], [0.491 mm], [14.2 mm²],
+  [M 6], [1.0 mm], [6.0 mm], [5.350 mm], [4.773 mm], [0.613 mm], [20.1 mm²],
+  [M 8], [1.25 mm], [8.0 mm], [7.188 mm], [6.466 mm], [0.767 mm], [36.6 mm²],
+  [M 10], [1.5 mm], [10.0 mm], [9.026 mm], [8.160 mm], [0.920 mm], [58.3 mm²],
+  [M 12], [1.75 mm], [12.0 mm], [10.863 mm], [9.858 mm], [1.074 mm], [84.0 mm²],
+  [M 14], [2.0 mm], [14.0 mm], [12.701 mm], [11.546 mm], [1.227 mm], [115 mm²],
+  [M 16], [2.0 mm], [16.0 mm], [14.701 mm], [13.546 mm], [1.227 mm], [157 mm²],
+  [M 18], [2.5 mm], [18.0 mm], [16.376 mm], [14.933 mm], [1.534 mm], [192 mm²],
+  [M 20], [2.5 mm], [20.0 mm], [18.376 mm], [16.933 mm], [1.534 mm], [245 mm²],
+  [M 22], [2.5 mm], [22.0 mm], [20.376 mm], [18.933 mm], [1.534 mm], [303 mm²],
+  [M 24], [3.0 mm], [24.0 mm], [22.051 mm], [20.320 mm], [1.840 mm], [353 mm²],
+  [M 27], [3.0 mm], [27.0 mm], [25.051 mm], [23.320 mm], [1.840 mm], [459 mm²],
+  [M 30], [3.5 mm], [30.0 mm], [27.727 mm], [25.706 mm], [2.147 mm], [561 mm²],
+  [M 33], [3.5 mm], [33.0 mm], [30.727 mm], [28.706 mm], [2.147 mm], [694 mm²],
+  [M 36], [4.0 mm], [36.0 mm], [33.402 mm], [31.093 mm], [2.454 mm], [817 mm²],
+  [M 42], [4.5 mm], [42.0 mm], [39.077 mm], [36.416 mm], [2.760 mm], [1104 mm²],
+  [M 48], [5.0 mm], [48.0 mm], [44.752 mm], [41.795 mm], [3.067 mm], [1465 mm²],
+  [M 52], [5.0 mm], [52.0 mm], [48.752 mm], [45.795 mm], [3.067 mm], [1755 mm²],
+  [M 56], [5.5 mm], [56.0 mm], [52.428 mm], [49.177 mm], [3.067 mm], [2022 mm²]
 )
+
+#pagebreak()
+#section-heading("REF 2", "Table 11.1 (Fine Series) & Table 11.2 (Joint Constants K)")
+
+#text(weight: "bold", size: 14pt)[1. Table 11.1 — Fine Series Screw Threads]
+#v(6pt)
+#table(
+  columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1.2fr),
+  align: (center, center, center, center, center, center),
+  stroke: 0.4pt + rgb("#aaaaaa"),
+  fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
+  [*Designation*], [*Pitch $p$*], [*Nominal $d$*], [*Pitch $d_p$*], [*Core $d_c$*], [*Stress Area $A_c$*],
+  [M 8 x 1], [1.0 mm], [8.0 mm], [7.350 mm], [6.773 mm], [39.2 mm²],
+  [M 10 x 1.25], [1.25 mm], [10.0 mm], [9.188 mm], [8.466 mm], [61.6 mm²],
+  [M 12 x 1.25], [1.25 mm], [12.0 mm], [11.184 mm], [10.466 mm], [92.1 mm²],
+  [M 14 x 1.5], [1.5 mm], [14.0 mm], [13.026 mm], [12.160 mm], [125 mm²],
+  [M 16 x 1.5], [1.5 mm], [16.0 mm], [15.026 mm], [14.160 mm], [167 mm²],
+  [M 20 x 1.5], [1.5 mm], [20.0 mm], [19.026 mm], [18.160 mm], [272 mm²],
+  [M 24 x 2], [2.0 mm], [24.0 mm], [22.701 mm], [21.546 mm], [384 mm²]
+)
+
+#v(16pt)
+#text(weight: "bold", size: 14pt)[2. Table 11.2 — Joint Constants & Gasket Factors ($K$)]
+#v(6pt)
+#table(
+  columns: (2fr, 1fr),
+  align: (left, center),
+  stroke: 0.4pt + rgb("#aaaaaa"),
+  fill: (col, row) => if row == 0 { rgb("#e9ecef") } else if calc.even(row) { rgb("#f8f9fa") },
+  [*Type of Joint / Gasket Connection*], [*Gasket Factor Value ($K$)*],
+  [Metal to metal joint with through bolts], [0.00 to 0.10],
+  [Hard copper gasket with long through bolts], [0.25 to 0.50],
+  [Soft copper gasket with long through bolts], [0.50 to 0.75],
+  [Soft packing with through bolts], [0.75 to 1.00],
+  [Soft packing with studs], [1.00]
+)
+
+#v(14pt)
+#block(
+  width: 100%,
+  stroke: 0.8pt + rgb("#000000"),
+  inset: 10pt,
+  fill: rgb("#f8f9fa")
+)[
+  #text(size: 12pt, weight: "bold")[Empirical Core Diameter Rule (When Tables are Unavailable):] \
+  #v(4pt)
+  #text(size: 11pt)[For standard metric coarse series fasteners: \
+  Core Diameter: $d_c approx 0.84 d$ \
+  Core Stress Area: $A_c approx pi/4 (0.84 d)^2$]
+]
 
 // ==========================================
 // SECTION 1
@@ -1008,7 +1009,7 @@
 )
 
 #item-row(
-  [*5. Standard Thread Selection (Table 11.1)* \ Select standard coarse thread with $d_c >= 27.14 "mm"$],
+  [*5. Standard Thread Selection (Table 11.1)* \ Select standard coarse series thread with $d_c >= 27.14 "mm"$],
   [
     $ #text(size: 20pt)[$d_("c, std")$] &>= #text(size: 20pt)[$d_c$] $
     #v(10pt)
