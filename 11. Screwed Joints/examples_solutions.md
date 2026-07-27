@@ -86,7 +86,7 @@ From **[Table 11.1: Standard Screw Threads (Coarse Series)](table_11_1_standard_
 * Next standard core diameter $d_c > 27.64\text{ mm}$ is **$d_c = 28.706\text{ mm}$**.
 * The corresponding nominal diameter is **$d = 33\text{ mm}$**.
 
-$$\mathbf{\text{Select M 33 Bolt } (d = 33\text{ mm}, d_c = 28.706\text{ mm})}$$
+$$\textbf{Select M 33 Bolt } (d = 33\text{ mm}, d_c = 28.706\text{ mm})$$
 
 > **Note:** Eye bolts are used for lifting heavy machinery. If M 33 is unavailable in a given series, the next larger size M 36 ($A_c = 817\text{ mm}^2$) is selected.
 
@@ -122,7 +122,7 @@ From **[Table 11.1: Standard Screw Threads (Coarse Series)](table_11_1_standard_
 * Next standard core diameter $d_c > 2.97\text{ mm}$ is **$d_c = 3.141\text{ mm}$**.
 * The corresponding nominal bolt size is **$d = 4\text{ mm}$**.
 
-$$\mathbf{\text{Select M 4 Bolt } (d = 4\text{ mm}, d_c = 3.141\text{ mm})}$$
+$$\textbf{Select M 4 Bolt } (d = 4\text{ mm}, d_c = 3.141\text{ mm})$$
 
 
 ---
@@ -160,9 +160,9 @@ $$(d_c)^2 = \frac{10\,997}{39.27} = 280 \implies d_c = \sqrt{280} = 16.7\text{ m
 #### Step 4: Select Standard Fine Metric Thread from Table 11.1
 From **[Table 11.1: Standard Screw Threads (Fine Series)](table_11_1_standard_screw_threads.md)**:
 * Next standard core diameter $d_c > 16.7\text{ mm}$ is **$d_c = 18.376\text{ mm}$**.
-* Corresponding thread size: **$\text{M } 20 \times 1.5$**.
+* Corresponding thread size: **M 20 $\times$ 1.5**.
 
-$$\mathbf{\text{Select M } 20 \times 1.5 \text{ Fine Series Bolt } (d = 20\text{ mm}, d_c = 18.376\text{ mm})}$$
+$$\textbf{Select M 20} \times \textbf{1.5 Fine Series Bolt } (d = 20\text{ mm}, d_c = 18.376\text{ mm})$$
 
 
 ---
@@ -204,7 +204,7 @@ Assuming cylinder wall thickness $t = 10\text{ mm}$ and stud hole diameter $d_1 
 
 Since $100\text{ mm} \le 116.5\text{ mm} \le 150\text{ mm}$, the design is **satisfactory**.
 
-$$\mathbf{\text{Use 12 studs of M 24 size } (n = 12, \text{ M 24 studs})}$$
+$$\textbf{Use 12 studs of M 24 size } (n = 12, \text{ M 24 studs})$$
 
 
 ---
@@ -230,7 +230,7 @@ A mild steel cover plate is to be designed for an inspection hole in the shell o
 According to Lame's equation for thick pressure vessels:
 $$t = r \left[ \sqrt{\frac{\sigma_t + p}{\sigma_t - p}} - 1 \right] = 60 \left[ \sqrt{\frac{60 + 6}{60 - 6}} - 1 \right] = 60 \left[ \sqrt{1.222} - 1 \right] = 6.3\text{ mm}$$
 
-$$\mathbf{\text{Adopt Shell Thickness } t = 10\text{ mm}}$$
+$$\textbf{Adopt Shell Thickness } t = 10\text{ mm}$$
 
 ---
 
@@ -276,7 +276,7 @@ $$\mathbf{\text{Adopt Shell Thickness } t = 10\text{ mm}}$$
    $$\sigma_t = \frac{M}{Z} \implies 60 = \frac{773\,265}{40 \cdot (t_1)^2} \implies (t_1)^2 = \frac{773\,265}{2400} = 322.2$$
    $$t_1 = \sqrt{322.2} \approx 17.95\text{ mm} \implies \mathbf{t_1 = 18\text{ mm}}$$
 
-$$\mathbf{\text{Final Design: 6 Bolts of M 24 size, Cover Plate Thickness } t_1 = 18\text{ mm}}$$
+$$\textbf{Final Design: 6 Bolts of M 24 size, Cover Plate Thickness } t_1 = 18\text{ mm}$$
 
 
 ---
@@ -324,7 +324,7 @@ $$d^2 - 51.3 \cdot d - 37.2 = 0$$
 Solving quadratic equation for $d$:
 $$d = \frac{51.3 \pm \sqrt{(51.3)^2 - 4(1)(-37.2)}}{2} = \frac{51.3 \pm \sqrt{2631.69 + 148.8}}{2} = \frac{51.3 + 52.73}{2} = 52.01\text{ mm}$$
 
-$$\mathbf{\text{Select M 52 Bolt } (d = 52\text{ mm})}$$
+$$\textbf{Select M 52 Bolt } (d = 52\text{ mm})$$
 
 
 ---
@@ -404,7 +404,7 @@ From **[Table 11.1: Standard Screw Threads (Coarse Series)](table_11_1_standard_
 * Next standard core diameter $d_c > 14.63\text{ mm}$ is **$d_c = 14.933\text{ mm}$**.
 * Corresponding nominal bolt size: **$d = 18\text{ mm}$**.
 
-$$\mathbf{\text{Select M 18 Bolt } (d = 18\text{ mm}, d_c = 14.933\text{ mm})}$$
+$$\textbf{Select M 18 Bolt } (d = 18\text{ mm}, d_c = 14.933\text{ mm})$$
 
 
 ---
@@ -470,7 +470,7 @@ $$\frac{\pi}{4} \left( D_o^2 - D^2 \right) = \frac{\pi}{4} D_c^2 \implies D_o^2 
 Solving for hole diameter $D$:
 $$D = \sqrt{D_o^2 - D_c^2} = \sqrt{(48)^2 - (41.795)^2} = \sqrt{2304 - 1746.82} = \sqrt{557.18} = \mathbf{23.64\text{ mm}}$$
 
-$$\mathbf{\text{Drill a central axial hole of diameter } D = 23.64\text{ mm}}$$
+$$\textbf{Drill a central axial hole of diameter } D = 23.64\text{ mm}$$
 
 
 ---
@@ -519,7 +519,7 @@ From **[Table 11.1: Standard Screw Threads (Coarse Series)](table_11_1_standard_
 * Next standard core diameter $d_c > 27.14\text{ mm}$ is **$d_c = 28.706\text{ mm}$**.
 * Corresponding nominal bolt size: **$d = 33\text{ mm}$**.
 
-$$\mathbf{\text{Select M 33 Bolt } (d = 33\text{ mm}, d_c = 28.706\text{ mm})}$$
+$$\textbf{Select M 33 Bolt } (d = 33\text{ mm}, d_c = 28.706\text{ mm})$$
 
 
 ---
@@ -580,7 +580,7 @@ A crane runway bracket supports a wheel load of $15\text{ kN}$. Determine the te
    * Total load arm from tilting edge $EE$: $L = 100 + 50 + 325 + 50 = 525\text{ mm}$
    * Load per unit distance ($w$):
      $$w = \frac{W \cdot L}{2 \left( L_1^2 + L_2^2 \right)} = \frac{15\,000 \times 525}{2 \left( 50^2 + 375^2 \right)} = \frac{7\,875\,000}{286\,250} = 27.5\text{ N/mm}$$
-   * Secondary load on top bolts: $W_{t2} = w \cdot L_2 = 27.5 \times 375 = 10\,312.5\text{ N}$
+   * Secondary load on top bolts: $W_{t2} = w \cdot L_2 = 27.5 \times 375 = 10\,312.5\text{ N}$$
 
 3. **Total Maximum Tensile Load & Bolt Stress ($\sigma_{tb}$):**
    $$W_t = W_{t1} + W_{t2} = 3750 + 10\,312.5 = 14\,062.5\text{ N}$$
@@ -634,7 +634,7 @@ For supporting a travelling crane in a workshop, brackets are fixed on steel col
    * Next standard core diameter $d_c > 10.65\text{ mm}$ is **$d_c = 11.546\text{ mm}$**.
    * Corresponding nominal bolt size: **$d = 14\text{ mm}$**.
 
-   $$\mathbf{\text{Select M 14 Bolts } (d = 14\text{ mm}, d_c = 11.546\text{ mm})}$$
+   $$\textbf{Select M 14 Bolts } (d = 14\text{ mm}, d_c = 11.546\text{ mm})$$
 
 ---
 
@@ -651,7 +651,7 @@ For supporting a travelling crane in a workshop, brackets are fixed on steel col
    Assuming a standard bracket arm depth $b = 250\text{ mm}$:
    $$t = \frac{342\,857}{(250)^2} = \frac{342\,857}{62\,500} = \mathbf{5.5\text{ mm}}$$
 
-$$\mathbf{\text{Final Design: M 14 Bolts, Bracket Arm Dimensions } 5.5\text{ mm} \times 250\text{ mm}}$$
+$$\textbf{Final Design: M 14 Bolts, Bracket Arm Dimensions } 5.5\text{ mm} \times 250\text{ mm}$$
 
 
 ---
@@ -719,9 +719,7 @@ Determine the size of the bolts and the thickness of the arm for the bracket sho
 6. **Select Standard Commercial Bolt from Table 11.1:**
    From **[Table 11.1](table_11_1_standard_screw_threads.md)**:
    * Next standard core diameter $d_c > 17.65\text{ mm}$ is **$d_c = 18.933\text{ mm}$**.
-   * Corresponding nominal bolt size: **$d = 22\text{ mm}$**.
-
-   $$\mathbf{\text{Select M 22 Bolts } (d = 22\text{ mm}, d_c = 18.933\text{ mm})}$$
+   * Corresponding nominal bolt size: **$d = 22\text{ mm}$**.   $$\textbf{Select M 22 Bolts } (d = 22\text{ mm}, d_c = 18.933\text{ mm})$$
 
 ---
 
@@ -734,19 +732,23 @@ Determine the size of the bolts and the thickness of the arm for the bracket sho
 
 2. **Stresses in Upper Fibre of Arm:**
    * Direct tensile stress due to $W_H$: $\sigma_{t1} = \frac{W_H}{A} = \frac{34\,640}{130 t} = \frac{266.5}{t}$
-   * Bending tensile stress due to $W_H$: $\sigma_{t2} = \frac{M_H}{Z} = \frac{34\,640 \times (65 - 30)}{2817 t} = \frac{1\,212\,400}{2817 t} = \frac{430.4}{t}$
+   * Bending tensile stress due to $W_H$: $\sigma_{t2} = \frac{M_H}{Z} = \frac{34\,640 \times (100 - 65)}{2817 t} = \frac{1\,212\,400}{2817 t} = \frac{430.4}{t}$
    * Bending tensile stress due to $W_V$: $\sigma_{t3} = \frac{M_V}{Z} = \frac{20\,000 \times 200}{2817 t} = \frac{4\,000\,000}{2817 t} = \frac{1420}{t}$
 
-3. **Total Tensile Stress & Arm Thickness ($t$):**
-   $$\sigma_t = \sigma_{t1} + \sigma_{t2} + \sigma_{t3} = \frac{266.5 + 430.4 + 1420}{t} = \frac{2116.9}{t}$$
-   Equating to allowable tensile stress $\sigma_t = 70\text{ MPa}$:
-   $$70 = \frac{2116.9}{t} \implies t = \frac{2116.9}{70} = 30.24 \approx \mathbf{31\text{ mm}}$$
+3. **Total Tensile Stress & Maximum Principal Tensile Stress:**
+   * Direct + Bending tensile stress:
+     $$\sigma_t = \sigma_{t1} + \sigma_{t2} + \sigma_{t3} = \frac{266.5 + 430.4 + 1420}{t} = \frac{2116.9}{t}$$
+   * Direct shear stress: $\tau = \frac{W_V}{A} = \frac{20\,000}{130 t} = \frac{154}{t}$
+   * Maximum principal tensile stress:
+     $$\sigma_{t(\text{max})} = \frac{\sigma_t}{2} + \frac{1}{2}\sqrt{\sigma_t^2 + 4\tau^2} = \frac{1058.45}{t} + \frac{1069.6}{t} = \frac{2128.05}{t}$$
 
-4. **Shear Stress Verification:**
-   Direct shear stress $\tau = \frac{W_V}{A} = \frac{20\,000}{130 \times 31} = 4.96\text{ MPa}$.
-   Maximum shear stress $\tau_{\max} \approx 34.5\text{ MPa} \le 50\text{ MPa}$ (**SAFE**).
+4. **Arm Thickness ($t$) & Stress Verification:**
+   * Equating $\sigma_{t(\text{max})}$ to allowable tensile stress ($\sigma_t = 70\text{ MPa}$):
+     $$70 = \frac{2128.05}{t} \implies t = \frac{2128.05}{70} = 30.4\text{ mm} \approx \mathbf{31\text{ mm}}$$
+   * Maximum shear stress check for $t = 31\text{ mm}$:
+     $$\tau_{\max} = \frac{1069.6}{31} = 34.5\text{ MPa} \le 50\text{ MPa} \quad (\mathbf{SAFE})$$
 
-$$\mathbf{\text{Final Design: M 22 Bolts, Bracket Arm Thickness } t = 31\text{ mm}}$$
+$$\textbf{Final Design: M 22 Bolts, Bracket Arm Thickness } t = 31\text{ mm}$$
 
 
 ---
@@ -999,7 +1001,7 @@ Determine:
    * Maximum stress induced:
      $$\sigma_{\max} = \frac{P_{\text{net}}}{\text{Stress Area}} = \frac{41\,100}{516} = \mathbf{79.65\text{ MPa}}$$
 
-$$\mathbf{\text{Final Answers: (1) Maximum Distance } e = 1.123\text{ m}, \quad (2) \text{ Maximum Induced Stress } \sigma_{\max} = 79.65\text{ MPa}}$$
+$$\textbf{Final Answers: (1) Maximum Distance } e = 1.123\text{ m}, \quad (2) \text{ Maximum Induced Stress } \sigma_{\max} = 79.65\text{ MPa}$$
 
 
 ---
@@ -1018,7 +1020,6 @@ Determine:
 ![Fig 11.47: Primary and Secondary Shear Vectors](Figures/fig%2011.47%20(diagram%20in%20solution%20of%20Eg.%2011.20).png)
 
 ---
-
 
 ### Solution
 
@@ -1085,5 +1086,4 @@ Determine:
    * **Bolts 2 and 3 ($\theta = 45^\circ$):**
      $$W_s = \sqrt{W_{s1}^2 + W_{s2}^2 + 2 W_{s1} W_{s2} \cos 45^\circ} = \sqrt{(3375)^2 + (5967)^2 + 2(3375)(5967)(0.7071)} = \mathbf{8687\text{ N}}$$
 
-$$\mathbf{\text{Final Answers: (1) } D = 75\text{ mm}, \quad (2) \text{ } d = 65\text{ mm}, \quad (3) \text{ } W_t = 8320\text{ N}, \quad (4) \text{ Max Shear Force } = 8687\text{ N}}$$
-
+$$\textbf{Final Answers: (1) } D = 75\text{ mm}, \quad (2) \text{ } d = 65\text{ mm}, \quad (3) \text{ } W_t = 8320\text{ N}, \quad (4) \text{ Max Shear Force } = 8687\text{ N}$$

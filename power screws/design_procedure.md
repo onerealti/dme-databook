@@ -52,25 +52,46 @@
 > [!CAUTION]
 > **Calculator Pitfall:** ALWAYS perform all stress and torque calculations using load in **$\text{N}$** and torque in **$\text{N}\cdot\text{mm}$**, NOT $\text{kN}$ or $\text{N}\cdot\text{m}$! Forgetting to multiply load by $10^3$ will give a screw core diameter that is 32 times too small.
 
----
-
-## 2. Branch A: Complete 14-Step Screw Jack Design Procedure
+## 2. Branch A: Complete 15-Step Screw Jack & Power Screw Design Procedure
 
 ![Fig 17.11: Complete Front Sectional Assembly of Screw Jack](Fig%2017.11%20Screw%20Jack.png)
 
 ---
 
+### Step 0: Given Data & Pre-Processing (First Lines on Answer Sheet)
+Extract raw inputs from the question paper and write the **Given Data & Permissible Stresses** block first on your answer script:
+
+$$
+\begin{aligned}
+\mathbf{\text{Solution. Given:}} & \quad W = \dots\text{ kN} = \dots \times 10^3\text{ N}, \quad H_1 = \dots\text{ mm} = \dots\text{ m} \\
+& \quad \sigma_{et} = \sigma_{ec} = \dots\text{ MPa} = \dots\text{ N/mm}^2, \quad \tau_e = \dots\text{ MPa} = \dots\text{ N/mm}^2 \\
+& \quad \sigma_{et(\text{nut})} = \dots\text{ N/mm}^2, \quad \sigma_{ec(\text{nut})} = \dots\text{ N/mm}^2, \quad \tau_{e(\text{nut})} = \dots\text{ N/mm}^2 \\
+& \quad p_b = \dots\text{ N/mm}^2, \quad \mu = \tan\phi = \dots
+\end{aligned}
+$$
+
+**Permissible design stresses (taking Factor of Safety $\text{FOS} = 2$):**
+* **Screw Spindle Material:**
+  $$\text{Permissible } \sigma_c = \frac{\sigma_{ec}}{\text{FOS}} = \frac{\dots}{2} = \dots\text{ N/mm}^2, \qquad \text{Permissible } \tau = \frac{\tau_e}{\text{FOS}} = \frac{\dots}{2} = \dots\text{ N/mm}^2$$
+* **Nut Material (Phosphor-Bronze):**
+  $$\text{Permissible } \sigma_{t(\text{nut})} = \frac{\sigma_{et(\text{nut})}}{\text{FOS}} = \dots\text{ N/mm}^2, \qquad \text{Permissible } \sigma_{c(\text{nut})} = \frac{\sigma_{ec(\text{nut})}}{\text{FOS}} = \dots\text{ N/mm}^2$$
+  $$\text{Permissible } \tau_{\text{nut}} = \frac{\tau_{e(\text{nut})}}{\text{FOS}} = \dots\text{ N/mm}^2$$
+
+*The various parts of the screw jack are designed as discussed below:*
+
+---
+
 ### Step 1: Design of Screw Spindle ($d_c, d_o, p, d$)
-1. Calculate preliminary core diameter $d_c$ considering pure compressive load $W$ at allowable compressive stress $\sigma_c$:
+1. Let $d_c$ = Core diameter of screw spindle. Since the screw is under direct compression under load $W$:
    $$A_c = \frac{\pi}{4} (d_c)^2 = \frac{W}{\sigma_c} \implies d_c = \sqrt{\frac{4 W}{\pi \cdot \sigma_c}} \quad [\text{mm}]$$
 
 2. Look up standard thread dimensions ($d_o, d_c, p$) from **[Table 17.1](#table-171-standard-dimensions-for-square-screw-threads-is-4694--1968)**.
 
 > [!WARNING]
-> **Heavy Load Selection Rule (Example 17.15):**  
-> For heavy loads ($W \ge 50\text{ kN}$), do NOT select the immediate next higher standard size of $d_c$! Select a thread size **$1 \sim 2$ steps larger** than calculated $d_c$ (e.g., calculated $d_c = 32\text{ mm} \implies$ select $d_c = 38\text{ mm}, d_o = 46\text{ mm}, p = 8\text{ mm}$) to safely pass combined torsional shear stress.
+> **Standard Core Selection Note (Example 17.15):**  
+> For heavy loads ($W \ge 50\text{ kN}$), do NOT select the immediate next higher standard core diameter ($d_c = 33\text{ mm}$)! Taking $d_c = 33\text{ mm}$ yields combined principal stresses exceeding permissible limits. Select a thread size **$1 \sim 2$ steps larger** ($d_c = 38\text{ mm}, d_o = 46\text{ mm}, p = 8\text{ mm}$) to safely pass combined torsional shear stress.
 
-3. Compute mean diameter:
+3. Mean diameter of screw:
    $$d = \frac{d_o + d_c}{2} = d_o - \frac{p}{2} \quad [\text{mm}]$$
 
 ---
@@ -80,41 +101,42 @@
    $$L = n_s \cdot p \quad (L = p \text{ for single-start}), \qquad \tan\alpha = \frac{L}{\pi \cdot d}$$
 2. Compute Virtual Friction Angle ($\phi'$) for thread form:
    $$\mu' = \frac{\mu}{\cos\theta} = \tan\phi' \qquad (\theta = 0^\circ \text{ for Square}, 14.5^\circ \text{ for Acme}, 15^\circ \text{ for ISO Trapezoidal})$$
-3. **Torque Required to Raise Load ($T_1$):**
-   $$T_1 = W \cdot \left[ \frac{\tan\alpha + \mu'}{1 - \mu' \tan\alpha} \right] \cdot \frac{d}{2} = W \cdot \tan(\alpha + \phi') \cdot \frac{d}{2} \quad [\text{N}\cdot\text{mm}]$$
+3. **Torque Required to Rotate Screw against Thread Friction (Raising Load $T_1$):**
+   $$T_1 = W \cdot \tan(\alpha + \phi') \cdot \frac{d}{2} = W \cdot \left[ \frac{\tan\alpha + \mu'}{1 - \mu' \tan\alpha} \right] \cdot \frac{d}{2} \quad [\text{N}\cdot\text{mm}]$$
 4. **Torque Required to Lower Load ($T_{\text{lower}}$):**
-   $$T_{\text{lower}} = W \cdot \left[ \frac{\mu' - \tan\alpha}{1 + \mu' \tan\alpha} \right] \cdot \frac{d}{2} = W \cdot \tan(\phi' - \alpha) \cdot \frac{d}{2} \quad [\text{N}\cdot\text{mm}]$$
+   $$T_{\text{lower}} = W \cdot \tan(\phi' - \alpha) \cdot \frac{d}{2} = W \cdot \left[ \frac{\mu' - \tan\alpha}{1 + \mu' \tan\alpha} \right] \cdot \frac{d}{2} \quad [\text{N}\cdot\text{mm}]$$
 
 > [!TIP]
 > **Self-Locking vs. Overhauling Gate:**  
 > * **Self-Locking Screw ($\mu' \ge \tan\alpha$ or $\phi' \ge \alpha$):** $T_{\text{lower}} > 0$. The screw will NOT rotate back down under load. Efficiency $\eta_{\text{screw}} \le 50\%$.  
 > * **Overhauling Screw ($\tan\alpha > \mu'$ or $\alpha > \phi'$):** $T_{\text{lower}} < 0$. The load will descend on its own unless an opposing holding torque is applied. Efficiency $\eta_{\text{screw}} > 50\%$.
 
-5. Direct compressive stress: $\sigma_c = \frac{W}{\frac{\pi}{4} (d_c)^2} \quad [\text{N/mm}^2]$
-6. Torsional shear stress: $\tau = \frac{16 T_1}{\pi (d_c)^3} \quad [\text{N/mm}^2]$
+5. Direct compressive stress due to axial load:
+   $$\sigma_c = \frac{W}{\frac{\pi}{4} (d_c)^2} \quad [\text{N/mm}^2]$$
+6. Torsional shear stress due to torque $T_1$:
+   $$\tau = \frac{16 T_1}{\pi (d_c)^3} \quad [\text{N/mm}^2]$$
 
 ---
 
 ### Step 3: Check Principal Combined Stresses in Screw
-Calculate maximum combined stresses in the screw spindle:
+Calculate maximum combined stresses induced in the screw spindle:
 * **Maximum Principal Compressive Stress:**
   $$\sigma_{c(\max)} = \frac{\sigma_c}{2} + \frac{1}{2} \sqrt{\sigma_c^2 + 4 \tau^2} \quad [\text{N/mm}^2]$$
 * **Maximum Shear Stress:**
   $$\tau_{\max} = \frac{1}{2} \sqrt{\sigma_c^2 + 4 \tau^2} \quad [\text{N/mm}^2]$$
 
 > [!IMPORTANT]
-> **Safety Check Gate:**  
+> **Safety Verification Statement:**  
 > Verify $\sigma_{c(\max)} \le \sigma_{c(\text{allowable})}$ AND $\tau_{\max} \le \tau_{(\text{allowable})}$.  
-> *If SAFE $\to$ Proceed to Step 4.*  
-> *If UNSAFE $\to$ Select next larger thread size from Table 17.1 and repeat Steps 2–3.*
+> *Since these maximum stresses are within permissible limits, the design of the screw spindle is safe.*
 
 ---
 
 ### Step 4: Design of Nut ($n, h$)
-1. Number of threads in contact ($n$) based on bearing pressure $p_b \le 18\text{ N/mm}^2$:
+Let $n$ = Number of threads in contact with screwed spindle, $h$ = Height of nut $= n \cdot p$, and $t$ = Thickness of thread $= p/2$. Assume load is distributed uniformly over cross-sectional area of nut.
+1. Number of threads in contact ($n$) based on allowable bearing pressure ($p_b$):
    $$p_b = \frac{W}{\frac{\pi}{4} (d_o^2 - d_c^2) \cdot n} \implies n = \frac{4 W}{\pi (d_o^2 - d_c^2) \cdot p_b}$$
-   *Always **ROUND UP** $n$ to the next integer (e.g. $8.42 \implies \mathbf{n = 10\text{ threads}}$).*  
-   *(Design Rule: Recommended range $4 \le n \le 10$. Threads beyond 10 carry minimal additional load due to axial elasticity).*
+   *Always **ROUND UP** $n$ to the next integer (e.g. $8.4 \implies \mathbf{n = 10\text{ threads}}$).*  
 
 2. Height of nut ($h$):
    $$h = n \cdot p \quad [\text{mm}]$$
@@ -123,25 +145,28 @@ Calculate maximum combined stresses in the screw spindle:
 
 ### Step 5: Thread Shear Stress Checks (Screw & Nut)
 Thread thickness $t = p/2$:
-* **Screw thread shear:** $\tau_{\text{screw}} = \frac{W}{\pi \cdot d_c \cdot t \cdot n} \le \tau_{(\text{allowable screw})} \quad (\mathbf{SAFE})$
-* **Nut thread shear:** $\tau_{\text{nut}} = \frac{W}{\pi \cdot d_o \cdot t \cdot n} \le \tau_{(\text{allowable nut})} \quad (\mathbf{SAFE})$
+* **Shear stress in screw threads:** $\tau_{\text{screw}} = \frac{W}{\pi \cdot d_c \cdot t \cdot n} \le \tau_{(\text{allowable screw})} \quad (\mathbf{SAFE})$
+* **Shear stress in nut threads:** $\tau_{\text{nut}} = \frac{W}{\pi \cdot d_o \cdot t \cdot n} \le \tau_{(\text{allowable nut})} \quad (\mathbf{SAFE})$
+
+*Since these shear stresses are within permissible limits, the design for nut threads is safe.*
 
 ---
 
 ### Step 6: Nut Collar Dimensions ($D_1, D_2, t_1$)
-1. **Inner Body Tearing Diameter ($D_1$):**
+Let $D_1$ = Outer diameter of nut body, $D_2$ = Outside diameter of nut collar, and $t_1$ = Thickness of nut collar.
+1. **Considering Tearing Strength of Nut Body ($D_1$):**
    $$W = \frac{\pi}{4} \left( D_1^2 - d_o^2 \right) \cdot \sigma_{t(\text{nut})} \implies D_1 = \sqrt{d_o^2 + \frac{4 W}{\pi \cdot \sigma_{t(\text{nut})}}} \quad [\text{mm}]$$
-2. **Outer Collar Crushing Diameter ($D_2$):**
+2. **Considering Crushing of Nut Collar ($D_2$):**
    $$W = \frac{\pi}{4} \left( D_2^2 - D_1^2 \right) \cdot \sigma_{c(\text{nut})} \implies D_2 = \sqrt{D_1^2 + \frac{4 W}{\pi \cdot \sigma_{c(\text{nut})}}} \quad [\text{mm}]$$
-3. **Collar Thickness ($t_1$) for Shearing:**
+3. **Considering Shearing of Nut Collar ($t_1$):**
    $$W = \pi \cdot D_1 \cdot t_1 \cdot \tau_{\text{nut}} \implies t_1 = \frac{W}{\pi \cdot D_1 \cdot \tau_{\text{nut}}} \quad [\text{mm}]$$
 
 ---
 
 ### Step 7: Head Diameter ($D_3$) & Swivel Cup Proportions ($D_4$)
-* Head diameter: $D_3 = 1.75 \cdot d_o \quad [\text{mm}]$
-* Cup seat & pin diameter: $D_4 \approx 20\text{ mm} \sim 25\text{ mm}$ (or $0.25 D_3$)
-* **Empirical proportions for cup:**
+* Head diameter on top of screw rod: $D_3 = 1.75 \cdot d_o \quad [\text{mm}]$
+* Seat & loose-fit pin diameter: $D_4 \approx 20\text{ mm} \sim 25\text{ mm}$ (or $0.25 D_3$)
+* **Other empirical proportions for cup:**
   * Height of cup $\approx 50\text{ mm}$
   * Thickness of cup $\approx 10\text{ mm}$
   * Outer diameter at top of cup $\approx 160\text{ mm}$ (or $2 D_3$)
@@ -149,27 +174,28 @@ Thread thickness $t = p/2$:
 ---
 
 ### Step 8: Swivel Cup / Collar Friction Torque ($T_2$)
-* **Uniform Pressure Condition (Standard New Cup / Collar):**
+Torque required to overcome friction at top of screw ($T_2$):
+* **Assuming Uniform Pressure Condition (Standard New Cup / Collar):**
   $$T_2 = \frac{2}{3} \cdot \mu_1 \cdot W \cdot \left[ \frac{(D_3/2)^3 - (D_4/2)^3}{(D_3/2)^2 - (D_4/2)^2} \right] \quad [\text{N}\cdot\text{mm}]$$
-* **Uniform Wear Condition (Worn Cup / Collar):**
+* **Assuming Uniform Wear Condition (Worn Cup / Collar):**
   $$T_2 = \mu_1 \cdot W \cdot \left[ \frac{D_3/2 + D_4/2}{2} \right] = \mu_1 \cdot W \cdot R_{\text{mean}} \quad [\text{N}\cdot\text{mm}]$$
-* **Ball / Roller Thrust Bearing:**  
-  $$T_2 \approx 0 \quad (\text{Collar friction is negligible})$$
+* **Ball / Roller Thrust Bearing:** $T_2 \approx 0 \quad (\text{Collar friction is negligible})$.
 
 ---
 
 ### Step 9: Total Operating Torque ($T$) & Handle Length ($L_h$)
-1. Total torque acting on handle:
+1. Total torque to which handle is subjected:
    $$T = T_1 + T_2 \quad [\text{N}\cdot\text{mm}]$$
-2. Handle length ($L_h$) for effort $F = 300\text{ N}$ applied by one operator:
+2. Length of handle required for effort $F = 300\text{ N}$ applied by one operator:
    $$L_h' = \frac{T}{F} = \frac{T}{300\text{ N}} \quad [\text{mm}]$$
-   Add allowance for hand gripping: $L_h = L_h' + \text{gripping allowance}$ *(e.g. $2203\text{ mm} \implies \mathbf{L_h = 2250\text{ mm}}$)*.
+   Add length for gripping allowance: $L_h = L_h' + \text{gripping allowance}$ *(e.g. $2203\text{ mm} \implies \mathbf{L_h = 2250\text{ mm}}$)*.
 
 ---
 
 ### Step 10: Handle Diameter ($D$) under Bending Moment ($M$)
-Bending moment $M = F \cdot L_h = 300 \cdot L_h \quad [\text{N}\cdot\text{mm}]$.  
-*(Assuming handle material is same as screw material, allowable bending stress $\sigma_b = \sigma_t = \sigma_{et}/\text{FOS} = 100\text{ N/mm}^2$)*:
+Considering bending effect, maximum bending moment on handle:
+$$M = F \cdot L_h = 300 \cdot L_h \quad [\text{N}\cdot\text{mm}]$$
+Assuming handle material is same as screw ($\sigma_b = \sigma_t = \sigma_{et}/\text{FOS} = 100\text{ N/mm}^2$):
 $$M = \frac{\pi}{32} D^3 \cdot \sigma_b \implies D = \sqrt[3]{\frac{32 M}{\pi \cdot \sigma_b}} \quad [\text{mm}]$$
 *Round $D$ up to next whole mm (e.g. $40.96 \implies \mathbf{D = 42\text{ mm}}$).*
 
@@ -180,30 +206,32 @@ $$H = 2 \cdot D \quad [\text{mm}]$$
 
 ---
 
-### Step 12: Check Screw Spindle for Buckling (J.B. Johnson Strut Formula)
-* Effective column length: $L_{\text{eff}} = H_1 + \frac{h}{2} \quad [\text{mm}]$
-* Radius of gyration: $k = 0.25 \cdot d_c \quad [\text{mm}]$
-* Critical buckling load ($C = 0.25$ for Fix-Free end condition, $\sigma_y = \sigma_{et}$, $E = 2.1 \times 10^5\text{ N/mm}^2$):
-  $$W_{cr} = A_c \cdot \sigma_y \left[ 1 - \frac{\sigma_y}{4 \pi^2 E \cdot (0.25)} \left( \frac{L_{\text{eff}}}{k} \right)^2 \right] \quad [\text{N}]$$
+### Step 12: Check Screw Spindle for Buckling Load (J.B. Johnson Formula)
+Effective length for buckling of screw when at maximum lift:
+$$L_{\text{eff}} = H_1 + \frac{h}{2} \quad [\text{mm}]$$
+When the screw reaches maximum lift, it can be regarded as a strut whose lower end is fixed and load end free ($C = 0.25$).  
+Radius of gyration $k = 0.25 d_c$, Core area $A_c = \frac{\pi}{4} d_c^2$, $E = 2.1 \times 10^5\text{ N/mm}^2$:
+$$W_{cr} = A_c \cdot \sigma_y \left[ 1 - \frac{\sigma_y}{4 \pi^2 E \cdot C} \left( \frac{L_{\text{eff}}}{k} \right)^2 \right] \quad [\text{N}]$$
 
 > [!IMPORTANT]
 > **Buckling Verification Check:**  
-> Verify $W_{cr} > W_{\text{design}}$. If $W_{cr} > W$, screw is **SAFE AGAINST BUCKLING**.
+> Verify $W_{cr} > W_{\text{design}}$. *Since the critical load is more than the actual load ($W_{cr} > W$), there is no chance of the screw buckling.*
 
 ---
 
 ### Step 13: Empirical Proportions for Screw Jack Body
-* Top inside diameter: $D_5 = 1.5 \cdot D_2 \quad [\text{mm}]$
-* Body wall thickness: $t_3 = 0.25 \cdot d_o \quad [\text{mm}]$ *(e.g. $0.25 \times 46 = 11.5 \implies \mathbf{12\text{ mm}}$)*
-* Bottom inside diameter: $D_6 = 2.25 \cdot D_2 \quad [\text{mm}]$
+Various dimensions of tapered cast iron body:
+* Inside diameter at top: $D_5 = 1.5 \cdot D_2 \quad [\text{mm}]$
+* Wall thickness of body: $t_3 = 0.25 \cdot d_o \quad [\text{mm}]$ *(e.g. $0.25 \times 46 = 11.5 \implies \mathbf{12\text{ mm}}$)*
+* Inside diameter at bottom: $D_6 = 2.25 \cdot D_2 \quad [\text{mm}]$
 * Bottom base outer diameter: $D_7 = 1.75 \cdot D_6 \quad [\text{mm}]$
 * Base flange thickness: $t_2 = 2 \cdot t_1 \quad [\text{mm}]$
 * Total body height: $H_{\text{body}} = H_1 + h + 100\text{ mm} \quad [\text{mm}]$
 
 ---
 
-### Step 14: Efficiency of Screw Spindle & Overall System ($\eta$)
-* Torque required without friction:
+### Step 14: Efficiency of Screw Jack ($\eta$)
+* Torque required to rotate screw with no friction:
   $$T_0 = W \cdot \tan\alpha \cdot \frac{d}{2} = \frac{W \cdot L}{2\pi} \quad [\text{N}\cdot\text{mm}]$$
 * **Screw Thread Efficiency Alone:**
   $$\eta_{\text{screw}} = \frac{\tan\alpha}{\tan(\alpha + \phi')} \times 100\%$$
@@ -227,6 +255,20 @@ For machine power screws driven by electric motors at rotational speed $N \text{
 ![Fig 17.16: Differential Screw Jack](Fig%2017.16.%20Differential%20Screw..png)
 
 A differential screw consists of two coaxial threads of different pitches $p_1$ and $p_2$ ($p_1 > p_2$) wound in the **same direction** (both right-hand).
+
+---
+
+### Step 0: Given Data & Pre-Processing (First Lines on Answer Sheet)
+Extract raw inputs from the question paper and write the **Given Data** block first:
+
+$$
+\begin{aligned}
+\mathbf{\text{Solution. Given:}} & \quad d_o = \dots\text{ mm}, \quad p_1 = \dots\text{ mm}, \quad p_2 = \dots\text{ mm} \\
+& \quad \mu = \tan\phi = \dots, \quad \tau_{\max} = \dots\text{ MPa} = \dots\text{ N/mm}^2
+\end{aligned}
+$$
+
+*The calculations for efficiency and load capacity are performed as follows:*
 
 ---
 
