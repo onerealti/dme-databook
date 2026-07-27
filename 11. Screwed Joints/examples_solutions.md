@@ -579,13 +579,13 @@ A crane runway bracket supports a wheel load of $15\text{ kN}$. Determine the te
    * Tilting edge $EE$: $L_1 = 50\text{ mm}$, $L_2 = 50 + 325 = 375\text{ mm}$
    * Total load arm from tilting edge $EE$: $L = 100 + 50 + 325 + 50 = 525\text{ mm}$
    * Load per unit distance ($w$):
-     $$w = \frac{W \cdot L}{2 \left( L_1^2 + L_2^2 \right)} = \frac{15\,000 \times 525}{2 \left( 50^2 + 375^2 \right)} = \frac{7\,875\,000}{286\,250} = 27.51\text{ N/mm}$$
-   * Secondary load on top bolts: $W_{t2} = w \cdot L_2 = 27.51 \times 375 = 10\,316\text{ N}$
+     $$w = \frac{W \cdot L}{2 \left( L_1^2 + L_2^2 \right)} = \frac{15\,000 \times 525}{2 \left( 50^2 + 375^2 \right)} = \frac{7\,875\,000}{286\,250} = 27.5\text{ N/mm}$$
+   * Secondary load on top bolts: $W_{t2} = w \cdot L_2 = 27.5 \times 375 = 10\,312.5\text{ N}$
 
 3. **Total Maximum Tensile Load & Bolt Stress ($\sigma_{tb}$):**
-   $$W_t = W_{t1} + W_{t2} = 3750 + 10\,316 = 14\,066\text{ N}$$
+   $$W_t = W_{t1} + W_{t2} = 3750 + 10\,312.5 = 14\,062.5\text{ N}$$
    Using core diameter relation $d_c = 0.84 \cdot d = 0.84 \times 25 = 21\text{ mm}$:
-   $$\sigma_{tb} = \frac{W_t}{\frac{\pi}{4} (d_c)^2} = \frac{14\,066}{\frac{\pi}{4} (21)^2} = \frac{14\,066}{346.36} = \mathbf{40.6\text{ MPa}}$$
+   $$\sigma_{tb} = \frac{W_t}{\frac{\pi}{4} (d_c)^2} = \frac{14\,062.5}{\frac{\pi}{4} (21)^2} = \frac{14\,062.5}{346.36} = \mathbf{40.6\text{ N/mm}^2 = 40.6\text{ MPa}}$$
 
 
 ---
@@ -703,18 +703,18 @@ Determine the size of the bolts and the thickness of the arm for the bracket sho
 
 3. **Secondary Tensile Load on Critical Upper Bolts 3 & 4 ($W_{t2}$):**
    Load per unit distance ($w$):
-   $$w = \frac{T_{\text{net}}}{2 \left( L_1^2 + L_2^2 \right)} = \frac{2807.2 \times 10^3}{2 \left( 60^2 + 180^2 \right)} = \frac{2\,807\,200}{72\,000} = 38.99\text{ N/mm}$$
+   $$w = \frac{T_{\text{net}}}{2 \left( L_1^2 + L_2^2 \right)} = \frac{2807.2 \times 10^3}{2 \left( 60^2 + 180^2 \right)} = \frac{2\,807\,200}{72\,000} = 38.99 \approx 39\text{ N/mm}$$
    Secondary load:
-   $$W_{t2} = w \cdot L_2 = 38.99 \times 180 = 7018\text{ N}$$
+   $$W_{t2} = w \cdot L_2 = 39 \times 180 = 7020\text{ N}$$
 
 4. **Total Tensile Load ($W_t$) & Equivalent Tensile Load ($W_{te}$):**
-   $$W_t = W_{t1} + W_{t2} = 8660 + 7018 = 15\,678\text{ N}$$
-   Using Maximum Principal Stress Theory for combined shear ($W_s = 5000\text{ N}$) and tension ($W_t = 15\,678\text{ N}$):
-   $$W_{te} = \frac{1}{2} \left[ W_t + \sqrt{W_t^2 + 4 W_s^2} \right] = \frac{1}{2} \left[ 15\,678 + \sqrt{(15\,678)^2 + 4(5000)^2} \right] = 17\,139\text{ N}$$
+   $$W_t = W_{t1} + W_{t2} = 8660 + 7020 = 15\,680\text{ N}$$
+   Using Maximum Principal Stress Theory for combined shear ($W_s = 5000\text{ N}$) and tension ($W_t = 15\,680\text{ N}$):
+   $$W_{te} = \frac{1}{2} \left[ W_t + \sqrt{W_t^2 + 4 W_s^2} \right] = \frac{1}{2} \left[ 15\,680 + \sqrt{(15\,680)^2 + 4(5000)^2} \right] = \frac{1}{2} [15\,680 + 18\,600] = 17\,140\text{ N}$$
 
 5. **Calculate Required Core Diameter ($d_c$):**
-   $$W_{te} = \frac{\pi}{4} (d_c)^2 \cdot \sigma_t \implies 17\,139 = \frac{\pi}{4} (d_c)^2 \times 70 = 54.98 \cdot (d_c)^2$$
-   $$(d_c)^2 = \frac{17\,139}{54.98} = 311.7 \implies d_c = \sqrt{311.7} = 17.65\text{ mm}$$
+   $$W_{te} = \frac{\pi}{4} (d_c)^2 \cdot \sigma_t \implies 17\,140 = \frac{\pi}{4} (d_c)^2 \times 70 \approx 55 \cdot (d_c)^2$$
+   $$(d_c)^2 = \frac{17\,140}{55} = 311.64 \implies d_c = \sqrt{311.64} = 17.65\text{ mm}$$
 
 6. **Select Standard Commercial Bolt from Table 11.1:**
    From **[Table 11.1](table_11_1_standard_screw_threads.md)**:
@@ -730,17 +730,17 @@ Determine the size of the bolts and the thickness of the arm for the bracket sho
 1. **Section Area ($A$) & Section Modulus ($Z$):**
    For depth $b = 130\text{ mm}$:
    $$A = b \cdot t = 130 \cdot t \quad [\text{mm}^2]$$
-   $$Z = \frac{1}{6} \cdot t \cdot b^2 = \frac{1}{6} \cdot t \cdot (130)^2 = 2816.7 \cdot t \quad [\text{mm}^3]$$
+   $$Z = \frac{1}{6} \cdot t \cdot b^2 = \frac{1}{6} \cdot t \cdot (130)^2 = 2817 \cdot t \quad [\text{mm}^3]$$
 
 2. **Stresses in Upper Fibre of Arm:**
    * Direct tensile stress due to $W_H$: $\sigma_{t1} = \frac{W_H}{A} = \frac{34\,640}{130 t} = \frac{266.5}{t}$
-   * Bending tensile stress due to $W_H$: $\sigma_{t2} = \frac{M_H}{Z} = \frac{34\,640 \times (65 - 30)}{2816.7 t} = \frac{1\,212\,400}{2816.7 t} = \frac{430.4}{t}$
-   * Bending tensile stress due to $W_V$: $\sigma_{t3} = \frac{M_V}{Z} = \frac{20\,000 \times 200}{2816.7 t} = \frac{4\,000\,000}{2816.7 t} = \frac{1420}{t}$
+   * Bending tensile stress due to $W_H$: $\sigma_{t2} = \frac{M_H}{Z} = \frac{34\,640 \times (65 - 30)}{2817 t} = \frac{1\,212\,400}{2817 t} = \frac{430.4}{t}$
+   * Bending tensile stress due to $W_V$: $\sigma_{t3} = \frac{M_V}{Z} = \frac{20\,000 \times 200}{2817 t} = \frac{4\,000\,000}{2817 t} = \frac{1420}{t}$
 
 3. **Total Tensile Stress & Arm Thickness ($t$):**
    $$\sigma_t = \sigma_{t1} + \sigma_{t2} + \sigma_{t3} = \frac{266.5 + 430.4 + 1420}{t} = \frac{2116.9}{t}$$
    Equating to allowable tensile stress $\sigma_t = 70\text{ MPa}$:
-   $$70 = \frac{2116.9}{t} \implies t = \frac{2116.9}{70} = 30.24\text{ mm} \implies \mathbf{t = 31\text{ mm}}$$
+   $$70 = \frac{2116.9}{t} \implies t = \frac{2116.9}{70} = 30.24 \approx \mathbf{31\text{ mm}}$$
 
 4. **Shear Stress Verification:**
    Direct shear stress $\tau = \frac{W_V}{A} = \frac{20\,000}{130 \times 31} = 4.96\text{ MPa}$.
