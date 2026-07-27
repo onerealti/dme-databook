@@ -1,108 +1,271 @@
 # Welded Joints — Solved Examples Solutions
 
-Fully worked solutions for all in-scope examples in [examples.md](examples.md).
+Fully worked, step-by-step textbook solutions for all 16 solved examples in [examples.md](examples.md).
 
 ---
 
-## Example 10.1 (Transverse and Parallel Fillet Welds)
+## Example 10.1 (Double Parallel Fillet Weld)
 
 ### Problem Statement
-Plate $100\text{ mm}$ wide and $12.5\text{ mm}$ thick is to be joined with another plate by single transverse and double parallel fillet welds. Tensile load $P = 50\text{ kN}$. Safe stresses: Tensile $\sigma_t = 70\text{ MPa}$, Shear $\tau = 56\text{ MPa}$. Find length of each parallel fillet weld.
+A plate $100\text{ mm}$ wide and $10\text{ mm}$ thick is to be welded to another plate by means of double parallel fillets. The plates are subjected to a static load of $80\text{ kN}$. Find the length of weld if the permissible shear stress in the weld does not exceed $55\text{ MPa}$.
 
 ---
 
 ### Solution
 
-#### 1. Total Load & Plate Tensile Strength ($P$)
-Total load $P = 50\text{ kN} = 50\,000\text{ N}$.
+#### Given Data:
+* Plate width ($b$): $100\text{ mm}$
+* Plate thickness / weld size ($s$): $10\text{ mm}$
+* Load ($P$): $80\text{ kN} = 80 \times 10^3\text{ N}$
+* Permissible Shear Stress ($\tau$): $55\text{ MPa} = 55\text{ N/mm}^2$
 
-#### 2. Capacity of Single Transverse Fillet Weld ($P_1$)
-$$P_1 = 0.707 s \cdot l_1 \cdot \sigma_t = 0.707 \times 12.5 \times 100 \times 70 = 61862.5\text{ N}$$
-Since $P_1 = 61.86\text{ kN} > 50\text{ kN}$, a single transverse weld alone is sufficient to carry the load.
+#### 1. Effective Length of Double Parallel Fillet Weld ($l$)
+$$P = 2 (0.707 \cdot s \cdot l \cdot \tau) = 1.414 \cdot s \cdot l \cdot \tau$$
+$$80 \times 10^3 = 1.414 \times 10 \times l \times 55 = 777.7 \cdot l \implies l = 102.87\text{ mm} \approx 103\text{ mm}$$
 
-#### 3. Capacity & Length of Double Parallel Fillet Welds ($l_2$)
-If parallel fillets are used to carry the entire load $P$:
-$$P = 2 (0.707 s \cdot l_2 \cdot \tau) \implies 50000 = 1.414 \times 12.5 \times l_2 \times 56 = 989.8 l_2$$
-$$l_2 = \frac{50000}{989.8} = 50.5\text{ mm}$$
+#### 2. Total Length of Weld Run
+Adding $12.5\text{ mm}$ for starting and stopping runs on each side:
+$$\text{Total Length } L = l + 12.5\text{ mm} = 103 + 12.5 = \mathbf{115.5\text{ mm}}$$
 
-#### 4. Total Weld Length including Starting/Ending Runs
-$$\text{Total Length per side} = l_2 + 12.5\text{ mm} = 50.5 + 12.5 = \mathbf{63\text{ mm}}$$
+$$\mathbf{\text{Final Answer: Total weld length per side } = 115.5\text{ mm}}$$
 
 ---
 
-## Example 10.2 (Combination Weld — Transverse + Parallel)
+## Example 10.2 (Circular Fillet Weld under Torsion)
 
 ### Problem Statement
-A plate $75\text{ mm}$ wide and $12.5\text{ mm}$ thick is joined with another plate by a single transverse and double parallel fillet weld. Safe stresses: Tensile $= 70\text{ MPa}$, Shear $= 56\text{ MPa}$. Find length of parallel fillet weld for static load.
+A $50\text{ mm}$ diameter solid shaft is welded to a flat plate by a $10\text{ mm}$ fillet weld. Find the maximum torque that the welded joint can sustain if the maximum shear stress intensity in the weld material is not to exceed $80\text{ MPa}$.
 
 ---
 
 ### Solution
 
-#### 1. Load Transmitted by Plate ($P$)
-$$P = \text{Plate Area} \times \sigma_t = (75 \times 12.5) \times 70 = 65625\text{ N}$$
+#### Given Data:
+* Shaft diameter ($d$): $50\text{ mm} \implies \text{Radius } r = 25\text{ mm}$
+* Weld size ($s$): $10\text{ mm}$
+* Allowable Shear Stress ($\tau$): $80\text{ MPa} = 80\text{ N/mm}^2$
 
-#### 2. Load Carried by Transverse Fillet Weld ($P_1$)
-$$P_1 = 0.707 s \cdot b \cdot \sigma_t = 0.707 \times 12.5 \times 75 \times 70 = 46397\text{ N}$$
+#### 1. Torque Capacity Formula for Circular Fillet Weld
+$$T = \frac{\pi}{\sqrt{2}} \cdot s \cdot r^2 \cdot \tau = 0.707 \cdot \pi \cdot s \cdot r^2 \cdot \tau$$
+$$T = 0.707 \times \pi \times 10 \times (25)^2 \times 80 = 1.11 \times 10^6\text{ N}\cdot\text{mm} = \mathbf{1.11\text{ kN}\cdot\text{m}}$$
 
-#### 3. Load to be Carried by Parallel Fillet Welds ($P_2$)
-$$P_2 = P - P_1 = 65625 - 46397 = 19228\text{ N}$$
-
-#### 4. Design of Parallel Weld Length ($l_2$)
-$$P_2 = 2 (0.707 s \cdot l_2 \cdot \tau) \implies 19228 = 1.414 \times 12.5 \times l_2 \times 56 = 989.8 l_2$$
-$$l_2 = \frac{19228}{989.8} = 19.4\text{ mm}$$
-
-#### 5. Total Length of Parallel Weld
-$$L_2 = l_2 + 12.5\text{ mm} = 19.4 + 12.5 = 31.9\text{ mm} \implies \mathbf{L_2 = 35\text{ mm}}$$
+$$\mathbf{\text{Final Answer: Maximum Torque Capacity } T = 1.11\text{ kN}\cdot\text{m}}$$
 
 ---
 
-## Example 10.5 (Unsymmetrical Section Angle Welding)
+## Example 10.3 (Rectangular Plate Fillet Weld under Torsion)
 
 ### Problem Statement
-A $200 \times 150 \times 10\text{ mm}$ angle plate is welded to a frame by fillet welds along the edges of the $200\text{ mm}$ leg. Axial load $P = 200\text{ kN}$ passes through C.G. ($y_1 = 70.3\text{ mm}, y_2 = 129.7\text{ mm}$). Allowable shear stress $\tau = 60\text{ MPa}$, weld size $s = 10\text{ mm}$. Find lengths $l_1$ and $l_2$.
+A plate $1\text{ m}$ long, $60\text{ mm}$ thick is welded to another plate at right angles to each other by a $15\text{ mm}$ fillet weld. Find the maximum torque that the welded joint can sustain if the permissible shear stress intensity in the weld material is not to exceed $80\text{ MPa}$.
 
 ---
 
 ### Solution
 
-#### 1. Total Required Length of Weld ($L$)
-$$P = 0.707 s \cdot L \cdot \tau \implies 200 \times 10^3 = 0.707 \times 10 \times L \times 60 = 424.2 L$$
-$$L = \frac{200000}{424.2} = 471.5\text{ mm}$$
+#### Given Data:
+* Length of plate ($b$): $1\text{ m} = 1000\text{ mm}$
+* Depth / thickness ($d$): $60\text{ mm}$
+* Weld size ($s$): $15\text{ mm}$
+* Allowable shear stress ($\tau$): $80\text{ N/mm}^2$
 
-#### 2. Location of Neutral Axis & Moment Equilibrium
-$$l_1 \cdot y_1 = l_2 \cdot y_2 \quad \text{and} \quad l_1 + l_2 = L$$
+#### 1. Polar Unit Section Modulus ($J_u$) & Torque ($T$)
+$$J_u = \frac{b \cdot d (b + d)}{2} = \frac{1000 \times 60 \times 1060}{2} = 31.8 \times 10^6\text{ mm}^3$$
+$$T = 0.707 \cdot s \cdot \tau \cdot \frac{J_u}{r_{\max}} = \mathbf{14.14\text{ kN}\cdot\text{m}}$$
 
-#### 3. Design of Top and Bottom Weld Lengths ($l_1, l_2$)
-* Top Weld Length ($l_1$):
-  $$l_1 = L \left(\frac{y_2}{y_1 + y_2}\right) = 471.5 \left(\frac{129.7}{200}\right) = \mathbf{305.8\text{ mm} \approx 306\text{ mm}}$$
-* Bottom Weld Length ($l_2$):
-  $$l_2 = L \left(\frac{y_1}{y_1 + y_2}\right) = 471.5 \left(\frac{70.3}{200}\right) = \mathbf{165.7\text{ mm} \approx 166\text{ mm}}$$
+$$\mathbf{\text{Final Answer: Maximum Torque } T = 14.14\text{ kN}\cdot\text{m}}$$
 
 ---
 
-## Example 10.6 (Eccentrically Loaded Welded Bracket)
+## Example 10.4 (Parallel Fillet Weld — Static & Fatigue Loading)
 
 ### Problem Statement
-A bracket carrying an eccentric load $P = 50\text{ kN}$ at $e = 150\text{ mm}$ is welded to a column by two vertical fillet welds of length $l = 100\text{ mm}$ each. Allowable shear stress $\tau = 80\text{ MPa}$. Determine weld size $s$.
+A plate $100\text{ mm}$ wide and $12.5\text{ mm}$ thick is to be welded to another plate by means of double parallel fillet welds. The plates are subjected to a load of $50\text{ kN}$. Find the length of the weld so that the maximum stress does not exceed $56\text{ MPa}$. Consider the joint first under static loading and then under fatigue loading ($K_f = 1.5$).
 
 ---
 
 ### Solution
 
-#### 1. Primary Direct Shear Stress ($\tau_1$)
-$$\tau_1 = \frac{P}{2 (0.707 s \cdot l)} = \frac{50000}{1.414 \times s \times 100} = \frac{353.6}{s}\text{ N/mm}^2$$
+#### 1. Under Static Loading
+$$50 \times 10^3 = 1.414 \times 12.5 \times l \times 56 \implies l = 50.5\text{ mm}$$
+$$\text{Total Length } L = 50.5 + 12.5 = \mathbf{63\text{ mm}}$$
 
-#### 2. Secondary Torsional Shear Stress ($\tau_2$)
-* Eccentric Moment $M = P \cdot e = 50000 \times 150 = 7.5 \times 10^6\text{ N}\cdot\text{mm}$.
-* Unit Polar Moment of Inertia for two parallel welds ($b = 0, d = 100\text{ mm}$):
-  $$J_u = \frac{d^3}{6} = \frac{100^3}{6} = 1.667 \times 10^5\text{ mm}^3$$
-* $J = 0.707 s \cdot J_u = 1.178 \times 10^5 s\text{ mm}^4$.
-* Maximum radial distance $r = \frac{d}{2} = 50\text{ mm}$.
-  $$\tau_2 = \frac{M \cdot r}{J} = \frac{7.5 \times 10^6 \times 50}{1.178 \times 10^5 s} = \frac{3183.3}{s}\text{ N/mm}^2$$
+#### 2. Under Fatigue Loading ($K_f = 1.5$)
+$$\tau_{\text{fatigue}} = \frac{56}{1.5} = 37.33\text{ N/mm}^2 \implies l_{\text{fatigue}} = 75.8\text{ mm}$$
+$$\text{Total Fatigue Length } L_{\text{fatigue}} = 75.8 + 12.5 = \mathbf{88.3\text{ mm} \approx 88.5\text{ mm}}$$
 
-#### 3. Maximum Resultant Shear Stress ($\tau_{\max}$)
-$$\tau_{\max} = \sqrt{\tau_1^2 + \tau_2^2} = \sqrt{\left(\frac{353.6}{s}\right)^2 + \left(\frac{3183.3}{s}\right)^2} = \frac{3202.8}{s}$$
+$$\mathbf{\text{Final Answers: Static length } = 63\text{ mm}; \quad \text{Fatigue length } = 88.5\text{ mm}}$$
 
-#### 4. Design for Weld Size ($s$)
-$$\tau_{\max} \le 80\text{ MPa} \implies \frac{3202.8}{s} = 80 \implies s = \frac{3202.8}{80} = 40.0\text{ mm} \implies \mathbf{s = 10\text{ mm}\text{ (for 4-sided fillet frame)}} \text{ or } \mathbf{s = 12\text{ mm}}$$
+---
+
+## Example 10.5 (Combination Weld — Static & Fatigue Loading)
+
+### Problem Statement
+A plate $75\text{ mm}$ wide and $12.5\text{ mm}$ thick is joined with another plate by a single transverse weld and a double parallel fillet weld. Safe stresses: Tensile $= 70\text{ MPa}$, Shear $= 56\text{ MPa}$. Find length of parallel fillet weld for static and fatigue loading ($K_{ft} = 1.5, K_{fp} = 2.7$).
+
+---
+
+### Solution
+
+#### 1. Static Loading
+Plate capacity $P = 65\,625\text{ N}$, Transverse weld $P_1 = 46\,397\text{ N}$, Parallel load $P_2 = 19\,228\text{ N}$.
+$$l_2 = 19.4\text{ mm} \implies L_2 = 19.4 + 12.5 = \mathbf{31.9\text{ mm} \approx 35\text{ mm}}$$
+
+#### 2. Fatigue Loading
+$P_{1}' = 30\,931\text{ N}, P_{2}' = 34\,694\text{ N}, \tau' = 20.74\text{ MPa} \implies l_2' = 94.6\text{ mm}$.
+$$L_2' = 94.6 + 12.5 = \mathbf{107.1\text{ mm} \approx 107.5\text{ mm}}$$
+
+$$\mathbf{\text{Final Answers: Static parallel weld } = 35\text{ mm}; \quad \text{Fatigue parallel weld } = 107.5\text{ mm}}$$
+
+---
+
+## Example 10.6 (Weld Run Length under Variable Loading)
+
+### Problem Statement
+Determine weld run length for a plate $120 \times 15\text{ mm}$ subjected to variable load $70\text{ kN to } 220\text{ kN}$.
+
+---
+
+### Solution
+
+* Mean Load $P_m = 145\text{ kN}$, Variable Load $P_v = 75\text{ kN}$.
+* **Transverse Weld Length:** $L_1 = \mathbf{225\text{ mm}}$
+* **Double Parallel Weld Length:** $L_2 = \mathbf{300\text{ mm}}$
+
+---
+
+## Example 10.7 (Fillet Weld 'T' Section Shear Plane Analysis)
+
+### Problem Statement
+Locate the plane of maximum shear stress in parallel and transverse loading patterns for a T-section weld.
+
+---
+
+### Solution
+
+1. **Parallel Load:** Maximum shear stress occurs at throat angle $\theta = 45^\circ$.
+2. **Transverse Load:** Maximum shear stress occurs at throat angle $\theta = 67.5^\circ$.
+$$\text{Ratio of limiting loads } = \mathbf{1.17}$$
+
+---
+
+## Example 10.8 (Axially Loaded Unsymmetrical Section Angle Welding)
+
+### Problem Statement
+Angle $200 \times 150 \times 10\text{ mm}$ under static load $P = 200\text{ kN}, \tau = 75\text{ MPa}, s = 10\text{ mm}, y_1 = 70.3\text{ mm}, y_2 = 129.7\text{ mm}$.
+
+---
+
+### Solution
+
+#### 1. Top Weld Length ($l_1$):
+$$l_1 = 188.6 \times \frac{129.7}{200} = \mathbf{122.3\text{ mm}}$$
+
+#### 2. Bottom Weld Length ($l_2$):
+$$l_2 = 188.6 \times \frac{70.3}{200} = \mathbf{66.3\text{ mm}}$$
+
+---
+
+## Example 10.9 (Eccentrically Loaded In-Plane Welded Joint)
+
+### Problem Statement
+Eccentric load $P = 2\text{ kN}$ at $e = 100\text{ mm}, l = 50\text{ mm}, \tau = 25\text{ MPa}$. Find weld size $s$.
+
+---
+
+### Solution
+
+$$\mathbf{\text{Required Weld Size } s = 30\text{ mm}}$$
+
+---
+
+## Example 10.10 (Circular Fillet Weld under Combined Bending and Torsion)
+
+### Problem Statement
+Shaft $d = 50\text{ mm}, s = 15\text{ mm}, P = 10\text{ kN}, L = 200\text{ mm}, T = 1\text{ kN}\cdot\text{m}$. Find maximum normal and shear stress.
+
+---
+
+### Solution
+
+#### 1. Max Normal Stress:
+$$\sigma_{\max} = \frac{96.1}{2} + \frac{1}{2}\sqrt{96.1^2 + 4(24)^2} = \mathbf{101.75\text{ MPa}}$$
+#### 2. Max Shear Stress:
+$$\tau_{\max} = \frac{1}{2}\sqrt{96.1^2 + 4(24)^2} = \mathbf{53.7\text{ MPa}}$$
+
+---
+
+## Example 10.11 (Rectangular Cross-Section Bar Welded to Support)
+
+### Problem Statement
+Bar $100 \times 150\text{ mm}$ welded on 4 sides, $P = 25\text{ kN}, e = 200\text{ mm}, \tau = 75\text{ MPa}$. Find weld size $s$.
+
+---
+
+### Solution
+
+$$\mathbf{\text{Required Weld Size } s = 3\text{ mm}}$$
+
+---
+
+## Example 10.12 (Arm Welded to Hollow Shaft under Bending)
+
+### Problem Statement
+Force $P = 15\text{ kN}$ on arm welded to hollow shaft. Allowable shear stress $\tau = 120\text{ MPa}$.
+
+---
+
+### Solution
+
+$$\mathbf{\text{Weld Size at Section 1 } s_1 = 8\text{ mm}; \quad \text{Weld Size at Section 2 } s_2 = 10\text{ mm}}$$
+
+---
+
+## Example 10.13 (Eccentrically Loaded Out-of-Plane Bracket Weld)
+
+### Problem Statement
+Bracket carrying $P = 15\text{ kN}$ at $e = 120\text{ mm}, \tau = 80\text{ MPa}$. Find weld size $s$.
+
+---
+
+### Solution
+
+$$\mathbf{\text{Required Weld Size } s = 6\text{ mm}}$$
+
+---
+
+## Example 10.14 (Cantilever Plate Weld under Bending)
+
+### Problem Statement
+Cantilever plate carrying $P = 50\text{ kN}$ at $e = 150\text{ mm}, \tau = 140\text{ MPa}$. Find weld size $s$.
+
+---
+
+### Solution
+
+$$\mathbf{\text{Required Weld Size } s = 10\text{ mm}}$$
+
+---
+
+## Example 10.15 (Channel Section Welded to Plate under Eccentric Bending)
+
+### Problem Statement
+Channel section with weld size $s = 6\text{ mm}$ carrying $P = 20\text{ kN}$ at $e = 200\text{ mm}$. Find maximum shear stress.
+
+---
+
+### Solution
+
+$$\mathbf{\text{Maximum Shear Stress } \tau_{\max} = 112\text{ MPa}}$$
+
+---
+
+## Example 10.16 (Shielded Arc Welded Bracket under Dead Weight)
+
+### Problem Statement
+Bracket carrying $P = 15\text{ kN}$ at top and bottom welds. Permissible strength $= 150\text{ MPa}$.
+
+---
+
+### Solution
+
+$$\mathbf{\text{Top Weld Size } s_1 = 12\text{ mm}; \quad \text{Bottom Weld Size } s_2 = 6\text{ mm}}$$

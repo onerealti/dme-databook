@@ -134,76 +134,12 @@ The pull in the tie rod of a roof truss is $44\text{ kN}$. Design a suitable adj
 
 ---
 
-## From `welded joints/` — Fatigue, Circular Weld Torque & Bending
+## From `welded joints/` — Non-Syllabus Proofs & Stash
 
-### Example 10.2 — Circular Fillet Weld under Torque
+> Note: All 16 textbook examples (Examples 10.1 through 10.16) covering Transverse, Parallel, Circular Fillet Welds (Torsion & Bending), Unsymmetrical Section Welds, Cantilevers, and Eccentric Bracket Welds are **100% Active in `welded joints/`** as required by the PC402ME syllabus.
 
-A 50 mm diameter solid shaft is welded to a flat plate by 10 mm fillet weld as shown in **Fig. 10.12**. Find the maximum torque that the welded joint can sustain if the maximum shear stress intensity in the weld material is not to exceed 80 MPa.
 
-### Example 10.3 — Rectangular Plate Weld under Torque
 
-A plate 1 m long, 60 mm thick is welded to another plate at right angles to each other by 15 mm fillet weld, as shown in **Fig. 10.13**. Find the maximum torque that the welded joint can sustain if the permissible shear stress intensity in the weld material is not to exceed 80 MPa.
-
-### Example 10.4 — Parallel Fillet Weld (Static + Fatigue)
-
-A plate 100 mm wide and 12.5 mm thick is to be welded to another plate by means of parallel fillet welds. The plates are subjected to a load of 50 kN. Find the length of the weld so that the maximum stress does not exceed 56 MPa. Consider the joint first under static loading and then under fatigue loading.
-
-### Example 10.5 — Transverse + Parallel Weld (Static + Fatigue)
-
-A plate 75 mm wide and 12.5 mm thick is joined with another plate by a single transverse weld and a double parallel fillet weld as shown in **Fig. 10.15**. The maximum tensile and shear stresses are 70 MPa and 56 MPa respectively. Find the length of each parallel fillet weld, if the joint is subjected to both static and fatigue loading.
-
-### Example 10.6 — Weld Run Length (Variable Loads)
-
-Determine the length of the weld run for a plate of size 120 mm wide and 15 mm thick to be welded to another plate by means of:
-1. A single transverse weld; and
-2. Double parallel fillet welds when the joint is subjected to variable loads.
-
-### Example 10.7 — Fillet Weld 'T' Shear Plane Analysis
-
-The fillet welds of equal legs are used to fabricate a 'T' as shown in **Fig. 10.17 (a) and (b)**, where $s$ is the leg size and $l$ is the length of weld. Locate the plane of maximum shear stress in each of the following loading patterns:
-1. Load parallel to the weld (neglect eccentricity), and
-2. Load at right angles to the weld (transverse load).
-Find the ratio of these limiting loads.
-
-### Example 10.10 — Shaft Welded to Plate (Torque + Bending)
-
-A 50 mm diameter solid shaft is welded to a flat plate as shown in **Fig. 10.25**. If the size of the weld is 15 mm, find the maximum normal and shear stress in the weld.
-
-### Example 10.11 — Rectangular Bar Welded to Support (Bending)
-
-A rectangular cross-section bar is welded to a support by means of fillet welds as shown in **Fig. 10.26**. Determine the size of the welds, if the permissible shear stress in the weld is limited to 75 MPa.
-
-### Example 10.12 — Arm Welded to Hollow Shaft (Bending)
-
-An arm A is welded to a hollow shaft at section '1'. The hollow shaft is welded to a plate C at section '2'. The arrangement is shown in **Fig. 10.27**, along with dimensions. A force $P = 15\text{ kN}$ acts at arm A perpendicular to the axis of the arm. Calculate the size of weld at section '1' and '2'. The permissible shear stress in the weld is 120 MPa.
-
-### Example 10.14 — Cantilever Plate Weld (Bending)
-
-A rectangular steel plate is welded as a cantilever to a vertical column and supports a single concentrated load $P$, as shown in **Fig. 10.30**. Determine the weld size if shear stress in the same is not to exceed 140 MPa.
-
-### Example 10.15 — Channel Welded to Plate (Eccentric + Bending)
-
-Find the maximum shear stress induced in the weld of 6 mm size when a channel, as shown in **Fig. 10.32**, is welded to a plate and loaded with 20 kN force at a distance of 200 mm.
-
-### Example 10.16 — Bracket Weld (Bending)
-
-The bracket, as shown in **Fig. 10.34**, is designed to carry a dead weight of $P = 15\text{ kN}$. What sizes of the fillet welds are required at the top and bottom of the bracket? Assume the forces act through the points A and B. The welds are produced by shielded arc welding process with a permissible strength of 150 MPa.
-
-### Exercises (Excessive)
-
-**Exercise 4.** A circular steel bar 50 mm diameter and 200 mm long is welded perpendicularly to a steel plate to form a cantilever to be loaded with 5 kN at the free end. Determine the size of the weld, assuming the allowable stress in the weld as 100 MPa.
-> **[Ans. 7.2 mm]**
-
-**Exercise 5.** A 65 mm diameter solid shaft is to be welded to a flat plate by a fillet weld around the circumference of the shaft. Determine the size of the weld if the torque on the shaft is $3\text{ kN}\cdot\text{m}$. The allowable shear stress in the weld is 70 MPa.
-> **[Ans. 10 mm]**
-
-**Exercise 6.** A solid rectangular shaft of cross-section $80\text{ mm} \times 50\text{ mm}$ is welded by a 5 mm fillet weld on all sides to a flat plate with axis perpendicular to the plate surface. Find the maximum torque that can be applied to the shaft, if the shear stress in the weld is not to exceed 85 MPa.
-> **[Ans. 32.07 kN-m]**
-
-### Questions (Excessive)
-
-**Q9.** Show that the normal stress in the case of an annular fillet weld subjected to bending is given by:
-$$\sigma_b = \frac{5.66 M}{\pi s d^2}$$
 
 ---
 
