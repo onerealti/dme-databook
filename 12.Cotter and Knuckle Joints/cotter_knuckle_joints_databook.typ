@@ -484,8 +484,9 @@
       150000 &= pi/4 d^2 (75) = 59 d^2 \
       d^2 &= 150000 / 59 = 2540 \
       #text(size: 20pt)[$d$] &= #text(size: 20pt)[$52 "mm" quad bold("(Ans.)")$] \
-      d_1 &= d = bold(52 "mm"), quad d_2 = 2d = bold(104 "mm"), quad d_3 = 1.5d = bold(78 "mm") \
-      t &= 1.25d = bold(65 "mm"), quad t_1 = 0.75d = bold(40 "mm"), quad t_2 = 0.5d = bold(26 "mm")
+      d_1 &= d = bold(52 "mm"), quad d_2 = 2d = bold(104 "mm") \
+      d_3 &= 1.5d = bold(78 "mm"), quad t = 1.25d = bold(65 "mm") \
+      t_1 &= 0.75d = bold(40 "mm"), quad t_2 = 0.5d = bold(26 "mm")
     $
   ]
 )
@@ -598,8 +599,9 @@
       70000 &= pi/4 d^2 (70) = 55 d^2 \
       d^2 &= 70000 / 55 = 1273 \
       #text(size: 20pt)[$d$] &= #text(size: 20pt)[$36 "mm" quad bold("(Ans.)")$] \
-      d_1 &= d = bold(36 "mm"), quad d_2 = 2d = bold(72 "mm"), quad d_3 = 1.5d = bold(54 "mm") \
-      t &= 1.25d = bold(45 "mm"), quad t_1 = 0.75d = bold(27 "mm")
+      d_1 &= d = bold(36 "mm"), quad d_2 = 2d = bold(72 "mm") \
+      d_3 &= 1.5d = bold(54 "mm"), quad t = 1.25d = bold(45 "mm") \
+      t_1 &= 0.75d = bold(27 "mm")
     $
   ]
 )
