@@ -480,10 +480,10 @@
   [*1. Rod Diameter ($d$) & Empirical Proportions* \ Tensile failure of solid rod],
   [
     $
-      P &= pi/4 d^2 dot sigma_t \
+      #text(size: 20pt)[$P = pi/4 d^2 dot sigma_t$] \
       150000 &= pi/4 d^2 (75) = 59 d^2 \
       d^2 &= 150000 / 59 = 2540 \
-      #text(size: 20pt)[$d$] &= #text(size: 20pt)[$52 "mm" quad bold("(Ans.)")$] \
+      d &= bold(52 "mm" quad bold("(Ans.)")) \
       d_1 &= d = bold(52 "mm"), quad d_2 = 2d = bold(104 "mm") \
       d_3 &= 1.5d = bold(78 "mm"), quad t = 1.25d = bold(65 "mm") \
       t_1 &= 0.75d = bold(40 "mm"), quad t_2 = 0.5d = bold(26 "mm")
@@ -495,9 +495,9 @@
   [*2. Knuckle Pin Double Shear Check ($tau$)* \ Shear stress check on pin],
   [
     $
-      P &= 2 (pi/4 d_1^2) tau \
+      #text(size: 20pt)[$P = 2 (pi/4 d_1^2) tau$] \
       150000 &= 2 (pi/4) (52)^2 tau = 4248 tau \
-      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$150000 / 4248$] = bold(35.3 "MPa") &<= 60 "MPa" quad bold("(SAFE)")
+      tau &= 150000 / 4248 = bold(35.3 "MPa") &<= 60 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -506,9 +506,9 @@
   [*3. Single Eye Tension Check ($sigma_t$)* \ Tearing across pin hole],
   [
     $
-      P &= (d_2 - d_1) t dot sigma_t \
+      #text(size: 20pt)[$P = (d_2 - d_1) t dot sigma_t$] \
       150000 &= (104 - 52) 65 dot sigma_t = 3380 sigma_t \
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$150000 / 3380$] = bold(44.4 "MPa") &<= 75 "MPa" quad bold("(SAFE)")
+      sigma_t &= 150000 / 3380 = bold(44.4 "MPa") &<= 75 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -517,9 +517,9 @@
   [*4. Single Eye Shear Check ($tau$)* \ Double shearing of eye end],
   [
     $
-      P &= (d_2 - d_1) t dot tau \
+      #text(size: 20pt)[$P = (d_2 - d_1) t dot tau$] \
       150000 &= (104 - 52) 65 dot tau = 3380 tau \
-      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$150000 / 3380$] = bold(44.4 "MPa") &<= 60 "MPa" quad bold("(SAFE)")
+      tau &= 150000 / 3380 = bold(44.4 "MPa") &<= 60 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -528,9 +528,9 @@
   [*5. Single Eye Crushing Check ($sigma_c$)* \ Crushing between pin and eye],
   [
     $
-      P &= d_1 dot t dot sigma_c \
+      #text(size: 20pt)[$P = d_1 dot t dot sigma_c$] \
       150000 &= 52 times 65 dot sigma_c = 3380 sigma_c \
-      #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$150000 / 3380$] = bold(44.4 "MPa") &<= 150 "MPa" quad bold("(SAFE)")
+      sigma_c &= 150000 / 3380 = bold(44.4 "MPa") &<= 150 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -539,9 +539,9 @@
   [*6. Fork End Tension Check ($sigma_t$)* \ Tearing across fork pin holes],
   [
     $
-      P &= (d_2 - d_1) 2 t_1 dot sigma_t \
+      #text(size: 20pt)[$P = (d_2 - d_1) 2 t_1 dot sigma_t$] \
       150000 &= (104 - 52) 2(40) dot sigma_t = 4160 sigma_t \
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$150000 / 4160$] = bold(36 "MPa") &<= 75 "MPa" quad bold("(SAFE)")
+      sigma_t &= 150000 / 4160 = bold(36 "MPa") &<= 75 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -550,9 +550,9 @@
   [*7. Fork End Shear Check ($tau$)* \ Double shearing of fork ends],
   [
     $
-      P &= (d_2 - d_1) 2 t_1 dot tau \
+      #text(size: 20pt)[$P = (d_2 - d_1) 2 t_1 dot tau$] \
       150000 &= (104 - 52) 2(40) dot tau = 4160 tau \
-      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$150000 / 4160$] = bold(36 "MPa") &<= 60 "MPa" quad bold("(SAFE)")
+      tau &= 150000 / 4160 = bold(36 "MPa") &<= 60 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -561,9 +561,9 @@
   [*8. Fork End Crushing Check ($sigma_c$)* \ Crushing between pin and fork],
   [
     $
-      P &= d_1 dot 2 t_1 dot sigma_c \
+      #text(size: 20pt)[$P = d_1 dot 2 t_1 dot sigma_c$] \
       150000 &= 52 times 2(40) dot sigma_c = 4160 sigma_c \
-      #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$150000 / 4160$] = bold(36 "MPa") &<= 150 "MPa" quad bold("(SAFE)")
+      sigma_c &= 150000 / 4160 = bold(36 "MPa") &<= 150 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -595,10 +595,10 @@
   [*1. Rod Diameter ($d$) & Empirical Proportions* \ Tensile failure of tie rod under allowable $sigma_t = 70 "MPa"$],
   [
     $
-      P &= pi/4 d^2 dot sigma_t \
+      #text(size: 20pt)[$P = pi/4 d^2 dot sigma_t$] \
       70000 &= pi/4 d^2 (70) = 55 d^2 \
       d^2 &= 70000 / 55 = 1273 \
-      #text(size: 20pt)[$d$] &= #text(size: 20pt)[$36 "mm" quad bold("(Ans.)")$] \
+      d &= bold(36 "mm" quad bold("(Ans.)")) \
       d_1 &= d = bold(36 "mm"), quad d_2 = 2d = bold(72 "mm") \
       d_3 &= 1.5d = bold(54 "mm"), quad t = 1.25d = bold(45 "mm") \
       t_1 &= 0.75d = bold(27 "mm")
@@ -610,9 +610,9 @@
   [*2. Knuckle Pin Double Shear Check ($tau$)* \ Check shear stress for allowable $tau = 66 "MPa"$],
   [
     $
-      P &= 2 (pi/4 d_1^2) tau \
+      #text(size: 20pt)[$P = 2 (pi/4 d_1^2) tau$] \
       70000 &= 2 (pi/4) (36)^2 tau = 2036 tau \
-      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$70000 / 2036$] = bold(34.4 "MPa") &<= 66 "MPa" quad bold("(SAFE)")
+      tau &= 70000 / 2036 = bold(34.4 "MPa") &<= 66 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -621,9 +621,9 @@
   [*3. Single Eye Tension Check ($sigma_t$)* \ Check tensile stress for allowable $sigma_t = 70 "MPa"$],
   [
     $
-      P &= (d_2 - d_1) t dot sigma_t \
+      #text(size: 20pt)[$P = (d_2 - d_1) t dot sigma_t$] \
       70000 &= (72 - 36) 45 dot sigma_t = 1620 sigma_t \
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$70000 / 1620$] = bold(43.2 "MPa") &<= 70 "MPa" quad bold("(SAFE)")
+      sigma_t &= 70000 / 1620 = bold(43.2 "MPa") &<= 70 "MPa" quad bold("(SAFE)")
     $
   ]
 )
@@ -632,9 +632,9 @@
   [*4. Fork End Tension Check ($sigma_t$)* \ Check tensile stress for allowable $sigma_t = 70 "MPa"$],
   [
     $
-      P &= (d_2 - d_1) 2 t_1 dot sigma_t \
+      #text(size: 20pt)[$P = (d_2 - d_1) 2 t_1 dot sigma_t$] \
       70000 &= (72 - 36) 2(27) dot sigma_t = 1944 sigma_t \
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$70000 / 1944$] = bold(36 "MPa") &<= 70 "MPa" quad bold("(SAFE)")
+      sigma_t &= 70000 / 1944 = bold(36 "MPa") &<= 70 "MPa" quad bold("(SAFE)")
     $
   ]
 )
