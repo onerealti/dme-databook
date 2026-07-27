@@ -566,85 +566,134 @@
       &= 60 [sqrt((60 + 6)/(60 - 6)) - 1] \
       &= 6.3 "mm"
     $
-    #v(6pt)
+    #v(4pt)
     #text(weight: "bold")[Adopt Shell Thickness $t = 10 "mm"$]
   ]
 )
 
 #item-row(
-  [*2. Fixing Bolts Sizing & Count ($n$)* \ Upward pressure load $P$ and bolt capacity],
-  [
-    $
-      #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \
-      &= pi/4 (120)^2 times 6 \
-      &= 67860 "N"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$P_1$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_("tb")$] \
-      &= pi/4 (20.32)^2 times 40 \
-      &= 12973 "N"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$n$] &= #text(size: 20pt)[$P / P_1$] \
-      &= 67860 / 12973 \
-      &= 5.23 \
-      &=> bold(n = 6 "bolts")
-    $
-  ]
+  [*2. Total Upward Force ($P$)* \ Upward pressure force acting on inspection cover plate],
+  [$
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \
+    &= pi/4 (120)^2 times 6 \
+    &= 67860 "N"
+  $]
 )
 
 #item-row(
-  [*3. PCD & Leak-Proof Pitch Verification* \ Pitch circle verification],
-  [
-    $
-      #text(size: 20pt)[$D_p$] &= #text(size: 20pt)[$D + 2t + 3d_1$] \
-      &= 120 + 2(10) + 3(25) \
-      &= 215 "mm"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$p_c$] &= #text(size: 20pt)[$(pi D_p) / n$] \
-      &= (pi times 215) / 6 \
-      &= 112.6 "mm"
-    $
-    #v(6pt)
-    $ 100 "mm" <= 112.6 "mm" <= 150 "mm" bold("(SAFE & SATISFACTORY)") $
-  ]
+  [*3. Resisting Force per Bolt ($P_1$)* \ Capacity per M 24 bolt ($d_c = 20.32 "mm"$)],
+  [$
+    #text(size: 20pt)[$P_1$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_("tb")$] \
+    &= pi/4 (20.32)^2 times 40 \
+    &= 12973 "N"
+  $]
 )
 
 #item-row(
-  [*4. Cover Plate Thickness ($t_1$)* \ Bending moment and section modulus evaluation],
-  [
-    $
-      #text(size: 20pt)[$M$] &= #text(size: 20pt)[$0.053 P D_p$] \
-      &= 0.053 times 67860 times 215 \
-      &= 773265 "N"dot"mm"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$D_o$] &= #text(size: 20pt)[$D_p + 3d_1$] \
-      &= 290 "mm"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$w$] &= #text(size: 20pt)[$D_o - 2d_1$] \
-      &= 240 "mm"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$1/6 w (t_1)^2$] \
-      &= 40 (t_1)^2 \
-      60 &= 773265 / (40 (t_1)^2) \
-      (t_1)^2 &= 322.2 \
-      t_1 &= bold(18 "mm")
-    $
-  ]
+  [*4. Required Bolt Count ($n$)* \ Number of M 24 fixing bolts required],
+  [$
+    #text(size: 20pt)[$n$] &= #text(size: 20pt)[$P / P_1$] \
+    &= 67860 / 12973 \
+    &= 5.23 \
+    &=> bold(n = 6 "bolts")
+  $]
 )
 
 #item-row(
-  [*5. Design Output*],
+  [*5. Pitch Circle Diameter ($D_p$)* \ Hole diameter $d_1 = 25 "mm"$ for M 24 bolts],
+  [$
+    #text(size: 20pt)[$D_p$] &= #text(size: 20pt)[$D + 2t + 3d_1$] \
+    &= 120 + 2(10) + 3(25) \
+    &= 215 "mm"
+  $]
+)
+
+#item-row(
+  [*6. Circumferential Pitch ($p_c$)* \ Pitch spacing for $n = 6$ bolts on PCD],
+  [$
+    #text(size: 20pt)[$p_c$] &= #text(size: 20pt)[$(pi D_p) / n$] \
+    &= (pi times 215) / 6 \
+    &= 112.6 "mm"
+  $]
+)
+
+#item-row(
+  [*7. Minimum Pitch Limit ($p_c, "min"$)* \ Empirical lower limit $20 sqrt(d_1)$],
+  [$
+    #text(size: 20pt)[$p_c, "min"$] &= #text(size: 20pt)[$20 sqrt(d_1)$] \
+    &= 20 sqrt(25) \
+    &= 100 "mm"
+  $]
+)
+
+#item-row(
+  [*8. Maximum Pitch Limit ($p_c, "max"$)* \ Empirical upper limit $30 sqrt(d_1)$],
+  [$
+    #text(size: 20pt)[$p_c, "max"$] &= #text(size: 20pt)[$30 sqrt(d_1)$] \
+    &= 30 sqrt(25) \
+    &= 150 "mm"
+  $]
+)
+
+#item-row(
+  [*9. Leak-Proof Pitch Verification* \ Pitch range verification],
+  [$ 100 "mm" <= 112.6 "mm" <= 150 "mm" bold("(SAFE & SATISFACTORY)") $]
+)
+
+#item-row(
+  [*10. Selected Bolt Designation* \ Pitch $112.6 "mm"$ is within $100 "mm"$ to $150 "mm"$ limit],
+  [*Size of Bolt = M 24 Fasteners ($d = 24 "mm", d_c = 20.32 "mm"$)*]
+)
+
+#item-row(
+  [*11. Cover Plate Bending Moment ($M$)* \ Bending moment acting at central section A-A],
+  [$
+    #text(size: 20pt)[$M$] &= #text(size: 20pt)[$0.053 P D_p$] \
+    &= 0.053 times 67860 times 215 \
+    &= 773265 "N"dot"mm"
+  $]
+)
+
+#item-row(
+  [*12. Outside Diameter of Cover ($D_o$)* \ Outer plate boundary diameter],
+  [$
+    #text(size: 20pt)[$D_o$] &= #text(size: 20pt)[$D_p + 3d_1$] \
+    &= 215 + 3(25) \
+    &= 290 "mm"
+  $]
+)
+
+#item-row(
+  [*13. Plate Bending Width ($w$)* \ Net plate width carrying bending],
+  [$
+    #text(size: 20pt)[$w$] &= #text(size: 20pt)[$D_o - 2d_1$] \
+    &= 290 - 2(25) \
+    &= 240 "mm"
+  $]
+)
+
+#item-row(
+  [*14. Cover Section Modulus ($Z$)* \ Bending section modulus of plate],
+  [$
+    #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$1/6 w (t_1)^2$] \
+    &= 1/6 (240) (t_1)^2 \
+    &= 40 (t_1)^2
+  $]
+)
+
+#item-row(
+  [*15. Required Cover Thickness ($t_1$)* \ Solved thickness of cover plate],
+  [$
+    #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
+    60 &= 773265 / (40 (t_1)^2) \
+    (t_1)^2 &= 773265 / (40 times 60) \
+    &= 322 \
+    t_1 &= bold(18 "mm")
+  $]
+)
+
+#item-row(
+  [*16. Design Output*],
   [*Final Design: 6 Bolts of M 24 Size, Cover Plate Thickness $t_1 = 18 "mm"$*]
 )
 
