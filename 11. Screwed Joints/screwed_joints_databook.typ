@@ -981,15 +981,6 @@
   [*Diameter of Hole $D = 23.64 "mm"quad bold("Ans.")$*]
 )
 
-#figure-page(
-  "11",
-  "Uniform Strength Fasteners",
-  "Figures/fig 11.48.png",
-  "Figure 11.48: Turned Shank Uniform Strength Bolt",
-  second-fig: "Figures/fig 11.49 & 11.50.png",
-  second-caption: "Figure 11.49 & 11.50: Core-Drilled Hole Uniform Strength Bolt"
-)
-
 // ==========================================
 // SECTION 12
 // ==========================================
