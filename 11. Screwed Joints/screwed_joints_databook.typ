@@ -1717,78 +1717,113 @@
 )
 
 #item-row(
-  [*1. Line X-X Analysis ($45^deg$ Tilting)* \ Tilting moment equilibrium about axis X-X],
+  [*1. Bolt Tensile Capacity ($P_("cap")$) & Direct Load ($W_("t1")$)* \ M 30 bolt capacity ($A_c = 561 "mm"^2$) for allowable stress $sigma_t = 60 "MPa"$],
   [
     $
-      P_("cap") &= 561 times 60 \
-      &= 33.66 "kN" \
-      W_("t1") &= 60 / 4 \
-      &= 15 "kN" \
-      P_("max") &= P_("cap") + W_("t1") \
+      #text(size: 20pt)[$P_("cap")$] &= #text(size: 20pt)[$A_c times sigma_t$] = 561 times 60 = 33660 "N" = 33.66 "kN" \
+      #text(size: 20pt)[$W_("t1")$] &= #text(size: 20pt)[$W / n$] = 60 / 4 = 15 "kN"
+    $
+  ]
+)
+
+#item-row(
+  [*2. Net Tensile Load on Critical Bolt ($P_("max")$)* \ Sum of tensile capacity and direct load at distance $L_2$],
+  [
+    $
+      #text(size: 20pt)[$P_("max")$] &= #text(size: 20pt)[$P_("cap") + W_("t1")$] \
       &= 33.66 + 15 \
-      &= 48.66 "kN" \
-      L_1 &= R - r cos 45^deg \
-      &= 0.123 "m" \
-      L_2 &= R + r cos 45^deg \
-      &= 0.477 "m"
+      &= 48.66 "kN"
     $
-    #v(6pt)
+  ]
+)
+
+#item-row(
+  [*3. Line X-X Tilting Distances ($L_1, L_2$)* \ Bolt distances from tilting tangent axis A-A at $45^deg$ to bolts],
+  [
     $
-      #text(size: 20pt)[$M_("res")$] &= #text(size: 20pt)[$2 dot w dot [L_1^2 + L_2^2]$] \
+      #text(size: 20pt)[$L_1$] &= #text(size: 20pt)[$R - r cos 45^deg$] = 0.3 - 0.25(0.7071) = 0.123 "m" \
+      #text(size: 20pt)[$L_2$] &= #text(size: 20pt)[$R + r cos 45^deg$] = 0.3 + 0.25(0.7071) = 0.477 "m"
+    $
+  ]
+)
+
+#item-row(
+  [*4. Unit Load ($w$) & Resisting Moment about Axis A-A ($M_("res")$)* \ Moment of bolt forces about outer tilting tangent A-A],
+  [
+    $
+      w &= P_("max") / L_2 = 48.66 / 0.477 = 102 "kN/m" \
+      #text(size: 20pt)[$M_("res")$] &= #text(size: 20pt)[$2 w (L_1^2 + L_2^2)$] \
+      &= 2 times 102 times ((0.123)^2 + (0.477)^2) \
       &= 49.4 "kN"dot"m"
     $
   ]
 )
 
 #item-row(
-  [*2. Maximum Load Distance ($e$)* \ Overturning moment equation],
-  [$
-    #text(size: 20pt)[$M_("overturn")$] &= #text(size: 20pt)[$W (e - R)$] \
-    60(e - 0.3) &= 49.4 \
-    #text(size: 20pt)[$e$] &= #text(size: 20pt)[$bold(1.123 "m")$]
-  $]
-)
-
-#item-row(
-  [*3. Line Y-Y Analysis (In-Line with Bolts)* \ Tilting moment equilibrium about axis Y-Y],
-  [$
-    #text(size: 20pt)[$M_("res")$] &= #text(size: 20pt)[$w dot [L_1^2 + 2 L_2^2 + L_3^2]$] \
-    49.4 &= 0.485 dot w \
-    w &= 102 "kN/m"
-  $]
-)
-
-#item-row(
-  [*4. Line Y-Y Maximum Induced Stress ($sigma_("max")$)* \ Net load and induced tensile stress on critical bolt],
+  [*5. Part 1: Maximum Load Distance ($e$)* \ Overturning moment equilibrium along line X-X],
   [
     $
-      W_("t2") &= w dot L_3 \
-      &= 102 times 0.55 \
-      &= 56.1 "kN" \
-      P_("net") &= W_("t2") - W_("t1") \
-      &= 56.1 - 15 \
-      &= 41.1 "kN" \
-      &= 41100 "N"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$sigma_("max")$] &= #text(size: 20pt)[$P_("net") / A_c$] \
-      &= 41100 / 516 \
-      &= bold(79.65 "MPa")
+      M_("overturn") &= W (e - R) = 60(e - 0.3) \
+      60(e - 0.3) &= 49.4 \
+      e - 0.3 &= 49.4 / 60 = 0.823 "m" \
+      #text(size: 20pt)[$e$] &= #text(size: 20pt)[$0.823 + 0.3$] = bold(1.123 "m" quad bold("(Ans.)"))
     $
   ]
 )
 
 #item-row(
-  [*5. Design Output*],
-  [*Final Answers: (1) Maximum Distance $e = 1.123 "m"$, (2) Maximum Induced Stress $sigma_"max" = 79.65 "MPa"$*]
+  [*6. Line Y-Y Tilting Distances ($L_1, L_2, L_3$)* \ Bolt distances from tilting tangent axis B-B],
+  [
+    $
+      L_1 &= R - r = 0.3 - 0.25 = 0.05 "m" quad (1 "bolt") \
+      L_2 &= R = 0.3 "m" quad (2 "bolts") \
+      L_3 &= R + r = 0.3 + 0.25 = 0.55 "m" quad (1 "bolt, critical")
+    $
+  ]
+)
+
+#item-row(
+  [*7. Resisting Moment & Unit Load along Line Y-Y* \ Resisting moment about axis B-B at $e = 1.123 "m"$],
+  [
+    $
+      M_("res") &= w (L_1^2 + 2 L_2^2 + L_3^2) \
+      &= w ((0.05)^2 + 2(0.3)^2 + (0.55)^2) = 0.485 w \
+      0.485 w &= 49.4 => w = 49.4 / 0.485 = 102 "kN/m"
+    $
+  ]
+)
+
+#item-row(
+  [*8. Tensile Load & Net Force on Critical Bolt ($W_("t2"), P_("net")$)* \ Secondary load and net tensile load],
+  [
+    $
+      W_("t2") &= w dot L_3 = 102 times 0.55 = 56.1 "kN" \
+      #text(size: 20pt)[$P_("net")$] &= #text(size: 20pt)[$W_("t2") - W_("t1")$] = 56.1 - 15 = 41.1 "kN" = 41100 "N"
+    $
+  ]
+)
+
+#item-row(
+  [*9. Part 2: Maximum Induced Tensile Stress ($sigma_("max")$)* \ Stress evaluation using textbook stress area $A_c = 516 "mm"^2$],
+  [
+    $
+      #text(size: 20pt)[$sigma_("max")$] &= #text(size: 20pt)[$P_("net") / A_c$] \
+      &= 41100 / 516 \
+      &= bold(79.65 "MPa" quad bold("(Ans.)"))
+    $
+  ]
+)
+
+#item-row(
+  [*10. Design Output*],
+  [*Final Answers: (1) Maximum Load Distance $e = 1.123 "m"$, (2) Maximum Induced Stress $sigma_"max" = 79.65 "MPa"$*]
 )
 
 #figure-page(
   "19",
-  "Pillar Crane 2-Line Analysis",
+  "Pillar Crane 2-Line Overturning Analysis",
   "Figures/fig 11.43.png",
-  "Figure 11.43: 2-Line Overturning Axis Analysis (X-X vs Y-Y)"
+  "Figure 11.43: 2-Line Overturning Axis Analysis (Line X-X vs Line Y-Y)"
 )
 
 // ==========================================
@@ -1803,85 +1838,120 @@
 )
 
 #item-row(
-  [*1. Diameter $D$ for Arm (Combined Bending + Torsion)* \ Structural moment and torque resolution],
+  [*1. Bending & Twisting Moments on Arm D ($M, T$)* \ Bending moment and torque resolution for diameter D],
   [
     $
-      M &= 13500 times (300 - 25) \
-      &= 3.7125 times 10^6 "N"dot"mm" \
-      T &= 13500 times 250 \
-      &= 3.375 times 10^6 "N"dot"mm" \
-      #text(size: 20pt)[$T_e$] &= #text(size: 20pt)[$sqrt(M^2 + T^2)$] \
-      &= 5.017 times 10^6 "N"dot"mm"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$T_e$] &= #text(size: 20pt)[$pi/16 D^3 dot tau$] \
-      5.017 times 10^6 &= pi/16 D^3 times 65 \
-      D &= bold(75 "mm")
+      #text(size: 20pt)[$M$] &= #text(size: 20pt)[$W (300 - 25)$] = 13500 times 275 = 3.7125 times 10^6 "N"dot"mm" \
+      #text(size: 20pt)[$T$] &= #text(size: 20pt)[$W dot e$] = 13500 times 250 = 3.375 times 10^6 "N"dot"mm"
     $
   ]
 )
 
 #item-row(
-  [*2. Diameter $d$ for Arm (Pure Bending)* \ Pure bending arm evaluation],
+  [*2. Equivalent Twisting Moment ($T_e$) & Diameter $D$* \ Torsional shear stress formula for allowable shear stress $tau = 65 "MPa"$],
   [
     $
-      M &= 13500 times (250 - 37.5) \
-      &= 2.8688 times 10^6 "N"dot"mm" \
-      #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
-      110 &= (2.8688 times 10^6) / (pi/32 d^3) \
-      d &= bold(65 "mm")
+      #text(size: 20pt)[$T_e$] &= #text(size: 20pt)[$sqrt(M^2 + T^2)$] = sqrt((3.7125 times 10^6)^2 + (3.375 times 10^6)^2) = 5.017 times 10^6 "N"dot"mm" \
+      5.017 times 10^6 &= pi/16 D^3 times 65 = 12.76 D^3 \
+      D^3 &= (5.017 times 10^6) / 12.76 = 393 times 10^3 \
+      #text(size: 20pt)[$D$] &= #text(size: 20pt)[$73.24 "mm"$] quad &=> bold("Adopt Diameter " D = 75 "mm" quad bold("(Ans.)"))
     $
   ]
 )
 
 #item-row(
-  [*3. Tensile Load on Each Top Bolt ($W_t$)* \ Overturning moment equilibrium],
+  [*3. Bending Moment & Section Modulus for Arm d ($M, Z$)* \ Pure bending arm evaluation at depth section],
   [
     $
-      M_("overturn") &= W dot L \
-      &= 13500 times 300 \
-      &= 4.05 times 10^6 "N"dot"mm" \
-      w &= 35.03 "N/mm"
+      #text(size: 20pt)[$M$] &= #text(size: 20pt)[$W (250 - D/2)$] = 13500 times (250 - 37.5) = 2.8688 times 10^6 "N"dot"mm" \
+      #text(size: 20pt)[$Z$] &= #text(size: 20pt)[$pi/32 d^3$] = 0.0982 d^3
     $
-    #v(6pt)
+  ]
+)
+
+#item-row(
+  [*4. Arm Diameter $d$ (Pure Bending)* \ Flexural tensile stress formula for allowable stress $sigma_t = 110 "MPa"$],
+  [
+    $
+      sigma_t &= M / Z \
+      110 &= (2.8688 times 10^6) / (0.0982 d^3) = (29.2 times 10^6) / d^3 \
+      d^3 &= (29.2 times 10^6) / 110 = 265.5 times 10^3 \
+      #text(size: 20pt)[$d$] &= #text(size: 20pt)[$64.3 "mm"$] quad &=> bold("Adopt Diameter " d = 65 "mm" quad bold("(Ans.)"))
+    $
+  ]
+)
+
+#item-row(
+  [*5. Tilting Edge Distances & Unit Load ($L_1, L_2, w$)* \ Overturning moment equilibrium about tilting edge E-E],
+  [
+    $
+      L_1 &= 37.5 "mm", quad L_2 = 237.5 "mm" \
+      M_("res") &= 2 w (L_1^2 + L_2^2) = 2 w ((37.5)^2 + (237.5)^2) = 115625 w "N"dot"mm" \
+      M_("overturn") &= W dot L = 13500 times 300 = 4.05 times 10^6 "N"dot"mm" \
+      w &= (4.05 times 10^6) / 115625 = 35.03 "N/mm"
+    $
+  ]
+)
+
+#item-row(
+  [*6. Tensile Load on Each Top Bolt ($W_t$)* \ Secondary tensile force on critical upper bolts],
+  [
     $
       #text(size: 20pt)[$W_t$] &= #text(size: 20pt)[$w dot L_2$] \
       &= 35.03 times 237.5 \
-      &= bold(8.32 "kN")
+      &= bold(8320 "N" = 8.32 "kN" quad bold("(Ans.)"))
     $
   ]
 )
 
 #item-row(
-  [*4. Maximum Shearing Force on Each Bolt ($W_s$)* \ Vector sum of primary and secondary shear],
+  [*7. Primary & Secondary Shear Loads ($W_("s1"), W_("s2")$)* \ Direct vertical shear and secondary torsional shear per bolt],
   [
     $
-      W_("s1") &= 13500 / 4 \
-      &= 3375 "N" \
-      r_i &= sqrt(100^2 + 100^2) \
-      &= 141.4 "mm" \
-      W_("s2") &= (W dot e dot r_i) / (sum r_i^2) \
-      &= 5967 "N"
-    $
-    #v(6pt)
-    $
-      #text(size: 20pt)[$W_s$] &= #text(size: 20pt)[$sqrt(W_("s1")^2 + W_("s2")^2 + 2 W_("s1") W_("s2") cos theta)$] \
-      W_s quad ("Bolts 2 & 3") &= bold(8687 "N")
+      #text(size: 20pt)[$W_("s1")$] &= #text(size: 20pt)[$W / n$] = 13500 / 4 = 3375 "N" \
+      r_i &= sqrt(100^2 + 100^2) = 141.4 "mm" \
+      #text(size: 20pt)[$W_("s2")$] &= #text(size: 20pt)[$(W dot e dot r_i) / (4 r_i^2)$] = (13500 times 250 times 141.4) / (4 (141.4)^2) = 5967 "N"
     $
   ]
 )
 
 #item-row(
-  [*5. Design Output*],
-  [*Final Answers: (1) $D = 75 "mm"$, (2) $d = 65 "mm"$, (3) Top Bolt $W_t = 8.32 "kN"$, (4) Max Shear Force $W_s = 8687 "N"$*]
+  [*8. Resultant Shear Force on Bolts 1 & 4 ($theta = 135^deg$)* \ Vector combination of primary and secondary shear],
+  [
+    $
+      #text(size: 20pt)[$W_("s(1,4)")$] &= #text(size: 20pt)[$sqrt(W_("s1")^2 + W_("s2")^2 + 2 W_("s1") W_("s2") cos 135^deg)$] \
+      &= sqrt((3375)^2 + (5967)^2 - 2(3375)(5967)(0.7071)) \
+      &= bold(4303 "N" quad bold("(Ans.)"))
+    $
+  ]
+)
+
+#item-row(
+  [*9. Maximum Shearing Force on Bolts 2 & 3 ($theta = 45^deg$)* \ Critical maximum shear force on fasteners],
+  [
+    $
+      #text(size: 20pt)[$W_("s(2,3)")$] &= #text(size: 20pt)[$sqrt(W_("s1")^2 + W_("s2")^2 + 2 W_("s1") W_("s2") cos 45^deg)$] \
+      &= sqrt((3375)^2 + (5967)^2 + 2(3375)(5967)(0.7071)) \
+      &= bold(8687 "N" quad bold("(Ans.)"))
+    $
+  ]
+)
+
+#item-row(
+  [*10. Design Output*],
+  [*Final Answers: (1) $D = 75 "mm"$, (2) $d = 65 "mm"$, (3) Top Bolt $W_t = 8320 "N"$, (4) Max Shear Force $W_s = 8687 "N"$*]
 )
 
 #figure-page(
   "20",
-  "Solid Forged Bracket",
+  "Solid Forged Bracket Structure",
   "Figures/fig 11.45 & 11.46.png",
-  "Figure 11.45 & 11.46: Solid Forged Bracket Structure",
-  second-fig: "Figures/fig 11.47 (diagram in solution of Eg. 11.20).png",
-  second-caption: "Figure 11.47: Vector Shear Load Diagram on Fastener Group"
+  "Figure 11.45 & 11.46: Solid Forged Bracket Structure & Square Flange Geometry"
+)
+
+#figure-page(
+  "20",
+  "Solid Forged Bracket Shear Vector Analysis",
+  "Figures/fig 11.47 (diagram in solution of Eg. 11.20).png",
+  "Figure 11.47: Vector Primary & Secondary Shear Force Diagram"
 )
