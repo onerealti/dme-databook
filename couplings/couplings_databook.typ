@@ -498,7 +498,9 @@
       #text(size: 20pt)[$T_("max")$] &= #text(size: 20pt)[$n dot [pi/4 d_1^2] dot tau_b dot (D_1 / 2)$] \
       215 times 10^3 &= 3 times [pi/4 d_1^2] times 40 times (105 / 2) \
       d_1^2 &= 43.43 \
-      d_1 &= 6.6 "mm" quad &=> bold("Select M 8 Bolts")
+      d_1 &= 6.6 "mm" \
+      &=> \
+      & bold("Select M 8 Bolts")
     $
   ]
 )
@@ -616,7 +618,8 @@
       #text(size: 20pt)[$T_("max")$] &= #text(size: 20pt)[$n dot [pi/4 d_1^2] dot tau_b dot (D_1 / 2)$] \
       895 times 10^3 &= 4 times [pi/4 d_1^2] times 30 times (150 / 2) \
       d_1^2 &= 126.6 \
-      d_1 &= 11.25 "mm" quad &=> bold("Select M 12 Bolts")
+      d_1 &= 11.25 "mm" \
+      &=> bold("Select M 12 Bolts")
     $
   ]
 )
@@ -726,7 +729,8 @@
       #text(size: 20pt)[$T$] &= #text(size: 20pt)[$n dot [pi/4 d_1^2] dot tau_b dot (D_1 / 2)$] \
       3440 times 10^3 &= 4 times [pi/4 d_1^2] times 30 times (240 / 2) \
       d_1^2 &= 304 \
-      d_1 &= 17.4 "mm" quad &=> bold("Select M 18 Bolts")
+      d_1 &= 17.4 "mm" \
+      &=> bold("Select M 18 Bolts")
     $
   ]
 )
@@ -743,10 +747,10 @@
 
 #item-row(
   [*9. Design Output*],
-  [*Final Design: Shaft $d = 80 "mm"$, Hub $D = 160 "mm", L = 120 "mm"$, Flange $t_f = 40 "mm", D_2 = 320 "mm"$, 4 Bolts of M 18 Size*]
+  [*Final Design: Shaft d = 80 mm, Hub D = 160 mm, L = 120 mm, Flange tf = 40 mm, D2 = 320 mm, 4 Bolts of M 18 Size*]
 )
 
-#figure-page("5", "Unprotective Flange Coupling", "unprotective flange coupling.png", "Figure 13.5: Unprotective Type Flange Coupling Mechanical Diagram")
+#figure-page("5", "Protective Flange Coupling", "protective flange coupling.png", "Figure 13.5: Protective Type Flange Coupling Mechanical Diagram")
 
 // ==========================================
 // SECTION 6
@@ -826,7 +830,8 @@
       #text(size: 20pt)[$T$] &= #text(size: 20pt)[$n dot [pi/4 d_1^2] dot tau_b dot (D_1 / 2)$] \
       250 times 10^3 &= 4 times [pi/4 d_1^2] times 100 times (75 / 2) \
       d_1^2 &= 21.22 \
-      d_1 &= 4.6 "mm" quad &=> bold("Select M 6 Bolts")
+      d_1 &= 4.6 "mm" \
+      &=> bold("Select M 6 Bolts")
     $
   ]
 )
@@ -865,7 +870,8 @@
     #text(size: 20pt)[$T$] &= #text(size: 20pt)[$n dot [pi/4 d_1^2] dot tau_b dot (D_1 / 2)$] \
     800 times 10^3 &= 6 times [pi/4 d_1^2] times 56 times (125 / 2) \
     d_1^2 &= 48.5 \
-    d_1 &= 6.96 "mm" quad &=> bold("Select M 8 Bolts")
+    d_1 &= 6.96 "mm" \
+    &=> bold("Select M 8 Bolts")
   $]
 )
 
@@ -963,37 +969,38 @@
       D_1 &= 1.6 d = 1.6(300) = 480 "mm" \
       #text(size: 20pt)[$T$] &= #text(size: 20pt)[$n dot [pi/4 d_1^2] dot tau_b dot (D_1 / 2)$] \
       286.48 times 10^6 &= 8 times [pi/4 d_1^2] times 60 times (480 / 2) \
-      d_1^2 &= 316.6 \
-      d_1 &= 17.8 "mm" quad &=> bold("Adopt Tapered Bolt Size " d_1 = 60 "mm")
+      d_1^2 &= 3166 \
+      d_1 &= 56.3 "mm" \
+      &=> bold("Adopt Standard Bolt Size " d_1 = 60 "mm (M 60)")
     $
   ]
 )
 
 #item-row(
-  [*5. Forged Flange Thickness ($t_f$) & Shear Check ($tau_c$)* \ Flange web shear stress check at junction],
+  [*5. Forged Flange Thickness ($t_f$) & Shear Check ($tau_s$)* \ Flange web shear stress check at junction],
   [
     $
-      t_f &= 0.25 d = 0.25(300) = 75 "mm" \
-      #text(size: 20pt)[$tau_c$] &= #text(size: 20pt)[$(2 T) / (pi d^2 t_f)$] \
-      &= (2 times 286.48 times 10^6) / (pi times 300^2 times 75) \
-      &= 27 "MPa" \
+      t_f &= d / 3 = 300 / 3 = 100 "mm" \
+      #text(size: 20pt)[$tau_s$] &= #text(size: 20pt)[$(2 T) / (pi d^2 t_f)$] \
+      &= (2 times 286.48 times 10^6) / (pi times 300^2 times 100) \
+      &= 20.26 "MPa" \
       &<= 60 "MPa" quad bold("(SAFE)")
     $
   ]
 )
 
 #item-row(
-  [*6. Outer Flange Diameter ($D_2$)* \ Overall diameter of marine flange],
+  [*6. Outer Flange Diameter ($D_2$)* \ Overall diameter of forged marine flange],
   [$
-    #text(size: 20pt)[$D_2$] &= #text(size: 20pt)[$D_1 + 2.5 d_1$] \
-    &= 480 + 2.5(60) \
-    &= 630 "mm"
+    #text(size: 20pt)[$D_2$] &= #text(size: 20pt)[$2.2 d$] \
+    &= 2.2(300) \
+    &= 660 "mm" quad bold("(Ans.)")
   $]
 )
 
 #item-row(
-  [*7. Design Output*],
-  [*Final Answers: (1) Shaft $d = 300 "mm"$, (2) 8 Tapered Bolts $d_1 = 60 "mm"$, (3) Flange $t_f = 75 "mm"$, (4) Flange $D_2 = 630 "mm"$*]
+  [*7. Complete Design Output*],
+  [*Final Answers: (1) Shaft d = 300 mm, (2) 8 Bolts d1 = 60 mm (M 60), (3) Flange tf = 100 mm, (4) Flange D2 = 660 mm*]
 )
 
 #figure-page("8", "Marine Engine Forged Flange Coupling", "marine flange coupling.png", "Figure 13.6: Marine Engine Forged Flange Coupling Mechanical Assembly Diagram")
@@ -1060,7 +1067,8 @@
       #text(size: 20pt)[$T_("max")$] &= #text(size: 20pt)[$W dot n dot (D_1 / 2)$] \
       382 times 10^3 &= (32 l) times 6 times (132 / 2) \
       382 times 10^3 &= 12672 l \
-      l &= 30.1 "mm" quad &=> bold("Adopt Bush Length " l = 32 "mm") \
+      l &= 30.1 "mm" \
+      &=> bold("Adopt Bush Length " l = 32 "mm") \
       W &= 32(32) = bold(1024 "N")
     $
   ]
@@ -1162,7 +1170,7 @@
 
 #item-row(
   [*13. Design Output*],
-  [*Final Design: Shaft $d = 40 "mm"$, 6 Flexible Pins $d_1 = 20 "mm"$, Rubber Bush $d_2 = 40 "mm", l = 32 "mm"$, Hub $D = 80 "mm", L = 60 "mm"$, Flange $t_f = 20 "mm"$*]
+  [*Final Design: Shaft d = 40 mm, 6 Flexible Pins d1 = 20 mm, Rubber Bush d2 = 40 mm, l = 32 mm, Hub D = 80 mm, L = 60 mm, Flange tf = 20 mm*]
 )
 
-#figure-page("8", "Bushed-Pin Flexible Coupling", "bushed pin flexible.png", "Figure 13.7: Bushed-Pin Flexible Coupling Mechanical Assembly & Rubber Bush Details")
+#figure-page("9", "Bushed-Pin Flexible Coupling", "bushed pin flexible.png", "Figure 13.7: Bushed-Pin Flexible Coupling Mechanical Assembly & Rubber Bush Details")
