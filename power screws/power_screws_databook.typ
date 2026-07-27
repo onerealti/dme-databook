@@ -167,8 +167,12 @@
   [*4. Direct Compressive & Torsional Shear Stresses ($sigma_c, tau$)* \ Stress components in spindle body],
   [
     $
-      #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$W / (pi/4 (d_c)^2)$] = 80000 / (pi/4 (38)^2) = 70.53 "N/mm"^2 \
-      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$(16 T_1) / (pi (d_c)^3)$] = (16 times 340 times 10^3) / (pi (38)^3) = 31.55 "N/mm"^2
+      #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$W / (pi/4 (d_c)^2)$] \
+      &= 80000 / (pi/4 (38)^2) \
+      &= 70.53 "N/mm"^2 \
+      #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$(16 T_1) / (pi (d_c)^3)$] \
+      &= (16 times 340 times 10^3) / (pi (38)^3) \
+      &= 31.55 "N/mm"^2
     $
   ]
 )
@@ -202,7 +206,8 @@
     $
       L &= H_1 + h/2 = 400 + 40 = 440 "mm", quad k = 0.25 d_c = 9.5 "mm" \
       #text(size: 20pt)[$W_("cr")$] &= #text(size: 20pt)[$A_c dot sigma_y [1 - (sigma_y / (4 pi^2 E C)) (L/k)^2]$] \
-      &= 1134.1 times 200 [1 - (200 / (4 pi^2 (2.1 times 10^5)(0.25))) (440 / 9.5)^2] \
+      &= 1134.1 times 200 \
+      &quad times [1 - (200 / (4 pi^2 (2.1 times 10^5)(0.25))) (440 / 9.5)^2] \
       &= 226852 times [1 - 0.207] = bold(179.89 "kN") &> 80 "kN" quad bold("(SAFE)")
     $
   ]

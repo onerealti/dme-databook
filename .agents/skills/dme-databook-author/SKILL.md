@@ -275,9 +275,9 @@ $
 )
 ```
 
-### Rule 8: Dedicated Single-Figure Pages
+### Rule 8: Dedicated Single-Figure Pages & Section Number Matching
 - Every schematic diagram, structural detail, or force distribution vector plot MUST be placed on its own dedicated `#figure-page` call with container bounds `width: 85%, height: 420pt`.
-- Avoid combining multiple diagrams into side-by-side grids on a single page unless explicitly instructed. Separate figure pages guarantee maximum image clarity and legibility.
+- **CRITICAL**: The `sec-num` argument passed to `#figure-page(sec-num, ...)` MUST strictly match the Section number of the preceding item rows (e.g., `#figure-page("9", ...)` for Section 9). Never copy-paste hardcoded section strings.
 
 ### Rule 9: Strict Native Typst Math Symbols (No TeX Backslashes)
 - **CRITICAL**: Never use LaTeX/TeX backslashes inside Typst equation blocks or bracketed content labels (`[*...*]`).
@@ -297,6 +297,18 @@ $
 - In bracketed text mode (`[*...*]`), avoid placing complex inline math blocks containing commas or quotes.
 - In Typst text mode, `%` acts as a line comment starter unless written in clean text strings.
 - Design output summary rows MUST use clean plain text (e.g., `[*Screw Jack Summary: do = 46 mm, dc = 38 mm, Efficiency eta = 15.4%*]`).
+
+### Rule 12: Multiline Selection Callouts (No Inline `quad &=>` Overflow)
+- **CRITICAL**: Fastener selections, bolt choices (`&=> bold("Select M 12 Bolts")`), or size adoptions MUST be placed on a **dedicated new line** using `\` inside math blocks:
+  ```typst
+  // CORRECT (Zero Horizontal Overflow):
+  d_1 &= 11.25 "mm" \
+  &=> bold("Select M 12 Bolts")
+
+  // INCORRECT (Pushes text past right page margin):
+  d_1 &= 11.25 "mm" quad &=> bold("Select M 12 Bolts")
+  ```
+- Never append `quad &=>` horizontally to the end of an active calculation line.
 
 ---
 
@@ -328,7 +340,7 @@ Before completing any `.typ` databook document, perform this 7-point verificatio
 - [ ] **2. Single Equals Check**: Audit all math blocks to ensure no line contains multiple `=` signs.
 - [ ] **3. 1-to-1 Label Alignment**: Confirm every formula step has a dedicated left-side label in its own `#item-row`.
 - [ ] **4. Column Scoping**: Verify zero math expressions sit in `left-desc` (all math must be in `right-math`).
-- [ ] **5. Page Bounds Check**: Verify each section's items fit on 1 landscape page without spilling onto a 2nd page before `#figure-page`.
+- [ ] **5. Page Bounds & Section Parameter Check**: Verify each section's items fit on 1 landscape page without spilling, and verify that `#figure-page(sec-num, ...)` section string strictly matches the active Section number.
 - [ ] **6. Subscript & Text Quoting**: Confirm multi-character subscripts (`$sigma_("tb")$`) and text strings in math (`"Text"`) are quoted.
 - [ ] **7. Intermediate Conclusions**: Verify that textbook intermediate answers (e.g., "Size of Bolt = M 24", "Adopt t = 10 mm") appear as standalone `#item-row` entries, not merged into the final Design Output.
 
