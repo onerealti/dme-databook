@@ -19,7 +19,12 @@ This document defines the authoritative, standardized engineering protocol for t
 ### 1.2 Perpendicular Side-Margin Header & Page Counter
 A rotated (90°) side header anchors inside the left margin using a background context placement.
 
+The header title is a **document-level variable**, not a literal string — this same boilerplate is reused across every databook topic (fasteners, springs, shafts, keys, welded joints, etc.), so the topic name must be set once at the top of the file and referenced, never hardcoded inside the page-setup block.
+
 ```typst
+// Set once near the top of every databook file, before #set page(...):
+#let databook-title = "DESIGN DATA BOOK — SCREWED JOINTS & FASTENERS"
+
 #set page(
   paper: "a4",
   flipped: true,
@@ -38,7 +43,7 @@ A rotated (90°) side header anchors inside the left margin using a background c
           #grid(
             columns: (1fr, auto),
             align: (left + horizon, right + horizon),
-            [#text(fill: rgb("#000000"), size: 11pt, weight: "bold")[DESIGN DATA BOOK — SCREWED JOINTS & FASTENERS]],
+            [#text(fill: rgb("#000000"), size: 11pt, weight: "bold")[#databook-title]],
             [#text(fill: rgb("#000000"), weight: "bold", size: 11pt)[Page #counter(page).display("1 of 1", both: true)]]
           )
           #v(3pt)
@@ -50,6 +55,8 @@ A rotated (90°) side header anchors inside the left margin using a background c
 )
 ```
 
+> When starting a new topic databook, change only the `databook-title` value — never edit the string inside the `background:` block directly.
+
 ### 1.3 Global Typography & Show Rules
 These global rules MUST appear immediately after the `#set page(...)` block in every databook `.typ` file.
 
@@ -57,7 +64,7 @@ These global rules MUST appear immediately after the `#set page(...)` block in e
 #set text(font: ("Times New Roman", "Georgia"), size: 15pt, fill: rgb("#000000"))
 #set par(justify: false, leading: 0.9em)
 #show math.equation: set block(spacing: 8pt)
-#show math.equation.where(block: true): set align(left)
+#show math.equation.where(block: true): it => align(left, it)
 #show image: set image(fit: "contain")
 #show table: set table(stroke: 0.4pt + rgb("#aaaaaa"))
 ```
@@ -74,7 +81,7 @@ When converting solved engineering examples from `examples_solutions.md` into Ty
 | **Design Objective / Method Steps** | `#section-overview(..., design-proto)` | Extract high-level engineering protocol steps into `Design Protocol`. |
 | **Individual Solved Equations** | `#item-row(left-desc, right-math)` | Create a dedicated `#item-row` for **each** specific formula so that its title sits in `left-desc` and its math sits in `right-math`. |
 | **Intermediate Textbook Conclusions** | `#item-row([*N. Selected Bolt*], [*Size = M 24*])` | When the textbook states an intermediate answer (e.g., "Size of Bolt = M 24 Ans.", "Adopt t = 10 mm"), add it as its own standalone `#item-row`. |
-| **Problem Figure / Diagram** | `#figure-page(sec-num, ...)` | Append dedicated figure page with constrained image height (`340pt` / `310pt`, `fit: "contain"`). |
+| **Problem Figure / Diagram** | `#figure-page(sec-num, ...)` | Append dedicated figure page with constrained image height (`420pt`, `fit: "contain"`). |
 | **Final Answer / Sized Fastener** | `[*Design Output*]` | Add explicit design result row summarizing chosen fastener size, count, or plate dimensions. |
 
 ---
@@ -128,40 +135,26 @@ Open 2-column split with a thin vertical center divider line (`0.5pt`).
 ```
 
 ### 3.4 Dedicated Single-Figure Page Container (`figure-page`)
-Guarantees header, mechanical diagram, and caption stay together on a dedicated landscape page with enlarged bounds (`width: 85%, height: 420pt`). Each diagram receives its own dedicated page for maximum legibility.
+Guarantees header, mechanical diagram, and caption stay together on a dedicated landscape page with enlarged bounds (`width: 85%, height: 420pt`).
+
+**Every diagram gets its own page — no exceptions.** This keeps `figure-page` consistent with Rule 5's stacking philosophy for reference tables: sequential dedicated pages, never side-by-side grids, regardless of content type. If a section has two related diagrams (e.g., front and side views), call `#figure-page(...)` twice, once per image, rather than combining them into one page.
 
 ```typst
-#let figure-page(sec-num, title, fig-path, caption, second-fig: "", second-caption: "") = {
+#let figure-page(sec-num, title, fig-path, caption) = {
   pagebreak()
   block(width: 100%, breakable: false)[
     #section-heading(sec-num, title + " — MECHANICAL DIAGRAM")
     #v(2pt)
-    #if second-fig == "" [
-      #align(center)[
-        #image(fig-path, width: 85%, height: 420pt, fit: "contain")
-        #v(6pt)
-        #text(weight: "bold", size: 14pt)[#caption]
-      ]
-    ] else [
-      #grid(
-        columns: (1fr, 1fr),
-        gutter: 12pt,
-        align: center + horizon,
-        [
-          #image(fig-path, width: 85%, height: 310pt, fit: "contain")
-          #v(6pt)
-          #text(weight: "bold", size: 13pt)[#caption]
-        ],
-        [
-          #image(second-fig, width: 85%, height: 310pt, fit: "contain")
-          #v(6pt)
-          #text(weight: "bold", size: 13pt)[#second-caption]
-        ]
-      )
+    #align(center)[
+      #image(fig-path, width: 85%, height: 420pt, fit: "contain")
+      #v(6pt)
+      #text(weight: "bold", size: 14pt)[#caption]
     ]
   ]
 }
 ```
+
+> If two diagrams must appear together for direct visual comparison (rare — e.g., before/after load states of the same part), that is a deliberate exception to this rule and must be justified in an authoring note above the call; do not silently branch the shared component to support it.
 
 ---
 
@@ -209,18 +202,18 @@ $
 )
 ```
 
-### Rule 3: 3-Step Derivation Pattern — No Intermediate Simplification Lines
+### Rule 3: Formula → Substitution → Answer Derivation Pattern — No Intermediate Simplification Lines
 
-Every solved equation follows exactly **3 steps**:
-1. **Formula line**: `#text(size: 20pt)[$P = ...$]` — the governing formula at 20pt
-2. **Substitution line**: values plugged in (`X &= formula_with_numbers`)
-3. **Answer line**: solved variable (`var &= result "unit"`), then `&=> adopted` if rounding
+Every solved equation follows this fixed sequence of stages, though the number of lines within the substitution/derivation stage varies with the equation's complexity:
+1. **Formula stage**: `#text(size: 20pt)[$P = ...$]` — the governing formula at 20pt (always one line).
+2. **Substitution/derivation stage**: values plugged in and, if the formula must be rearranged to isolate the target variable, the rearrangement step(s) (`X &= formula_with_numbers`, `target^n &= ...`). Use as many lines as the algebra genuinely requires — do not force this into a single line, and do not pad it with redundant restatements.
+3. **Answer stage**: the solved variable (`var &= result "unit"`), then `&=> adopted` on its own line if rounding or selecting a standard size.
 
-**FORBIDDEN intermediate steps** — `&= simplified_product` lines between substitution and solve MUST be removed:
-- `&= 39.3 d^2` (RHS simplification before rearranging)
-- `&= 1540 b`, `&= 3380 sigma_t`, `&= 4248 tau` (product expansion before dividing)
+**FORBIDDEN**: lines that merely restate an already-simplified expression without progressing the derivation — `&= simplified_product` lines inserted between substitution and solve that add no new information:
+- `&= 39.3 d^2` (RHS numeric simplification before rearranging, when the next line already does the rearranged division)
+- `&= 1540 b`, `&= 3380 sigma_t`, `&= 4248 tau` (product expansion before dividing, when it duplicates the following line's work)
 
-**CORRECT (3 steps only):**
+**CORRECT (formula, substitution+rearrangement, answer):**
 ```typst
 $
   #text(size: 20pt)[$P = pi/4 d^2 dot sigma_t$] \
@@ -231,22 +224,22 @@ $
 $
 ```
 
-**INCORRECT (extra intermediate — forbidden):**
+**INCORRECT (redundant intermediate — forbidden):**
 ```typst
 $
   #text(size: 20pt)[$P = pi/4 d^2 dot sigma_t$] \
   30000 &= pi/4 d^2 (50) \
-  &= 39.3 d^2 \              // ← REMOVE: intermediate simplification
+  &= 39.3 d^2 \              // ← REMOVE: adds nothing, next line already isolates d^2
   d^2 &= 30000 / 39.3 \
   d &= 27.6 "mm" \
   &=> d = 28 "mm"
 $
 ```
 
-**Lines that ARE kept** (final numerical answers, not intermediate):
-- `&= 35.7 "mm"` after `d &= sqrt(1273)` — this IS the answer
-- `&= 0.55 times 65` after `#text(size: 20pt)[$b_1 = 0.55 B$]` — substitution step
-- `&= 35.75 "mm"` after `&= 0.55 times 65` — result of substitution
+**Lines that ARE kept** (they progress the derivation, not restate it):
+- `&= 35.7 "mm"` after `d &= sqrt(1273)` — this IS the answer.
+- `&= 0.55 times 65` after `#text(size: 20pt)[$b_1 = 0.55 B$]` — the substitution step.
+- `&= 35.75 "mm"` after `&= 0.55 times 65` — result of that substitution.
 
 ### Rule 4: Multi-Character Subscript Quoting
 - In Typst, multi-character math subscripts MUST be quoted inside double quotes `"..."` or wrapped in parentheses to prevent syntax parsing errors.
@@ -262,6 +255,7 @@ $ sigma_("tb"), P_("max, bolt"), d_("c, std") $
 ### Rule 5: Reference Tables Must Be Stacked Sequentially
 - Reference data tables (e.g., Table 11.1 Coarse, Table 11.1 Fine, Table 11.2) must be placed **one after another on separate pages**, never side-by-side in a grid.
 - Each reference page gets its own `#pagebreak()` and `#section-heading("REF N", ...)`.
+- This same "one page, one item" philosophy applies to figures — see the note under §3.4.
 
 ```typst
 // INCORRECT (FORBIDDEN):
@@ -307,8 +301,8 @@ $
 
 ### Rule 9: Strict Native Typst Math Symbols (No TeX Backslashes)
 - **CRITICAL**: Never use LaTeX/TeX backslashes inside Typst equation blocks or bracketed content labels (`[*...*]`).
-- Backslashes in content strings cause string-escape syntax errors (e.g., `\theta` parses `\t` as tab, causing `unknown variable: heta`).
-- Always use native Typst math symbols:
+- In Typst, a backslash is the line-break / escape character, not a command prefix like in TeX. Writing `\theta` is parsed as an escaped `t` followed by the bare text `heta` — Typst never sees a symbol named `theta`, so it reports something like `unknown variable: heta`. The failure is a parsing/escaping issue, not a tab-character issue.
+- Always use native Typst math symbols instead of TeX macros:
   - `theta` instead of `\theta`
   - `tau` instead of `\tau`
   - `sigma` instead of `\sigma`
@@ -365,6 +359,10 @@ $
   - Do NOT bold arbitrary intermediate variables, calculations, or un-selected numbers.
   - ONLY bold standard adopted dimensions/selected sizes (e.g. `d = 50 "mm"`), safety status evaluations (`"(SAFE)"`, `"(UNSAFE)"`), and step title headers.
 
+### Rule 15: Document-Level Title Variable
+- The rotated side-header title (§1.2) MUST be set via a single `#let databook-title = "..."` declaration near the top of the file and referenced with `#databook-title` inside the page-setup block.
+- Never hardcode the topic name as a literal string inside the `background:` block — doing so means the boilerplate silently carries over the wrong topic title when reused for a new databook (e.g., springs, shafts, keys, welded joints).
+
 ---
 
 ## 5. Single-Page Overflow Guardrails
@@ -376,8 +374,7 @@ To guarantee 100% protection against vertical or horizontal content spillover:
    #show image: set image(fit: "contain")
    ```
 2. **Constrained Figure Heights**:
-   - Single Figure: `height: 420pt`, `width: 85%`.
-   - Dual Figures (if requested): `height: 310pt`, `width: 85%`.
+   - Every figure page: `height: 420pt`, `width: 85%` (see §3.4 — one diagram per page, no dual-figure variant).
 3. **Table Widths**:
    - Use fractional column widths `columns: (1fr, 1fr, ...)` so tables automatically span `100%` of printable width without horizontal clipping.
 4. **Tuned Vertical Spacing**:
@@ -389,18 +386,19 @@ To guarantee 100% protection against vertical or horizontal content spillover:
 
 ## 6. Pre-Flight Verification Checklist for Agents
 
-Before completing any `.typ` databook document, perform this 7-point verification:
+Before completing any `.typ` databook document, perform this 8-point verification:
 
 - [ ] **1. Clean Compilation**: Execute `typst compile file.typ` and verify zero errors/warnings.
-- [ ] **2. Single Equals + No Intermediates Check**: Audit ALL math blocks for:
-  - No line contains more than one `=` sign (including lines outside `#text(size: 20pt)[...]`)
-  - No `&= simplified_product` intermediate lines exist between substitution and solve (e.g. `&= 39.3 d^2`, `&= 1540 b`)
-  - `#text(size: 20pt)[$formula$]` lines must NOT have extra `= value` appended after the closing `]`
+- [ ] **2. Single Equals + No Redundant Intermediates Check**: Audit ALL math blocks for:
+  - No line contains more than one `=` sign (including lines outside `#text(size: 20pt)[...]`).
+  - No `&= simplified_product` line exists that merely restates an already-simplified expression without progressing the derivation (e.g. `&= 39.3 d^2` immediately followed by a line doing the same division again).
+  - `#text(size: 20pt)[$formula$]` lines must NOT have extra `= value` appended after the closing `]`.
 - [ ] **3. 1-to-1 Label Alignment**: Confirm every formula step has a dedicated left-side label in its own `#item-row`.
 - [ ] **4. Column Scoping**: Verify zero math expressions sit in `left-desc` (all math must be in `right-math`).
-- [ ] **5. Page Bounds & Section Parameter Check**: Verify each section's items fit on 1 landscape page without spilling, and verify that `#figure-page(sec-num, ...)` section string strictly matches the active Section number.
-- [ ] **6. Subscript & Text Quoting**: Confirm multi-character subscripts (`$sigma_("tb")$`) and text strings in math (`"Text"`) are quoted.
-- [ ] **7. Intermediate Conclusions**: Verify that textbook intermediate answers (e.g., "Size of Bolt = M 24", "Adopt t = 10 mm") appear as standalone `#item-row` entries, not merged into the final Design Output.
+- [ ] **5. Page Bounds Check**: Verify each section's items fit on 1 landscape page without spilling vertically or horizontally.
+- [ ] **6. Section Parameter Check**: Verify every `#figure-page(sec-num, ...)` call's section string strictly matches the active Section number, and that every figure is on its own dedicated page.
+- [ ] **7. Subscript & Text Quoting**: Confirm multi-character subscripts (`$sigma_("tb")$`) and text strings in math (`"Text"`) are quoted.
+- [ ] **8. Intermediate Conclusions & Title Variable**: Verify that textbook intermediate answers (e.g., "Size of Bolt = M 24", "Adopt t = 10 mm") appear as standalone `#item-row` entries, not merged into the final Design Output — and that the side header uses `#databook-title` rather than a hardcoded topic string.
 
 ---
 
@@ -408,12 +406,14 @@ Before completing any `.typ` databook document, perform this 7-point verificatio
 
 | Pitfall / Error | Cause | Correct Typst Solution |
 | :--- | :--- | :--- |
-| `error: unknown variable` | Unquoted text string inside math `$ ... $` | Wrap text in quotes: `"Fine thread: M 20"` |
+| `error: unknown variable` | Backslash before a symbol name inside math `$ ... $` is parsed as an escape, not a command prefix (e.g. `\theta` → escaped `t` + bare text `heta`) | Use the native Typst symbol name directly: `theta`, not `\theta` |
+| Unquoted text string inside math | Bare words in `$ ... $` are parsed as variables | Wrap text in quotes: `"Fine thread: M 20"` |
 | `&times` invalid syntax | Using HTML entities inside Typst math | Use native Typst symbol: `times` or `dot` |
 | `\ \` multi-line breaks | Double backslash inserts blank math line | Use single backslash `\` for line breaks |
 | Multiple `=` on 1 line | Violates single equals sign rule | Break every `=` onto its own line with `\` |
 | Math in `left-desc` | Violates left/right column separation | Move ALL math expressions to `right-math` |
-| Image overflow into margin | Unconstrained image height | Specify `height: 340pt` and `fit: "contain"` |
+| Image overflow into margin | Unconstrained image height | Specify `height: 420pt` and `fit: "contain"` |
 | Header split onto page 2 | `section-heading` separated from figure | Wrap inside `block(breakable: false)[...]` |
-| Tables side-by-side | Reference tables placed in `#grid` | Stack sequentially with `#pagebreak()` between |
+| Tables (or figures) side-by-side | Reference tables/figures placed in `#grid` | Stack sequentially with `#pagebreak()` between each |
 | Missing enlarged formula | Primary variable not visually prominent | Use `#text(size: 20pt)[...]` on first equation line |
+| Wrong topic title in side header | Topic name hardcoded inside `background:` block instead of set once via `#databook-title` | Declare `#let databook-title = "..."` at the top of the file and reference `#databook-title` in the header |

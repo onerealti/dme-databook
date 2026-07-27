@@ -57,7 +57,7 @@ These global rules MUST appear immediately after the `#set page(...)` block in e
 #set text(font: ("Times New Roman", "Georgia"), size: 15pt, fill: rgb("#000000"))
 #set par(justify: false, leading: 0.9em)
 #show math.equation: set block(spacing: 8pt)
-#show math.equation.where(block: true): set align(left)
+#show math.equation.where(block: true): it => align(left, it)
 #show image: set image(fit: "contain")
 #show table: set table(stroke: 0.4pt + rgb("#aaaaaa"))
 ```
