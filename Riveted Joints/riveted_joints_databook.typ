@@ -972,376 +972,550 @@
 #figure-page("9", "BOILER LONGITUDINAL SEAM", "Fig 9.29&9.30.png", "Fig. 9.29 & 9.30: Boiler Longitudinal Seam Triple Riveted Butt Joint")
 
 // ==========================================
-// SECTION 10: EXAMPLE 9.10
+// SECTION 10: EXAMPLE 9.10 — BOILER LONGITUDINAL & CIRCUMFERENTIAL JOINTS
 // ==========================================
-
-#pagebreak()
 
 #section-heading("10", "BOILER LONGITUDINAL & CIRCUMFERENTIAL JOINTS")
 
 #section-overview(
-  [*System Parameters:* Boiler Diameter $D = 1.6 "m" = 1600 "mm"$, Pressure $p_i = 2.5 "N/mm"^2$, Allowable Stresses: Tensile $sigma_t = 75 "MPa"$, Shear $tau = 60 "MPa"$, Crushing $sigma_c = 125 "MPa"$.],
-  [*Design Protocol:* Summarize longitudinal joint plate thickness $t$ and rivet diameter $d$; design circumferential joint by calculating total steam thrust $F$ and required rivet count $N_c$.]
+  [*System Parameters:* Boiler Inside Diameter $D = 1.6 "m" = 1600 "mm"$, Working Steam Pressure $P = 2.5 "N/mm"^2$, Tensile Stress $sigma_t = 75 "MPa"$, Shear Stress $tau = 60 "MPa"$, Crushing Stress $sigma_c = 125 "MPa"$.],
+  [*Design Protocol:* Design Part A (Longitudinal Triple Riveted Butt Joint with unequal straps) for shell thickness $t$, hole $d$, pitch $p$, row spacings, strap thicknesses, and efficiency $eta_l$; Design Part B (Circumferential Double Riveted Lap Joint) for total steam thrust $F$, total rivet count $n_c$, pitch $p_1$, row pitch, and efficiency $eta_c$.]
 )
 
 #item-row(
-  [*1. Longitudinal Joint Parameters* \ Plate thickness and rivet diameter selection],
+  [*1. Shell Plate Thickness ($t$)* \ Thin cylinder formula with 1 mm corrosion/manufacturing allowance],
   [$
-    t &= 35 "mm" \
-    d &= 35.5 "mm"
+    #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(P dot D) / (2 sigma_t) + 1 "mm"$] \
+    &= (2.5 times 1600) / (2 times 75) + 1 \
+    &= 4000 / 150 + 1 = 26.67 + 1 = 27.67 "mm" \
+    &=> bold("Shell Thickness " t = 28 "mm")
   $]
 )
 
 #item-row(
-  [*2. Total Steam End Thrust ($F$)* \ Axial burst force acting on boiler end cap],
+  [*2. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 28 "mm" > 8 "mm"$ and IS standard size],
   [$
-    #text(size: 13.5pt)[$F$] &= #text(size: 13.5pt)[$pi/4 D^2 dot p_i$] \
-    &= pi/4 (1600)^2 times 2.5 \
-    &= 5.026 times 10^6 "N"
+    #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
+    &= 6 sqrt(28) = 31.75 "mm" \
+    &=> bold("Standard Hole Diameter " d = 34.5 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 33 "mm")
   $]
 )
 
 #item-row(
-  [*3. Number of Circumferential Rivets ($N_c$)* \ Number of single shear rivets required to resist axial thrust],
+  [*3. Longitudinal Tearing & Shearing Capacities ($P_t, P_s$)* \ Net section tearing ($P_t$) and shear capacity for 5 rivets (4 double, 1 single shear)],
   [$
-    #text(size: 13.5pt)[$N_c$] &= #text(size: 13.5pt)[$F / (pi/4 d^2 dot tau)$] \
-    &= (5.026 times 10^6) / (pi/4 (35.5)^2 times 60) \
-    &= (5.026 times 10^6) / 59390 \
-    &= 84.6 \
-    &=> bold(N_c = 85 "rivets")
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (p - 34.5) (28) (75) = 2100 (p - 34.5) "N"$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$(4 dot 1.875 + 1) dot pi/4 d^2 dot tau = 8.5 times pi/4 (34.5)^2 (60) = 476820 "N"$]
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Longitudinal: t = 35 mm, d = 35.5 mm | Circumferential Joint Thrust F = 5.026 MN | Rivet Count Nc = 85 rivets*]
+  [*4. Longitudinal Pitch & I.B.R. Max Limit ($p, p'$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit ($C = 6$)],
+  [$
+    #text(size: 13.5pt)[$2100 (p - 34.5)$] &= #text(size: 13.5pt)[$476820 "N"$] \
+    p - 34.5 &= 476820 / 2100 = 227 => p = 261.5 "mm" \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 = 6 (28) + 41.28 = 209.28 "mm"$] \
+    &=> bold("Adopt Outer Pitch " p = 220 "mm") \
+    &=> bold("Adopt Inner Pitch " p' = 220 / 2 = 110 "mm")
+  $]
+)
+
+#item-row(
+  [*5. Longitudinal Row Spacings & Butt Straps ($p_("b1"), p_("b2"), t_1, t_2, m$)* \ Row pitches, wide inside strap, narrow outside strap, and margin],
+  [$
+    #text(size: 13.5pt)[$p_("b1")$] &= #text(size: 13.5pt)[$0.2 p + 1.15 d = 0.2(220) + 1.15(34.5) = 83.7 "mm" => bold(85 "mm")$] \
+    #text(size: 13.5pt)[$p_("b2")$] &= #text(size: 13.5pt)[$0.165 p + 0.67 d = 0.165(220) + 0.67(34.5) = 59.4 "mm" => bold(60 "mm")$] \
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.75 t = 0.75(28) = bold(21 "mm"), quad t_2 = 0.625 t = 0.625(28) = bold(18 "mm")$] \
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d = 1.5(34.5) = 51.75 "mm" => bold("Margin " m = 52 "mm")$]
+  $]
+)
+
+#item-row(
+  [*6. Longitudinal Joint Efficiency Verification ($eta_l$)* \ Governing combined row 2 tearing + outer rivet shear capacity and efficiency],
+  [$
+    #text(size: 13.5pt)[$P_("t2") + P_("s1")$] &= #text(size: 13.5pt)[$(p - 2d) t dot sigma_t + pi/4 d^2 dot tau$] \
+    &= (220 - 2(34.5)) (28) (75) + pi/4 (34.5)^2 (60) \
+    &= 317100 + 56096 = bold(373196 "N (Governing Capacity)") \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 220 (28) (75) = 462000 "N"$] \
+    #text(size: 13.5pt)[$eta_l$] &= #text(size: 13.5pt)[$373196 / 462000 times 100% => bold(eta_l = 80.8%)$]
+  $]
+)
+
+#item-row(
+  [*7. Circumferential Steam End Thrust & Rivet Count ($F, n_c$)* \ Total axial force acting on boiler cover and required single shear rivets],
+  [$
+    #text(size: 13.5pt)[$F$] &= #text(size: 13.5pt)[$pi/4 D^2 dot P = pi/4 (1600)^2 (2.5) = 5026548 "N" = 5.027 "MN"$] \
+    #text(size: 13.5pt)[$n_c$] &= #text(size: 13.5pt)[$F / (pi/4 d^2 dot tau) = (D^2 P) / (d^2 tau) = (1600)^2 (2.5) / ((34.5)^2 (60))$] \
+    &= 6400000 / 71415 = 89.6 \
+    &=> bold("Total Circumferential Rivets " n_c = 90 "rivets")
+  $]
+)
+
+#item-row(
+  [*8. Circumferential Pitch, Row Spacing & Efficiency ($p_1, p_("b,circ"), eta_c$)* \ Double riveted lap joint (45 rivets/row), row spacing, margin, and efficiency],
+  [$
+    #text(size: 13.5pt)[$p_1$] &= #text(size: 13.5pt)[$(pi (D + t)) / 45 = (pi (1600 + 28)) / 45 = 113.7 "mm" => bold("Adopt " p_1 = 140 "mm")$] \
+    #text(size: 13.5pt)[$eta_c$] &= #text(size: 13.5pt)[$(p_1 - d) / p_1 = (140 - 34.5) / 140 => bold(eta_c = 75.3%)$] \
+    #text(size: 13.5pt)[$p_("b,circ")$] &= #text(size: 13.5pt)[$0.33 p_1 + 0.67 d = 0.33(140) + 0.67(34.5) = 69.3 "mm" => bold(70 "mm")$]
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*Longitudinal: t = 28 mm | Hole d = 34.5 mm | Outer Pitch = 220 mm | Straps t1 = 21 mm, t2 = 18 mm | eta_l = 80.8% || Circumferential: Thrust F = 5.027 MN | Rivets nc = 90 | Pitch p1 = 140 mm | Row Pitch = 70 mm | eta_c = 75.3%*]
 )
 
 #figure-page("10", "BOILER CIRCUMFERENTIAL & LONGITUDINAL JOINTS", "Fig 9.31&9.32.png", "Fig. 9.31 & 9.32: Boiler Longitudinal and Circumferential Joints")
 
 // ==========================================
-// SECTION 11: EXAMPLE 9.11
+// SECTION 11: EXAMPLE 9.11 — MILD STEEL TIE ROD DOUBLE COVER BUTT JOINT
 // ==========================================
-
-#pagebreak()
 
 #section-heading("11", "TIE ROD DOUBLE COVER BUTT JOINT")
 
 #section-overview(
-  [*System Parameters:* Tie Rod Cross-Section $b = 200 "mm"$, $t = 12.5 "mm"$, Allowable Stresses: Tensile $sigma_t = 80 "MPa"$, Shear $tau = 65 "MPa"$, Crushing $sigma_c = 160 "MPa"$, Double Shear Factor = 1.875.],
-  [*Design Protocol:* Calculate rivet diameter $d$, evaluate maximum tensile load capacity $P$, compute single rivet double shear strength $P_s$, and determine required rivet count $n$.]
+  [*System Parameters:* Tie Rod Width $b = 200 "mm"$, Thickness $t = 12.5 "mm"$, Tensile Stress $sigma_t = 80 "MPa"$, Shear Stress $tau = 65 "MPa"$, Crushing Stress $sigma_c = 160 "MPa"$, Double Shear Factor = 1.75.],
+  [*Design Protocol:* Size rivet hole $d$ via Unwin's formula, determine maximum tensile load $P_t$ at outer section 1-1, compute single rivet shearing ($P_("s1")$) and crushing ($P_("c1")$) strengths, solve required rivet count $n = 5$ arranged in diamond pattern (1-2-2), calculate cover strap thickness $t_1$, evaluate sectional tearing capacities ($P_("t1"), P_("t2"), P_("t3")$), verify efficiency $eta = 89.25\%$, and calculate pitch $p$, margin $m$, and row pitch $p_b$.]
 )
 
 #item-row(
-  [*1. Rivet Diameter ($d$)* \ Unwin's formula for $t = 12.5 "mm"$],
+  [*1. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 12.5 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(12.5) \
-    &= 21.21 "mm" \
-    &=> bold(d = 21.5 "mm")
+    &= 6 sqrt(12.5) = 21.21 "mm" \
+    &=> bold("Standard Hole Diameter " d = 21.5 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 20 "mm")
   $]
 )
 
 #item-row(
-  [*2. Full Tensile Load ($P$)* \ Solid tie-rod tensile capacity],
+  [*2. Maximum Tensile Load at Section 1-1 ($P_t$)* \ Net tensile capacity of tie rod at outer row with 1 rivet hole],
   [$
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$b dot t dot sigma_t$] \
-    &= 200 times 12.5 times 80 \
-    &= 200000 "N" \
-    &= 200 "kN"
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t$] \
+    &= (200 - 21.5) times 12.5 times 80 \
+    &= 178.5 times 1000 \
+    &= bold(178500 "N")
   $]
 )
 
 #item-row(
-  [*3. Single Rivet Double Shear Capacity ($P_s$)* \ Shear strength per rivet in double cover butt joint],
+  [*3. Single Rivet Capacities & Required Rivets ($P_("s1"), P_("c1"), n$)* \ Double shear strength ($1.75 times$ single shear), crushing capacity, and rivet count],
   [$
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$1.875 dot pi/4 d^2 dot tau$] \
-    &= 1.875 times pi/4 (21.5)^2 times 65 \
-    &= 44250 "N" \
-    &= 44.25 "kN"
+    #text(size: 13.5pt)[$P_("s1")$] &= #text(size: 13.5pt)[$1.75 dot pi/4 d^2 dot tau = 1.75 times pi/4 (21.5)^2 (65) = 41300 "N"$] \
+    #text(size: 13.5pt)[$P_("c1")$] &= #text(size: 13.5pt)[$d dot t dot sigma_c = 21.5 times 12.5 times 160 = 43000 "N"$] \
+    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$P_t / P_("s1") = 178500 / 41300 = 4.32 => bold(n = 5 "rivets (Diamond 1-2-2 Pattern)")$]
   $]
 )
 
 #item-row(
-  [*4. Required Rivet Count ($n$)* \ Total rivets needed per side of joint],
+  [*4. Thickness of Butt Straps ($t_1$)* \ Standard proportion for equal width double cover plates],
   [$
-    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$P / P_s$] \
-    &= 200 / 44.25 \
-    &= 4.52 \
-    &=> bold(n = 5 "rivets")
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.75 t$] \
+    &= 0.75 (12.5) = 9.375 "mm" \
+    &=> bold("Strap Thickness " t_1 = 9.4 "mm")
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Tie Rod Joint: Rivet Diameter d = 21.5 mm | Tensile Load P = 200 kN | Required Rivets n = 5 rivets*]
+  [*5. Sectional Tearing Capacities ($P_("t1"), P_("t2"), P_("t3")$)* \ Tearing resistances across sections 1-1, 2-2, and 3-3],
+  [$
+    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t = (200 - 21.5) (12.5) (80) = 178500 "N (Governing Capacity)"$] \
+    #text(size: 13.5pt)[$P_("t2")$] &= #text(size: 13.5pt)[$(b - 2d) t dot sigma_t + P_("s1") = (200 - 43) (1000) + 41300 = 198300 "N"$] \
+    #text(size: 13.5pt)[$P_("t3")$] &= #text(size: 13.5pt)[$(b - 2d) t dot sigma_t + 3 P_("s1") = 157000 + 3(41300) = 280900 "N"$]
+  $]
+)
+
+#item-row(
+  [*6. Solid Tie Rod Strength & Joint Efficiency ($P, eta$)* \ Strength of un-punched tie rod and overall joint efficiency],
+  [$
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$b dot t dot sigma_t = 200 times 12.5 times 80 = 200000 "N"$] \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_("t1") / P times 100% = 178500 / 200000 times 100%$] \
+    &=> bold(eta = 89.25%)
+  $]
+)
+
+#item-row(
+  [*7. Pitch, Margin & Row Spacing ($p, m, p_b$)* \ Pitch, margin, and transverse row pitch for diamond layout],
+  [$
+    #text(size: 13.5pt)[$p$] &= #text(size: 13.5pt)[$3 d + 5 "mm" = 3(21.5) + 5 = 69.5 "mm" => bold("Pitch " p = 70 "mm")$] \
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d = 1.5(21.5) = 32.25 "mm" => bold("Margin " m = 35 "mm")$] \
+    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$2.5 d = 2.5(21.5) = 53.75 "mm" => bold("Row Pitch " p_b = 55 "mm")$]
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*Tie Rod b = 200 mm, t = 12.5 mm | Hole d = 21.5 mm | Rivets n = 5 (1-2-2) | Strap t1 = 9.4 mm | Pitch p = 70 mm | Margin m = 35 mm | Row Pitch pb = 55 mm | Efficiency eta = 89.25%*]
 )
 
 #figure-page("11", "TIE ROD DOUBLE COVER BUTT JOINT", "Fig 9.33&9.34.png", "Fig. 9.33 & 9.34: Tie Rod Double Cover Butt Joint")
 
 // ==========================================
-// SECTION 12: EXAMPLE 9.12
+// SECTION 12: EXAMPLE 9.12 — BRIDGE TIE-BAR LOZENGE (DIAMOND) JOINT
 // ==========================================
-
-#pagebreak()
 
 #section-heading("12", "BRIDGE TIE-BAR LOZENGE (DIAMOND) JOINT")
 
 #section-overview(
-  [*System Parameters:* Flat Bar Width $b = 350 "mm"$, Thickness $t = 20 "mm"$, Allowable Stresses: Tensile $sigma_t = 90 "MPa"$, Shear $tau = 60 "MPa"$, Crushing $sigma_c = 150 "MPa"$, Double Shear Factor = 1.875.],
-  [*Design Protocol:* Calculate rivet diameter $d$, evaluate net load capacity $P$ at outer row (1 rivet), determine single rivet double shear strength $P_s$, compute required number of rivets $n$, and arrange in diamond pattern.]
+  [*System Parameters:* Flat Bar Width $b = 350 "mm"$, Thickness $t = 20 "mm"$, Tensile Stress $sigma_t = 90 "MPa"$, Shear Stress $tau = 60 "MPa"$, Crushing Stress $sigma_c = 150 "MPa"$, Double Shear Factor = 1.75.],
+  [*Design Protocol:* Size rivet hole diameter $d$ via Unwin's formula, determine maximum tensile load $P_t$ at outer section 1-1, compute single rivet shearing ($P_("s1")$) and crushing ($P_("c1")$) strengths, solve required rivet count $n = 9$ arranged in lozenge pattern (1-2-3-3), calculate cover strap thickness $t_1 = 15 "mm"$, evaluate sectional tearing capacities ($P_("t1"), P_("t2"), P_("t3"), P_("t4")$), verify efficiency $eta = 91.7\%$, and compute pitch $p = 95 "mm"$, margin $m = 45 "mm"$, and row pitch $p_b = 75 "mm"$.]
 )
 
 #item-row(
-  [*1. Rivet Diameter ($d$)* \ Unwin's formula for $t = 20 "mm"$],
+  [*1. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 20 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(20) \
-    &= 26.83 "mm" \
-    &=> bold(d = 27 "mm")
+    &= 6 sqrt(20) = 26.83 "mm" \
+    &=> bold("Standard Hole Diameter " d = 29 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 27 "mm")
   $]
 )
 
 #item-row(
-  [*2. Net Load Capacity ($P$)* \ Tearing strength at critical Section 1-1 (1 rivet hole)],
+  [*2. Maximum Tensile Load at Section 1-1 ($P_t$)* \ Net tensile capacity of tie-bar at outer row with 1 rivet hole],
   [$
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t$] \
-    &= (350 - 27) times 20 times 90 \
-    &= 323 times 1800 \
-    &= 581400 "N" \
-    &= 581.4 "kN"
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t$] \
+    &= (350 - 29) times 20 times 90 \
+    &= 321 times 1800 \
+    &= bold(577800 "N")
   $]
 )
 
 #item-row(
-  [*3. Single Rivet Double Shear Capacity ($P_s$)* \ Shear resistance per rivet],
+  [*3. Single Rivet Capacities & Required Rivets ($P_("s1"), P_("c1"), n$)* \ Double shear strength ($1.75 times$ single shear), crushing capacity, and total rivet count],
   [$
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$1.875 dot pi/4 d^2 dot tau$] \
-    &= 1.875 times pi/4 (27)^2 times 60 \
-    &= 64412 "N" \
-    &= 64.4 "kN"
+    #text(size: 13.5pt)[$P_("s1")$] &= #text(size: 13.5pt)[$1.75 dot pi/4 d^2 dot tau = 1.75 times pi/4 (29)^2 (60) = 69360 "N"$] \
+    #text(size: 13.5pt)[$P_("c1")$] &= #text(size: 13.5pt)[$d dot t dot sigma_c = 29 times 20 times 150 = 87000 "N"$] \
+    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$P_t / P_("s1") = 577800 / 69360 = 8.33 => bold(n = 9 "rivets (Lozenge 1-2-3-3 Pattern)")$]
   $]
 )
 
 #item-row(
-  [*4. Total Rivet Count ($n$)* \ Total rivets required for lozenge arrangement],
+  [*4. Thickness of Butt Straps ($t_1$)* \ Standard proportion for equal width double cover plates],
   [$
-    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$P / P_s$] \
-    &= 581.4 / 64.4 \
-    &= 9.02 \
-    &=> bold(n = 9 "rivets")
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.75 t$] \
+    &= 0.75 (20) \
+    &=> bold("Adopt Strap Thickness " t_1 = 15 "mm")
   $]
 )
 
 #item-row(
-  [*5. Lozenge Rivet Layout* \ Symmetric diamond pattern from outer row to inner row],
-  [*Arranged in Diamond Pattern: Row 1 (1 rivet), Row 2 (2 rivets), Row 3 (3 rivets), Row 4 (3 rivets)*]
+  [*5. Sectional Tearing Capacities ($P_("t1"), P_("t2"), P_("t3"), P_("t4")$)* \ Tearing resistances across sections 1-1 (1 hole), 2-2 (2 holes), 3-3 (3 holes), and 4-4 (3 holes)],
+  [$
+    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t = (350 - 29) (20) (90) = 577800 "N (Governing Capacity)"$] \
+    #text(size: 13.5pt)[$P_("t2")$] &= #text(size: 13.5pt)[$(b - 2d) t dot sigma_t + P_("s1") = (350 - 58) (1800) + 69360 = 594960 "N"$] \
+    #text(size: 13.5pt)[$P_("t3")$] &= #text(size: 13.5pt)[$(b - 3d) t dot sigma_t + 3 P_("s1") = (350 - 87) (1800) + 208080 = 681480 "N"$] \
+    #text(size: 13.5pt)[$P_("t4")$] &= #text(size: 13.5pt)[$(b - 3d) t dot sigma_t + 6 P_("s1") = 473400 + 416160 = 889560 "N"$]
+  $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Bridge Lozenge Joint: d = 27 mm | Net Capacity P = 581.4 kN | Total Rivets n = 9 (Pattern: 1, 2, 3, 3)*]
+  [*6. Solid Flat Bar Strength & Joint Efficiency ($P, eta$)* \ Strength of un-punched tie-bar and overall diamond joint efficiency],
+  [$
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$b dot t dot sigma_t = 350 times 20 times 90 = 630000 "N"$] \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_("t1") / P times 100% = 577800 / 630000 times 100%$] \
+    &=> bold(eta = 91.7%) quad bold("(Superior to Chain Riveting 75.2%)")
+  $]
 )
 
-#figure-page("12", "LOZENGE (DIAMOND) JOINT", "Fig 9.35.png", "Fig. 9.35: Bridge Tie-Bar Lozenge Joint")
+#item-row(
+  [*7. Pitch, Margin & Row Spacing ($p, m, p_b$)* \ Pitch, margin, and transverse row pitch for lozenge layout],
+  [$
+    #text(size: 13.5pt)[$p$] &= #text(size: 13.5pt)[$3 d + 5 "mm" = 3(29) + 5 = 92 "mm" => bold("Pitch " p = 95 "mm")$] \
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d = 1.5(29) = 43.5 "mm" => bold("Margin " m = 45 "mm")$] \
+    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$2.5 d = 2.5(29) = 72.5 "mm" => bold("Row Pitch " p_b = 75 "mm")$]
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*Tie-Bar b = 350 mm, t = 20 mm | Hole d = 29 mm | Rivets n = 9 (1-2-3-3) | Strap t1 = 15 mm | Pitch p = 95 mm | Margin m = 45 mm | Row Pitch pb = 75 mm | Efficiency eta = 91.7%*]
+)
 
 // ==========================================
-// SECTION 13: EXAMPLE 9.13
+// SECTION 13: EXAMPLE 9.13 — FLAT TIE-BAR LAP JOINT (DIAMOND PATTERN)
 // ==========================================
-
-#pagebreak()
 
 #section-heading("13", "FLAT TIE-BAR LAP JOINT (DIAMOND PATTERN)")
 
 #section-overview(
-  [*System Parameters:* Flat Bar Width $b = 200 "mm"$, Thickness $t = 10 "mm"$, Rivet Shank Diameter $d = 24 "mm"$, Rivet Hole Diameter $d_h = 25.5 "mm"$, Allowable Stresses: Tensile $sigma_t = 112 "MPa"$, Shear $tau = 84 "MPa"$, Crushing $sigma_c = 200 "MPa"$.],
-  [*Design Protocol:* Arrange 4 rivets in diamond pattern (1, 1, 2); evaluate net tearing strength at outer single-rivet row, and compute joint efficiency.]
+  [*System Parameters:* Flat Bar Width $b = 200 "mm"$, Thickness $t = 10 "mm"$, Nominal Rivet Diameter $d_0 = 24 "mm"$, Rivet Hole Diameter $d = 25.5 "mm"$, Allowable Stresses: Tensile $sigma_t = 112 "MPa"$, Shear $tau = 84 "MPa"$, Crushing $sigma_c = 200 "MPa"$.],
+  [*Design Protocol:* Calculate maximum pull $P_t$ at outer section 1-1, determine single rivet shearing ($P_("s1")$) and crushing ($P_("c1")$) strengths, solve required rivet count $n = 5$ arranged in diamond pattern (1-3-1), calculate cover plate thickness $t_1 = 1.25 t = 12.5 "mm"$, evaluate sectional tearing capacities ($P_("t1"), P_("t2"), P_("t3")$), and verify governing joint efficiency $eta = 80.9\%$.]
 )
 
 #item-row(
-  [*1. Rivet Layout & Pattern* \ Specified rivet arrangement on flat tie-bar],
-  [*n = 4 rivets arranged in Diamond Pattern (Row 1: 1, Row 2: 1, Row 3: 2)*]
-)
-
-#item-row(
-  [*2. Net Tearing Strength ($P_t$)* \ Tearing capacity at Section 1-1 with hole diameter $d_h = 25.5 "mm"$],
+  [*1. Maximum Tensile Load at Section 1-1 ($P_t$)* \ Net tensile capacity of tie-bar at outer row with 1 rivet hole ($d = 25.5 "mm"$)],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(b - d_h) t dot sigma_t$] \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t$] \
     &= (200 - 25.5) times 10 times 112 \
     &= 174.5 times 1120 \
-    &= 195440 "N" \
-    &= 195.44 "kN"
+    &= bold(195440 "N")
   $]
 )
 
 #item-row(
-  [*3. Solid Strength ($P$) & Efficiency ($eta$)* \ Efficiency based on net tearing capacity],
+  [*2. Single Rivet Capacities & Required Rivets ($P_("s1"), P_("c1"), n$)* \ Single shear strength in lap joint, crushing capacity, and total rivet count],
   [$
-    P &= b dot t dot sigma_t \
-    &= 200 times 10 times 112 \
-    &= 224000 "N" \
-    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_t / P times 100%$] \
-    &= 195440 / 224000 times 100% \
-    &=> bold(eta = 87.3%)
+    #text(size: 13.5pt)[$P_("s1")$] &= #text(size: 13.5pt)[$pi/4 d^2 dot tau = pi/4 (25.5)^2 (84) = 42905 "N (Governing)"$] \
+    #text(size: 13.5pt)[$P_("c1")$] &= #text(size: 13.5pt)[$d dot t dot sigma_c = 25.5 times 10 times 200 = 51000 "N"$] \
+    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$P_t / P_("s1") = 195440 / 42905 = 4.56 => bold(n = 5 "rivets (Diamond 1-3-1 Pattern)")$]
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Flat Lap Joint (Diamond Pattern): Net Tearing Strength Pt = 195.44 kN | Joint Efficiency eta = 87.3%*]
+  [*3. Thickness of Cover Plate ($t_1$)* \ Standard proportion for lap joint cover plate],
+  [$
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$1.25 t$] \
+    &= 1.25 (10) \
+    &=> bold("Cover Plate Thickness " t_1 = 12.5 "mm")
+  $]
+)
+
+#item-row(
+  [*4. Sectional Tearing Capacities ($P_("t1"), P_("t2"), P_("t3")$)* \ Tearing resistances across sections 1-1 (1 hole), 2-2 (3 holes), and 3-3 (1 hole)],
+  [$
+    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t = (200 - 25.5) (10) (112) = 195440 "N"$] \
+    #text(size: 13.5pt)[$P_("t2")$] &= #text(size: 13.5pt)[$(b - 3d) t dot sigma_t + P_("s1") = (200 - 3(25.5)) (1120) + 42905$] \
+    &= 138320 + 42905 = bold(181225 "N (Governing Minimum Strength)") \
+    #text(size: 13.5pt)[$P_("t3")$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t = 195440 "N"$]
+  $]
+)
+
+#item-row(
+  [*5. Total Shear, Crushing Capacities & Joint Efficiency ($P_s, P_c, P, eta$)* \ Total capacities for 5 rivets, un-punched plate strength, and efficiency],
+  [$
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$5 times 42905 = 214525 "N", quad P_c = 5 times 51000 = 255000 "N"$] \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$b dot t dot sigma_t = 200 times 10 times 112 = 224000 "N"$] \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_("t2") / P times 100% = 181225 / 224000 times 100%$] \
+    &=> bold(eta = 80.9%)
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*Flat Lap Joint b = 200 mm, t = 10 mm | Hole d = 25.5 mm | Rivets n = 5 (1-3-1) | Cover t1 = 12.5 mm | Governing Strength = 181225 N | Efficiency eta = 80.9%*]
 )
 
 #figure-page("13", "FLAT TIE-BAR LAP JOINT", "Fig 9.36.png", "Fig. 9.36: Flat Tie-Bar Lap Joint (Diamond Pattern)")
 
 // ==========================================
-// SECTION 14: EXAMPLE 9.14
+// SECTION 14: EXAMPLE 9.14 — ECCENTRICALLY LOADED 7-RIVET BRACKET
 // ==========================================
 
-#pagebreak()
-
-#section-heading("14", "ECCENTRIC BRACKET WITH VERTICAL RIVET LINE")
+#section-heading("14", "ECCENTRICALLY LOADED LAP RIVETED BRACKET")
 
 #section-overview(
-  [*System Parameters:* Plate Thickness $t = 25 "mm"$, Eccentric Load $P = 50 "kN" = 50000 "N"$, Eccentricity $e = 400 "mm"$, Rivet Spacing $C = 100 "mm"$, Number of Rivets $n = 4$ in vertical line, Allowable Shear Stress $tau = 65 "MPa"$, Allowable Crushing Stress $sigma_c = 120 "MPa"$.],
-  [*Design Protocol:* Calculate direct shear force $F_("s1")$ per rivet; compute secondary shear force $F_("s2")$ due to moment $P e$; find max resultant shear force $F_R$, and solve for rivet diameter $d$.]
+  [*System Parameters:* Bracket Thickness $t = 25 "mm"$, Eccentric Load $P = 50 "kN" = 50000 "N"$, Eccentricity $e = 400 "mm"$, Rivet Spacing $C = 100 "mm"$, Rivet Count $n = 7$, Permissible Shear Stress $tau = 65 "MPa"$, Permissible Crushing Stress $sigma_c = 120 "MPa"$.],
+  [*Design Protocol:* Calculate center of gravity $G(x bar, y bar)$ of 7-rivet system, compute radial distances $l_i$, evaluate direct shear load $P_s$, compute secondary shear loads $F_i$ from moment $M = P e$, calculate resultant loads $R_3, R_4, R_5$, size rivet hole diameter $d$ for max load $R_5 = 33121 "N"$, and verify crushing stress $sigma_c$.]
 )
 
 #item-row(
-  [*1. Direct Shear Force ($F_("s1")$)* \ Uniform load distribution across 4 rivets],
+  [*1. Center of Gravity of Rivet Group ($G$)* \ Coordinate centroid from origin O(0,0)],
   [$
-    #text(size: 13.5pt)[$F_("s1")$] &= #text(size: 13.5pt)[$P / n$] \
-    &= 50000 / 4 \
-    &= 12500 "N" \
-    &= 12.5 "kN"
+    #text(size: 13.5pt)[$x bar$] &= #text(size: 13.5pt)[$(sum x_i) / n = (0 + 100 + 200 + 200 + 200 + 100 + 0) / 7 = 700 / 7 = bold(100 "mm")$] \
+    #text(size: 13.5pt)[$y bar$] &= #text(size: 13.5pt)[$(sum y_i) / n = (200 + 200 + 200 + 100 + 0 + 0 + 0) / 7 = 800 / 7 = bold(114.3 "mm")$]
   $]
 )
 
 #item-row(
-  [*2. Secondary Shear Force ($F_("s2")$)* \ Torsional shear force on outermost rivet ($r_("max") = 150 "mm"$)],
+  [*2. Radial Distances from Centroid ($l_i$)* \ Radial distances of 7 rivets from $G(100, 114.3)$],
   [$
-    sum r_i^2 &= 2 (150^2 + 50^2) \
-    &= 2 (22500 + 2500) \
-    &= 50000 "mm"^2 \
-    #text(size: 13.5pt)[$F_("s2")$] &= #text(size: 13.5pt)[$(P dot e dot r_("max")) / sum r_i^2$] \
-    &= (50000 times 400 times 150) / 50000 \
-    &= 60000 "N" \
-    &= 60 "kN"
+    #text(size: 13.5pt)[$l_1 = l_3$] &= #text(size: 13.5pt)[$sqrt((100)^2 + (200 - 114.3)^2) = sqrt(10000 + 7344.5) = bold(131.7 "mm")$] \
+    #text(size: 13.5pt)[$l_2$] &= #text(size: 13.5pt)[$200 - 114.3 = bold(85.7 "mm")$] \
+    #text(size: 13.5pt)[$l_4 = l_7$] &= #text(size: 13.5pt)[$sqrt((100)^2 + (114.3 - 100)^2) = sqrt(10000 + 204.5) = bold(101 "mm")$] \
+    #text(size: 13.5pt)[$l_5 = l_6$] &= #text(size: 13.5pt)[$sqrt((100)^2 + (114.3)^2) = sqrt(10000 + 13064.5) = bold(152 "mm")$]
   $]
 )
 
 #item-row(
-  [*3. Maximum Resultant Shear Force ($F_R$)* \ Direct plus secondary shear force (co-linear theta = 0 deg)],
+  [*3. Direct Shear Load ($P_s$)* \ Primary vertical shear load per rivet],
   [$
-    #text(size: 13.5pt)[$F_R$] &= #text(size: 13.5pt)[$F_("s1") + F_("s2")$] \
-    &= 12.5 + 60 \
-    &= 72.5 "kN" \
-    &= 72500 "N"
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$P / n$] \
+    &= 50000 / 7 \
+    &= bold(7143 "N (Vertically Downward)")
   $]
 )
 
 #item-row(
-  [*4. Rivet Diameter ($d$)* \ Equating $F_R$ to rivet single shear strength],
+  [*4. Moment & Secondary Shear Loads ($M, sum l_i^2, F_i$)* \ Turning moment about $G$ and secondary shear load distribution],
   [$
-    F_R &= pi/4 d^2 dot tau \
-    72500 &= pi/4 d^2 (65) \
-    d^2 &= (4 times 72500) / (pi times 65) \
-    &= 290000 / 204.2 \
-    &= 1420.2 \
-    #text(size: 13.5pt)[$d$] &= 37.68 "mm" \
-    &=> bold(d = 38 "mm")
+    #text(size: 13.5pt)[$M$] &= #text(size: 13.5pt)[$P dot e = 50000 times 400 = 20 times 10^6 "N-mm"$] \
+    #text(size: 13.5pt)[$sum l_i^2$] &= #text(size: 13.5pt)[$2(131.7)^2 + (85.7)^2 + 2(101)^2 + 2(152)^2 = bold(108645 "mm"^2)$] \
+    #text(size: 13.5pt)[$F_1 = F_3$] &= #text(size: 13.5pt)[$(M dot l_1) / sum l_i^2 = (20 times 10^6 times 131.7) / 108645 = bold(24244 "N")$] \
+    F_2 &= F_1 (l_2 / l_1) = 24244 (85.7 / 131.7) = bold(15776 "N") \
+    F_4 = F_7 &= F_1 (l_4 / l_1) = 24244 (101 / 131.7) = bold(18593 "N") \
+    F_5 = F_6 &= F_1 (l_5 / l_1) = 24244 (152 / 131.7) = bold(27981 "N")
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Eccentric Bracket: Direct Shear Fs1 = 12.5 kN | Secondary Shear Fs2 = 60 kN | Resultant FR = 72.5 kN | d = 38 mm*]
+  [*5. Resultant Shear Loads on Critical Rivets ($R_3, R_4, R_5$)* \ Combining primary and secondary shear vector forces],
+  [$
+    #text(size: 13.5pt)[$R_3$] &= #text(size: 13.5pt)[$sqrt(P_s^2 + F_3^2 + 2 P_s F_3 cos theta_3) = sqrt(7143^2 + 24244^2 + 2(7143)(24244)(0.76)) = bold(30033 "N")$] \
+    #text(size: 13.5pt)[$R_4$] &= #text(size: 13.5pt)[$sqrt(P_s^2 + F_4^2 + 2 P_s F_4 cos theta_4) = sqrt(7143^2 + 18593^2 + 2(7143)(18593)(0.99)) = bold(25684 "N")$] \
+    #text(size: 13.5pt)[$R_5$] &= #text(size: 13.5pt)[$sqrt(P_s^2 + F_5^2 + 2 P_s F_5 cos theta_5) = sqrt(7143^2 + 27981^2 + 2(7143)(27981)(0.658))$] \
+    &= bold(33121 "N (Governing Maximum Load on Rivet 5)")
+  $]
+)
+
+#item-row(
+  [*6. Rivet Hole Diameter ($d$)* \ Single shear strength capacity for maximum load $R_5 = 33121 "N"$],
+  [$
+    #text(size: 13.5pt)[$R_5$] &= #text(size: 13.5pt)[$pi/4 d^2 dot tau$] \
+    33121 &= pi/4 d^2 (65) = 51.05 d^2 \
+    d^2 &= 33121 / 51.05 = 648.8 \
+    &=> bold("Standard Hole Diameter " d = 25.5 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 24 "mm")
+  $]
+)
+
+#item-row(
+  [*7. Crushing Stress Verification ($sigma_c$)* \ Induced crushing stress check on critical rivet 5],
+  [$
+    #text(size: 13.5pt)[$sigma_c$] &= #text(size: 13.5pt)[$R_5 / (d dot t)$] \
+    &= 33121 / (25.5 times 25) \
+    &= 33121 / 637.5 \
+    &= bold(51.95 "MPa") quad bold("(Satisfactory, well below allowable 120 MPa)")
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*7-Rivet Bracket t = 25 mm | Centroid G = (100, 114.3) | Direct Shear Ps = 7143 N | Moment M = 20 MN-mm | Max Load R5 = 33121 N | Hole d = 25.5 mm | Rivet d0 = 24 mm | Crushing Stress = 51.95 MPa*]
 )
 
 // ==========================================
-// SECTION 15: EXAMPLE 9.15
+// SECTION 15: EXAMPLE 9.15 — SYMMETRIC 9-RIVET ECCENTRIC BRACKET
 // ==========================================
 
-#pagebreak()
-
-#section-heading("15", "ECCENTRICALLY LOADED BRACKET JOINT")
+#section-heading("15", "SYMMETRIC 9-RIVET ECCENTRIC BRACKET")
 
 #section-overview(
-  [*System Parameters:* Eccentric Load $P = 45 "kN"$, Allowable Shear Stress $tau <= 40 "MPa"$.],
-  [*Design Protocol:* Evaluate direct and secondary shear forces to determine maximum resultant shear load $F_R = 15.2 "kN"$; size rivet diameter $d$.]
+  [*System Parameters:* Eccentric Load $P = 45 "kN" = 45000 "N"$, Eccentricity $e = 500 "mm"$, Rivet Grid $3 times 3$ ($n = 9$), Horizontal Pitch = 100 mm, Vertical Pitch = 120 mm, Permissible Shear Stress $tau = 40 "MPa"$.],
+  [*Design Protocol:* Locate centroid $G$ at center rivet 5, determine radial distances $l_i$, evaluate direct shear load $P_s = 5000 "N"$, compute secondary shear loads $F_i$ from moment $M = P e = 22.5 times 10^6 "N-mm"$, determine maximum resultant shear load $R_3 = R_9 = 26600 "N"$, and size rivet hole diameter $d$.]
 )
 
 #item-row(
-  [*1. Maximum Resultant Shear Force ($F_R$)* \ Critical rivet resultant load from direct and secondary shear],
+  [*1. Centroid & Radial Distances ($G, l_i$)* \ Symmetric 3x3 rivet grid centered at rivet 5 $G(0,0)$],
   [$
-    #text(size: 13.5pt)[$F_R$] &= 15.2 "kN" \
-    &= 15200 "N"
+    #text(size: 13.5pt)[$l_1 = l_3 = l_7 = l_9$] &= #text(size: 13.5pt)[$sqrt((100)^2 + (120)^2) = sqrt(10000 + 14400) = bold(156.2 "mm")$] \
+    #text(size: 13.5pt)[$l_2 = l_8$] &= #text(size: 13.5pt)[$120 "mm", quad l_4 = l_6 = 100 "mm", quad l_5 = 0$]
   $]
 )
 
 #item-row(
-  [*2. Rivet Diameter ($d$)* \ Single shear area calculation for allowable stress $tau = 40 "MPa"$],
+  [*2. Direct Shear Load ($P_s$)* \ Primary vertical shear force acting on each rivet],
   [$
-    #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$sqrt((4 F_R) / (pi tau))$] \
-    &= sqrt((4 times 15200) / (pi times 40)) \
-    &= sqrt(60800 / 125.66) \
-    &= sqrt(483.8) \
-    &= 22.00 "mm" \
-    &=> bold(d = 22 "mm")
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$P / n$] \
+    &= 45000 / 9 \
+    &= bold(5000 "N (Vertically Downward)")
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Eccentric Bracket (45 kN Load): Critical Resultant FR = 15.2 kN | Rivet Diameter d = 22 mm*]
+  [*3. Moment & Secondary Shear Loads ($M, sum l_i^2, F_i$)* \ Torsional moment about $G$ and secondary shear load distribution],
+  [$
+    #text(size: 13.5pt)[$M$] &= #text(size: 13.5pt)[$P dot e = 45000 times 500 = 22.5 times 10^6 "N-mm"$] \
+    #text(size: 13.5pt)[$sum l_i^2$] &= #text(size: 13.5pt)[$4(156.2)^2 + 2(120)^2 + 2(100)^2 = bold(146400 "mm"^2)$] \
+    #text(size: 13.5pt)[$F_1 = F_3 = F_7 = F_9$] &= #text(size: 13.5pt)[$(M dot l_1) / sum l_i^2 = (22.5 times 10^6 times 156.2) / 146400 = bold(23120 "N")$] \
+    F_2 = F_8 &= 23120 (120 / 156.2) = bold(17762 "N") \
+    F_4 = F_6 &= 23120 (100 / 156.2) = bold(14800 "N")
+  $]
+)
+
+#item-row(
+  [*4. Resultant Shear Loads on Critical Rivets 3 & 9 ($R_3, R_9$)* \ Vector addition of direct and secondary shear forces ($cos theta_3 = 100/156.2 = 0.64$)],
+  [$
+    #text(size: 13.5pt)[$R_3 = R_9$] &= #text(size: 13.5pt)[$sqrt(P_s^2 + F_3^2 + 2 P_s F_3 cos theta_3)$] \
+    &= sqrt(5000^2 + 23120^2 + 2(5000)(23120)(0.64)) \
+    &= sqrt(25 times 10^6 + 534.5 times 10^6 + 147.97 times 10^6) \
+    &= bold(26600 "N (Governing Maximum Resultant Load)") \
+    #text(size: 13.5pt)[$R_6$] &= #text(size: 13.5pt)[$P_s + F_6 = 5000 + 14800 = 19800 "N"$]
+  $]
+)
+
+#item-row(
+  [*5. Rivet Hole Diameter ($d$)* \ Single shear strength capacity for maximum load $R_3 = 26600 "N"$],
+  [$
+    #text(size: 13.5pt)[$R_3$] &= #text(size: 13.5pt)[$pi/4 d^2 dot tau$] \
+    26600 &= pi/4 d^2 (40) = 31.42 d^2 \
+    d^2 &= 26600 / 31.42 = 846.6 \
+    &=> bold("Standard Hole Diameter " d = 29 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 27 "mm")
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*9-Rivet Bracket P = 45 kN, e = 500 mm | Direct Shear Ps = 5000 N | Moment M = 22.5 MN-mm | Max Resultant R3 = 26600 N | Hole d = 29 mm | Rivet d0 = 27 mm*]
 )
 
 // ==========================================
-// SECTION 16: EXAMPLE 9.16
+// SECTION 16: EXAMPLE 9.16 — MAXIMUM SAFE ECCENTRIC LOAD CAPACITY
 // ==========================================
-
-#pagebreak()
 
 #section-heading("16", "MAXIMUM SAFE ECCENTRIC LOAD CAPACITY")
 
 #section-overview(
-  [*System Parameters:* Number of Rivets $n = 4$, Rivet Diameter $d = 20 "mm"$, Working Shear Stress $tau = 100 "MPa"$.],
-  [*Design Protocol:* Determine maximum single rivet shear load capacity $F_("R,max")$; express critical resultant force as a function of external load $P$ ($F_R = 0.966 P$); solve maximum safe load $P$.]
+  [*System Parameters:* Number of Rivets $n = 4$ in horizontal line (A, B, C, D), Rivet Hole Diameter $d = 20 "mm"$, Allowable Shear Stress $tau = 100 "MPa" = 100 "N/mm"^2$, Eccentricity $e = 100 "mm"$, Spacings $l_A = l_D = 300 "mm"$, $l_B = l_C = 100 "mm"$.],
+  [*Design Protocol:* Express direct shear load $P_s = 0.25 P$ and secondary shear loads ($F_A, F_B, F_C, F_D$) as functions of load $P$, determine resultant loads ($R_A, R_B, R_C, R_D$), equate maximum load $R_D = 0.40 P$ to single rivet shear capacity ($31420 "N"$), and calculate maximum safe eccentric load $P$.]
 )
 
 #item-row(
-  [*1. Single Rivet Shear Capacity ($F_("R,max")$)* \ Maximum permissible shear force per rivet],
+  [*1. Direct Shear Load per Rivet ($P_s$)* \ Primary vertical shear load per rivet in terms of load $P$],
   [$
-    #text(size: 13.5pt)[$F_("R,max")$] &= #text(size: 13.5pt)[$pi/4 d^2 dot tau$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$P / n = P / 4 = bold(0.25 P "N (Vertically Upward)")$]
+  $]
+)
+
+#item-row(
+  [*2. Moment & Secondary Shear Loads ($M, sum l_i^2, F_i$)* \ Torsional moment about centroid $E$ and secondary load distribution],
+  [$
+    #text(size: 13.5pt)[$M$] &= #text(size: 13.5pt)[$P dot e = P times 100 = bold(100 P "N-mm (Anticlockwise)")$] \
+    #text(size: 13.5pt)[$sum l_i^2$] &= #text(size: 13.5pt)[$2(300)^2 + 2(100)^2 = 180000 + 20000 = bold(200000 "mm"^2)$] \
+    #text(size: 13.5pt)[$F_A = F_D$] &= #text(size: 13.5pt)[$(M dot l_A) / sum l_i^2 = (100 P times 300) / 200000 = bold(0.15 P "N")$] \
+    #text(size: 13.5pt)[$F_B = F_C$] &= #text(size: 13.5pt)[$(M dot l_B) / sum l_i^2 = (100 P times 100) / 200000 = bold(0.05 P "N")$]
+  $]
+)
+
+#item-row(
+  [*3. Resultant Shear Load on Each Rivet ($R_A, R_B, R_C, R_D$)* \ Vector sum of direct and secondary shear loads],
+  [$
+    #text(size: 13.5pt)[$R_A$] &= #text(size: 13.5pt)[$P_s - F_A = 0.25 P - 0.15 P = 0.10 P$] \
+    #text(size: 13.5pt)[$R_B$] &= #text(size: 13.5pt)[$P_s - F_B = 0.25 P - 0.05 P = 0.20 P$] \
+    #text(size: 13.5pt)[$R_C$] &= #text(size: 13.5pt)[$P_s + F_C = 0.25 P + 0.05 P = 0.30 P$] \
+    #text(size: 13.5pt)[$R_D$] &= #text(size: 13.5pt)[$P_s + F_D = 0.25 P + 0.15 P = bold(0.40 P "N (Governing Maximum Load on Rivet D)")$]
+  $]
+)
+
+#item-row(
+  [*4. Single Rivet Shear Capacity ($P_("shear")$)* \ Maximum allowable shear force capacity per rivet ($d = 20 "mm"$)],
+  [$
+    #text(size: 13.5pt)[$P_("shear")$] &= #text(size: 13.5pt)[$pi/4 d^2 dot tau$] \
     &= pi/4 (20)^2 times 100 \
-    &= 31416 "N" \
-    &= 31.416 "kN"
+    &= 100 pi times 100 \
+    &= bold(31420 "N" = 31.42 "kN")
   $]
 )
 
 #item-row(
-  [*2. Resultant Load Relation* \ Critical rivet resultant load expressed in terms of load $P$],
+  [*5. Maximum Safe Eccentric Load ($P$)* \ Equating governing load $R_D = 0.40 P$ to single rivet shear capacity],
   [$
-    #text(size: 13.5pt)[$F_R$] &= 0.966 P
+    #text(size: 13.5pt)[$0.40 P$] &= #text(size: 13.5pt)[$31420 "N"$] \
+    P &= 31420 / 0.40 \
+    &= 78550 "N" \
+    &=> bold("Maximum Safe Load " P = 78.55 "kN")
   $]
 )
 
 #item-row(
-  [*3. Maximum Safe Load ($P$)* \ Equating $F_R$ to single rivet shear capacity],
-  [$
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$F_("R,max") / 0.966$] \
-    &= 31.416 / 0.966 \
-    &= 32.52 "kN" \
-    &=> bold(P = 32.5 "kN")
-  $]
-)
-
-#item-row(
-  [*Design Output*],
-  [*Eccentric Load Capacity: Single Rivet Capacity FR,max = 31.416 kN | Maximum Safe Load P = 32.5 kN*]
+  [*Design Output Summary*],
+  [*4-Rivet Horizontal Joint d = 20 mm | Eccentricity e = 100 mm | Governing Load RD = 0.40 P | Single Rivet Capacity = 31.42 kN | Max Safe Load P = 78.55 kN*]
 )
 
 // ==========================================
-// SECTION 17: EXAMPLE 9.17
+// SECTION 17: EXAMPLE 9.17 — ECCENTRIC COLUMN BRACKET JOINT
 // ==========================================
 
 #pagebreak()
@@ -1349,48 +1523,66 @@
 #section-heading("17", "ECCENTRIC COLUMN BRACKET JOINT")
 
 #section-overview(
-  [*System Parameters:* Number of Rivets $n = 6$, Eccentric Load $P = 60 "kN" = 60000 "N"$, Eccentricity $e = 200 "mm"$, Allowable Shear Stress $tau <= 150 "MPa"$.],
-  [*Design Protocol:* Calculate primary direct shear $F_("s1")$ and secondary shear $F_("s2")$; vectorially combine to get critical resultant shear force $F_R$; solve rivet diameter $d$.]
+  [*System Parameters:* Number of Rivets $n = 6$ (2 columns of 3 rivets), Eccentric Load $P = 60 "kN" = 60000 "N"$, Eccentricity $e = 200 "mm"$, Horizontal Spacing = 150 mm (75 mm from G), Vertical Spacing = 100 mm (50 mm from G), Permissible Shear Stress $tau = 150 "MPa"$.],
+  [*Design Protocol:* Locate symmetric centroid $G(0,0)$, compute radial distances $l_i$, evaluate direct shear load $P_s = 10000 "N"$, compute secondary shear loads $F_i$ from moment $M = P e = 12 times 10^6 "N-mm"$, determine maximum resultant shear load $R_1 = R_3 = 35384 "N"$, and size rivet hole diameter $d$.]
 )
 
 #item-row(
-  [*1. Primary & Secondary Shear Forces* \ Direct load per rivet and torsional secondary load],
+  [*1. Centroid & Radial Distances ($G, l_i$)* \ Symmetric 2x3 rivet grid centered at centroid $G(0,0)$],
   [$
-    F_("s1") &= P / n \
-    &= 60 / 6 \
-    &= 10 "kN" \
-    F_("s2") &= (P dot e dot r_("max")) / sum r_i^2 \
-    &= 41.5 "kN"
+    #text(size: 13.5pt)[$l_1 = l_3 = l_4 = l_6$] &= #text(size: 13.5pt)[$sqrt((75)^2 + (50)^2) = sqrt(5625 + 2500) = bold(90.1 "mm")$] \
+    #text(size: 13.5pt)[$l_2 = l_5$] &= #text(size: 13.5pt)[$50 "mm"$]
   $]
 )
 
 #item-row(
-  [*2. Maximum Resultant Shear Force ($F_R$)* \ Vector addition of primary and secondary shear],
+  [*2. Direct Shear Load ($P_s$)* \ Primary vertical shear force acting on each rivet],
   [$
-    #text(size: 13.5pt)[$F_R$] &= 51.5 "kN" \
-    &= 51500 "N"
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$P / n$] \
+    &= 60000 / 6 \
+    &= bold(10000 "N (Vertically Downward)")
   $]
 )
 
 #item-row(
-  [*3. Rivet Diameter ($d$)* \ Equating $F_R$ to single shear capacity],
+  [*3. Moment & Secondary Shear Loads ($M, sum l_i^2, F_i$)* \ Torsional moment about $G$ and secondary shear load distribution],
   [$
-    #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$sqrt((4 F_R) / (pi tau))$] \
-    &= sqrt((4 times 51500) / (pi times 150)) \
-    &= sqrt(206000 / 471.24) \
-    &= sqrt(437.1) \
-    &= 20.91 "mm" \
-    &=> bold(d = 21 "mm")
+    #text(size: 13.5pt)[$M$] &= #text(size: 13.5pt)[$P dot e = 60000 times 200 = 12 times 10^6 "N-mm"$] \
+    #text(size: 13.5pt)[$sum l_i^2$] &= #text(size: 13.5pt)[$4(90.1)^2 + 2(50)^2 = 32500 + 5000 = bold(37500 "mm"^2)$] \
+    #text(size: 13.5pt)[$F_1 = F_3 = F_4 = F_6$] &= #text(size: 13.5pt)[$(M dot l_1) / sum l_i^2 = (12 times 10^6 times 90.1) / 37500 = bold(28846 "N")$] \
+    F_2 = F_5 &= 28846 (50 / 90.1) = bold(16008 "N")
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*6-Rivet Column Bracket: Fs1 = 10 kN | Fs2 = 41.5 kN | Resultant FR = 51.5 kN | Rivet Diameter d = 21 mm*]
+  [*4. Resultant Shear Loads on Critical Rivets 1 & 3 ($R_1, R_3$)* \ Vector addition of direct and secondary shear forces ($cos theta_1 = 50/90.1 = 0.555$)],
+  [$
+    #text(size: 13.5pt)[$R_1 = R_3$] &= #text(size: 13.5pt)[$sqrt(P_s^2 + F_1^2 + 2 P_s F_1 cos theta_1)$] \
+    &= sqrt(10000^2 + 28846^2 + 2(10000)(28846)(0.555)) \
+    &= sqrt(100 times 10^6 + 832.1 times 10^6 + 320.2 times 10^6) \
+    &= bold(35384 "N (Governing Maximum Resultant Load)") \
+    #text(size: 13.5pt)[$R_2$] &= #text(size: 13.5pt)[$P_s + F_2 = 10000 + 16008 = 26008 "N"$]
+  $]
+)
+
+#item-row(
+  [*5. Rivet Hole Diameter ($d$)* \ Single shear strength capacity for maximum load $R_1 = 35384 "N"$],
+  [$
+    #text(size: 13.5pt)[$R_1$] &= #text(size: 13.5pt)[$pi/4 d^2 dot tau$] \
+    35384 &= pi/4 d^2 (150) = 117.8 d^2 \
+    d^2 &= 35384 / 117.8 = 300.4 \
+    &=> bold("Standard Hole Diameter " d = 19.5 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 18 "mm")
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*6-Rivet Column Bracket P = 60 kN, e = 200 mm | Direct Shear Ps = 10000 N | Moment M = 12 MN-mm | Max Resultant R1 = 35384 N | Hole d = 19.5 mm | Rivet d0 = 18 mm*]
 )
 
 // ==========================================
-// SECTION 18: EXAMPLE 9.18
+// SECTION 18: EXAMPLE 9.18 — INCLINED LOAD ECCENTRIC BRACKET & PLATE THICKNESS
 // ==========================================
 
 #pagebreak()
@@ -1398,53 +1590,79 @@
 #section-heading("18", "ECCENTRICALLY LOADED INCLINED BRACKET JOINT")
 
 #section-overview(
-  [*System Parameters:* Number of Rivets $n = 4$ ($A, B, C, D$, vertical line, pitch $60 "mm"$), Inclined Load $P = 100 "kN" = 100000 "N"$ at $30^deg$ to horizontal, Eccentricity $e = 150 "mm"$, Allowable Shear Stress $tau = 80 "MPa"$, Allowable Bending Stress $sigma_b = 125 "MPa"$, Plate Width $b = 240 "mm"$.],
-  [*Design Protocol:* Resolve load into vertical and horizontal components ($P_V, P_H$); calculate max resultant shear force $F_R$ on critical rivet $D$ to size diameter $d$; determine bending moment $M$ on bracket plate to calculate plate thickness $t$.]
+  [*System Parameters:* Number of Rivets $n = 4$ ($A, B, C, D$ in vertical line), Spacings $l_A = l_D = 90 "mm"$, $l_B = l_C = 30 "mm"$, Inclined Load $P = 100 "kN" = 100000 "N"$ at $30^deg$ to horizontal, Arm $"EF" = 150 "mm"$, Yield Shear Stress $tau_y = 240 "MPa"$, FOS = 1.5, Allowable Bending Stress $sigma_b = 125 "MPa"$, Plate Width $b = 240 "mm"$.],
+  [*Design Protocol:* Calculate direct shear load $P_s = 25000 "N"$, perpendicular eccentricity $e = 75 "mm"$, moment $M = 7.5 times 10^6 "N-mm"$, secondary shear loads $F_i$, governing resultant load $R_D = 60455 "N"$, size rivet hole $d = 23.5 "mm"$ (nominal $d_0 = 22 "mm"$), compute weakest section moment of inertia $I_("xx") = 724674 t$, and solve bracket plate thickness $t = 10 "mm"$.]
 )
 
 #item-row(
-  [*1. Vertical & Horizontal Load Components* \ Resolving inclined 100 kN load at 30 degrees],
+  [*1. Direct Shear Load ($P_s$)* \ Primary shear load per rivet at $30^deg$ angle to horizontal],
   [$
-    P_V &= P sin(30^deg) \
-    &= 100 sin(30^deg) \
-    &= 50 "kN" \
-    P_H &= P cos(30^deg) \
-    &= 100 cos(30^deg) \
-    &= 86.6 "kN"
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$P / n$] \
+    &= 100000 / 4 \
+    &= bold(25000 "N (at 30 deg to horizontal)")
   $]
 )
 
 #item-row(
-  [*2. Critical Resultant Shear ($F_R$) & Rivet Diameter ($d$)* \ Resultant force on rivet D and single shear sizing],
+  [*2. Perpendicular Eccentricity & Moment ($e, M$)* \ Perpendicular moment arm from $E$ to load line of action],
   [$
-    #text(size: 13.5pt)[$F_R$] &= 42.4 "kN" \
-    &= 42400 "N" \
-    #text(size: 13.5pt)[$d$] &= sqrt((4 F_R) / (pi tau)) \
-    &= sqrt((4 times 42400) / (pi times 80)) \
-    &= sqrt(169600 / 251.33) \
-    &= sqrt(674.8) \
-    &= 25.98 "mm" \
-    &=> bold(d = 26 "mm")
+    #text(size: 13.5pt)[$e$] &= #text(size: 13.5pt)[$"EF" sin(30^deg) = 150 times 0.5 = bold(75 "mm")$] \
+    #text(size: 13.5pt)[$M$] &= #text(size: 13.5pt)[$P dot e = 100000 times 75 = bold(7.5 times 10^6 "N-mm")$]
   $]
 )
 
 #item-row(
-  [*3. Bending Moment ($M$) & Bracket Thickness ($t$)* \ Bending stress analysis of bracket plate],
+  [*3. Secondary Shear Loads ($F_A, F_B, F_C, F_D$)* \ Torsional shear distribution ($sum l_i^2 = 2(90)^2 + 2(30)^2 = 18000 "mm"^2$)],
   [$
-    M &= P_H dot e \
-    &= 86.6 times 10^3 times 150 \
-    &= 1.30 times 10^7 "N"dot"mm" \
-    sigma_b &= (6 M) / (t dot b^2) \
-    125 &= (6 times 1.30 times 10^7) / (t times (240)^2) \
-    &= (7.80 times 10^7) / (57600 t) \
-    &= 1354.17 / t \
-    t &= 1354.17 / 125 \
-    &= 10.83 "mm" \
-    &=> bold(t = 14 "mm")
+    #text(size: 13.5pt)[$F_A = F_D$] &= #text(size: 13.5pt)[$(M dot l_A) / sum l_i^2 = (7.5 times 10^6 times 90) / 18000 = bold(37500 "N")$] \
+    #text(size: 13.5pt)[$F_B = F_C$] &= #text(size: 13.5pt)[$(M dot l_B) / sum l_i^2 = (7.5 times 10^6 times 30) / 18000 = bold(12500 "N")$]
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Inclined Bracket Joint: PV = 50 kN, PH = 86.6 kN | Critical FR = 42.4 kN | d = 26 mm | Plate Thickness t = 14 mm*]
+  [*4. Resultant Shear Loads ($R_A, R_B, R_C, R_D$)* \ Vector addition of primary ($P_s$) and secondary ($F_i$) shear loads],
+  [$
+    #text(size: 13.5pt)[$R_A = R_B$] &= #text(size: 13.5pt)[$sqrt(P_s^2 + F_A^2 + 2 P_s F_A cos(150^deg)) = bold(19365 "N")$] \
+    #text(size: 13.5pt)[$R_C$] &= #text(size: 13.5pt)[$sqrt(P_s^2 + F_C^2 + 2 P_s F_C cos(30^deg)) = bold(36366 "N")$] \
+    #text(size: 13.5pt)[$R_D$] &= #text(size: 13.5pt)[$sqrt(P_s^2 + F_D^2 + 2 P_s F_D cos(30^deg))$] \
+    &= sqrt((25000)^2 + (37500)^2 + 2(25000)(37500)(0.866)) \
+    &= bold(60455 "N (Governing Maximum Resultant Load on Rivet D)")
+  $]
+)
+
+#item-row(
+  [*5. Rivet Hole Diameter ($d$)* \ Permissible shear stress $tau_("allow") = 240 / 1.5 = 160 "MPa"$ for load $R_D = 60455 "N"$],
+  [$
+    #text(size: 13.5pt)[$R_D$] &= #text(size: 13.5pt)[$pi/4 d^2 dot (tau_y / "FOS")$] \
+    60455 &= pi/4 d^2 (160) = 125.7 d^2 \
+    d^2 &= 60455 / 125.7 = 481 \
+    &=> bold("Standard Hole Diameter " d = 23.5 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 22 "mm")
+  $]
+)
+
+#item-row(
+  [*6. Moment of Inertia of Weakest Section ($I_("xx")$)* \ Net area moment of inertia deducting 4 rivet holes ($d = 23.5 "mm"$)],
+  [$
+    #text(size: 13.5pt)[$I_("xx")$] &= #text(size: 13.5pt)[$(t b^3)/12 - [4(t d^3)/12 + 2(t dot d)(90)^2 + 2(t dot d)(30)^2]$] \
+    &= (t (240)^3)/12 - [4326 t + 2(23.5 t)(8100 + 900)] \
+    &= 1152000 t - [4326 t + 423000 t] \
+    &= bold(724674 t "mm"^4)
+  $]
+)
+
+#item-row(
+  [*7. Bracket Plate Thickness ($t$)* \ Bending stress formula for allowable stress $sigma_b = 125 "MPa"$ ($y = b/2 = 120 "mm"$)],
+  [$
+    #text(size: 13.5pt)[$sigma_b$] &= #text(size: 13.5pt)[$(M dot y) / I_("xx")$] \
+    125 &= (7.5 times 10^6 times 120) / (724674 t) \
+    125 &= 1241.9 / t \
+    t &= 1241.9 / 125 = 9.935 "mm" \
+    &=> bold("Adopt Bracket Plate Thickness " t = 10 "mm")
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*Inclined Load P = 100 kN at 30 deg | Moment M = 7.5 MN-mm | Max Load RD = 60.46 kN | Hole d = 23.5 mm | Rivet d0 = 22 mm | Weakest Section Ixx = 724674 t | Plate Thickness t = 10 mm*]
 )
