@@ -375,50 +375,78 @@
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
     &= 6 sqrt(13) = 21.63 "mm" \
-    &=> bold("Standard Hole " d = 23 "mm") \
-    &=> bold("Rivet Dia " d_0 = 22 "mm")
+    &=> bold("Standard Hole Diameter " d = 23 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 22 "mm")
   $]
 )
 
 #item-row(
-  [*2. Pitch of Rivets ($p$)* \ Equating tearing strength $P_t$ to single shear strength $P_s$ ($n = 2$)],
+  [*2. Tearing Resistance of Plate ($P_t$)* \ Net tensile area capacity per pitch length],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (p - 23) 1040 "N"$] \
-    P_s &= 2 times pi/4 (23)^2 times 60 = 49864 "N" \
-    (p - 23) 1040 &= 49864 \
-    p - 23 &= 48 => bold(p = 71 "mm") \
-    p_("max") &= 2.62 t + 41.28 = 75.34 "mm" \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (p - 23) times 13 times 80 \
+    &= 1040 (p - 23) "N"
+  $]
+)
+
+#item-row(
+  [*3. Shearing Resistance of Rivets ($P_s$)* \ Single shear capacity for 2 rivets per pitch ($n = 2$)],
+  [$
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau$] \
+    &= 2 times pi/4 (23)^2 times 60 \
+    &= 2 times 415.48 times 60 \
+    &= bold(49864 "N")
+  $]
+)
+
+#item-row(
+  [*4. Pitch & Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
+  [$
+    #text(size: 13.5pt)[$1040 (p - 23)$] &= #text(size: 13.5pt)[$49864 "N"$] \
+    p - 23 &= 49864 / 1040 = 47.95 => p = 70.95 "mm" \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
+    &= 2.62 (13) + 41.28 = 75.34 "mm" \
     &=> bold("Adopt Pitch " p = 71 "mm")
   $]
 )
 
 #item-row(
-  [*3. Distance Between Rows & Margin ($p_b, m$)* \ Row pitch for zig-zag arrangement and margin],
+  [*5. Distance Between Rows of Rivets ($p_b$)* \ Transverse row pitch for zig-zag riveting],
   [$
     #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.33 p + 0.67 d$] \
-    &= 0.33 (71) + 0.67 (23) = 38.8 "mm" \
-    &=> bold("Adopt Row Pitch " p_b = 40 "mm") \
-    m &= 1.5 d = 1.5 (23) = 34.5 "mm" \
+    &= 0.33(71) + 0.67(23) \
+    &= 23.43 + 15.41 = 38.84 "mm" \
+    &=> bold("Adopt Row Pitch " p_b = 40 "mm")
+  $]
+)
+
+#item-row(
+  [*6. Margin ($m$)* \ Distance from rivet hole center to plate edge],
+  [$
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d$] \
+    &= 1.5 (23) = 34.5 "mm" \
     &=> bold("Adopt Margin " m = 35 "mm")
   $]
 )
 
 #item-row(
-  [*4. Failure Mode Analysis* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities],
+  [*7. Failure Mode Analysis* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities for adopted $p = 71 "mm"$],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(71 - 23) (13) (80) = 49920 "N"$] \
-    P_s &= 2 (pi/4) (23)^2 (60) = 49864 "N" \
-    P_c &= 2 (23) (13) (120) = 71760 "N" \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (71 - 23) (13) (80) = 49920 "N"$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau = 2 (pi/4) (23)^2 (60) = 49864 "N (Governing)"$] \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 2 (23) (13) (120) = 71760 "N"$] \
     &=> bold("Governing Strength " P_u = P_s = 49864 "N") \
     &=> bold("Failure Mode: Shearing of Rivets")
   $]
 )
 
 #item-row(
-  [*5. Joint Efficiency ($eta$)* \ Solid plate strength $P$ and joint efficiency],
+  [*8. Solid Plate Strength & Joint Efficiency ($P, eta$)* \ Un-punched solid plate strength and overall joint efficiency],
   [$
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 71 (13) (80) = 73840 "N"$] \
-    eta &= P_s / P times 100% \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t$] \
+    &= 71 times 13 times 80 \
+    &= 73840 "N" \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_s / P times 100%$] \
     &= 49864 / 73840 times 100% \
     &=> bold(eta = 67.5%)
   $]
@@ -426,7 +454,7 @@
 
 #item-row(
   [*Design Output Summary*],
-  [*Rivet Hole d = 23 mm | Pitch p = 71 mm | Row Pitch pb = 40 mm | Margin m = 35 mm | Failure: Shearing | Efficiency eta = 67.5%*]
+  [*Rivet Hole d = 23 mm | Pitch p = 71 mm | Row Pitch pb = 40 mm | Margin m = 35 mm | Failure Mode: Shearing | Efficiency eta = 67.5%*]
 )
 
 #figure-page("4", "DOUBLE RIVETED LAP JOINT (ZIG-ZAG)", "Fig 9.23.png", "Fig. 9.23: Double Riveted Lap Joint with Zig-Zag Riveting")
@@ -443,41 +471,58 @@
 )
 
 #item-row(
-  [*1. Rivet Diameter ($d$)* \ Equating shearing strength $P_s$ to crushing strength $P_c$ ($t = 7 "mm" < 8 "mm"$)],
+  [*1. Shearing & Crushing Expressions ($P_s, P_c$)* \ Symbolic capacities for $t = 7 "mm" < 8 "mm"$ ($n = 3$ rivets per pitch)],
   [$
-    #text(size: 13.5pt)[$141.4 d^2$] &= #text(size: 13.5pt)[$2520 d$] \
-    d &= 2520 / 141.4 = 17.8 "mm" \
-    &=> bold("Standard Hole " d = 19 "mm") \
-    &=> bold("Rivet Dia " d_0 = 18 "mm")
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau = 3 times pi/4 d^2 times 60 = 141.4 d^2 "N"$] \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 3 times d times 7 times 120 = 2520 d "N"$]
   $]
 )
 
 #item-row(
-  [*2. Rivet Pitch & Max Pitch ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
+  [*2. Diameter of Rivet Hole ($d$)* \ Equating shearing strength $P_s$ to crushing strength $P_c$],
+  [$
+    #text(size: 13.5pt)[$141.4 d^2$] &= #text(size: 13.5pt)[$2520 d$] \
+    d &= 2520 / 141.4 = 17.8 "mm" \
+    &=> bold("Standard Hole Diameter " d = 19 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 18 "mm")
+  $]
+)
+
+#item-row(
+  [*3. Tearing & Shearing Resistances ($P_t, P_s$)* \ Capacities evaluated for standard hole diameter $d = 19 "mm"$],
+  [$
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (p - 19) times 7 times 90 = 630 (p - 19) "N"$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$141.4 d^2 = 141.4 (19)^2 = 51045 "N"$]
+  $]
+)
+
+#item-row(
+  [*4. Rivet Pitch & Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
   [$
     #text(size: 13.5pt)[$630 (p - 19)$] &= #text(size: 13.5pt)[$51045 "N"$] \
     p - 19 &= 51045 / 630 = 81 => p = 100 "mm" \
-    p_("max") &= 3.47 t + 41.28 = 65.57 "mm" \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
+    &= 3.47 (7) + 41.28 = 65.57 "mm" \
     &=> bold("Adopt Pitch " p = p_("max") = 66 "mm")
   $]
 )
 
 #item-row(
-  [*3. Distance Between Rows ($p_b$)* \ Transverse row pitch for zig-zag riveting],
+  [*5. Distance Between Rows of Rivets ($p_b$)* \ Transverse row pitch for zig-zag riveting],
   [$
     #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.33 p + 0.67 d$] \
     &= 0.33 (66) + 0.67 (19) \
-    &= 21.78 + 12.73 \
-    &=> bold("Row Pitch " p_b = 34.5 "mm")
+    &= 21.78 + 12.73 = 34.51 "mm" \
+    &=> bold("Adopt Row Pitch " p_b = 34.5 "mm")
   $]
 )
 
 #item-row(
-  [*4. Mode of Failure Analysis* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities for adopted $p = 66 "mm"$],
+  [*6. Mode of Failure Analysis* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities for adopted $p = 66 "mm"$],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(66 - 19) (7) (90) = 29610 "N"$] \
-    P_s &= 3 (pi/4) (19)^2 (60) = 51045 "N" \
-    P_c &= 3 (19) (7) (120) = 47880 "N" \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (66 - 19) (7) (90) = 29610 "N (Governing)"$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau = 3 (pi/4) (19)^2 (60) = 51045 "N"$] \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 3 (19) (7) (120) = 47880 "N"$] \
     &=> bold("Governing Strength " P_u = P_t = 29610 "N") \
     &=> bold("Failure Mode: Tearing off the Plate")
   $]
@@ -498,7 +543,7 @@
 
 #section-overview(
   [*System Parameters:* Main Plate Thickness $t = 10 "mm"$, Tensile Stress $sigma_t = 80 "MPa"$, Shear Stress $tau = 60 "MPa"$, Double Shear Factor = 1.875, Number of Rivets $n = 1$.],
-  [*Design Protocol:* Calculate rivet hole diameter $d$ via Unwin's formula, determine double shear capacity $P_s$, solve for pitch $p$ by equating $P_t = P_s$ and verify against I.B.R. maximum pitch ($p <= p_("max")$), compute cover strap thickness $t_1 = 0.625 t$, evaluate governing failure mode, and calculate efficiency $eta$.]
+  [*Design Protocol:* Calculate rivet hole diameter $d$ via Unwin's formula, determine double shear capacity $P_s$, state symbolic tearing strength ($P_t$), solve for pitch $p$, limit by I.B.R. maximum pitch ($p <= p_("max")$), compute cover strap thickness $t_1 = 0.625 t$, evaluate governing failure mode, and calculate joint efficiency $eta$.]
 )
 
 #item-row(
@@ -506,46 +551,58 @@
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
     &= 6 sqrt(10) = 18.97 "mm" \
-    &=> bold("Standard Hole " d = 19 "mm") \
-    &=> bold("Rivet Dia " d_0 = 18 "mm")
+    &=> bold("Standard Hole Diameter " d = 19 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 18 "mm")
   $]
 )
 
 #item-row(
-  [*2. Double Shear Strength ($P_s$)* \ Double shear capacity for single rivet ($n = 1$)],
+  [*2. Tearing Resistance of Plate ($P_t$)* \ Net tensile area capacity per pitch length],
   [$
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$1.875 dot n dot pi/4 d^2 dot tau$] \
-    &= 1.875 times 1 times pi/4 (19)^2 times 60 \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (p - 19) times 10 times 80 \
+    &= 800 (p - 19) "N"
+  $]
+)
+
+#item-row(
+  [*3. Double Shear Strength of Rivets ($P_s$)* \ Double shear capacity for single rivet ($n = 1$, factor 1.875)],
+  [$
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot 1.875 dot pi/4 d^2 dot tau$] \
+    &= 1 times 1.875 times pi/4 (19)^2 times 60 \
+    &= 1.875 times 283.53 times 60 \
     &= bold(31900 "N")
   $]
 )
 
 #item-row(
-  [*3. Pitch & Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and checking against I.B.R. maximum pitch],
+  [*4. Pitch & Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
   [$
     #text(size: 13.5pt)[$800 (p - 19)$] &= #text(size: 13.5pt)[$31900 "N"$] \
     p - 19 &= 31900 / 800 = 39.87 => p = 58.87 "mm" \
-    p_("max") &= 1.75 t + 41.28 = 58.78 "mm" \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
+    &= 1.75 (10) + 41.28 = 58.78 "mm" \
     &=> bold("Adopt Pitch " p = p_("max") = 60 "mm")
   $]
 )
 
 #item-row(
-  [*4. Cover Strap Thickness ($t_1$)* \ Standard proportion for double cover straps],
+  [*5. Cover Strap Thickness ($t_1$)* \ Standard proportion for equal width double cover straps],
   [$
     #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.625 t$] \
-    &= 0.625 times 10 \
+    &= 0.625 (10) \
     &=> bold("Strap Thickness " t_1 = 6.25 "mm")
   $]
 )
 
 #item-row(
-  [*5. Failure Mode & Joint Efficiency ($eta$)* \ Tearing ($P_t$), shearing ($P_s$), solid plate strength ($P$), and efficiency],
+  [*6. Failure Mode & Joint Efficiency Verification ($eta$)* \ Tearing ($P_t$), shearing ($P_s$), solid plate strength ($P$), and efficiency],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(60 - 19) (10) (80) = 32800 "N"$] \
-    P_s &= 31900 "N" => bold("Failure Mode: Shearing of Rivets") \
-    P &= 60 times 10 times 80 = 48000 "N" \
-    eta &= 31900 / 48000 times 100% \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (60 - 19) (10) (80) = 32800 "N"$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$31900 "N" => bold("Failure Mode: Shearing of Rivets")$] \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 60 (10) (80) = 48000 "N"$] \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_s / P times 100%$] \
+    &= 31900 / 48000 times 100% \
     &=> bold(eta = 66.5%)
   $]
 )
@@ -565,15 +622,15 @@
 
 #section-overview(
   [*System Parameters:* Boiler Shell Diameter $D = 1.5 "m" = 1500 "mm"$, Steam Pressure $P = 0.95 "N/mm"^2$, Target Efficiency $eta_l = 75%$, Tensile Stress $sigma_t = 90 "MPa"$, Crushing Stress $sigma_c = 140 "MPa"$, Shear Stress $tau = 56 "MPa"$, Double Shear Factor = 1.875, Rivet Rows $n = 2$.],
-  [*Design Protocol:* Calculate shell thickness $t$, size rivet hole diameter $d$, determine pitch $p$ by equating $P_t = P_s$ and limit by I.B.R. max pitch ($p <= p_("max")$), calculate row pitch $p_b$, strap thickness $t_1$, and margin $m$, evaluate failure capacities ($P_t, P_s, P_c$), and verify joint efficiency $eta$.]
+  [*Design Protocol:* Calculate shell thickness $t$, size rivet hole diameter $d$, state symbolic tearing ($P_t$) and shearing ($P_s$) capacities to solve pitch $p$, limit by I.B.R. max pitch ($p <= p_("max")$), calculate row pitch $p_b$, strap thickness $t_1$, and margin $m$, evaluate failure capacities ($P_t, P_s, P_c$), and verify joint efficiency $eta$.]
 )
 
 #item-row(
-  [*1. Shell Plate Thickness ($t$)* \ Thin cylinder formula with 1 mm allowance],
+  [*1. Boiler Shell Plate Thickness ($t$)* \ Thin cylinder formula with 1 mm allowance],
   [$
     #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(P dot D) / (2 sigma_t dot eta_l) + 1 "mm"$] \
     &= (0.95 times 1500) / (2 times 90 times 0.75) + 1 \
-    &= 1425 / 135 + 1 = 10.6 + 1 \
+    &= 1425 / 135 + 1 = 10.55 + 1 = 11.55 "mm" \
     &=> bold("Shell Thickness " t = 12 "mm")
   $]
 )
@@ -583,39 +640,79 @@
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
     &= 6 sqrt(12) = 20.78 "mm" \
-    &=> bold("Standard Hole " d = 21 "mm") \
-    &=> bold("Rivet Dia " d_0 = 20 "mm")
+    &=> bold("Standard Hole Diameter " d = 21 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 20 "mm")
   $]
 )
 
 #item-row(
-  [*3. Pitch & Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ ($n = 2$ double shear) and checking I.B.R. maximum pitch],
+  [*3. Tearing Resistance of Plate ($P_t$)* \ Net tensile area capacity per pitch length],
   [$
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$2 (1.875) (pi/4) (21)^2 (56) = 72745 "N"$] \
-    1080 (p - 21) &= 72745 => p = 88.35 "mm" \
-    p_("max") &= 3.5 t + 41.28 = 3.5 (12) + 41.28 = 83.28 "mm" \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (p - 21) times 12 times 90 \
+    &= 1080 (p - 21) "N"
+  $]
+)
+
+#item-row(
+  [*4. Shearing Resistance of Rivets ($P_s$)* \ Double shear capacity for 2 rivets per pitch ($1.875 times$ single shear)],
+  [$
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot 1.875 dot pi/4 d^2 dot tau$] \
+    &= 2 times 1.875 times pi/4 (21)^2 times 56 \
+    &= 3.75 times 346.36 times 56 \
+    &= bold(72745 "N")
+  $]
+)
+
+#item-row(
+  [*5. Calculated Pitch & I.B.R. Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
+  [$
+    #text(size: 13.5pt)[$1080 (p - 21)$] &= #text(size: 13.5pt)[$72745 "N"$] \
+    p - 21 &= 72745 / 1080 = 67.35 => p = 88.35 "mm" \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
+    &= 3.5 (12) + 41.28 = 83.28 "mm" \
     &=> bold("Adopt Pitch " p = p_("max") = 84 "mm")
   $]
 )
 
 #item-row(
-  [*4. Row Pitch, Strap Thickness & Margin ($p_b, t_1, m$)* \ Proportions for zig-zag double cover butt joint],
+  [*6. Distance Between Rows of Rivets ($p_b$)* \ Transverse row pitch for zig-zag riveting],
   [$
-    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.33 p + 0.67 d = 0.33(84) + 0.67(21) = 41.8 "mm"$] \
-    &=> bold("Adopt Row Pitch " p_b = 42 "mm") \
-    t_1 &= 0.625 t = 0.625(12) => bold("Strap Thickness " t_1 = 7.5 "mm") \
-    m &= 1.5 d = 1.5(21) = 31.5 "mm" => bold("Margin " m = 32 "mm")
+    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.33 p + 0.67 d$] \
+    &= 0.33(84) + 0.67(21) \
+    &= 27.72 + 14.07 = 41.79 "mm" \
+    &=> bold("Adopt Row Pitch " p_b = 42 "mm")
   $]
 )
 
 #item-row(
-  [*5. Failure Mode & Joint Efficiency Verification ($eta$)* \ Capacities for $p = 84 "mm"$, solid plate strength $P$, and efficiency],
+  [*7. Thickness of Cover Plates ($t_1$)* \ Standard proportion for equal width double cover straps],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(84 - 21) (12) (90) = 68040 "N"$] \
-    P_s &= 72745 "N", quad P_c = 2(21)(12)(140) = 70560 "N" \
-    &=> bold("Governing Strength " P_u = P_t = 68040 "N (Tearing)") \
-    P &= 84 (12) (90) = 90720 "N" \
-    eta &= 68040 / 90720 times 100% => bold(eta = 75.0%)
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.625 t$] \
+    &= 0.625 (12) \
+    &=> bold("Adopt Strap Thickness " t_1 = 7.5 "mm")
+  $]
+)
+
+#item-row(
+  [*8. Margin ($m$)* \ Distance from rivet hole center to plate edge],
+  [$
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d$] \
+    &= 1.5 (21) = 31.5 "mm" \
+    &=> bold("Adopt Margin " m = 32 "mm")
+  $]
+)
+
+#item-row(
+  [*9. Governing Failure Mode & Joint Efficiency Verification ($eta$)* \ Tearing capacity $P_t$, shearing $P_s$, crushing $P_c$, solid plate strength $P$, and efficiency],
+  [$
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(84 - 21) (12) (90) = 68040 "N (Governing)"$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$72745 "N"$] \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 2 (21) (12) (140) = 70560 "N"$] \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 84 (12) (90) = 90720 "N"$] \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_t / P times 100%$] \
+    &= 68040 / 90720 times 100% \
+    &=> bold(eta = 75.0%) quad bold("(Verified matching target efficiency 75%)")
   $]
 )
 
@@ -632,109 +729,244 @@
 
 #pagebreak()
 
+// ==========================================
+// SECTION 8: EXAMPLE 9.8 — PRESSURE VESSEL DOUBLE STRAP BUTT JOINT
+// ==========================================
+
 #section-heading("8", "PRESSURE VESSEL DOUBLE STRAP BUTT JOINT")
 
 #section-overview(
-  [*System Parameters:* Vessel Diameter $D = 1 "m" = 1000 "mm"$, Pressure $p_i = 2.75 "N/mm"^2$, Target Efficiency $eta_l = 79%$, Allowable Tensile Stress $sigma_t = 88 "MPa"$, Allowable Shear Stress $tau = 64 "MPa"$, Double Shear Factor = 1.8.],
-  [*Design Protocol:* Size shell thickness $t$, solve rivet diameter $d$, determine outer and inner row pitches ($p_("outer"), p_("inner")$), and verify efficiency.]
+  [*System Parameters:* Vessel Diameter $D = 1 "m" = 1000 "mm"$, Internal Pressure $P = 2.75 "N/mm"^2$, Target Efficiency $eta_l = 79%$, Tensile Stress $sigma_t = 88 "MPa"$, Shear Stress $tau = 64 "MPa"$, Double Shear Factor = 1.8, Zig-zag outer pitch $p = 2 p_("inner")$, $n = 3$.],
+  [*Design Protocol:* Calculate shell thickness $t$, size rivet hole diameter $d$, state symbolic tearing ($P_t$) and shearing ($P_s$) capacities to solve outer pitch $p$, limit by I.B.R. max pitch ($p <= p_("max")$), compute inner pitch $p_("inner")$, row pitch $p_b$, strap thickness $t_1$, margin $m$, and evaluate joint efficiency $eta$.]
 )
 
 #item-row(
-  [*1. Shell Plate Thickness ($t$)* \ Thin cylinder formula],
+  [*1. Shell Plate Thickness ($t$)* \ Thin cylinder formula with 1 mm corrosion/manufacturing allowance],
   [$
-    #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(p_i dot D) / (2 sigma_t dot eta_l)$] \
-    &= (2.75 times 1000) / (2 times 88 times 0.79) \
-    &= 2750 / 139.04 \
-    &= 19.78 "mm" \
-    &=> bold(t = 20 "mm")
+    #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(P dot D) / (2 sigma_t dot eta_l) + 1 "mm"$] \
+    &= (2.75 times 1000) / (2 times 88 times 0.79) + 1 \
+    &= 2750 / 139.04 + 1 = 19.78 + 1 = 20.78 "mm" \
+    &=> bold("Shell Thickness " t = 21 "mm")
   $]
 )
 
 #item-row(
-  [*2. Rivet Diameter ($d$)* \ Unwin's formula for $t = 20 "mm"$],
+  [*2. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 21 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(20) \
-    &= 26.83 "mm" \
-    &=> bold(d = 28.5 "mm")
+    &= 6 sqrt(21) = 27.5 "mm" \
+    &=> bold("Standard Hole Diameter " d = 28.5 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 27 "mm")
   $]
 )
 
 #item-row(
-  [*3. Outer Pitch ($p$) & Efficiency ($eta$)* \ Selected pitch dimensions and verified efficiency],
+  [*3. Tearing Resistance of Plate ($P_t$)* \ Net tensile area capacity per pitch length in outer row],
   [$
-    p_("outer") &= 150 "mm" \
-    p_("inner") &= 75 "mm" \
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p_("outer") - d) t dot sigma_t$] \
-    &= (150 - 28.5) times 20 times 88 \
-    &= 213840 "N" \
-    P &= 150 times 20 times 88 \
-    &= 264000 "N" \
-    eta &= 213840 / 264000 times 100% \
-    &=> bold(eta = 81%)
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (p - 28.5) times 21 times 88 \
+    &= 1848 (p - 28.5) "N"
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Pressure Vessel Joint: Thickness t = 20 mm | Rivet Diameter d = 28.5 mm | Outer Pitch p = 150 mm | Efficiency eta = 81%*]
+  [*4. Shearing Resistance of Rivets ($P_s$)* \ Shear capacity for 3 rivets in double shear ($1.8 times$ single shear)],
+  [$
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot 1.8 dot pi/4 d^2 dot tau$] \
+    &= 3 times 1.8 times pi/4 (28.5)^2 times 64 \
+    &= 5.4 times 637.9 times 64 \
+    &= bold(220500 "N")
+  $]
+)
+
+#item-row(
+  [*5. Outer & Inner Pitches ($p_("outer"), p_("inner")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
+  [$
+    #text(size: 13.5pt)[$1848 (p - 28.5)$] &= #text(size: 13.5pt)[$220500 "N"$] \
+    p - 28.5 &= 220500 / 1848 = 119.3 => p = 147.8 "mm" \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
+    &= 4.63 (21) + 41.28 = 138.51 "mm" \
+    &=> bold("Adopt Outer Pitch " p_("outer") = p_("max") = 140 "mm") \
+    &=> bold("Adopt Inner Pitch " p_("inner") = p / 2 = 140 / 2 = 70 "mm")
+  $]
+)
+
+#item-row(
+  [*6. Distance Between Rows of Rivets ($p_b$)* \ I.B.R. row spacing for outer pitch double inner pitch zig-zag butt joint],
+  [$
+    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.2 p + 1.15 d$] \
+    &= 0.2(140) + 1.15(28.5) \
+    &= 28 + 32.775 = 60.775 "mm" \
+    &=> bold("Adopt Row Pitch " p_b = 61 "mm")
+  $]
+)
+
+#item-row(
+  [*7. Thickness of Butt Straps ($t_1$)* \ Equal width double butt straps ratio formula],
+  [$
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.625 t dot ((p - d)/(p - 2d))$] \
+    &= 0.625 (21) times ((140 - 28.5)/(140 - 2(28.5))) \
+    &= 13.125 times (111.5 / 83) = 17.63 "mm" \
+    &=> bold("Adopt Strap Thickness " t_1 = 18 "mm")
+  $]
+)
+
+#item-row(
+  [*8. Margin ($m$)* \ Distance from rivet hole center to plate edge],
+  [$
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d$] \
+    &= 1.5 (28.5) = 42.75 "mm" \
+    &=> bold("Adopt Margin " m = 43 "mm")
+  $]
+)
+
+#item-row(
+  [*9. Governing Failure Mode & Joint Efficiency Verification ($eta$)* \ Tearing capacity $P_t$, solid plate strength $P$, and efficiency],
+  [$
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (140 - 28.5) (21) (88) = 206050 "N (Governing)"$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$220500 "N"$] \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 140 (21) (88) = 258720 "N"$] \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_t / P times 100%$] \
+    &= 206050 / 258720 times 100% \
+    &=> bold(eta = 79.6%) quad bold("(Satisfactory," >= 79% ")")
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*Shell t = 21 mm | Hole d = 28.5 mm | Outer Pitch = 140 mm | Inner Pitch = 70 mm | Row Pitch pb = 61 mm | Strap t1 = 18 mm | Margin m = 43 mm | Efficiency eta = 79.6%*]
 )
 
 #figure-page("8", "PRESSURE VESSEL BUTT JOINT", "Fig 9.27&9.28.png", "Fig. 9.27 & 9.28: Pressure Vessel Double Strap Butt Joint")
 
 // ==========================================
-// SECTION 9: EXAMPLE 9.9
+// SECTION 9: EXAMPLE 9.9 — TRIPLE RIVETED DOUBLE STRAP BUTT JOINT (UNEQUAL STRAPS)
 // ==========================================
-
-#pagebreak()
 
 #section-heading("9", "BOILER LONGITUDINAL SEAM DESIGN")
 
 #section-overview(
-  [*System Parameters:* Boiler Diameter $D = 1.25 "m" = 1250 "mm"$, Steam Pressure $p_i = 2.5 "N/mm"^2$, Ultimate Tensile Stress $sigma_("u") = 420 "MPa"$, Ultimate Crushing Stress $sigma_("cu") = 650 "MPa"$, Ultimate Shear Stress $tau_("u") = 300 "MPa"$, Target Efficiency $eta_l = 80%$, Factor of Safety $"FOS" = 5$, Corrosion Allowance = 1.5 mm.],
-  [*Design Protocol:* Calculate working allowable stresses, determine plate thickness $t$, and compute rivet diameter $d$.]
+  [*System Parameters:* Boiler Diameter $D = 1.25 "m" = 1250 "mm"$, Pressure $P = 2.5 "N/mm"^2$, Ultimate Tensile Stress $sigma_("tu") = 420 "MPa"$, Ultimate Crushing Stress $sigma_("cu") = 650 "MPa"$, Ultimate Shear Stress $tau_("u") = 300 "MPa"$, Target Efficiency $eta_l = 80%$, Factor of Safety $"FOS" = 5$, $n = 5$ rivets per pitch (4 double, 1 single shear).],
+  [*Design Protocol:* Calculate allowable working stresses ($sigma_t, sigma_c, tau$), size plate thickness $t$ and rivet hole diameter $d$, state symbolic tearing ($P_t$) and shearing ($P_s$) capacities to solve pitch $p$, limit by I.B.R. max pitch ($p <= p_("max")$), compute inner pitch $p'$, row pitches ($p_("b1"), p_("b2")$), wide ($t_1$) and narrow ($t_2$) strap thicknesses, margin $m$, and evaluate governing combined failure mode ($P_("t2") + P_("s1")$) to verify joint efficiency $eta$.]
 )
 
 #item-row(
-  [*1. Allowable Working Stresses* \ Ultimate stress divided by FOS = 5],
+  [*1. Allowable Working Stresses* \ Factor of safety FOS = 5 applied to ultimate material strengths],
   [$
-    sigma_t &= sigma_("u") / "FOS" \
-    &= 420 / 5 \
-    &= 84 "MPa" \
-    sigma_c &= sigma_("cu") / "FOS" \
-    &= 650 / 5 \
-    &= 130 "MPa" \
-    tau &= tau_("u") / "FOS" \
-    &= 300 / 5 \
-    &= 60 "MPa"
+    #text(size: 13.5pt)[$sigma_t$] &= #text(size: 13.5pt)[$sigma_("tu") / "FOS" = 420 / 5 = 84 "N/mm"^2$] \
+    #text(size: 13.5pt)[$sigma_c$] &= #text(size: 13.5pt)[$sigma_("cu") / "FOS" = 650 / 5 = 130 "N/mm"^2$] \
+    #text(size: 13.5pt)[$tau$] &= #text(size: 13.5pt)[$tau_("u") / "FOS" = 300 / 5 = 60 "N/mm"^2$]
   $]
 )
 
 #item-row(
-  [*2. Plate Thickness ($t$)* \ Thin cylinder formula with corrosion allowance],
+  [*2. Boiler Shell Plate Thickness ($t$)* \ Thin cylinder formula with 1 mm corrosion/manufacturing allowance],
   [$
-    #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(p_i dot D) / (2 sigma_t dot eta_l) + 1.5$] \
-    &= (2.5 times 1250) / (2 times 84 times 0.80) + 1.5 \
-    &= 3125 / 134.4 + 1.5 \
-    &= 23.25 + 1.5 \
-    &= 24.75 "mm" \
-    &=> bold(t = 25 "mm")
+    #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(P dot D) / (2 sigma_t dot eta_l) + 1 "mm"$] \
+    &= (2.5 times 1250) / (2 times 84 times 0.80) + 1 \
+    &= 3125 / 134.4 + 1 = 23.25 + 1 \
+    &= 24.25 "mm" \
+    &=> bold("Plate Thickness " t = 25 "mm")
   $]
 )
 
 #item-row(
-  [*3. Rivet Diameter ($d$)* \ Unwin's formula for $t = 25 "mm"$],
+  [*3. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 25 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(25) \
-    &= 30 "mm" \
-    &=> bold(d = 30 "mm")
+    &= 6 sqrt(25) = 30 "mm" \
+    &=> bold("Standard Hole Diameter " d = 31.5 "mm") \
+    &=> bold("Nominal Rivet Diameter " d_0 = 30 "mm")
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Boiler Seam: Allowable Stresses (84, 130, 60 MPa) | Plate Thickness t = 25 mm | Rivet Diameter d = 30 mm*]
+  [*4. Tearing Resistance of Plate at Outer Row ($P_t$)* \ Net tensile area capacity per pitch length],
+  [$
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (p - 31.5) times 25 times 84 \
+    &= 2100 (p - 31.5) "N"
+  $]
+)
+
+#item-row(
+  [*5. Shearing Resistance of Rivets ($P_s$)* \ Combined shear capacity for 4 rivets in double shear + 1 rivet in single shear],
+  [$
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$(4 dot 1.875 + 1) dot pi/4 d^2 dot tau$] \
+    &= 8.5 times pi/4 (31.5)^2 times 60 \
+    &= 8.5 times 779.3 times 60 \
+    &= bold(397500 "N")
+  $]
+)
+
+#item-row(
+  [*6. Calculated Pitch & I.B.R. Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
+  [$
+    #text(size: 13.5pt)[$2100 (p - 31.5)$] &= #text(size: 13.5pt)[$397500 "N"$] \
+    p - 31.5 &= 397500 / 2100 = 189.3 => p = 220.8 "mm" \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
+    &= 6 times 25 + 41.28 = 191.28 "mm" \
+    &=> bold("Adopt Outer Pitch " p = p_("max") = 196 "mm") \
+    &=> bold("Adopt Inner Pitch " p' = p / 2 = 196 / 2 = 98 "mm")
+  $]
+)
+
+#item-row(
+  [*7. Distance Between Rows of Rivets ($p_("b1"), p_("b2")$)* \ I.B.R. row spacing for outer-to-next row and inner zig-zag rows],
+  [$
+    #text(size: 13.5pt)[$p_("b1")$] &= #text(size: 13.5pt)[$0.2 p + 1.15 d$] \
+    &= 0.2(196) + 1.15(31.5) = 39.2 + 36.225 = 75.425 "mm" \
+    &=> bold("Outer Row Spacing " p_("b1") = 76 "mm") \
+    #text(size: 13.5pt)[$p_("b2")$] &= #text(size: 13.5pt)[$0.165 p + 0.67 d$] \
+    &= 0.165(196) + 0.67(31.5) = 32.34 + 21.105 = 53.445 "mm" \
+    &=> bold("Inner Row Spacing " p_("b2") = 54 "mm")
+  $]
+)
+
+#item-row(
+  [*8. Butt Strap Thicknesses & Margin ($t_1, t_2, m$)* \ Inside wide strap, outside narrow strap, and margin],
+  [$
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.75 t = 0.75(25) = 18.75 "mm" => bold("Wide Strap " t_1 = 20 "mm")$] \
+    #text(size: 13.5pt)[$t_2$] &= #text(size: 13.5pt)[$0.625 t = 0.625(25) = 15.625 "mm" => bold("Narrow Strap " t_2 = 16 "mm")$] \
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d = 1.5(31.5) = 47.25 "mm" => bold("Margin " m = 47.5 "mm")$]
+  $]
+)
+
+#item-row(
+  [*9. Individual Failure Mode Capacities* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities for $p = 196 "mm"$],
+  [$
+    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (196 - 31.5) (25) (84) = 345450 "N"$] \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$8.5 dot pi/4 d^2 dot tau = 397500 "N"$] \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 5 times 31.5 times 25 times 130 = 511875 "N"$]
+  $]
+)
+
+#item-row(
+  [*10. Combined Row 2 Tearing & Outer Rivet Shear Capacity* \ Tearing of plate at second row combined with shearing 1 outer rivet],
+  [$
+    #text(size: 13.5pt)[$P_("t2") + P_("s1")$] &= #text(size: 13.5pt)[$(p - 2d) t dot sigma_t + pi/4 d^2 dot tau$] \
+    &= (196 - 2 times 31.5) times 25 times 84 + pi/4 (31.5)^2 times 60 \
+    &= (133) (25) (84) + 47815 \
+    &= 278250 + 47815 \
+    &=> bold("Governing Least Strength " P_u = 326065 "N")
+  $]
+)
+
+#item-row(
+  [*11. Solid Plate Strength & Joint Efficiency ($P, eta$)* \ Un-punched solid plate strength and overall joint efficiency],
+  [$
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t$] \
+    &= 196 times 25 times 84 \
+    &= 411600 "N" \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_u / P times 100%$] \
+    &= 326065 / 411600 times 100% \
+    &=> bold(eta = 79.2%) quad bold("(Satisfactory, nearly equal to target 80%)")
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*Shell t = 25 mm | Hole d = 31.5 mm | Outer Pitch = 196 mm | Inner Pitch = 98 mm | Row Spacings = 76 mm & 54 mm | Straps t1 = 20 mm, t2 = 16 mm | Margin m = 47.5 mm | Governing Strength = 326065 N | Efficiency eta = 79.2%*]
 )
 
 #figure-page("9", "BOILER LONGITUDINAL SEAM", "Fig 9.29&9.30.png", "Fig. 9.29 & 9.30: Boiler Longitudinal Seam Triple Riveted Butt Joint")
