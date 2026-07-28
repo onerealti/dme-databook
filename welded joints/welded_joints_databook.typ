@@ -60,7 +60,7 @@
 #let item-row(left-desc, right-math) = {
   v(3pt)
   grid(
-    columns: (1fr, 1.2fr),
+    columns: (1fr, 1fr),
     column-gutter: 20pt,
     stroke: (x, y) => if x == 0 { (right: 0.5pt + rgb("#aaaaaa")) },
     inset: (right: 10pt),
@@ -98,22 +98,26 @@
 
 #item-row(
   [*1. Effective Length of Weld ($l$)* \ Double parallel fillet weld load capacity],
-  [$
-    #text(size: 20pt)[$P = 1.414 dot s dot l dot tau$] \
-    80 times 10^3 &= 1.414 times 10 times l times 55 \
-    l &= (80 times 10^3) / 778 \
-    &= 102.8 "mm" \
-    &=> l = 103 "mm"
-  $]
+  [
+    #text(size: 20pt)[$P = 1.414 dot s dot l dot tau$]
+    $
+      80 times 10^3 &= 1.414 times 10 times l times 55 \
+      l &= (80 times 10^3) / 778 \
+      &= 102.8 "mm" \
+      &=> l = 103 "mm"
+    $
+  ]
 )
 
 #item-row(
   [*2. Total Length of Weld Run ($L$)* \ Adding 12.5 mm allowance for starting and stopping],
-  [$
-    #text(size: 20pt)[$L = l + 12.5 "mm"$] \
-    &= 103 + 12.5 \
-    &= bold(115.5 "mm")
-  $]
+  [
+    #text(size: 20pt)[$L = l + 12.5 "mm"$]
+    $
+      &= 103 + 12.5 \
+      &= bold(115.5 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -135,14 +139,16 @@
 
 #item-row(
   [*1. Maximum Torque Capacity ($T$)* \ Torsional shear stress in circular fillet weld],
-  [$
-    #text(size: 20pt)[$tau_("max") = (2.83 T) / (pi dot s dot d^2)$] \
-    80 &= (2.83 T) / (pi times 10 times (50)^2) \
-    80 &= (2.83 T) / 78550 \
-    T &= (80 times 78550) / 2.83 \
-    &= 2.22 times 10^6 "N"dot"mm" \
-    &= bold(2.22 "kN"dot"m")
-  $]
+  [
+    #text(size: 20pt)[$tau_("max") = (2.83 T) / (pi dot s dot d^2)$]
+    $
+      80 &= (2.83 T) / (pi times 10 times (50)^2) \
+      80 &= (2.83 T) / 78550 \
+      T &= (80 times 78550) / 2.83 \
+      &= 2.22 times 10^6 "N"dot"mm" \
+      &= bold(2.22 "kN"dot"m")
+    $
+  ]
 )
 
 #item-row(
@@ -166,14 +172,16 @@
 
 #item-row(
   [*1. Maximum Torque Capacity ($T$)* \ Torsional shear stress in long fillet weld],
-  [$
-    #text(size: 20pt)[$tau_("max") = (4.242 T) / (s dot l^2)$] \
-    80 &= (4.242 T) / (15 times (1000)^2) \
-    80 &= (0.283 T) / 10^6 \
-    T &= (80 times 10^6) / 0.283 \
-    &= 283 times 10^6 "N"dot"mm" \
-    &= bold(283 "kN"dot"m")
-  $]
+  [
+    #text(size: 20pt)[$tau_("max") = (4.242 T) / (s dot l^2)$]
+    $
+      80 &= (4.242 T) / (15 times (1000)^2) \
+      80 &= (0.283 T) / 10^6 \
+      T &= (80 times 10^6) / 0.283 \
+      &= 283 times 10^6 "N"dot"mm" \
+      &= bold(283 "kN"dot"m")
+    $
+  ]
 )
 
 #item-row(
@@ -197,42 +205,50 @@
 
 #item-row(
   [*1. Length of Weld for Static Loading ($l$)* \ Load capacity for double parallel fillet weld],
-  [$
-    #text(size: 20pt)[$P = 1.414 dot s dot l dot tau$] \
-    50 times 10^3 &= 1.414 times 12.5 times l times 56 \
-    l &= (50 times 10^3) / 990 \
-    &= 50.5 "mm"
-  $]
+  [
+    #text(size: 20pt)[$P = 1.414 dot s dot l dot tau$]
+    $
+      50 times 10^3 &= 1.414 times 12.5 times l times 56 \
+      l &= (50 times 10^3) / 990 \
+      &= 50.5 "mm"
+    $
+  ]
 )
 
 #item-row(
   [*2. Total Static Weld Length ($L$)* \ Adding 12.5 mm start/stop allowance],
-  [$
-    #text(size: 20pt)[$L = l + 12.5 "mm"$] \
-    &= 50.5 + 12.5 \
-    &= bold(63 "mm")
-  $]
+  [
+    #text(size: 20pt)[$L = l + 12.5 "mm"$]
+    $
+      &= 50.5 + 12.5 \
+      &= bold(63 "mm")
+    $
+  ]
 )
 
 #item-row(
   [*3. Permissible Shear Stress under Fatigue ($tau_("fatigue")$)* \ Fatigue stress concentration factor $K_f = 2.7$],
-  [$
-    #text(size: 20pt)[$tau_("fatigue") = tau / K_f$] \
-    &= 56 / 2.7 \
-    &= 20.74 "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$tau_("fatigue") = tau / K_f$]
+    $
+      &= 56 / 2.7 \
+      &= 20.74 "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*4. Total Fatigue Weld Length ($L_("fatigue")$)* \ Effective length and total run length under fatigue loading],
-  [$
-    #text(size: 20pt)[$P = 1.414 dot s dot l_("fatigue") dot tau_("fatigue")$] \
-    50 times 10^3 &= 1.414 times 12.5 times l_("fatigue") times 20.74 \
-    l_("fatigue") &= (50 times 10^3) / 367 \
-    &= 136.2 "mm" \
-    L_("fatigue") &= 136.2 + 12.5 \
-    &= bold(148.7 "mm")
-  $]
+  [
+    #text(size: 20pt)[$P = 1.414 dot s dot l_("fatigue") dot tau_("fatigue")$]
+    $
+      50 times 10^3 &= 1.414 times 12.5 times l_("fatigue") times 20.74 \
+      l_("fatigue") &= (50 times 10^3) / 367 \
+      &= 136.2 "mm" \
+      L_("fatigue") &= 136.2 + 12.5 \
+      &= bold(148.7 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -254,20 +270,24 @@
 
 #item-row(
   [*1. Total Plate Load Capacity ($P$)* \ Maximum tensile load plate can carry],
-  [$
-    #text(size: 20pt)[$P = b dot s dot sigma_t$] \
-    &= 75 times 12.5 times 70 \
-    &= 65625 "N"
-  $]
+  [
+    #text(size: 20pt)[$P = b dot s dot sigma_t$]
+    $
+      &= 75 times 12.5 times 70 \
+      &= 65625 "N"
+    $
+  ]
 )
 
 #item-row(
   [*2. Transverse Weld Effective Length ($l_1$)* \ Width minus start/stop allowance],
-  [$
-    #text(size: 20pt)[$l_1 = b - 12.5 "mm"$] \
-    &= 75 - 12.5 \
-    &= 62.5 "mm"
-  $]
+  [
+    #text(size: 20pt)[$l_1 = b - 12.5 "mm"$]
+    $
+      &= 75 - 12.5 \
+      &= 62.5 "mm"
+    $
+  ]
 )
 
 #item-row(
@@ -321,11 +341,13 @@
 
 #item-row(
   [*1. Single Transverse Weld Length ($l_1$)* \ Width minus start/stop allowance],
-  [$
-    #text(size: 20pt)[$l_1 = b - 12.5 "mm"$] \
-    &= 120 - 12.5 \
-    &= bold(107.5 "mm")
-  $]
+  [
+    #text(size: 20pt)[$l_1 = b - 12.5 "mm"$]
+    $
+      &= 120 - 12.5 \
+      &= bold(107.5 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -364,35 +386,41 @@
 
 #item-row(
   [*1. Shear Plane for Parallel Loading ($theta$)* \ Maximizing shear stress by differentiation],
-  [$
-    #text(size: 20pt)[$tau = (P (cos theta + sin theta)) / (2 s dot l)$] \
-    (d tau) / (d theta) &= (P) / (2 s dot l) (-sin theta + cos theta) = 0 \
-    sin theta &= cos theta \
-    &=> bold(theta = 45^deg) \
-    P_("parallel") &= bold(1.414 dot s dot l dot tau_("max"))
-  $]
+  [
+    #text(size: 20pt)[$tau = (P (cos theta + sin theta)) / (2 s dot l)$]
+    $
+      (d tau) / (d theta) &= (P) / (2 s dot l) (-sin theta + cos theta) = 0 \
+      sin theta &= cos theta \
+      &=> bold(theta = 45^deg) \
+      P_("parallel") &= bold(1.414 dot s dot l dot tau_("max"))
+    $
+  ]
 )
 
 #item-row(
   [*2. Shear Plane for Transverse Loading ($theta$)* \ Normal and shear force equilibrium resolution],
-  [$
-    #text(size: 20pt)[$tau = (P sin theta (cos theta + sin theta)) / (2 s dot l)$] \
-    (d tau) / (d theta) &= 0 \
-    cos 2 theta + sin 2 theta &= 0 \
-    tan 2 theta &= -1 \
-    2 theta &= 135^deg \
-    &=> bold(theta = 67.5^deg) \
-    P_("transverse") &= bold(1.65 dot s dot l dot tau_("max"))
-  $]
+  [
+    #text(size: 20pt)[$tau = (P sin theta (cos theta + sin theta)) / (2 s dot l)$]
+    $
+      (d tau) / (d theta) &= 0 \
+      cos 2 theta + sin 2 theta &= 0 \
+      tan 2 theta &= -1 \
+      2 theta &= 135^deg \
+      &=> bold(theta = 67.5^deg) \
+      P_("transverse") &= bold(1.65 dot s dot l dot tau_("max"))
+    $
+  ]
 )
 
 #item-row(
   [*3. Ratio of Limiting Loads* \ Ratio of parallel load capacity to transverse load capacity],
-  [$
-    #text(size: 20pt)[$"Ratio" = P_("parallel") / P_("transverse")$] \
-    &= (1.414 s dot l dot tau_("max")) / (1.65 s dot l dot tau_("max")) \
-    &= bold(0.857)
-  $]
+  [
+    #text(size: 20pt)[$"Ratio" = P_("parallel") / P_("transverse")$]
+    $
+      &= (1.414 s dot l dot tau_("max")) / (1.65 s dot l dot tau_("max")) \
+      &= bold(0.857)
+    $
+  ]
 )
 
 #item-row(
@@ -418,33 +446,39 @@
 
 #item-row(
   [*1. Total Required Weld Length ($l$)* \ Load capacity for single parallel fillet welds],
-  [$
-    #text(size: 20pt)[$P = 0.707 dot s dot l dot tau$] \
-    200 times 10^3 &= 0.707 times 10 times l times 75 \
-    l &= (200 times 10^3) / 530.25 \
-    &= 377 "mm"
-  $]
+  [
+    #text(size: 20pt)[$P = 0.707 dot s dot l dot tau$]
+    $
+      200 times 10^3 &= 0.707 times 10 times l times 75 \
+      l &= (200 times 10^3) / 530.25 \
+      &= 377 "mm"
+    $
+  ]
 )
 
 #item-row(
   [*2. Position of Centroidal Axis ($a, b$)* \ Distance of gravity axis from bottom edge],
-  [$
-    #text(size: 20pt)[$b = ((200 - 10) times 10 times 95 + 150 times 10 times 5) / (190 times 10 + 150 times 10)$] \
-    &= 188000 / 3400 \
-    &= 55.3 "mm" \
-    a &= 200 - 55.3 = 144.7 "mm"
-  $]
+  [
+    #text(size: 20pt)[$b = ((200 - 10) times 10 times 95 + 150 times 10 times 5) / (190 times 10 + 150 times 10)$]
+    $
+      &= 188000 / 3400 \
+      &= 55.3 "mm" \
+      a &= 200 - 55.3 = 144.7 "mm"
+    $
+  ]
 )
 
 #item-row(
   [*3. Top and Bottom Weld Lengths ($l_a, l_b$)* \ Moment equilibrium about centroidal line],
-  [$
-    #text(size: 20pt)[$l_a = l dot (b / (a + b))$] \
-    &= 377 times (55.3 / 200) \
-    &= bold(104.2 "mm") \
-    l_b &= 377 - 104.2 \
-    &= bold(272.8 "mm")
-  $]
+  [
+    #text(size: 20pt)[$l_a = l dot (b / (a + b))$]
+    $
+      &= 377 times (55.3 / 200) \
+      &= bold(104.2 "mm") \
+      l_b &= 377 - 104.2 \
+      &= bold(272.8 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -468,31 +502,37 @@
 
 #item-row(
   [*1. Direct Shear Stress ($tau$)* \ Throat area of double fillet weld],
-  [$
-    #text(size: 20pt)[$tau = P / A = (2000) / (1.414 s dot l)$] \
-    &= 2000 / (1.414 s times 40) \
-    &= 35.4 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$tau = P / A = (2000) / (1.414 s dot l)$]
+    $
+      &= 2000 / (1.414 s times 40) \
+      &= 35.4 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*2. Bending Stress ($sigma_b$)* \ Bending moment and throat section modulus],
-  [$
-    #text(size: 20pt)[$sigma_b = M / Z = (P dot e) / ((s dot l^2) / 4.242)$] \
-    &= (2000 times 120) / ((s times (40)^2) / 4.242) \
-    &= 636.6 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$sigma_b = M / Z = (P dot e) / ((s dot l^2) / 4.242)$]
+    $
+      &= (2000 times 120) / ((s times (40)^2) / 4.242) \
+      &= 636.6 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*3. Maximum Shear Stress & Weld Size ($s$)* \ Maximum shear stress theory],
-  [$
-    #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_b^2 + 4 tau^2)$] \
-    25 &= 1/2 sqrt((636.6 / s)^2 + 4 (35.4 / s)^2) \
-    25 &= 320.3 / s \
-    s &= 320.3 / 25 \
-    &= bold(12.8 "mm")
-  $]
+  [
+    #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_b^2 + 4 tau^2)$]
+    $
+      25 &= 1/2 sqrt((636.6 / s)^2 + 4 (35.4 / s)^2) \
+      25 &= 320.3 / s \
+      s &= 320.3 / 25 \
+      &= bold(12.8 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -516,40 +556,48 @@
 
 #item-row(
   [*1. Direct Shear Stress ($tau$)* \ Throat area for circular weld],
-  [$
-    #text(size: 20pt)[$tau = P / (0.707 s dot pi D)$] \
-    &= 10000 / (0.707 times 15 times pi times 50) \
-    &= 6 "N/mm"^2 = 6 "MPa"
-  $]
+  [
+    #text(size: 20pt)[$tau = P / (0.707 s dot pi D)$]
+    $
+      &= 10000 / (0.707 times 15 times pi times 50) \
+      &= 6 "N/mm"^2 = 6 "MPa"
+    $
+  ]
 )
 
 #item-row(
   [*2. Bending Stress ($sigma_b$)* \ Bending moment and circular section modulus],
-  [$
-    #text(size: 20pt)[$sigma_b = M / Z = (P dot e) / (pi/4 (0.707 s) D^2)$] \
-    &= (10000 times 200) / (pi/4 (0.707 times 15) (50)^2) \
-    &= (2 times 10^6) / 20825 \
-    &= 96 "N/mm"^2 = 96 "MPa"
-  $]
+  [
+    #text(size: 20pt)[$sigma_b = M / Z = (P dot e) / (pi/4 (0.707 s) D^2)$]
+    $
+      &= (10000 times 200) / (pi/4 (0.707 times 15) (50)^2) \
+      &= (2 times 10^6) / 20825 \
+      &= 96 "N/mm"^2 = 96 "MPa"
+    $
+  ]
 )
 
 #item-row(
   [*3. Maximum Normal Stress ($sigma_("t(max)")$)* \ Principal stress theory],
-  [$
-    #text(size: 20pt)[$sigma_("t(max)") = 1/2 sigma_b + 1/2 sqrt(sigma_b^2 + 4 tau^2)$] \
-    &= 48 + 1/2 sqrt((96)^2 + 4 (6)^2) \
-    &= 48 + 48.4 \
-    &= bold(96.4 "MPa")
-  $]
+  [
+    #text(size: 20pt)[$sigma_("t(max)") = 1/2 sigma_b + 1/2 sqrt(sigma_b^2 + 4 tau^2)$]
+    $
+      &= 48 + 1/2 sqrt((96)^2 + 4 (6)^2) \
+      &= 48 + 48.4 \
+      &= bold(96.4 "MPa")
+    $
+  ]
 )
 
 #item-row(
   [*4. Maximum Shear Stress ($tau_("max")$)* \ Maximum shear stress theory],
-  [$
-    #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_b^2 + 4 tau^2)$] \
-    &= 1/2 sqrt((96)^2 + 4 (6)^2) \
-    &= bold(48.4 "MPa")
-  $]
+  [
+    #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_b^2 + 4 tau^2)$]
+    $
+      &= 1/2 sqrt((96)^2 + 4 (6)^2) \
+      &= bold(48.4 "MPa")
+    $
+  ]
 )
 
 #item-row(
@@ -573,32 +621,38 @@
 
 #item-row(
   [*1. Direct Shear Stress ($tau$)* \ Throat area around all 4 sides],
-  [$
-    #text(size: 20pt)[$tau = P / (0.707 s (2b + 2l))$] \
-    &= (25 times 10^3) / (0.707 s (2 times 150 + 2 times 100)) \
-    &= 70.72 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$tau = P / (0.707 s (2b + 2l))$]
+    $
+      &= (25 times 10^3) / (0.707 s (2 times 150 + 2 times 100)) \
+      &= 70.72 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*2. Bending Stress ($sigma_b$)* \ Bending moment and throat section modulus],
-  [$
-    #text(size: 20pt)[$sigma_b = M / Z = (P dot e) / (0.707 s (b^2 / 3 + b dot l))$] \
-    &= (25 times 10^3 times 500) / (0.707 s ((150)^2 / 3 + 150 times 100)) \
-    &= (12.5 times 10^6) / (15907.5 s) \
-    &= 785.8 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$sigma_b = M / Z = (P dot e) / (0.707 s (b^2 / 3 + b dot l))$]
+    $
+      &= (25 times 10^3 times 500) / (0.707 s ((150)^2 / 3 + 150 times 100)) \
+      &= (12.5 times 10^6) / (15907.5 s) \
+      &= 785.8 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*3. Maximum Shear Stress & Weld Size ($s$)* \ Maximum shear stress theory],
-  [$
-    #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_b^2 + 4 tau^2)$] \
-    75 &= 1/2 sqrt((785.8 / s)^2 + 4 (70.72 / s)^2) \
-    75 &= 399.2 / s \
-    s &= 399.2 / 75 \
-    &= bold(5.32 "mm")
-  $]
+  [
+    #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_b^2 + 4 tau^2)$]
+    $
+      75 &= 1/2 sqrt((785.8 / s)^2 + 4 (70.72 / s)^2) \
+      75 &= 399.2 / s \
+      s &= 399.2 / 75 \
+      &= bold(5.32 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -622,33 +676,39 @@
 
 #item-row(
   [*1. Torsional Shear Stress ($tau$)* \ Torque acting on shaft and torsional shear],
-  [$
-    #text(size: 20pt)[$tau = (2.83 T) / (pi dot s dot d^2)$] \
-    T &= 15 times 10^3 times 240 = 3600 times 10^3 "N"dot"mm" \
-    tau &= (2.83 times 3600 times 10^3) / (pi dot s times (80)^2) \
-    &= 506.6 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$tau = (2.83 T) / (pi dot s dot d^2)$]
+    $
+      T &= 15 times 10^3 times 240 = 3600 times 10^3 "N"dot"mm" \
+      tau &= (2.83 times 3600 times 10^3) / (pi dot s times (80)^2) \
+      &= 506.6 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*2. Bending Stress ($sigma_b$)* \ Bending moment and bending stress],
-  [$
-    #text(size: 20pt)[$sigma_b = (5.66 M) / (pi dot s dot d^2)$] \
-    M &= 15 times 10^3 times (200 - 25) = 2625 times 10^3 "N"dot"mm" \
-    sigma_b &= (5.66 times 2625 times 10^3) / (pi dot s times (80)^2) \
-    &= 738.8 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$sigma_b = (5.66 M) / (pi dot s dot d^2)$]
+    $
+      M &= 15 times 10^3 times (200 - 25) = 2625 times 10^3 "N"dot"mm" \
+      sigma_b &= (5.66 times 2625 times 10^3) / (pi dot s times (80)^2) \
+      &= 738.8 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*3. Maximum Shear Stress & Weld Size ($s$)* \ Maximum shear stress theory],
-  [$
-    #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_b^2 + 4 tau^2)$] \
-    120 &= 1/2 sqrt((738.8 / s)^2 + 4 (506.6 / s)^2) \
-    120 &= 627 / s \
-    s &= 627 / 120 \
-    &= bold(5.2 "mm")
-  $]
+  [
+    #text(size: 20pt)[$tau_("max") = 1/2 sqrt(sigma_b^2 + 4 tau^2)$]
+    $
+      120 &= 1/2 sqrt((738.8 / s)^2 + 4 (506.6 / s)^2) \
+      120 &= 627 / s \
+      s &= 627 / 120 \
+      &= bold(5.2 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -672,34 +732,40 @@
 
 #item-row(
   [*1. Primary Direct Shear Stress ($tau_1$)* \ Throat area and direct shear],
-  [$
-    #text(size: 20pt)[$tau_1 = P / (2 dot 0.707 s dot l)$] \
-    &= (15 times 10^3) / (1.414 s times 50) \
-    &= 212 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$tau_1 = P / (2 dot 0.707 s dot l)$]
+    $
+      &= (15 times 10^3) / (1.414 s times 50) \
+      &= 212 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*2. Secondary Shear Stress ($tau_2$)* \ Polar moment of inertia and maximum radius],
-  [$
-    #text(size: 20pt)[$J = (0.707 s dot l (3 b^2 + l^2)) / 6$] \
-    J &= (0.707 s times 50 [3 (80)^2 + (50)^2]) / 6 = 127850 s "mm"^4 \
-    r_2 &= sqrt((40)^2 + (25)^2) = 47 "mm" \
-    cos theta &= 25 / 47 = 0.532 \
-    tau_2 &= (P dot e dot r_2) / J \
-    &= (15 times 10^3 times 125 times 47) / (127850 s) = 689.3 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$J = (0.707 s dot l (3 b^2 + l^2)) / 6$]
+    $
+      J &= (0.707 s times 50 [3 (80)^2 + (50)^2]) / 6 = 127850 s "mm"^4 \
+      r_2 &= sqrt((40)^2 + (25)^2) = 47 "mm" \
+      cos theta &= 25 / 47 = 0.532 \
+      tau_2 &= (P dot e dot r_2) / J \
+      &= (15 times 10^3 times 125 times 47) / (127850 s) = 689.3 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*3. Resultant Shear Stress & Weld Size ($s$)* \ Vector addition of primary and secondary shear],
-  [$
-    #text(size: 20pt)[$tau = sqrt(tau_1^2 + tau_2^2 + 2 tau_1 tau_2 cos theta)$] \
-    80 &= sqrt((212 / s)^2 + (689.3 / s)^2 + 2 (212 / s) (689.3 / s) (0.532)) \
-    80 &= 822 / s \
-    s &= 822 / 80 \
-    &= bold(10.3 "mm")
-  $]
+  [
+    #text(size: 20pt)[$tau = sqrt(tau_1^2 + tau_2^2 + 2 tau_1 tau_2 cos theta)$]
+    $
+      80 &= sqrt((212 / s)^2 + (689.3 / s)^2 + 2 (212 / s) (689.3 / s) (0.532)) \
+      80 &= 822 / s \
+      s &= 822 / 80 \
+      &= bold(10.3 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -723,41 +789,49 @@
 
 #item-row(
   [*1. Centroid ($G$) & Polar Moment of Inertia ($J$)* \ Centroid distance $x$ and polar moment],
-  [$
-    #text(size: 20pt)[$x = l^2 / (2l + b)$] \
-    &= (50)^2 / (2 (50) + 100) = 12.5 "mm" \
-    J &= 0.707 s [((100 + 100)^3) / 12 - ((50)^2 (150)^2) / 200] \
-    &= 275 times 10^3 s "mm"^4
-  $]
+  [
+    #text(size: 20pt)[$x = l^2 / (2l + b)$]
+    $
+      &= (50)^2 / (2 (50) + 100) = 12.5 "mm" \
+      J &= 0.707 s [((100 + 100)^3) / 12 - ((50)^2 (150)^2) / 200] \
+      &= 275 times 10^3 s "mm"^4
+    $
+  ]
 )
 
 #item-row(
   [*2. Eccentricity ($e$) & Critical Radius ($r_2$)* \ Distance to load and critical corner radius],
-  [$
-    #text(size: 20pt)[$e = 150 + 50 - 12.5 = 187.5 "mm"$] \
-    r_2 &= sqrt((50)^2 + (37.5)^2) = 62.5 "mm" \
-    cos theta &= 37.5 / 62.5 = 0.6
-  $]
+  [
+    #text(size: 20pt)[$e = 150 + 50 - 12.5 = 187.5 "mm"$]
+    $
+      r_2 &= sqrt((50)^2 + (37.5)^2) = 62.5 "mm" \
+      cos theta &= 37.5 / 62.5 = 0.6
+    $
+  ]
 )
 
 #item-row(
   [*3. Primary & Secondary Shear Stresses ($tau_1, tau_2$)* \ Direct and torsional shear components],
-  [$
-    #text(size: 20pt)[$tau_1 = P / A, quad tau_2 = (P dot e dot r_2) / J$] \
-    tau_1 &= (60 times 10^3) / (141.4 s) = 424 / s "N/mm"^2 \
-    tau_2 &= (60 times 10^3 times 187.5 times 62.5) / (275 times 10^3 s) = 2557 / s "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$tau_1 = P / A, quad tau_2 = (P dot e dot r_2) / J$]
+    $
+      tau_1 &= (60 times 10^3) / (141.4 s) = 424 / s "N/mm"^2 \
+      tau_2 &= (60 times 10^3 times 187.5 times 62.5) / (275 times 10^3 s) = 2557 / s "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*4. Resultant Shear Stress & Weld Size ($s$)* \ Vector combination of shear stresses],
-  [$
-    #text(size: 20pt)[$tau = sqrt(tau_1^2 + tau_2^2 + 2 tau_1 tau_2 cos theta)$] \
-    140 &= sqrt((424 / s)^2 + (2557 / s)^2 + 2 (424 / s) (2557 / s) (0.6)) \
-    140 &= 2832 / s \
-    s &= 2832 / 140 \
-    &= bold(20.23 "mm")
-  $]
+  [
+    #text(size: 20pt)[$tau = sqrt(tau_1^2 + tau_2^2 + 2 tau_1 tau_2 cos theta)$]
+    $
+      140 &= sqrt((424 / s)^2 + (2557 / s)^2 + 2 (424 / s) (2557 / s) (0.6)) \
+      140 &= 2832 / s \
+      s &= 2832 / 140 \
+      &= bold(20.23 "mm")
+    $
+  ]
 )
 
 #item-row(
@@ -781,40 +855,48 @@
 
 #item-row(
   [*1. Centroid ($G$) & Polar Moment of Inertia ($J$)* \ Location of C.G. and polar moment of throat],
-  [$
-    #text(size: 20pt)[$x = l^2 / (2l + b)$] \
-    &= (40)^2 / (2 (40) + 90) = 9.4 "mm" \
-    J &= 0.707 (6) [((90 + 80)^3) / 12 - ((40)^2 (130)^2) / 170] \
-    &= 1062.2 times 10^3 "mm"^4
-  $]
+  [
+    #text(size: 20pt)[$x = l^2 / (2l + b)$]
+    $
+      &= (40)^2 / (2 (40) + 90) = 9.4 "mm" \
+      J &= 0.707 (6) [((90 + 80)^3) / 12 - ((40)^2 (130)^2) / 170] \
+      &= 1062.2 times 10^3 "mm"^4
+    $
+  ]
 )
 
 #item-row(
   [*2. Eccentricity ($e$) & Critical Radius ($r_2$)* \ Load arm and radius to farthest weld point],
-  [$
-    #text(size: 20pt)[$e = 200 - 9.4 = 190.6 "mm"$] \
-    r_2 &= sqrt((45)^2 + (30.6)^2) = 54.4 "mm" \
-    cos theta &= 30.6 / 54.4 = 0.5625
-  $]
+  [
+    #text(size: 20pt)[$e = 200 - 9.4 = 190.6 "mm"$]
+    $
+      r_2 &= sqrt((45)^2 + (30.6)^2) = 54.4 "mm" \
+      cos theta &= 30.6 / 54.4 = 0.5625
+    $
+  ]
 )
 
 #item-row(
   [*3. Primary & Secondary Shear Stresses ($tau_1, tau_2$)* \ Direct and torsional shear components],
-  [$
-    #text(size: 20pt)[$tau_1 = P / A, quad tau_2 = (P dot e dot r_2) / J$] \
-    tau_1 &= (20 times 10^3) / 721.14 = 27.7 "N/mm"^2 \
-    tau_2 &= (20 times 10^3 times 190.6 times 54.4) / (1062.2 times 10^3) = 195.2 "N/mm"^2
-  $]
+  [
+    #text(size: 20pt)[$tau_1 = P / A, quad tau_2 = (P dot e dot r_2) / J$]
+    $
+      tau_1 &= (20 times 10^3) / 721.14 = 27.7 "N/mm"^2 \
+      tau_2 &= (20 times 10^3 times 190.6 times 54.4) / (1062.2 times 10^3) = 195.2 "N/mm"^2
+    $
+  ]
 )
 
 #item-row(
   [*4. Maximum Resultant Shear Stress ($tau_("max")$)* \ Resultant shear stress in 6 mm weld],
-  [$
-    #text(size: 20pt)[$tau_("max") = sqrt(tau_1^2 + tau_2^2 + 2 tau_1 tau_2 cos theta)$] \
-    &= sqrt((27.7)^2 + (195.2)^2 + 2 (27.7) (195.2) (0.5625)) \
-    &= sqrt(44903.6) \
-    &= bold(212 "MPa")
-  $]
+  [
+    #text(size: 20pt)[$tau_("max") = sqrt(tau_1^2 + tau_2^2 + 2 tau_1 tau_2 cos theta)$]
+    $
+      &= sqrt((27.7)^2 + (195.2)^2 + 2 (27.7) (195.2) (0.5625)) \
+      &= sqrt(44903.6) \
+      &= bold(212 "MPa")
+    $
+  ]
 )
 
 #item-row(
@@ -839,43 +921,51 @@
 
 #item-row(
   [*1. Vertical Forces at A and B ($P_("VA"), P_("VB")$)* \ Equal vertical load sharing],
-  [$
-    #text(size: 20pt)[$P_("VA") = P_("VB") = P / 2$] \
-    &= 15 / 2 = 7.5 "kN" \
-    &= 7500 "N"
-  $]
+  [
+    #text(size: 20pt)[$P_("VA") = P_("VB") = P / 2$]
+    $
+      &= 15 / 2 = 7.5 "kN" \
+      &= 7500 "N"
+    $
+  ]
 )
 
 #item-row(
   [*2. Horizontal Force at Top A ($P_("HA")$)* \ Moment equilibrium about bottom point B],
-  [$
-    #text(size: 20pt)[$P_("HA") times 75 = 15 times 50$] \
-    P_("HA") &= 750 / 75 \
-    &= 10 "kN" = 10000 "N"
-  $]
+  [
+    #text(size: 20pt)[$P_("HA") times 75 = 15 times 50$]
+    $
+      P_("HA") &= 750 / 75 \
+      &= 10 "kN" = 10000 "N"
+    $
+  ]
 )
 
 #item-row(
   [*3. Size of Top Fillet Weld ($s_1$)* \ Resultant force and top weld capacity],
-  [$
-    #text(size: 20pt)[$P_A = sqrt((P_("VA"))^2 + (P_("HA"))^2)$] \
-    P_A &= sqrt((7.5)^2 + (10)^2) = 12.5 "kN" = 12500 "N" \
-    12500 &= 0.707 s_1 times 25 times 150 \
-    12500 &= 2650 s_1 \
-    s_1 &= 12500 / 2650 \
-    &= bold(4.7 "mm")
-  $]
+  [
+    #text(size: 20pt)[$P_A = sqrt((P_("VA"))^2 + (P_("HA"))^2)$]
+    $
+      P_A &= sqrt((7.5)^2 + (10)^2) = 12.5 "kN" = 12500 "N" \
+      12500 &= 0.707 s_1 times 25 times 150 \
+      12500 &= 2650 s_1 \
+      s_1 &= 12500 / 2650 \
+      &= bold(4.7 "mm")
+    $
+  ]
 )
 
 #item-row(
   [*4. Size of Bottom Fillet Weld ($s_2$)* \ Bottom weld designed for vertical force only],
-  [$
-    #text(size: 20pt)[$P_("VB") = 0.707 s_2 dot l dot tau$] \
-    7500 &= 0.707 s_2 times 25 times 150 \
-    7500 &= 2650 s_2 \
-    s_2 &= 7500 / 2650 \
-    &= bold(2.83 "mm")
-  $]
+  [
+    #text(size: 20pt)[$P_("VB") = 0.707 s_2 dot l dot tau$]
+    $
+      7500 &= 0.707 s_2 times 25 times 150 \
+      7500 &= 2650 s_2 \
+      s_2 &= 7500 / 2650 \
+      &= bold(2.83 "mm")
+    $
+  ]
 )
 
 #item-row(
