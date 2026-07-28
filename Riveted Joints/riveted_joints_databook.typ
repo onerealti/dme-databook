@@ -5,12 +5,12 @@
 
 #set page(
   paper: "a4",
-  flipped: false,
+  flipped: true,
   margin: (top: 35pt, bottom: 35pt, left: 35pt, right: 35pt),
   header: none,
   footer: none,
   background: context {
-    // Perpendicular Side-Margin Header & Page Numbers (Vertical Binder Orientation)
+    // Perpendicular Side-Margin Header & Page Numbers (Horizontal Binder Orientation)
     place(
       top + left,
       dx: 14pt,
