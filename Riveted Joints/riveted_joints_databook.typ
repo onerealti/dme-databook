@@ -374,7 +374,8 @@
   [*1. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 13 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(13) = 21.63 "mm" \
+    &= 6 sqrt(13) \
+    &= 21.63 "mm" \
     &=> bold("Standard Hole Diameter " d = 23 "mm") \
     &=> bold("Nominal Rivet Diameter " d_0 = 22 "mm")
   $]
@@ -403,9 +404,12 @@
   [*4. Pitch & Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
   [$
     #text(size: 13.5pt)[$1040 (p - 23)$] &= #text(size: 13.5pt)[$49864 "N"$] \
-    p - 23 &= 49864 / 1040 = 47.95 => p = 70.95 "mm" \
+    p - 23 &= 49864 / 1040 \
+    &= 47.95 \
+    p &= 70.95 "mm" \
     #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
-    &= 2.62 (13) + 41.28 = 75.34 "mm" \
+    &= 2.62 (13) + 41.28 \
+    &= 75.34 "mm" \
     &=> bold("Adopt Pitch " p = 71 "mm")
   $]
 )
@@ -415,7 +419,8 @@
   [$
     #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.33 p + 0.67 d$] \
     &= 0.33(71) + 0.67(23) \
-    &= 23.43 + 15.41 = 38.84 "mm" \
+    &= 23.43 + 15.41 \
+    &= 38.84 "mm" \
     &=> bold("Adopt Row Pitch " p_b = 40 "mm")
   $]
 )
@@ -424,7 +429,8 @@
   [*6. Margin ($m$)* \ Distance from rivet hole center to plate edge],
   [$
     #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d$] \
-    &= 1.5 (23) = 34.5 "mm" \
+    &= 1.5 (23) \
+    &= 34.5 "mm" \
     &=> bold("Adopt Margin " m = 35 "mm")
   $]
 )
@@ -432,9 +438,15 @@
 #item-row(
   [*7. Failure Mode Analysis* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities for adopted $p = 71 "mm"$],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (71 - 23) (13) (80) = 49920 "N"$] \
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau = 2 (pi/4) (23)^2 (60) = 49864 "N (Governing)"$] \
-    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 2 (23) (13) (120) = 71760 "N"$] \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (71 - 23) (13) (80) \
+    &= 49920 "N" \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau$] \
+    &= 2 (pi/4) (23)^2 (60) \
+    &= 49864 "N (Governing)" \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c$] \
+    &= 2 (23) (13) (120) \
+    &= 71760 "N" \
     &=> bold("Governing Strength " P_u = P_s = 49864 "N") \
     &=> bold("Failure Mode: Shearing of Rivets")
   $]
@@ -473,8 +485,12 @@
 #item-row(
   [*1. Shearing & Crushing Expressions ($P_s, P_c$)* \ Symbolic capacities for $t = 7 "mm" < 8 "mm"$ ($n = 3$ rivets per pitch)],
   [$
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau = 3 times pi/4 d^2 times 60 = 141.4 d^2 "N"$] \
-    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 3 times d times 7 times 120 = 2520 d "N"$]
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau$] \
+    &= 3 times pi/4 d^2 times 60 \
+    &= 141.4 d^2 "N" \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c$] \
+    &= 3 times d times 7 times 120 \
+    &= 2520 d "N"
   $]
 )
 
@@ -482,7 +498,8 @@
   [*2. Diameter of Rivet Hole ($d$)* \ Equating shearing strength $P_s$ to crushing strength $P_c$],
   [$
     #text(size: 13.5pt)[$141.4 d^2$] &= #text(size: 13.5pt)[$2520 d$] \
-    d &= 2520 / 141.4 = 17.8 "mm" \
+    d &= 2520 / 141.4 \
+    &= 17.8 "mm" \
     &=> bold("Standard Hole Diameter " d = 19 "mm") \
     &=> bold("Nominal Rivet Diameter " d_0 = 18 "mm")
   $]
@@ -491,8 +508,12 @@
 #item-row(
   [*3. Tearing & Shearing Resistances ($P_t, P_s$)* \ Capacities evaluated for standard hole diameter $d = 19 "mm"$],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (p - 19) times 7 times 90 = 630 (p - 19) "N"$] \
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$141.4 d^2 = 141.4 (19)^2 = 51045 "N"$]
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (p - 19) times 7 times 90 \
+    &= 630 (p - 19) "N" \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$141.4 d^2$] \
+    &= 141.4 (19)^2 \
+    &= 51045 "N"
   $]
 )
 
@@ -500,9 +521,12 @@
   [*4. Rivet Pitch & Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
   [$
     #text(size: 13.5pt)[$630 (p - 19)$] &= #text(size: 13.5pt)[$51045 "N"$] \
-    p - 19 &= 51045 / 630 = 81 => p = 100 "mm" \
+    p - 19 &= 51045 / 630 \
+    &= 81 \
+    p &= 100 "mm" \
     #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
-    &= 3.47 (7) + 41.28 = 65.57 "mm" \
+    &= 3.47 (7) + 41.28 \
+    &= 65.57 "mm" \
     &=> bold("Adopt Pitch " p = p_("max") = 66 "mm")
   $]
 )
@@ -512,7 +536,8 @@
   [$
     #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.33 p + 0.67 d$] \
     &= 0.33 (66) + 0.67 (19) \
-    &= 21.78 + 12.73 = 34.51 "mm" \
+    &= 21.78 + 12.73 \
+    &= 34.51 "mm" \
     &=> bold("Adopt Row Pitch " p_b = 34.5 "mm")
   $]
 )
@@ -520,9 +545,15 @@
 #item-row(
   [*6. Mode of Failure Analysis* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities for adopted $p = 66 "mm"$],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (66 - 19) (7) (90) = 29610 "N (Governing)"$] \
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau = 3 (pi/4) (19)^2 (60) = 51045 "N"$] \
-    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 3 (19) (7) (120) = 47880 "N"$] \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (66 - 19) (7) (90) \
+    &= 29610 "N (Governing)" \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau$] \
+    &= 3 (pi/4) (19)^2 (60) \
+    &= 51045 "N" \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c$] \
+    &= 3 (19) (7) (120) \
+    &= 47880 "N" \
     &=> bold("Governing Strength " P_u = P_t = 29610 "N") \
     &=> bold("Failure Mode: Tearing off the Plate")
   $]
@@ -550,7 +581,8 @@
   [*1. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 10 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(10) = 18.97 "mm" \
+    &= 6 sqrt(10) \
+    &= 18.97 "mm" \
     &=> bold("Standard Hole Diameter " d = 19 "mm") \
     &=> bold("Nominal Rivet Diameter " d_0 = 18 "mm")
   $]
@@ -579,9 +611,12 @@
   [*4. Pitch & Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
   [$
     #text(size: 13.5pt)[$800 (p - 19)$] &= #text(size: 13.5pt)[$31900 "N"$] \
-    p - 19 &= 31900 / 800 = 39.87 => p = 58.87 "mm" \
+    p - 19 &= 31900 / 800 \
+    &= 39.87 \
+    p &= 58.87 "mm" \
     #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
-    &= 1.75 (10) + 41.28 = 58.78 "mm" \
+    &= 1.75 (10) + 41.28 \
+    &= 58.78 "mm" \
     &=> bold("Adopt Pitch " p = p_("max") = 60 "mm")
   $]
 )
@@ -598,9 +633,14 @@
 #item-row(
   [*6. Failure Mode & Joint Efficiency Verification ($eta$)* \ Tearing ($P_t$), shearing ($P_s$), solid plate strength ($P$), and efficiency],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (60 - 19) (10) (80) = 32800 "N"$] \
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$31900 "N" => bold("Failure Mode: Shearing of Rivets")$] \
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 60 (10) (80) = 48000 "N"$] \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (60 - 19) (10) (80) \
+    &= 32800 "N" \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$31900 "N"$] \
+    &=> bold("Failure Mode: Shearing of Rivets") \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t$] \
+    &= 60 (10) (80) \
+    &= 48000 "N" \
     #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_s / P times 100%$] \
     &= 31900 / 48000 times 100% \
     &=> bold(eta = 66.5%)
@@ -630,7 +670,8 @@
   [$
     #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(P dot D) / (2 sigma_t dot eta_l) + 1 "mm"$] \
     &= (0.95 times 1500) / (2 times 90 times 0.75) + 1 \
-    &= 1425 / 135 + 1 = 10.55 + 1 = 11.55 "mm" \
+    &= 1425 / 135 + 1 \
+    &= 11.55 "mm" \
     &=> bold("Shell Thickness " t = 12 "mm")
   $]
 )
@@ -639,7 +680,8 @@
   [*2. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 12 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(12) = 20.78 "mm" \
+    &= 6 sqrt(12) \
+    &= 20.78 "mm" \
     &=> bold("Standard Hole Diameter " d = 21 "mm") \
     &=> bold("Nominal Rivet Diameter " d_0 = 20 "mm")
   $]
@@ -668,9 +710,10 @@
   [*5. Calculated Pitch & I.B.R. Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
   [$
     #text(size: 13.5pt)[$1080 (p - 21)$] &= #text(size: 13.5pt)[$72745 "N"$] \
-    p - 21 &= 72745 / 1080 = 67.35 => p = 88.35 "mm" \
+    p - 21 &= 67.35 \
+    p &= 88.35 "mm" \
     #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
-    &= 3.5 (12) + 41.28 = 83.28 "mm" \
+    &= 83.28 "mm" \
     &=> bold("Adopt Pitch " p = p_("max") = 84 "mm")
   $]
 )
@@ -680,7 +723,7 @@
   [$
     #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.33 p + 0.67 d$] \
     &= 0.33(84) + 0.67(21) \
-    &= 27.72 + 14.07 = 41.79 "mm" \
+    &= 41.79 "mm" \
     &=> bold("Adopt Row Pitch " p_b = 42 "mm")
   $]
 )
@@ -689,16 +732,17 @@
   [*7. Thickness of Cover Plates ($t_1$)* \ Standard proportion for equal width double cover straps],
   [$
     #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.625 t$] \
-    &= 0.625 (12) \
+    &= 7.5 "mm" \
     &=> bold("Adopt Strap Thickness " t_1 = 7.5 "mm")
   $]
 )
+
 
 #item-row(
   [*8. Margin ($m$)* \ Distance from rivet hole center to plate edge],
   [$
     #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d$] \
-    &= 1.5 (21) = 31.5 "mm" \
+    &= 31.5 "mm" \
     &=> bold("Adopt Margin " m = 32 "mm")
   $]
 )
@@ -706,10 +750,16 @@
 #item-row(
   [*9. Governing Failure Mode & Joint Efficiency Verification ($eta$)* \ Tearing capacity $P_t$, shearing $P_s$, crushing $P_c$, solid plate strength $P$, and efficiency],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(84 - 21) (12) (90) = 68040 "N (Governing)"$] \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= (84 - 21) (12) (90) \
+    &= 68040 "N (Governing)" \
     #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$72745 "N"$] \
-    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 2 (21) (12) (140) = 70560 "N"$] \
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 84 (12) (90) = 90720 "N"$] \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c$] \
+    &= 2 (21) (12) (140) \
+    &= 70560 "N" \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t$] \
+    &= 84 (12) (90) \
+    &= 90720 "N" \
     #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_t / P times 100%$] \
     &= 68040 / 90720 times 100% \
     &=> bold(eta = 75.0%) quad bold("(Verified matching target efficiency 75%)")
@@ -745,7 +795,8 @@
   [$
     #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(P dot D) / (2 sigma_t dot eta_l) + 1 "mm"$] \
     &= (2.75 times 1000) / (2 times 88 times 0.79) + 1 \
-    &= 2750 / 139.04 + 1 = 19.78 + 1 = 20.78 "mm" \
+    &= 2750 / 139.04 + 1 \
+    &= 20.78 "mm" \
     &=> bold("Shell Thickness " t = 21 "mm")
   $]
 )
@@ -754,7 +805,8 @@
   [*2. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 21 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(21) = 27.5 "mm" \
+    &= 6 sqrt(21) \
+    &= 27.5 "mm" \
     &=> bold("Standard Hole Diameter " d = 28.5 "mm") \
     &=> bold("Nominal Rivet Diameter " d_0 = 27 "mm")
   $]
@@ -783,11 +835,12 @@
   [*5. Outer & Inner Pitches ($p_("outer"), p_("inner")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
   [$
     #text(size: 13.5pt)[$1848 (p - 28.5)$] &= #text(size: 13.5pt)[$220500 "N"$] \
-    p - 28.5 &= 220500 / 1848 = 119.3 => p = 147.8 "mm" \
+    p - 28.5 &= 119.3 \
+    p &= 147.8 "mm" \
     #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
-    &= 4.63 (21) + 41.28 = 138.51 "mm" \
+    &= 138.51 "mm" \
     &=> bold("Adopt Outer Pitch " p_("outer") = p_("max") = 140 "mm") \
-    &=> bold("Adopt Inner Pitch " p_("inner") = p / 2 = 140 / 2 = 70 "mm")
+    &=> bold("Adopt Inner Pitch " p_("inner") = p / 2 = 70 "mm")
   $]
 )
 
@@ -796,7 +849,7 @@
   [$
     #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.2 p + 1.15 d$] \
     &= 0.2(140) + 1.15(28.5) \
-    &= 28 + 32.775 = 60.775 "mm" \
+    &= 60.775 "mm" \
     &=> bold("Adopt Row Pitch " p_b = 61 "mm")
   $]
 )
@@ -806,7 +859,7 @@
   [$
     #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.625 t dot ((p - d)/(p - 2d))$] \
     &= 0.625 (21) times ((140 - 28.5)/(140 - 2(28.5))) \
-    &= 13.125 times (111.5 / 83) = 17.63 "mm" \
+    &= 17.63 "mm" \
     &=> bold("Adopt Strap Thickness " t_1 = 18 "mm")
   $]
 )
@@ -815,7 +868,7 @@
   [*8. Margin ($m$)* \ Distance from rivet hole center to plate edge],
   [$
     #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d$] \
-    &= 1.5 (28.5) = 42.75 "mm" \
+    &= 42.75 "mm" \
     &=> bold("Adopt Margin " m = 43 "mm")
   $]
 )
@@ -823,11 +876,13 @@
 #item-row(
   [*9. Governing Failure Mode & Joint Efficiency Verification ($eta$)* \ Tearing capacity $P_t$, solid plate strength $P$, and efficiency],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (140 - 28.5) (21) (88) = 206050 "N (Governing)"$] \
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= 206050 "N (Governing)" \
     #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$220500 "N"$] \
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 140 (21) (88) = 258720 "N"$] \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t$] \
+    &= 258720 "N" \
     #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_t / P times 100%$] \
-    &= 206050 / 258720 times 100% \
+    &= 79.6% \
     &=> bold(eta = 79.6%) quad bold("(Satisfactory," >= 79% ")")
   $]
 )
@@ -853,9 +908,12 @@
 #item-row(
   [*1. Allowable Working Stresses* \ Factor of safety FOS = 5 applied to ultimate material strengths],
   [$
-    #text(size: 13.5pt)[$sigma_t$] &= #text(size: 13.5pt)[$sigma_("tu") / "FOS" = 420 / 5 = 84 "N/mm"^2$] \
-    #text(size: 13.5pt)[$sigma_c$] &= #text(size: 13.5pt)[$sigma_("cu") / "FOS" = 650 / 5 = 130 "N/mm"^2$] \
-    #text(size: 13.5pt)[$tau$] &= #text(size: 13.5pt)[$tau_("u") / "FOS" = 300 / 5 = 60 "N/mm"^2$]
+    #text(size: 13.5pt)[$sigma_t$] &= #text(size: 13.5pt)[$sigma_("tu") / "FOS"$] \
+    &= 84 "N/mm"^2 \
+    #text(size: 13.5pt)[$sigma_c$] &= #text(size: 13.5pt)[$sigma_("cu") / "FOS"$] \
+    &= 130 "N/mm"^2 \
+    #text(size: 13.5pt)[$tau$] &= #text(size: 13.5pt)[$tau_("u") / "FOS"$] \
+    &= 60 "N/mm"^2
   $]
 )
 
@@ -863,10 +921,7 @@
   [*2. Boiler Shell Plate Thickness ($t$)* \ Thin cylinder formula with 1 mm corrosion/manufacturing allowance],
   [$
     #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(P dot D) / (2 sigma_t dot eta_l) + 1 "mm"$] \
-    &= (2.5 times 1250) / (2 times 84 times 0.80) + 1 \
-    &= 3125 / 134.4 + 1 = 23.25 + 1 \
-    &= 24.25 "mm" \
-    &=> bold("Plate Thickness " t = 25 "mm")
+    &= 25 "mm"
   $]
 )
 
@@ -874,9 +929,7 @@
   [*3. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 25 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(25) = 30 "mm" \
-    &=> bold("Standard Hole Diameter " d = 31.5 "mm") \
-    &=> bold("Nominal Rivet Diameter " d_0 = 30 "mm")
+    &= 31.5 "mm"
   $]
 )
 
@@ -884,7 +937,6 @@
   [*4. Tearing Resistance of Plate at Outer Row ($P_t$)* \ Net tensile area capacity per pitch length],
   [$
     #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
-    &= (p - 31.5) times 25 times 84 \
     &= 2100 (p - 31.5) "N"
   $]
 )
@@ -893,21 +945,16 @@
   [*5. Shearing Resistance of Rivets ($P_s$)* \ Combined shear capacity for 4 rivets in double shear + 1 rivet in single shear],
   [$
     #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$(4 dot 1.875 + 1) dot pi/4 d^2 dot tau$] \
-    &= 8.5 times pi/4 (31.5)^2 times 60 \
-    &= 8.5 times 779.3 times 60 \
-    &= bold(397500 "N")
+    &= 397500 "N"
   $]
 )
 
 #item-row(
   [*6. Calculated Pitch & I.B.R. Max Pitch Limit ($p, p_("max")$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit],
   [$
-    #text(size: 13.5pt)[$2100 (p - 31.5)$] &= #text(size: 13.5pt)[$397500 "N"$] \
-    p - 31.5 &= 397500 / 2100 = 189.3 => p = 220.8 "mm" \
-    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 "mm"$] \
-    &= 6 times 25 + 41.28 = 191.28 "mm" \
-    &=> bold("Adopt Outer Pitch " p = p_("max") = 196 "mm") \
-    &=> bold("Adopt Inner Pitch " p' = p / 2 = 196 / 2 = 98 "mm")
+    #text(size: 13.5pt)[$p$] &= #text(size: 13.5pt)[$196 "mm"$] \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28$] \
+    &= 191.28 "mm"
   $]
 )
 
@@ -915,29 +962,32 @@
   [*7. Distance Between Rows of Rivets ($p_("b1"), p_("b2")$)* \ I.B.R. row spacing for outer-to-next row and inner zig-zag rows],
   [$
     #text(size: 13.5pt)[$p_("b1")$] &= #text(size: 13.5pt)[$0.2 p + 1.15 d$] \
-    &= 0.2(196) + 1.15(31.5) = 39.2 + 36.225 = 75.425 "mm" \
-    &=> bold("Outer Row Spacing " p_("b1") = 76 "mm") \
+    &= 76 "mm" \
     #text(size: 13.5pt)[$p_("b2")$] &= #text(size: 13.5pt)[$0.165 p + 0.67 d$] \
-    &= 0.165(196) + 0.67(31.5) = 32.34 + 21.105 = 53.445 "mm" \
-    &=> bold("Inner Row Spacing " p_("b2") = 54 "mm")
+    &= 54 "mm"
   $]
 )
 
 #item-row(
   [*8. Butt Strap Thicknesses & Margin ($t_1, t_2, m$)* \ Inside wide strap, outside narrow strap, and margin],
   [$
-    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.75 t = 0.75(25) = 18.75 "mm" => bold("Wide Strap " t_1 = 20 "mm")$] \
-    #text(size: 13.5pt)[$t_2$] &= #text(size: 13.5pt)[$0.625 t = 0.625(25) = 15.625 "mm" => bold("Narrow Strap " t_2 = 16 "mm")$] \
-    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d = 1.5(31.5) = 47.25 "mm" => bold("Margin " m = 47.5 "mm")$]
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.75 t$] \
+    &= 20 "mm" \
+    #text(size: 13.5pt)[$t_2$] &= #text(size: 13.5pt)[$0.625 t$] \
+    &= 16 "mm" \
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d$] \
+    &= 47.5 "mm"
   $]
 )
 
 #item-row(
   [*9. Individual Failure Mode Capacities* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities for $p = 196 "mm"$],
   [$
-    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (196 - 31.5) (25) (84) = 345450 "N"$] \
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$8.5 dot pi/4 d^2 dot tau = 397500 "N"$] \
-    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c = 5 times 31.5 times 25 times 130 = 511875 "N"$]
+    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= 345450 "N" \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$397500 "N"$] \
+    #text(size: 13.5pt)[$P_c$] &= #text(size: 13.5pt)[$n dot d dot t dot sigma_c$] \
+    &= 511875 "N"
   $]
 )
 
@@ -987,7 +1037,7 @@
   [$
     #text(size: 13.5pt)[$t$] &= #text(size: 13.5pt)[$(P dot D) / (2 sigma_t) + 1 "mm"$] \
     &= (2.5 times 1600) / (2 times 75) + 1 \
-    &= 4000 / 150 + 1 = 26.67 + 1 = 27.67 "mm" \
+    &= 27.67 "mm" \
     &=> bold("Shell Thickness " t = 28 "mm")
   $]
 )
@@ -996,7 +1046,7 @@
   [*2. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 28 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(28) = 31.75 "mm" \
+    &= 31.75 "mm" \
     &=> bold("Standard Hole Diameter " d = 34.5 "mm") \
     &=> bold("Nominal Rivet Diameter " d_0 = 33 "mm")
   $]
@@ -1005,8 +1055,10 @@
 #item-row(
   [*3. Longitudinal Tearing & Shearing Capacities ($P_t, P_s$)* \ Net section tearing ($P_t$) and shear capacity for 5 rivets (4 double, 1 single shear)],
   [$
-    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (p - 34.5) (28) (75) = 2100 (p - 34.5) "N"$] \
-    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$(4 dot 1.875 + 1) dot pi/4 d^2 dot tau = 8.5 times pi/4 (34.5)^2 (60) = 476820 "N"$]
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t$] \
+    &= 2100 (p - 34.5) "N" \
+    #text(size: 13.5pt)[$P_s$] &= #text(size: 13.5pt)[$(4 dot 1.875 + 1) dot pi/4 d^2 dot tau$] \
+    &= 476820 "N"
   $]
 )
 
@@ -1014,20 +1066,24 @@
   [*4. Longitudinal Pitch & I.B.R. Max Limit ($p, p'$)* \ Equating $P_t = P_s$ and enforcing I.B.R. maximum pitch limit ($C = 6$)],
   [$
     #text(size: 13.5pt)[$2100 (p - 34.5)$] &= #text(size: 13.5pt)[$476820 "N"$] \
-    p - 34.5 &= 476820 / 2100 = 227 => p = 261.5 "mm" \
-    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28 = 6 (28) + 41.28 = 209.28 "mm"$] \
+    p &= 261.5 "mm" \
+    #text(size: 13.5pt)[$p_("max")$] &= #text(size: 13.5pt)[$C dot t + 41.28$] \
+    &= 209.28 "mm" \
     &=> bold("Adopt Outer Pitch " p = 220 "mm") \
-    &=> bold("Adopt Inner Pitch " p' = 220 / 2 = 110 "mm")
+    &=> bold("Adopt Inner Pitch " p' = 110 "mm")
   $]
 )
 
 #item-row(
   [*5. Longitudinal Row Spacings & Butt Straps ($p_("b1"), p_("b2"), t_1, t_2, m$)* \ Row pitches, wide inside strap, narrow outside strap, and margin],
   [$
-    #text(size: 13.5pt)[$p_("b1")$] &= #text(size: 13.5pt)[$0.2 p + 1.15 d = 0.2(220) + 1.15(34.5) = 83.7 "mm" => bold(85 "mm")$] \
-    #text(size: 13.5pt)[$p_("b2")$] &= #text(size: 13.5pt)[$0.165 p + 0.67 d = 0.165(220) + 0.67(34.5) = 59.4 "mm" => bold(60 "mm")$] \
-    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.75 t = 0.75(28) = bold(21 "mm"), quad t_2 = 0.625 t = 0.625(28) = bold(18 "mm")$] \
-    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d = 1.5(34.5) = 51.75 "mm" => bold("Margin " m = 52 "mm")$]
+    #text(size: 13.5pt)[$p_("b1")$] &= #text(size: 13.5pt)[$0.2 p + 1.15 d$] \
+    &= 85 "mm" \
+    #text(size: 13.5pt)[$p_("b2")$] &= #text(size: 13.5pt)[$0.165 p + 0.67 d$] \
+    &= 60 "mm" \
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$21 "mm"$] \
+    #text(size: 13.5pt)[$t_2$] &= #text(size: 13.5pt)[$18 "mm"$] \
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$52 "mm"$]
   $]
 )
 
@@ -1035,29 +1091,26 @@
   [*6. Longitudinal Joint Efficiency Verification ($eta_l$)* \ Governing combined row 2 tearing + outer rivet shear capacity and efficiency],
   [$
     #text(size: 13.5pt)[$P_("t2") + P_("s1")$] &= #text(size: 13.5pt)[$(p - 2d) t dot sigma_t + pi/4 d^2 dot tau$] \
-    &= (220 - 2(34.5)) (28) (75) + pi/4 (34.5)^2 (60) \
-    &= 317100 + 56096 = bold(373196 "N (Governing Capacity)") \
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 220 (28) (75) = 462000 "N"$] \
-    #text(size: 13.5pt)[$eta_l$] &= #text(size: 13.5pt)[$373196 / 462000 times 100% => bold(eta_l = 80.8%)$]
+    &= 373196 "N" \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$462000 "N"$] \
+    #text(size: 13.5pt)[$eta_l$] &= #text(size: 13.5pt)[$80.8%$]
   $]
 )
 
 #item-row(
   [*7. Circumferential Steam End Thrust & Rivet Count ($F, n_c$)* \ Total axial force acting on boiler cover and required single shear rivets],
   [$
-    #text(size: 13.5pt)[$F$] &= #text(size: 13.5pt)[$pi/4 D^2 dot P = pi/4 (1600)^2 (2.5) = 5026548 "N" = 5.027 "MN"$] \
-    #text(size: 13.5pt)[$n_c$] &= #text(size: 13.5pt)[$F / (pi/4 d^2 dot tau) = (D^2 P) / (d^2 tau) = (1600)^2 (2.5) / ((34.5)^2 (60))$] \
-    &= 6400000 / 71415 = 89.6 \
-    &=> bold("Total Circumferential Rivets " n_c = 90 "rivets")
+    #text(size: 13.5pt)[$F$] &= #text(size: 13.5pt)[$5.027 "MN"$] \
+    #text(size: 13.5pt)[$n_c$] &= #text(size: 13.5pt)[$90 "rivets"$]
   $]
 )
 
 #item-row(
   [*8. Circumferential Pitch, Row Spacing & Efficiency ($p_1, p_("b,circ"), eta_c$)* \ Double riveted lap joint (45 rivets/row), row spacing, margin, and efficiency],
   [$
-    #text(size: 13.5pt)[$p_1$] &= #text(size: 13.5pt)[$(pi (D + t)) / 45 = (pi (1600 + 28)) / 45 = 113.7 "mm" => bold("Adopt " p_1 = 140 "mm")$] \
-    #text(size: 13.5pt)[$eta_c$] &= #text(size: 13.5pt)[$(p_1 - d) / p_1 = (140 - 34.5) / 140 => bold(eta_c = 75.3%)$] \
-    #text(size: 13.5pt)[$p_("b,circ")$] &= #text(size: 13.5pt)[$0.33 p_1 + 0.67 d = 0.33(140) + 0.67(34.5) = 69.3 "mm" => bold(70 "mm")$]
+    #text(size: 13.5pt)[$p_1$] &= #text(size: 13.5pt)[$140 "mm"$] \
+    #text(size: 13.5pt)[$eta_c$] &= #text(size: 13.5pt)[$75.3%$] \
+    #text(size: 13.5pt)[$p_("b,circ")$] &= #text(size: 13.5pt)[$70 "mm"$]
   $]
 )
 
@@ -1083,7 +1136,7 @@
   [*1. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 12.5 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(12.5) = 21.21 "mm" \
+    &= 21.21 "mm" \
     &=> bold("Standard Hole Diameter " d = 21.5 "mm") \
     &=> bold("Nominal Rivet Diameter " d_0 = 20 "mm")
   $]
@@ -1093,26 +1146,23 @@
   [*2. Maximum Tensile Load at Section 1-1 ($P_t$)* \ Net tensile capacity of tie rod at outer row with 1 rivet hole],
   [$
     #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t$] \
-    &= (200 - 21.5) times 12.5 times 80 \
-    &= 178.5 times 1000 \
-    &= bold(178500 "N")
+    &= 178500 "N"
   $]
 )
 
 #item-row(
   [*3. Single Rivet Capacities & Required Rivets ($P_("s1"), P_("c1"), n$)* \ Double shear strength ($1.75 times$ single shear), crushing capacity, and rivet count],
   [$
-    #text(size: 13.5pt)[$P_("s1")$] &= #text(size: 13.5pt)[$1.75 dot pi/4 d^2 dot tau = 1.75 times pi/4 (21.5)^2 (65) = 41300 "N"$] \
-    #text(size: 13.5pt)[$P_("c1")$] &= #text(size: 13.5pt)[$d dot t dot sigma_c = 21.5 times 12.5 times 160 = 43000 "N"$] \
-    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$P_t / P_("s1") = 178500 / 41300 = 4.32 => bold(n = 5 "rivets (Diamond 1-2-2 Pattern)")$]
+    #text(size: 13.5pt)[$P_("s1")$] &= #text(size: 13.5pt)[$41300 "N"$] \
+    #text(size: 13.5pt)[$P_("c1")$] &= #text(size: 13.5pt)[$43000 "N"$] \
+    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$4.32 => bold(n = 5 "rivets (Diamond 1-2-2 Pattern)")$]
   $]
 )
 
 #item-row(
   [*4. Thickness of Butt Straps ($t_1$)* \ Standard proportion for equal width double cover plates],
   [$
-    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$0.75 t$] \
-    &= 0.75 (12.5) = 9.375 "mm" \
+    #text(size: 13.5pt)[$t_1$] &= #text(size: 13.5pt)[$9.375 "mm"$] \
     &=> bold("Strap Thickness " t_1 = 9.4 "mm")
   $]
 )
@@ -1120,27 +1170,26 @@
 #item-row(
   [*5. Sectional Tearing Capacities ($P_("t1"), P_("t2"), P_("t3")$)* \ Tearing resistances across sections 1-1, 2-2, and 3-3],
   [$
-    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t = (200 - 21.5) (12.5) (80) = 178500 "N (Governing Capacity)"$] \
-    #text(size: 13.5pt)[$P_("t2")$] &= #text(size: 13.5pt)[$(b - 2d) t dot sigma_t + P_("s1") = (200 - 43) (1000) + 41300 = 198300 "N"$] \
-    #text(size: 13.5pt)[$P_("t3")$] &= #text(size: 13.5pt)[$(b - 2d) t dot sigma_t + 3 P_("s1") = 157000 + 3(41300) = 280900 "N"$]
+    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$178500 "N (Governing Capacity)"$] \
+    #text(size: 13.5pt)[$P_("t2")$] &= #text(size: 13.5pt)[$198300 "N"$] \
+    #text(size: 13.5pt)[$P_("t3")$] &= #text(size: 13.5pt)[$280900 "N"$]
   $]
 )
 
 #item-row(
   [*6. Solid Tie Rod Strength & Joint Efficiency ($P, eta$)* \ Strength of un-punched tie rod and overall joint efficiency],
   [$
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$b dot t dot sigma_t = 200 times 12.5 times 80 = 200000 "N"$] \
-    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_("t1") / P times 100% = 178500 / 200000 times 100%$] \
-    &=> bold(eta = 89.25%)
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$200000 "N"$] \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$89.25%$]
   $]
 )
 
 #item-row(
   [*7. Pitch, Margin & Row Spacing ($p, m, p_b$)* \ Pitch, margin, and transverse row pitch for diamond layout],
   [$
-    #text(size: 13.5pt)[$p$] &= #text(size: 13.5pt)[$3 d + 5 "mm" = 3(21.5) + 5 = 69.5 "mm" => bold("Pitch " p = 70 "mm")$] \
-    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d = 1.5(21.5) = 32.25 "mm" => bold("Margin " m = 35 "mm")$] \
-    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$2.5 d = 2.5(21.5) = 53.75 "mm" => bold("Row Pitch " p_b = 55 "mm")$]
+    #text(size: 13.5pt)[$p$] &= #text(size: 13.5pt)[$69.5 "mm" => bold("Pitch " p = 70 "mm")$] \
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$32.25 "mm" => bold("Margin " m = 35 "mm")$] \
+    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$53.75 "mm" => bold("Row Pitch " p_b = 55 "mm")$]
   $]
 )
 
@@ -1166,7 +1215,8 @@
   [*1. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 20 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(20) = 26.83 "mm" \
+    &= 6 sqrt(20) \
+    &= 26.83 "mm" \
     &=> bold("Standard Hole Diameter " d = 29 "mm") \
     &=> bold("Nominal Rivet Diameter " d_0 = 27 "mm")
   $]
@@ -1185,9 +1235,16 @@
 #item-row(
   [*3. Single Rivet Capacities & Required Rivets ($P_("s1"), P_("c1"), n$)* \ Double shear strength ($1.75 times$ single shear), crushing capacity, and total rivet count],
   [$
-    #text(size: 13.5pt)[$P_("s1")$] &= #text(size: 13.5pt)[$1.75 dot pi/4 d^2 dot tau = 1.75 times pi/4 (29)^2 (60) = 69360 "N"$] \
-    #text(size: 13.5pt)[$P_("c1")$] &= #text(size: 13.5pt)[$d dot t dot sigma_c = 29 times 20 times 150 = 87000 "N"$] \
-    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$P_t / P_("s1") = 577800 / 69360 = 8.33 => bold(n = 9 "rivets (Lozenge 1-2-3-3 Pattern)")$]
+    #text(size: 13.5pt)[$P_("s1")$] &= #text(size: 13.5pt)[$1.75 dot pi/4 d^2 dot tau$] \
+    &= 1.75 times pi/4 (29)^2 (60) \
+    &= 69360 "N" \
+    #text(size: 13.5pt)[$P_("c1")$] &= #text(size: 13.5pt)[$d dot t dot sigma_c$] \
+    &= 29 times 20 times 150 \
+    &= 87000 "N" \
+    #text(size: 13.5pt)[$n$] &= #text(size: 13.5pt)[$P_t / P_("s1")$] \
+    &= 577800 / 69360 \
+    &= 8.33 \
+    &=> bold(n = 9 "rivets (Lozenge 1-2-3-3 Pattern)")
   $]
 )
 
@@ -1203,18 +1260,29 @@
 #item-row(
   [*5. Sectional Tearing Capacities ($P_("t1"), P_("t2"), P_("t3"), P_("t4")$)* \ Tearing resistances across sections 1-1 (1 hole), 2-2 (2 holes), 3-3 (3 holes), and 4-4 (3 holes)],
   [$
-    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t = (350 - 29) (20) (90) = 577800 "N (Governing Capacity)"$] \
-    #text(size: 13.5pt)[$P_("t2")$] &= #text(size: 13.5pt)[$(b - 2d) t dot sigma_t + P_("s1") = (350 - 58) (1800) + 69360 = 594960 "N"$] \
-    #text(size: 13.5pt)[$P_("t3")$] &= #text(size: 13.5pt)[$(b - 3d) t dot sigma_t + 3 P_("s1") = (350 - 87) (1800) + 208080 = 681480 "N"$] \
-    #text(size: 13.5pt)[$P_("t4")$] &= #text(size: 13.5pt)[$(b - 3d) t dot sigma_t + 6 P_("s1") = 473400 + 416160 = 889560 "N"$]
+    #text(size: 13.5pt)[$P_("t1")$] &= #text(size: 13.5pt)[$(b - d) t dot sigma_t$] \
+    &= (350 - 29) (20) (90) \
+    &= 577800 "N (Governing Capacity)" \
+    #text(size: 13.5pt)[$P_("t2")$] &= #text(size: 13.5pt)[$(b - 2d) t dot sigma_t + P_("s1")$] \
+    &= (350 - 58) (1800) + 69360 \
+    &= 594960 "N" \
+    #text(size: 13.5pt)[$P_("t3")$] &= #text(size: 13.5pt)[$(b - 3d) t dot sigma_t + 3 P_("s1")$] \
+    &= (350 - 87) (1800) + 208080 \
+    &= 681480 "N" \
+    #text(size: 13.5pt)[$P_("t4")$] &= #text(size: 13.5pt)[$(b - 3d) t dot sigma_t + 6 P_("s1")$] \
+    &= 473400 + 416160 \
+    &= 889560 "N"
   $]
 )
 
 #item-row(
   [*6. Solid Flat Bar Strength & Joint Efficiency ($P, eta$)* \ Strength of un-punched tie-bar and overall diamond joint efficiency],
   [$
-    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$b dot t dot sigma_t = 350 times 20 times 90 = 630000 "N"$] \
-    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_("t1") / P times 100% = 577800 / 630000 times 100%$] \
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$b dot t dot sigma_t$] \
+    &= 350 times 20 times 90 \
+    &= 630000 "N" \
+    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_("t1") / P dot 100%$] \
+    &= 577800 / 630000 times 100% \
     &=> bold(eta = 91.7%) quad bold("(Superior to Chain Riveting 75.2%)")
   $]
 )
@@ -1222,9 +1290,18 @@
 #item-row(
   [*7. Pitch, Margin & Row Spacing ($p, m, p_b$)* \ Pitch, margin, and transverse row pitch for lozenge layout],
   [$
-    #text(size: 13.5pt)[$p$] &= #text(size: 13.5pt)[$3 d + 5 "mm" = 3(29) + 5 = 92 "mm" => bold("Pitch " p = 95 "mm")$] \
-    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d = 1.5(29) = 43.5 "mm" => bold("Margin " m = 45 "mm")$] \
-    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$2.5 d = 2.5(29) = 72.5 "mm" => bold("Row Pitch " p_b = 75 "mm")$]
+    #text(size: 13.5pt)[$p$] &= #text(size: 13.5pt)[$3 d + 5 "mm"$] \
+    &= 3(29) + 5 \
+    &= 92 "mm" \
+    &=> bold("Pitch " p = 95 "mm") \
+    #text(size: 13.5pt)[$m$] &= #text(size: 13.5pt)[$1.5 d$] \
+    &= 1.5(29) \
+    &= 43.5 "mm" \
+    &=> bold("Margin " m = 45 "mm") \
+    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$2.5 d$] \
+    &= 2.5(29) \
+    &= 72.5 "mm" \
+    &=> bold("Row Pitch " p_b = 75 "mm")
   $]
 )
 
