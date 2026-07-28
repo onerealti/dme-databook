@@ -12,37 +12,32 @@ This document defines the authoritative, standardized engineering protocol for t
 ## 1. Document Architecture & Page Setup
 
 ### 1.1 Page Geometry & Margins
-- **Paper**: A4 Landscape (`paper: "a4", flipped: true`).
-- **Margins**: `top: 25pt, bottom: 25pt, left: 40pt, right: 40pt`. Balanced 40pt left/right margins prevent right-justification bias while providing ample clearance for the vertical binder side header (`dx: 16pt`).
+- **Paper**: A4 Portrait (`paper: "a4", flipped: false`).
+- **Margins**: `top: 35pt, bottom: 35pt, left: 35pt, right: 35pt`. Balanced 35pt left/right margins center the document grid while providing clearance for the vertical binder side header (`dx: 14pt, dy: 25pt`).
 - **Headers/Footers**: `header: none, footer: none`. Standard horizontal footers are eliminated.
-- **Usable printable area**: ~761pt wide × ~545pt tall. Every layout decision in this skill (font sizes, figure heights, row counts, guard thresholds) is sized against this budget — treat it as a hard physical constraint, not a target to lean against.
-
-> **Important distinction this skill enforces throughout**: "spilling to a second page" and "rendering outside the physical page frame" are different failure modes. `breakable: false` alone only prevents the *first* — a block that doesn't fit in the remaining page space still gets placed and its content extends past its own container, which means past the margin and potentially past the paper edge, where it gets clipped or overlaps adjacent content. Every guard in this skill is a **pre-render measurement check that refuses to compile**, not a post-hoc container setting.
 
 ### 1.2 Perpendicular Side-Margin Header & Page Counter
 A rotated (90°) side header anchors inside the left margin using a background context placement.
 
 The header title is a **document-level variable**, not a literal string — this boilerplate is reused across every databook topic (fasteners, springs, shafts, keys, welded joints, etc.), so the topic name is set once and referenced, never hardcoded inside the page-setup block.
 
-The header block's `width` (its length once rotated) and `dy` offset are sized with real clearance against the bottom margin, and are pinned to explicit constants rather than left to be recalculated by hand if margins ever change — see the guard in §3.6.
-
 ```typst
 // Set once near the top of every databook file, before #set page(...):
 #let databook-title = "DESIGN DATA BOOK — SCREWED JOINTS & FASTENERS"
-#let page-margin = (top: 25pt, bottom: 25pt, left: 40pt, right: 40pt)
-#let header-block-width = 500pt
+#let page-margin = (top: 35pt, bottom: 35pt, left: 35pt, right: 35pt)
+#let header-block-width = 750pt
 #let header-dy = 25pt
 
 #set page(
   paper: "a4",
-  flipped: true,
+  flipped: false,
   margin: page-margin,
   header: none,
   footer: none,
   background: context {
     place(
       top + left,
-      dx: 16pt,
+      dx: 14pt,
       dy: header-dy,
       rotate(
         90deg,
@@ -51,10 +46,10 @@ The header block's `width` (its length once rotated) and `dy` offset are sized w
           #grid(
             columns: (1fr, auto),
             align: (left + horizon, right + horizon),
-            [#text(fill: rgb("#000000"), size: 10.5pt, weight: "bold")[#databook-title]],
-            [#text(fill: rgb("#000000"), weight: "bold", size: 10.5pt)[Page #counter(page).display("1 of 1", both: true)]]
+            [#text(fill: rgb("#000000"), size: 9.5pt, weight: "bold")[#databook-title]],
+            [#text(fill: rgb("#000000"), weight: "bold", size: 9.5pt)[Page #counter(page).display("1 of 1", both: true)]]
           )
-          #v(3pt)
+          #v(2.5pt)
           #line(length: 100%, stroke: 1.2pt + rgb("#000000"))
         ]
       )
@@ -68,12 +63,12 @@ The header block's `width` (its length once rotated) and `dy` offset are sized w
 ### 1.3 Global Typography & Show Rules
 These global rules MUST appear immediately after the `#set page(...)` block in every databook `.typ` file.
 
-Base body text is **9.5pt**, formula highlight is **13pt** — not 15pt/20pt. At 15pt/20pt a single solved step consumes ~90–100pt of the ~540pt usable height, fitting only 5–6 steps per page; real solved problems routinely run 8–15 steps per section. 9.5pt/13pt brings a typical step to ~45–55pt, giving headroom for most sections to actually fit — but headroom is not a guarantee, which is why §3.5 adds a hard pre-render check rather than relying on font size alone.
+Base body text is **10pt**, formula highlight is **13.5pt**, section headings are **13.5pt**. This compact technical handbook proportion gives high visual density while maintaining crisp legibility and headroom for long engineering derivations.
 
 ```typst
-#set text(font: ("Times New Roman", "Georgia"), size: 9.5pt, fill: rgb("#000000"))
-#set par(justify: false, leading: 0.65em)
-#show math.equation: set block(spacing: 6pt)
+#set text(font: ("Times New Roman", "Georgia"), size: 10pt, fill: rgb("#000000"))
+#set par(justify: false, leading: 0.85em)
+#show math.equation: set block(spacing: 16pt)
 #show math.equation.where(block: true): it => align(left, it)
 #show image: set image(fit: "contain")
 #show table: set table(stroke: 0.4pt + rgb("#aaaaaa"))
@@ -166,19 +161,22 @@ To guarantee content is never clipped, rendered off-screen, or spilled past prin
 - `inset: (left: 8pt, right: 8pt)` is symmetric on both columns — keeping text and math balanced around the central divider without right-justification bias.
 - `right-math` is now wrapped in `#box(width: math-col-width)` — this does not by itself prevent horizontal overflow (Typst boxes do not clip by default), but it gives §3.6's width guard a fixed reference width to measure equation content against before the page is rendered.
 
-### 3.4 Non-Breakable Figure Page Container (`figure-page`)
+### 3.4 Mechanical Diagram Container (`figure-page`)
+Mechanical diagrams flow inline within section content inside a non-breakable container (`breakable: false`). Figures no longer force a `#pagebreak()`, allowing section text, equations, and diagrams to reside together on the same page where space permits.
+
 ```typst
-#let figure-page(sec-num, title, fig-path, caption, second-fig: "", second-caption: "") = {
-  pagebreak()
+#let figure-page(sec-num, title, fig-path, caption) = {
+  v(6pt)
   block(width: 100%, breakable: false)[
-    #section-heading(sec-num, title + " — MECHANICAL DIAGRAM")
-    #v(2pt)
-    #if second-fig == "" [
-      #align(center)[
-        #image(fig-path, width: 55%, height: 340pt, fit: "contain")
-        #v(6pt)
-        #text(weight: "bold", size: 11pt)[#caption]
-      ]
+    #align(center)[
+      #image(fig-path, width: 85%, height: 280pt, fit: "contain")
+      #v(4pt)
+      #text(weight: "bold", size: 10pt)[#caption]
+    ]
+  ]
+  v(6pt)
+}
+```
     ] else [
       #grid(
         columns: (1fr, 1fr),

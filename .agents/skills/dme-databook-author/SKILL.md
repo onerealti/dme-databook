@@ -12,8 +12,8 @@ This document defines the authoritative, standardized engineering protocol for t
 ## 1. Document Architecture & Page Setup
 
 ### 1.1 Page Geometry & Margins
-- **Paper**: A4 Landscape (`paper: "a4", flipped: true`).
-- **Margins**: `top: 25pt, bottom: 25pt, left: 40pt, right: 40pt`. Balanced 40pt left/right margins prevent right-justification bias while providing ample clearance for the vertical binder side header (`dx: 16pt`).
+- **Paper**: A4 Portrait (`paper: "a4", flipped: false`).
+- **Margins**: `top: 35pt, bottom: 35pt, left: 35pt, right: 35pt`. Balanced 35pt left/right margins center the document grid while providing clearance for the vertical binder side header (`dx: 14pt, dy: 25pt`).
 - **Headers/Footers**: `header: none, footer: none`. Standard horizontal footers are eliminated.
 
 ### 1.2 Perpendicular Side-Margin Header & Page Counter
@@ -27,26 +27,26 @@ The header title is a **document-level variable**, not a literal string — this
 
 #set page(
   paper: "a4",
-  flipped: true,
-  margin: (top: 25pt, bottom: 25pt, left: 40pt, right: 40pt),
+  flipped: false,
+  margin: (top: 35pt, bottom: 35pt, left: 35pt, right: 35pt),
   header: none,
   footer: none,
   background: context {
     place(
       top + left,
-      dx: 16pt,
+      dx: 14pt,
       dy: 25pt,
       rotate(
         90deg,
         origin: top + left,
-        block(width: 535pt)[
+        block(width: 750pt)[
           #grid(
             columns: (1fr, auto),
             align: (left + horizon, right + horizon),
-            [#text(fill: rgb("#000000"), size: 10.5pt, weight: "bold")[#databook-title]],
-            [#text(fill: rgb("#000000"), weight: "bold", size: 10.5pt)[Page #counter(page).display("1 of 1", both: true)]]
+            [#text(fill: rgb("#000000"), size: 9.5pt, weight: "bold")[#databook-title]],
+            [#text(fill: rgb("#000000"), weight: "bold", size: 9.5pt)[Page #counter(page).display("1 of 1", both: true)]]
           )
-          #v(3pt)
+          #v(2.5pt)
           #line(length: 100%, stroke: 1.2pt + rgb("#000000"))
         ]
       )
@@ -61,9 +61,9 @@ The header title is a **document-level variable**, not a literal string — this
 These global rules MUST appear immediately after the `#set page(...)` block in every databook `.typ` file.
 
 ```typst
-#set text(font: ("Times New Roman", "Georgia"), size: 15pt, fill: rgb("#000000"))
-#set par(justify: false, leading: 0.9em)
-#show math.equation: set block(spacing: 8pt)
+#set text(font: ("Times New Roman", "Georgia"), size: 10pt, fill: rgb("#000000"))
+#set par(justify: false, leading: 0.85em)
+#show math.equation: set block(spacing: 16pt)
 #show math.equation.where(block: true): it => align(left, it)
 #show image: set image(fit: "contain")
 #show table: set table(stroke: 0.4pt + rgb("#aaaaaa"))
@@ -153,24 +153,22 @@ Open 2-column split with a thin vertical center divider line (`0.5pt`).
 }
 ```
 
-### 3.4 Dedicated Single-Figure Page Container (`figure-page`)
-Guarantees header, mechanical diagram, and caption stay together on a dedicated landscape page with enlarged bounds (`width: 85%, height: 420pt`).
-
-**Every diagram gets its own page — no exceptions.** This keeps `figure-page` consistent with Rule 5's stacking philosophy for reference tables: sequential dedicated pages, never side-by-side grids, regardless of content type. If a section has two related diagrams (e.g., front and side views), call `#figure-page(...)` twice, once per image, rather than combining them into one page.
+### 3.4 Mechanical Diagram Container (`figure-page`)
+Mechanical diagrams flow inline within section content inside a non-breakable container (`breakable: false`). Figures no longer force a `#pagebreak()`, allowing section text, equations, and diagrams to reside together on the same page where space permits.
 
 ```typst
 #let figure-page(sec-num, title, fig-path, caption) = {
-  pagebreak()
+  v(6pt)
   block(width: 100%, breakable: false)[
-    #section-heading(sec-num, title + " — MECHANICAL DIAGRAM")
-    #v(2pt)
     #align(center)[
-      #image(fig-path, width: 85%, height: 420pt, fit: "contain")
-      #v(6pt)
-      #text(weight: "bold", size: 14pt)[#caption]
+      #image(fig-path, width: 85%, height: 280pt, fit: "contain")
+      #v(4pt)
+      #text(weight: "bold", size: 10pt)[#caption]
     ]
   ]
+  v(6pt)
 }
+```
 ```
 
 > If two diagrams must appear together for direct visual comparison (rare — e.g., before/after load states of the same part), that is a deliberate exception to this rule and must be justified in an authoring note above the call; do not silently branch the shared component to support it.
