@@ -13,7 +13,7 @@ This document defines the authoritative, standardized engineering protocol for t
 
 ### 1.1 Page Geometry & Margins
 - **Paper**: A4 Landscape (`paper: "a4", flipped: true`).
-- **Margins**: `top: 30pt, bottom: 25pt, left: 55pt, right: 30pt`. Left margin is wider (`55pt`) to accommodate the vertical binder side header.
+- **Margins**: `top: 25pt, bottom: 25pt, left: 40pt, right: 40pt`. Balanced 40pt left/right margins prevent right-justification bias while providing ample clearance for the vertical binder side header (`dx: 16pt`).
 - **Headers/Footers**: `header: none, footer: none`. Standard horizontal footers are eliminated.
 
 ### 1.2 Perpendicular Side-Margin Header & Page Counter
@@ -28,14 +28,14 @@ The header title is a **document-level variable**, not a literal string — this
 #set page(
   paper: "a4",
   flipped: true,
-  margin: (top: 30pt, bottom: 25pt, left: 55pt, right: 30pt),
+  margin: (top: 25pt, bottom: 25pt, left: 40pt, right: 40pt),
   header: none,
   footer: none,
   background: context {
     place(
       top + left,
-      dx: 24pt,
-      dy: 30pt,
+      dx: 16pt,
+      dy: 25pt,
       rotate(
         90deg,
         origin: top + left,
@@ -43,8 +43,8 @@ The header title is a **document-level variable**, not a literal string — this
           #grid(
             columns: (1fr, auto),
             align: (left + horizon, right + horizon),
-            [#text(fill: rgb("#000000"), size: 11pt, weight: "bold")[#databook-title]],
-            [#text(fill: rgb("#000000"), weight: "bold", size: 11pt)[Page #counter(page).display("1 of 1", both: true)]]
+            [#text(fill: rgb("#000000"), size: 10.5pt, weight: "bold")[#databook-title]],
+            [#text(fill: rgb("#000000"), weight: "bold", size: 10.5pt)[Page #counter(page).display("1 of 1", both: true)]]
           )
           #v(3pt)
           #line(length: 100%, stroke: 1.2pt + rgb("#000000"))
@@ -68,6 +68,25 @@ These global rules MUST appear immediately after the `#set page(...)` block in e
 #show image: set image(fit: "contain")
 #show table: set table(stroke: 0.4pt + rgb("#aaaaaa"))
 ```
+
+### 1.4 Out-of-Frame Layout & Overflow Prevention Protocol
+
+To guarantee content is never clipped, rendered off-screen, or spilled past printable margins, enforce these 5 structural frame boundary rules across all `.typ` databooks:
+
+1. **Balanced Page Margins (`left: 40pt, right: 40pt`)**:
+   Setting equal `40pt` left and right margins centers the document body symmetrically on the A4 landscape sheet, preventing right-justification bias while leaving ample space for the vertical binder side header (`dx: 16pt`).
+
+2. **Bounded Rotated Header Clearance (`width: 500pt`, `dy: 25pt`)**:
+   The rotated side header block length is strictly capped (`width: 500pt` at `dy: 25pt`). This guarantees a minimum 40pt+ safety buffer above the bottom page edge so rotated text never clips past the bottom margin.
+
+3. **Line-1 `&=` Math Alignment Point**:
+   Every multi-line equation block MUST place its alignment point (`&=`) on Line 1 directly after the primary target variable (e.g. `#text(size: 20pt)[$P_t$] &= #text(size: 20pt)[$(p - d) t dot sigma_t$] \`). Never write an unaligned first line above subsequent `&=` lines — doing so forces Typst to align all `&=` points at the far right end of the top line, pushing the entire calculation block out of frame past the right margin.
+
+4. **Global Image Fitting & Height Limits**:
+   All mechanical diagrams must use `#show image: set image(fit: "contain")` and explicit container height constraints (`340pt` or `420pt` max height, `85%` max width). This forces image rendering to stay 100% inside printable page boundaries without driving captions or headers out of frame.
+
+5. **Centered 50/50 Auto-Fitting Column Grids**:
+   Item rows must specify equal fractional column widths (`columns: (1fr, 1fr)`) with symmetric cell padding (`inset: (left: 8pt, right: 8pt)`), centering the vertical divider line and balancing content across both halves of the page.
 
 ---
 
@@ -114,17 +133,17 @@ Stacked system parameters and design protocol without borders or background boxe
 }
 ```
 
-### 3.3 Parallel 2-Column Item Row (`item-row`)
+### 3.3 Parallel 2-Column Item Row (`item-row`) — 50/50 centered grid & symmetric inset
 Open 2-column split with a thin vertical center divider line (`0.5pt`).
 
 ```typst
 #let item-row(left-desc, right-math) = {
   v(3pt)
   grid(
-    columns: (1fr, 1.2fr),
-    column-gutter: 20pt,
+    columns: (1fr, 1fr),
+    column-gutter: 16pt,
     stroke: (x, y) => if x == 0 { (right: 0.5pt + rgb("#aaaaaa")) },
-    inset: (right: 10pt),
+    inset: (left: 8pt, right: 8pt),
     align: (left + top, left + top),
     [#left-desc],
     [#right-math]
@@ -271,18 +290,21 @@ $ sigma_("tb"), P_("max, bolt"), d_("c, std") $
 #table(...)
 ```
 
-### Rule 6: Primary Formula Sizing Hierarchy (`#text(size: 20pt)[...]`)
-- **CRITICAL SIZING HIERARCHY**:
-  1. **Primary Governing Formula (TOP Line)**: MUST be wrapped in `#text(size: 20pt)[$P = \text{Formula}$]` at the top of the math block so the key equation stands out.
-  2. **Calculation Content & Answers (Subsequent Lines)**: Intermediate numerical substitutions, evaluation steps, and answer values MUST remain standard size (15pt). DO NOT wrap numbers or calculation steps in `#text(size: 20pt)[...]`.
+### Rule 6: Primary Formula Sizing & `&=` Alignment Hierarchy
+- **CRITICAL SIZING & ALIGNMENT HIERARCHY**:
+  1. **Primary Governing Formula (TOP Line)**: MUST place the alignment point (`&=`) on the top line directly after the target variable: `#text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \`.
+  2. **Calculation Content & Answers (Subsequent Lines)**: Intermediate numerical substitutions, evaluation steps, and answer values MUST remain standard size (15pt) and align under the same `&=`.
 
 ```typst
+// CORRECT: &= is placed on line 1 right after $P$
 $
-  #text(size: 20pt)[$P = pi/4 D^2 dot p$] \
+  #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \
   &= pi/4 (120)^2 times 6 \
   &= 67860 "N"
 $
 ```
+
+> **CRITICAL ALIGNMENT WARNING**: Never write `#text(size: 20pt)[$P = pi/4 D^2 dot p$] \` with a plain `=` on the first line above subsequent `&=` lines. Writing an unaligned first line forces Typst to align all `&=` points at the far right end of the top line, pushing the entire calculation block out of frame past the right margin. Always place `&=` on the first line after the variable.
 
 ### Rule 7: Explicit Intermediate Design Conclusions
 - When the textbook solution includes an intermediate conclusion (e.g., "Size of Bolt = M 24", "Adopt Shell Thickness t = 10 mm"), it MUST appear as its **own dedicated `#item-row`** with a descriptive left-side label.

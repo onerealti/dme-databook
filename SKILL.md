@@ -13,33 +13,46 @@ This document defines the authoritative, standardized engineering protocol for t
 
 ### 1.1 Page Geometry & Margins
 - **Paper**: A4 Landscape (`paper: "a4", flipped: true`).
-- **Margins**: `top: 30pt, bottom: 25pt, left: 55pt, right: 30pt`. Left margin is wider (`55pt`) to accommodate the vertical binder side header.
+- **Margins**: `top: 25pt, bottom: 25pt, left: 40pt, right: 40pt`. Balanced 40pt left/right margins prevent right-justification bias while providing ample clearance for the vertical binder side header (`dx: 16pt`).
 - **Headers/Footers**: `header: none, footer: none`. Standard horizontal footers are eliminated.
+- **Usable printable area**: ~761pt wide × ~545pt tall. Every layout decision in this skill (font sizes, figure heights, row counts, guard thresholds) is sized against this budget — treat it as a hard physical constraint, not a target to lean against.
+
+> **Important distinction this skill enforces throughout**: "spilling to a second page" and "rendering outside the physical page frame" are different failure modes. `breakable: false` alone only prevents the *first* — a block that doesn't fit in the remaining page space still gets placed and its content extends past its own container, which means past the margin and potentially past the paper edge, where it gets clipped or overlaps adjacent content. Every guard in this skill is a **pre-render measurement check that refuses to compile**, not a post-hoc container setting.
 
 ### 1.2 Perpendicular Side-Margin Header & Page Counter
 A rotated (90°) side header anchors inside the left margin using a background context placement.
 
+The header title is a **document-level variable**, not a literal string — this boilerplate is reused across every databook topic (fasteners, springs, shafts, keys, welded joints, etc.), so the topic name is set once and referenced, never hardcoded inside the page-setup block.
+
+The header block's `width` (its length once rotated) and `dy` offset are sized with real clearance against the bottom margin, and are pinned to explicit constants rather than left to be recalculated by hand if margins ever change — see the guard in §3.6.
+
 ```typst
+// Set once near the top of every databook file, before #set page(...):
+#let databook-title = "DESIGN DATA BOOK — SCREWED JOINTS & FASTENERS"
+#let page-margin = (top: 25pt, bottom: 25pt, left: 40pt, right: 40pt)
+#let header-block-width = 500pt
+#let header-dy = 25pt
+
 #set page(
   paper: "a4",
   flipped: true,
-  margin: (top: 30pt, bottom: 25pt, left: 55pt, right: 30pt),
+  margin: page-margin,
   header: none,
   footer: none,
   background: context {
     place(
       top + left,
-      dx: 24pt,
-      dy: 30pt,
+      dx: 16pt,
+      dy: header-dy,
       rotate(
         90deg,
         origin: top + left,
-        block(width: 535pt)[
+        block(width: header-block-width)[
           #grid(
             columns: (1fr, auto),
             align: (left + horizon, right + horizon),
-            [#text(fill: rgb("#000000"), size: 11pt, weight: "bold")[DESIGN DATA BOOK — SCREWED JOINTS & FASTENERS]],
-            [#text(fill: rgb("#000000"), weight: "bold", size: 11pt)[Page #counter(page).display("1 of 1", both: true)]]
+            [#text(fill: rgb("#000000"), size: 10.5pt, weight: "bold")[#databook-title]],
+            [#text(fill: rgb("#000000"), weight: "bold", size: 10.5pt)[Page #counter(page).display("1 of 1", both: true)]]
           )
           #v(3pt)
           #line(length: 100%, stroke: 1.2pt + rgb("#000000"))
@@ -50,23 +63,46 @@ A rotated (90°) side header anchors inside the left margin using a background c
 )
 ```
 
+> When starting a new topic databook, change only the `databook-title` value — never edit the string inside the `background:` block directly. If `page-margin` is ever changed, re-run the header-clearance check in §3.6 before compiling — do not assume `header-block-width`/`header-dy` are still safe.
+
 ### 1.3 Global Typography & Show Rules
 These global rules MUST appear immediately after the `#set page(...)` block in every databook `.typ` file.
 
+Base body text is **9.5pt**, formula highlight is **13pt** — not 15pt/20pt. At 15pt/20pt a single solved step consumes ~90–100pt of the ~540pt usable height, fitting only 5–6 steps per page; real solved problems routinely run 8–15 steps per section. 9.5pt/13pt brings a typical step to ~45–55pt, giving headroom for most sections to actually fit — but headroom is not a guarantee, which is why §3.5 adds a hard pre-render check rather than relying on font size alone.
+
 ```typst
-#set text(font: ("Times New Roman", "Georgia"), size: 15pt, fill: rgb("#000000"))
-#set par(justify: false, leading: 0.9em)
-#show math.equation: set block(spacing: 8pt)
+#set text(font: ("Times New Roman", "Georgia"), size: 9.5pt, fill: rgb("#000000"))
+#set par(justify: false, leading: 0.65em)
+#show math.equation: set block(spacing: 6pt)
 #show math.equation.where(block: true): it => align(left, it)
 #show image: set image(fit: "contain")
 #show table: set table(stroke: 0.4pt + rgb("#aaaaaa"))
 ```
 
+> If Times New Roman is not installed on the compile machine, Typst silently substitutes Georgia, which has different metrics. Confirm the compile environment has Times New Roman available before trusting any of the measured guards below — they measure actual rendered size, so a font substitution changes what "fits" means.
+
+### 1.4 Out-of-Frame Layout & Overflow Prevention Protocol
+
+To guarantee content is never clipped, rendered off-screen, or spilled past printable margins, enforce these 5 structural frame boundary rules across all `.typ` databooks:
+
+1. **Balanced Page Margins (`left: 40pt, right: 40pt`)**:
+   Setting equal `40pt` left and right margins centers the document body symmetrically on the A4 landscape sheet, preventing right-justification bias while leaving ample space for the vertical binder side header (`dx: 16pt`).
+
+2. **Bounded Rotated Header Clearance (`width: 500pt`, `dy: 25pt`)**:
+   The rotated side header block length is strictly capped (`width: 500pt` at `dy: 25pt`). This guarantees a minimum 40pt+ safety buffer above the bottom page edge so rotated text never clips past the bottom margin.
+
+3. **Line-1 `&=` Math Alignment Point**:
+   Every multi-line equation block MUST place its alignment point (`&=`) on Line 1 directly after the primary target variable (e.g. `#text(size: 13pt)[$P_t$] &= #text(size: 13pt)[$(p - d) t dot sigma_t$] \`). Never write an unaligned first line above subsequent `&=` lines — doing so forces Typst to align all `&=` points at the far right end of the top line, pushing the entire calculation block out of frame past the right margin.
+
+4. **Global Image Fitting & Height Limits**:
+   All mechanical diagrams must use `#show image: set image(fit: "contain")` and explicit container height constraints (`340pt` or `420pt` max height, `85%` max width). This forces image rendering to stay 100% inside printable page boundaries without driving captions or headers out of frame.
+
+5. **Centered 50/50 Auto-Fitting Column Grids**:
+   Item rows must specify equal fractional column widths (`columns: (1fr, 1fr)`) with symmetric cell padding (`inset: (left: 8pt, right: 8pt)`), centering the vertical divider line and balancing content across both halves of the page.
+
 ---
 
 ## 2. Extraction & Authoring Workflow from `examples_solutions.md`
-
-When converting solved engineering examples from `examples_solutions.md` into Typst databook sections, strictly follow this extraction mapping:
 
 | Raw Problem Component | Typst Target Component | Conversion & Extraction Rule |
 | :--- | :--- | :--- |
@@ -84,52 +120,53 @@ When converting solved engineering examples from `examples_solutions.md` into Ty
 ### 3.1 Custom Section Header (`section-heading`)
 ```typst
 #let section-heading(sec-num, title) = {
-  v(4pt)
-  text(weight: "bold", size: 18pt)[SECTION #sec-num: #title]
+  v(3pt)
+  text(weight: "bold", size: 13pt)[SECTION #sec-num: #title]
   v(2pt)
   line(length: 100%, stroke: 1pt + rgb("#000000"))
-  v(6pt)
+  v(4pt)
 }
 ```
 
 ### 3.2 Unboxed Section Overview (`section-overview`)
-Stacked system parameters and design protocol without borders or background boxes.
-
 ```typst
 #let section-overview(sys-params, design-proto) = {
   v(2pt)
   sys-params
   v(3pt)
   design-proto
-  v(4pt)
+  v(3pt)
   line(length: 100%, stroke: 0.5pt + rgb("#000000"))
-  v(6pt)
+  v(4pt)
 }
 ```
 
-### 3.3 Parallel 2-Column Item Row (`item-row`)
-Open 2-column split with a thin vertical center divider line (`0.5pt`).
+### 3.3 Parallel 2-Column Item Row (`item-row`) — 50/50 centered grid & symmetric inset
 
 ```typst
+#let math-col-width = 0.50 * (761pt - 40pt - 40pt)  // 50% usable width (columns: 1fr, 1fr)
+
 #let item-row(left-desc, right-math) = {
   v(3pt)
   grid(
-    columns: (1fr, 1.2fr),
-    column-gutter: 20pt,
+    columns: (1fr, 1fr),
+    column-gutter: 16pt,
     stroke: (x, y) => if x == 0 { (right: 0.5pt + rgb("#aaaaaa")) },
-    inset: (right: 10pt),
+    inset: (left: 8pt, right: 8pt),
     align: (left + top, left + top),
     [#left-desc],
-    [#right-math]
+    [#box(width: math-col-width)[#right-math]]
   )
   v(3pt)
   line(length: 100%, stroke: 0.3pt + rgb("#cccccc"))
 }
 ```
 
-### 3.4 Non-Breakable Figure Page Container (`figure-page`)
-Guarantees header, mechanical diagram, and caption stay together on a single dedicated landscape page.
+- `columns: (1fr, 1fr)` provides an equal 50/50 split, placing the central vertical divider line precisely at the center of the printable area.
+- `inset: (left: 8pt, right: 8pt)` is symmetric on both columns — keeping text and math balanced around the central divider without right-justification bias.
+- `right-math` is now wrapped in `#box(width: math-col-width)` — this does not by itself prevent horizontal overflow (Typst boxes do not clip by default), but it gives §3.6's width guard a fixed reference width to measure equation content against before the page is rendered.
 
+### 3.4 Non-Breakable Figure Page Container (`figure-page`)
 ```typst
 #let figure-page(sec-num, title, fig-path, caption, second-fig: "", second-caption: "") = {
   pagebreak()
@@ -140,7 +177,7 @@ Guarantees header, mechanical diagram, and caption stay together on a single ded
       #align(center)[
         #image(fig-path, width: 55%, height: 340pt, fit: "contain")
         #v(6pt)
-        #text(weight: "bold", size: 14pt)[#caption]
+        #text(weight: "bold", size: 11pt)[#caption]
       ]
     ] else [
       #grid(
@@ -150,27 +187,107 @@ Guarantees header, mechanical diagram, and caption stay together on a single ded
         [
           #image(fig-path, width: 85%, height: 310pt, fit: "contain")
           #v(6pt)
-          #text(weight: "bold", size: 13pt)[#caption]
+          #text(weight: "bold", size: 10pt)[#caption]
         ],
         [
           #image(second-fig, width: 85%, height: 310pt, fit: "contain")
           #v(6pt)
-          #text(weight: "bold", size: 13pt)[#second-caption]
+          #text(weight: "bold", size: 10pt)[#second-caption]
         ]
       )
     ]
   ]
 }
 ```
+Figures already have fixed, known dimensions (`340pt`/`310pt` height, `55%`/`85%` width) chosen to fit inside the ~540pt usable height alongside a heading and caption, so no additional measured guard is required here — the risk in this skill is unbounded *text/math* content, not fixed-size images.
+
+### 3.5 Section Wrapper With Pre-Render Height Guard (`section-block`)
+
+**This replaces a reactive `breakable: false` wrapper with a guard that refuses to compile rather than letting content render past the frame.** `breakable: false` alone does not stop overflow — a block that doesn't fit still gets placed, and its content extends past its own boundary, past the margin, and potentially past the physical page edge, where it is clipped or overlaps whatever follows. `context` + `measure()` checks the actual rendered height *before* Typst ever tries to place the block, and hard-fails the compile with the exact overflow amount if it won't fit — turning an invisible print-time defect into a loud, specific authoring-time error.
+
+```typst
+#let page-content-height = 595.28pt - page-margin.top - page-margin.bottom  // A4 landscape height minus margins
+
+#let section-block(body) = context {
+  let content-height = measure(body).height
+
+  if content-height > page-content-height {
+    panic(
+      "Section overflows its A4 landscape page by "
+      + str(content-height - page-content-height)
+      + "pt. Reduce this section's item-row count, shorten a derivation, "
+      + "or split it into a labeled continuation section — do not compile as-is."
+    )
+  }
+
+  block(width: 100%, breakable: false)[#body]
+}
+```
+
+**Usage** — wrap every section's overview + all item-rows (NOT `figure-page` calls, which already manage their own `pagebreak()`):
+
+```typst
+#pagebreak()
+#section-block[
+  #section-heading("3", "Cotter Joint Design")
+  #section-overview(sys-params-3, design-proto-3)
+  #item-row(...)
+  #item-row(...)
+  // ... all item-rows for this section
+]
+```
+
+If this panics, treat it as a hard authoring signal — either trim the section's step count, shorten a derivation, or split a genuinely oversized multi-part problem across an explicitly labeled continuation section (e.g. "SECTION 3 (CONTINUED)"). Never respond to this panic by simply shrinking the font further to make it pass; below ~8.5pt the databook stops being legibly printable, which defeats its purpose.
+
+### 3.6 Width Guard for Equations & the Rotated Header (`assert-fits-width`)
+
+Two places in this skill can overflow **horizontally**, not just vertically, and neither is protected by `section-block` (which only measures height):
+
+1. **Wide equations in `right-math`** — long subscript chains or multi-term substitutions can exceed `math-col-width` (§3.3) and print past the page's right edge.
+2. **The rotated header** (§1.2) — `header-block-width` is a hardcoded constant; if `page-margin` is ever edited later without re-checking this value, the rotated block can extend past the physical paper edge, not just the margin, and gets clipped by the page boundary itself.
+
+```typst
+#let assert-fits-width(content-block, max-width, label: "content") = context {
+  let content-width = measure(content-block).width
+  if content-width > max-width {
+    panic(
+      label + " overflows its allotted width by "
+      + str(content-width - max-width)
+      + "pt. Shorten the expression, drop to a smaller local text size, "
+      + "or break it onto an additional aligned math line."
+    )
+  }
+}
+```
+
+**Usage for a single equation before it's placed in `item-row`:**
+```typst
+#let eq-p1 = [$
+  #text(size: 13pt)[$P_1$] &= #text(size: 13pt)[$pi/4 (d_c)^2 dot sigma_("tb")$] \
+  &= pi/4 (20.32)^2 times 40 \
+  &= 12973 "N"
+$]
+
+#assert-fits-width(eq-p1, math-col-width, label: "Section 3, Step 3 equation")
+#item-row([*3. Resisting Force per Bolt ($P_1$)*], eq-p1)
+```
+
+**Usage for the header, immediately after declaring `header-block-width`:**
+```typst
+#assert-fits-width(
+  [#text(size: 10pt, weight: "bold")[#databook-title]],
+  header-block-width - 60pt,  // reserve space for the "Page N" cell + grid gutter
+  label: "Rotated side header"
+)
+```
+
+> Run the header check whenever `databook-title` changes between topics — a longer topic name (e.g. "DESIGN DATA BOOK — WELDED & RIVETED JOINTS, KEYS, AND COTTER JOINTS") can overflow a header width that was only ever validated against a shorter title.
 
 ---
 
 ## 4. Mandatory Formatting & Mathematical Rules
 
 ### Rule 1: Strict Single Equals (`=`) Sign Per Line
-- **CRITICAL**: Never place 2 or more `=` signs on the same line in math blocks.
-- Every intermediate evaluation or substitution step MUST be on its own line using `\`.
-
 ```typst
 // INCORRECT (FORBIDDEN):
 $ W_s = W / n = 12000 / 4 = 3000 "N" $
@@ -184,38 +301,26 @@ $
 ```
 
 ### Rule 2: Strict Left/Right Column Separation (1-to-1 Label Alignment)
-- **Left Column (`left-desc`)**: Must contain **only** step titles (e.g. `[*1. Pitch Circle Diameter ($D_p$)*]`) and qualitative descriptions. ALL mathematical formulas and calculations are strictly forbidden in the left column.
-- **Right Column (`right-math`)**: Must contain **all** mathematical expressions, variable assignments, equations, numerical substitutions, and final answers.
-- **1-to-1 Alignment**: Split multi-formula steps into individual `#item-row` calls so that every specific calculation has its dedicated left-side label directly beside it.
+- **Left Column (`left-desc`)**: Only step titles and qualitative descriptions. No math.
+- **Right Column (`right-math`)**: All mathematical expressions, substitutions, and final answers, bound to `math-col-width` (§3.3) and validated with `assert-fits-width` (§3.6) before use.
 
 ```typst
 #item-row(
   [*3. Resisting Force per Bolt ($P_1$)* \ Capacity per M 24 bolt ($d_c = 20.32 "mm"$)],
   [$
-    #text(size: 20pt)[$P_1$] &= #text(size: 20pt)[$pi/4 (d_c)^2 dot sigma_("tb")$] \
+    #text(size: 13pt)[$P_1$] &= #text(size: 13pt)[$pi/4 (d_c)^2 dot sigma_("tb")$] \
     &= pi/4 (20.32)^2 times 40 \
     &= 12973 "N"
-  $]
-)
-
-#item-row(
-  [*4. Required Bolt Count ($n$)* \ Number of M 24 fixing bolts required],
-  [$
-    #text(size: 20pt)[$n$] &= #text(size: 20pt)[$P / P_1$] \
-    &= 67860 / 12973 \
-    &= 5.23 \
-    &=> bold(n = 6 "bolts")
   $]
 )
 ```
 
 ### Rule 3: Streamlined Arithmetic Derivations
-- Remove redundant intermediate arithmetic calculation steps.
-- Transition directly from **General Formula** → **Numerical Substitution** → **Final Result**.
+Transition directly from **General Formula** → **Numerical Substitution** → **Final Result**; no redundant intermediate simplification lines.
 
 ```typst
 $
-  #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$M / Z$] \
+  #text(size: 13pt)[$sigma_t$] &= #text(size: 13pt)[$M / Z$] \
   60 &= 773265 / (40 (t_1)^2) \
   (t_1)^2 &= 773265 / (40 times 60) \
   &= 322 \
@@ -223,26 +328,16 @@ $
 $
 ```
 
+> **Alignment note**: keep `#text(size: 13pt)[...]` on the first line only; never nest it around subscripted/superscripted terms on later lines. Mixing an enlarged content-mode wrapper with plain math-mode text in the same `&`-aligned block can visually shift that line's baseline relative to the rest, even though the `&` alignment points still line up structurally. Prefer a local `#set text(size: 13pt)` scoped to the whole math block over per-term wrapping if a formula needs emphasis.
+
 ### Rule 4: Multi-Character Subscript Quoting
-- In Typst, multi-character math subscripts MUST be quoted inside double quotes `"..."` or wrapped in parentheses to prevent syntax parsing errors.
-
 ```typst
-// INCORRECT:
-$ sigma_tb, P_max, bolt, d_c, std $
-
 // CORRECT:
 $ sigma_("tb"), P_("max, bolt"), d_("c, std") $
 ```
 
 ### Rule 5: Reference Tables Must Be Stacked Sequentially
-- Reference data tables (e.g., Table 11.1 Coarse, Table 11.1 Fine, Table 11.2) must be placed **one after another on separate pages**, never side-by-side in a grid.
-- Each reference page gets its own `#pagebreak()` and `#section-heading("REF N", ...)`.
-
 ```typst
-// INCORRECT (FORBIDDEN):
-#grid(columns: (1fr, 1fr), [Table 11.1 Coarse], [Table 11.1 Fine])
-
-// CORRECT (ENFORCED):
 #pagebreak()
 #section-heading("REF 1", "Table 11.1 — Coarse Series")
 #table(...)
@@ -252,62 +347,61 @@ $ sigma_("tb"), P_("max, bolt"), d_("c, std") $
 #table(...)
 ```
 
-### Rule 6: Enlarged Primary Variable & General Formula
-- The first line of every equation block must enlarge both the **primary output variable** (left of `&=`) and the **general symbolic formula** (right of `&=`) using `#text(size: 20pt)[...]`.
-- Subsequent substitution and result lines use the default text size.
+### Rule 6: Enlarged Primary Variable & General Formula (`&=` Alignment on Line 1)
+First line of every equation block: `#text(size: 13pt)[$var$] &= #text(size: 13pt)[$formula$] \`. The alignment point (`&=`) MUST be placed on the first line directly after the target variable. Subsequent lines stay at body size (9.5pt) and align under the same `&=`.
 
 ```typst
+// CORRECT: &= is on line 1 right after the target variable
 $
-  #text(size: 20pt)[$P$] &= #text(size: 20pt)[$pi/4 D^2 dot p$] \
+  #text(size: 13pt)[$P$] &= #text(size: 13pt)[$pi/4 D^2 dot p$] \
   &= pi/4 (120)^2 times 6 \
   &= 67860 "N"
 $
 ```
 
-### Rule 7: Explicit Intermediate Design Conclusions
-- When the textbook solution includes an intermediate conclusion (e.g., "Size of Bolt = M 24", "Adopt Shell Thickness t = 10 mm"), it MUST appear as its **own dedicated `#item-row`** with a descriptive left-side label.
-- Do NOT merge these into the final "Design Output" row; they are verification milestones that belong inline at the point in the solution where the textbook states them.
+> **CRITICAL ALIGNMENT WARNING**: Never write `#text(size: 13pt)[$P = pi/4 D^2 dot p$] \` with a plain `=` on the first line above subsequent `&=` lines. Writing an unaligned first line forces Typst to align all `&=` points at the far right end of the top line, pushing the entire calculation block out of frame past the right margin. Always place `&=` on the first line after the variable.
 
-```typst
-#item-row(
-  [*10. Selected Bolt Designation* \ Pitch is within acceptable limits],
-  [*Size of Bolt = M 24 Fasteners ($d = 24 "mm", d_c = 20.32 "mm"$)*]
-)
-```
+### Rule 7: Explicit Intermediate Design Conclusions
+Intermediate textbook conclusions (e.g., "Size of Bolt = M 24") get their own dedicated `#item-row`, never merged into the final Design Output row.
+
+### Rule 8: Symmetric Column Padding
+`item-row`'s grid `inset` MUST always specify both `left` and `right` — never `right` alone.
+
+### Rule 9: Every Section MUST Pass Through `section-block`
+No section's item-rows may be placed directly on the page; they must be assembled inside `#section-block[...]` (§3.5) so the height guard runs before render.
+
+### Rule 10: Every Equation Destined for `right-math` MUST Pass Through `assert-fits-width` First (New)
+Before any equation content is passed into `#item-row(...)`, assign it to a variable and validate it with `#assert-fits-width(...)` (§3.6). Do not skip this for "short-looking" equations — long unit strings (`"N/mm"^2`) and multi-character subscripts are easy to underestimate visually.
+
+### Rule 11: Re-Validate the Rotated Header After Any Title or Margin Change (New)
+Any time `databook-title` or `page-margin` changes, re-run the header width check (§3.6) before compiling the final PDF. Do not assume a previously-validated `header-block-width`/`header-dy` pair is still safe.
 
 ---
 
 ## 5. Single-Page Overflow Guardrails
 
-To guarantee 100% protection against vertical or horizontal content spillover:
-
-1. **Global Image Fitting**:
-   ```typst
-   #show image: set image(fit: "contain")
-   ```
-2. **Constrained Figure Heights**:
-   - Single Figure: `height: 340pt`, `width: 55%`.
-   - Dual Figures: `height: 310pt`, `width: 85%`.
-3. **Table Widths**:
-   - Use fractional column widths `columns: (1fr, 1fr, ...)` so tables automatically span `100%` of printable width without horizontal clipping.
-4. **Tuned Vertical Spacing**:
-   - Set `#show math.equation: set block(spacing: 8pt)`.
-   - Set `#set text(size: 15pt)` with `#set par(leading: 0.9em)`.
-   - Item row vertical padding: `v(3pt)`.
+1. **Global Image Fitting**: `#show image: set image(fit: "contain")`.
+2. **Fixed Figure Dimensions**: Single Figure `height: 340pt, width: 55%`; Dual Figures `height: 310pt, width: 85%` each, sized to always fit within the usable height — no measured guard needed since dimensions are fixed and pre-validated (§3.4).
+3. **Table Widths**: fractional columns `(1fr, 1fr, ...)` span 100% of usable width automatically.
+4. **Tuned Vertical Spacing**: body `9.5pt`/formula `13pt`, `leading: 0.65em`, equation block spacing `6pt`, item-row padding `v(2pt)`.
+5. **Hard Vertical Guard**: `section-block` (§3.5) measures actual rendered height with `context` + `measure()` and **panics the compile** if a section exceeds `page-content-height` — it does not merely warn, and it does not let oversized content render past the frame.
+6. **Hard Horizontal Guard**: `assert-fits-width` (§3.6) measures actual rendered width for every equation before it enters `right-math`, and for the rotated header whenever its title changes — both panic rather than allow clipping past the page edge.
 
 ---
 
 ## 6. Pre-Flight Verification Checklist for Agents
 
-Before completing any `.typ` databook document, perform this 7-point verification:
-
-- [ ] **1. Clean Compilation**: Execute `typst compile file.typ` and verify zero errors/warnings.
-- [ ] **2. Single Equals Check**: Audit all math blocks to ensure no line contains multiple `=` signs.
-- [ ] **3. 1-to-1 Label Alignment**: Confirm every formula step has a dedicated left-side label in its own `#item-row`.
-- [ ] **4. Column Scoping**: Verify zero math expressions sit in `left-desc` (all math must be in `right-math`).
-- [ ] **5. Page Bounds Check**: Verify each section's items fit on 1 landscape page without spilling onto a 2nd page before `#figure-page`.
-- [ ] **6. Subscript & Text Quoting**: Confirm multi-character subscripts (`$sigma_("tb")$`) and text strings in math (`"Text"`) are quoted.
-- [ ] **7. Intermediate Conclusions**: Verify that textbook intermediate answers (e.g., "Size of Bolt = M 24", "Adopt t = 10 mm") appear as standalone `#item-row` entries, not merged into the final Design Output.
+- [ ] **1. Clean Compilation**: `typst compile file.typ` — zero errors and zero `panic()` triggers from `section-block` or `assert-fits-width`.
+- [ ] **2. Single Equals Check**: no math line contains more than one `=` sign.
+- [ ] **3. 1-to-1 Label Alignment**: every formula step has a dedicated left-side label in its own `#item-row`.
+- [ ] **4. Column Scoping**: zero math expressions in `left-desc`.
+- [ ] **5. Vertical Fit**: every section is wrapped in `#section-block[...]` and compiles without a height-overflow panic.
+- [ ] **6. Horizontal Fit**: every equation passed to `right-math`, and the rotated header title, pass `#assert-fits-width(...)` without a width-overflow panic.
+- [ ] **7. Subscript & Text Quoting**: multi-character subscripts and text strings in math are quoted.
+- [ ] **8. Intermediate Conclusions**: textbook intermediate answers appear as standalone `#item-row` entries, not merged into Design Output.
+- [ ] **9. Inset Symmetry**: `item-row`'s `inset` specifies both `left` and `right`.
+- [ ] **10. Font Sizes**: body text is 9.5pt, formula highlight is 13pt.
+- [ ] **11. Header Re-Validation**: if `databook-title` or `page-margin` changed since the last compile, the header width check was re-run.
 
 ---
 
@@ -320,7 +414,20 @@ Before completing any `.typ` databook document, perform this 7-point verificatio
 | `\ \` multi-line breaks | Double backslash inserts blank math line | Use single backslash `\` for line breaks |
 | Multiple `=` on 1 line | Violates single equals sign rule | Break every `=` onto its own line with `\` |
 | Math in `left-desc` | Violates left/right column separation | Move ALL math expressions to `right-math` |
-| Image overflow into margin | Unconstrained image height | Specify `height: 340pt` and `fit: "contain"` |
-| Header split onto page 2 | `section-heading` separated from figure | Wrap inside `block(breakable: false)[...]` |
-| Tables side-by-side | Reference tables placed in `#grid` | Stack sequentially with `#pagebreak()` between |
-| Missing enlarged formula | Primary variable not visually prominent | Use `#text(size: 20pt)[...]` on first equation line |
+| Section content clipped or overlapping the next page's header | `breakable: false` alone was used, which places an oversized block anyway instead of preventing it | Use `section-block` (§3.5), which measures height and panics before render rather than clipping after |
+| Equation text runs past the right page edge | No width guard existed on `right-math`; long subscripts/units underestimated visually | Wrap the equation and validate with `assert-fits-width` (§3.6) before passing to `item-row` |
+| Rotated header clips the paper edge after a margin/title change | `header-block-width` treated as a one-time constant, never re-checked | Re-run the header `assert-fits-width` check (Rule 11) any time `databook-title` or `page-margin` changes |
+| Divider line looks off-center in `item-row` | `inset: (right: 10pt)` only pads one side | Use `inset: (left: 10pt, right: 10pt)` (Rule 8) |
+| First equation line looks vertically misaligned vs. rest | `#text(size: X)[...]` wrapped around individual sub-expressions instead of the whole block | Prefer a local `#set text(size: X)` scoped to that one math block over per-term wrapping |
+| Wrong topic title in side header | Topic name hardcoded inside `background:` block | Set once via `#let databook-title = "..."` and reference `#databook-title` |
+
+---
+
+## 8. Summary of Changes from Earlier Draft
+
+1. **Reactive overflow handling replaced with pre-render measurement guards.** `breakable: false` alone does not stop content from rendering past the page frame — it only stops it from flowing to a second page. `section-block` (§3.5) now uses `context` + `measure()` to check a section's actual height *before* Typst places it, and `panic()`s the compile with the exact overflow amount if it won't fit.
+2. **New horizontal guard** (`assert-fits-width`, §3.6) — the original skill only ever addressed vertical overflow. Long equations in `right-math` and the rotated header's title text can both overflow horizontally; both are now measured and validated before render.
+3. **Font sizes reduced** from body 15pt/formula 20pt to body 9.5pt/formula 13pt, giving section content real headroom against the height guard rather than relying on font size as the only overflow defense.
+4. **`item-row` inset fixed** to symmetric `(left: 10pt, right: 10pt)`, resolving the off-center divider.
+5. **Header geometry pinned to named constants** (`header-block-width`, `header-dy`, `page-margin`) so a later edit to one is easy to re-validate against the others, instead of silently drifting out of sync.
+6. **New Rules 10 and 11** make the width guard and header re-validation mandatory steps, not optional advice.

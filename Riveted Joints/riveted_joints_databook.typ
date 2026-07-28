@@ -6,15 +6,15 @@
 #set page(
   paper: "a4",
   flipped: true,
-  margin: (top: 30pt, bottom: 25pt, left: 55pt, right: 30pt),
+  margin: (top: 25pt, bottom: 25pt, left: 40pt, right: 40pt),
   header: none,
   footer: none,
   background: context {
     // Perpendicular Side-Margin Header & Page Numbers (Vertical Binder Orientation)
     place(
       top + left,
-      dx: 24pt,
-      dy: 30pt,
+      dx: 16pt,
+      dy: 25pt,
       rotate(
         90deg,
         origin: top + left,
@@ -22,8 +22,8 @@
           #grid(
             columns: (1fr, auto),
             align: (left + horizon, right + horizon),
-            [#text(fill: rgb("#000000"), size: 11pt, weight: "bold")[#databook-title]],
-            [#text(fill: rgb("#000000"), weight: "bold", size: 11pt)[Page #counter(page).display("1 of 1", both: true)]]
+            [#text(fill: rgb("#000000"), size: 10.5pt, weight: "bold")[#databook-title]],
+            [#text(fill: rgb("#000000"), weight: "bold", size: 10.5pt)[Page #counter(page).display("1 of 1", both: true)]]
           )
           #v(3pt)
           #line(length: 100%, stroke: 1.2pt + rgb("#000000"))
@@ -64,10 +64,10 @@
 #let item-row(left-desc, right-math) = {
   v(3pt)
   grid(
-    columns: (1fr, 1.2fr),
-    column-gutter: 20pt,
+    columns: (1fr, 1fr),
+    column-gutter: 16pt,
     stroke: (x, y) => if x == 0 { (right: 0.5pt + rgb("#aaaaaa")) },
-    inset: (right: 10pt),
+    inset: (left: 8pt, right: 8pt),
     align: (left + top, left + top),
     [#left-desc],
     [#right-math]
@@ -104,7 +104,7 @@
 #item-row(
   [*1. Tearing Strength of Plate ($P_t$)* \ Plate tearing capacity per pitch length],
   [$
-    #text(size: 20pt)[$P_t = (p - d) t dot sigma_("u")$] \
+    #text(size: 20pt)[$P_t$] &= #text(size: 20pt)[$(p - d) t dot sigma_("u")$] \
     &= (75 - 25) times 15 times 400 \
     &= 300000 "N" \
     &=> P_t = 300 "kN"
@@ -114,7 +114,7 @@
 #item-row(
   [*2. Shearing Strength of Rivets ($P_s$)* \ Single shear capacity of 2 rivets per pitch length],
   [$
-    #text(size: 20pt)[$P_s = n dot pi/4 d^2 dot tau_("u")$] \
+    #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$n dot pi/4 d^2 dot tau_("u")$] \
     &= 2 times pi/4 (25)^2 times 320 \
     &= 314160 "N" \
     &=> P_s = 314.16 "kN"
@@ -124,7 +124,7 @@
 #item-row(
   [*3. Crushing Strength of Rivets ($P_c$)* \ Bearing capacity of 2 rivets per pitch length],
   [$
-    #text(size: 20pt)[$P_c = n dot d dot t dot sigma_("cu")$] \
+    #text(size: 20pt)[$P_c$] &= #text(size: 20pt)[$n dot d dot t dot sigma_("cu")$] \
     &= 2 times 25 times 15 times 640 \
     &= 480000 "N" \
     &=> P_c = 480 "kN"
@@ -134,7 +134,7 @@
 #item-row(
   [*4. Rupturing Force per Pitch ($P_u$)* \ Minimum strength governing joint rupture],
   [$
-    #text(size: 20pt)[$P_u = min(P_t, P_s, P_c)$] \
+    #text(size: 20pt)[$P_u$] &= #text(size: 20pt)[$min(P_t, P_s, P_c)$] \
     &= min(300, 314.16, 480) \
     &=> P_u = 300 "kN"
   $]
@@ -143,7 +143,7 @@
 #item-row(
   [*5. Safe Working Load ($P$)* \ Applied force per pitch at FOS = 4],
   [$
-    #text(size: 20pt)[$P = P_u / "FOS"$] \
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$P_u / "FOS"$] \
     &= 300 / 4 \
     &= 75 "kN" \
     &= 75000 "N"
@@ -153,7 +153,7 @@
 #item-row(
   [*6. Actual Tensile Stress ($sigma_t$)* \ Induced tensile stress on main plate],
   [$
-    #text(size: 20pt)[$sigma_t = P / ((p - d) t)$] \
+    #text(size: 20pt)[$sigma_t$] &= #text(size: 20pt)[$P / ((p - d) t)$] \
     &= 75000 / ((75 - 25) times 15) \
     &= 100 "MPa"
   $]
@@ -162,7 +162,7 @@
 #item-row(
   [*7. Actual Shear Stress ($tau$)* \ Induced shear stress in rivets],
   [$
-    #text(size: 20pt)[$tau = P / (n dot pi/4 d^2)$] \
+    #text(size: 20pt)[$tau$] &= #text(size: 20pt)[$P / (n dot pi/4 d^2)$] \
     &= 75000 / (2 times pi/4 (25)^2) \
     &= 76.4 "MPa"
   $]
@@ -171,7 +171,7 @@
 #item-row(
   [*8. Actual Crushing Stress ($sigma_c$)* \ Induced crushing stress on rivets],
   [$
-    #text(size: 20pt)[$sigma_c = P / (n dot d dot t)$] \
+    #text(size: 20pt)[$sigma_c$] &= #text(size: 20pt)[$P / (n dot d dot t)$] \
     &= 75000 / (2 times 25 times 15) \
     &= 100 "MPa"
   $]
@@ -181,6 +181,8 @@
   [*Design Output*],
   [*Rupturing Force Pu = 300 kN | Working Load P = 75 kN | Working Stresses: sigma_t = 100 MPa, tau = 76.4 MPa, sigma_c = 100 MPa*]
 )
+
+#figure-page("1", "DOUBLE RIVETED LAP JOINT", "Fig 9.20.png", "Fig. 9.20: Double Riveted Lap Joint Scheme")
 
 // ==========================================
 // SECTION 2: EXAMPLE 9.2
@@ -198,7 +200,7 @@
 #item-row(
   [*1. Solid Plate Strength — Single Lap ($P$)* \ Strength of un-punched plate ($p = 50 "mm"$)],
   [$
-    #text(size: 20pt)[$P = p dot t dot sigma_t$] \
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$p dot t dot sigma_t$] \
     &= 50 times 6 times 120 \
     &= 36000 "N"
   $]
@@ -207,7 +209,7 @@
 #item-row(
   [*2. Tearing Strength — Single Lap ($P_t$)* \ Net section tensile capacity],
   [$
-    #text(size: 20pt)[$P_t = (p - d) t dot sigma_t$] \
+    #text(size: 20pt)[$P_t$] &= #text(size: 20pt)[$(p - d) t dot sigma_t$] \
     &= (50 - 20) times 6 times 120 \
     &= 21600 "N"
   $]
@@ -216,7 +218,7 @@
 #item-row(
   [*3. Shearing Strength — Single Lap ($P_s$)* \ Single shear capacity ($n = 1$)],
   [$
-    #text(size: 20pt)[$P_s = n dot pi/4 d^2 dot tau$] \
+    #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$n dot pi/4 d^2 dot tau$] \
     &= 1 times pi/4 (20)^2 times 90 \
     &= 28274 "N"
   $]
@@ -225,7 +227,7 @@
 #item-row(
   [*4. Crushing Strength — Single Lap ($P_c$)* \ Bearing capacity ($n = 1$)],
   [$
-    #text(size: 20pt)[$P_c = n dot d dot t dot sigma_c$] \
+    #text(size: 20pt)[$P_c$] &= #text(size: 20pt)[$n dot d dot t dot sigma_c$] \
     &= 1 times 20 times 6 times 180 \
     &= 21600 "N"
   $]
@@ -234,7 +236,7 @@
 #item-row(
   [*5. Efficiency — Single Riveted Lap Joint ($eta_1$)* \ Ratio of minimum strength to solid strength],
   [$
-    #text(size: 20pt)[$eta_1 = min(P_t, P_s, P_c) / P times 100%$] \
+    #text(size: 20pt)[$eta_1$] &= #text(size: 20pt)[$min(P_t, P_s, P_c) / P times 100%$] \
     &= 21600 / 36000 times 100% \
     &=> bold(eta_1 = 60.0%)
   $]
@@ -243,7 +245,7 @@
 #item-row(
   [*6. Solid Plate Strength — Double Lap ($P$)* \ Strength of un-punched plate ($p = 65 "mm"$)],
   [$
-    #text(size: 20pt)[$P = p dot t dot sigma_t$] \
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$p dot t dot sigma_t$] \
     &= 65 times 6 times 120 \
     &= 46800 "N"
   $]
@@ -252,7 +254,7 @@
 #item-row(
   [*7. Tearing Strength — Double Lap ($P_t$)* \ Net section tensile capacity],
   [$
-    #text(size: 20pt)[$P_t = (p - d) t dot sigma_t$] \
+    #text(size: 20pt)[$P_t$] &= #text(size: 20pt)[$(p - d) t dot sigma_t$] \
     &= (65 - 20) times 6 times 120 \
     &= 32400 "N"
   $]
@@ -261,7 +263,7 @@
 #item-row(
   [*8. Shearing Strength — Double Lap ($P_s$)* \ Single shear capacity ($n = 2$)],
   [$
-    #text(size: 20pt)[$P_s = n dot pi/4 d^2 dot tau$] \
+    #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$n dot pi/4 d^2 dot tau$] \
     &= 2 times pi/4 (20)^2 times 90 \
     &= 56548 "N"
   $]
@@ -270,7 +272,7 @@
 #item-row(
   [*9. Crushing Strength — Double Lap ($P_c$)* \ Bearing capacity ($n = 2$)],
   [$
-    #text(size: 20pt)[$P_c = n dot d dot t dot sigma_c$] \
+    #text(size: 20pt)[$P_c$] &= #text(size: 20pt)[$n dot d dot t dot sigma_c$] \
     &= 2 times 20 times 6 times 180 \
     &= 43200 "N"
   $]
@@ -279,7 +281,7 @@
 #item-row(
   [*10. Efficiency — Double Riveted Lap Joint ($eta_2$)* \ Ratio of minimum strength to solid strength],
   [$
-    #text(size: 20pt)[$eta_2 = min(P_t, P_s, P_c) / P times 100%$] \
+    #text(size: 20pt)[$eta_2$] &= #text(size: 20pt)[$min(P_t, P_s, P_c) / P times 100%$] \
     &= 32400 / 46800 times 100% \
     &=> bold(eta_2 = 69.2%)
   $]
@@ -289,6 +291,8 @@
   [*Design Output*],
   [*Single Riveted Lap Efficiency eta1 = 60.0% | Double Riveted Lap Efficiency eta2 = 69.2%*]
 )
+
+#figure-page("2", "SINGLE RIVETED LAP JOINT", "Fig 9.21.png", "Fig. 9.21: Single Riveted Lap Joint Scheme")
 
 // ==========================================
 // SECTION 3: EXAMPLE 9.3
@@ -306,7 +310,7 @@
 #item-row(
   [*1. Solid Plate Strength ($P$)* \ Un-punched solid plate tensile capacity],
   [$
-    #text(size: 20pt)[$P = p dot t dot sigma_t$] \
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$p dot t dot sigma_t$] \
     &= 100 times 20 times 120 \
     &= 240000 "N"
   $]
@@ -315,7 +319,7 @@
 #item-row(
   [*2. Tearing Strength of Plate ($P_t$)* \ Net section tensile strength per pitch],
   [$
-    #text(size: 20pt)[$P_t = (p - d) t dot sigma_t$] \
+    #text(size: 20pt)[$P_t$] &= #text(size: 20pt)[$(p - d) t dot sigma_t$] \
     &= (100 - 25) times 20 times 120 \
     &= 180000 "N"
   $]
@@ -324,7 +328,7 @@
 #item-row(
   [*3. Shearing Strength of Rivets ($P_s$)* \ Double shear capacity of 2 rivets per pitch ($n = 2$, factor = 2)],
   [$
-    #text(size: 20pt)[$P_s = 2 dot (2 dot pi/4 d^2) dot tau$] \
+    #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$2 dot (2 dot pi/4 d^2) dot tau$] \
     &= 2 times (2 times pi/4 (25)^2) times 100 \
     &= 196350 "N"
   $]
@@ -333,7 +337,7 @@
 #item-row(
   [*4. Crushing Strength of Rivets ($P_c$)* \ Bearing capacity of 2 rivets per pitch ($n = 2$)],
   [$
-    #text(size: 20pt)[$P_c = n dot d dot t dot sigma_c$] \
+    #text(size: 20pt)[$P_c$] &= #text(size: 20pt)[$n dot d dot t dot sigma_c$] \
     &= 2 times 25 times 20 times 150 \
     &= 150000 "N"
   $]
@@ -342,7 +346,7 @@
 #item-row(
   [*5. Joint Efficiency ($eta$)* \ Ratio of minimum strength to un-punched solid plate strength],
   [$
-    #text(size: 20pt)[$eta = min(P_t, P_s, P_c) / P times 100%$] \
+    #text(size: 20pt)[$eta$] &= #text(size: 20pt)[$min(P_t, P_s, P_c) / P times 100%$] \
     &= 150000 / 240000 times 100% \
     &=> bold(eta = 62.5%)
   $]
@@ -352,6 +356,8 @@
   [*Design Output*],
   [*Double Cover Butt Joint Efficiency eta = 62.5% (Governed by Rivet Crushing)*]
 )
+
+#figure-page("3", "DOUBLE RIVETED DOUBLE COVER BUTT JOINT", "Fig 9.22.png", "Fig. 9.22: Double Riveted Double Cover Butt Joint")
 
 // ==========================================
 // SECTION 4: EXAMPLE 9.4
@@ -369,7 +375,7 @@
 #item-row(
   [*1. Rivet Diameter ($d$)* \ Unwin's formula for $t = 13 "mm" >= 8 "mm"$],
   [$
-    #text(size: 20pt)[$d = 6 sqrt(t)$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$6 sqrt(t)$] \
     &= 6 sqrt(13) \
     &= 21.63 "mm" \
     &=> bold(d = 22 "mm")
@@ -384,8 +390,8 @@
 #item-row(
   [*3. Rivet Pitch ($p$)* \ Equating tearing strength $P_t$ to shearing strength $P_s$ ($n = 2$)],
   [$
-    #text(size: 20pt)[$(p - d) t dot sigma_t = n dot pi/4 d^2 dot tau$] \
-    (p - 22) times 13 times 80 = 2 times pi/4 (22)^2 times 60 \
+    #text(size: 20pt)[$(p - d) t dot sigma_t$] &= #text(size: 20pt)[$n dot pi/4 d^2 dot tau$] \
+    (p - 22) times 13 times 80 &= 2 times pi/4 (22)^2 times 60 \
     1040 (p - 22) &= 45616 \
     p - 22 &= 45616 / 1040 \
     p - 22 &= 43.86 \
@@ -402,7 +408,7 @@
 #item-row(
   [*5. Joint Efficiency ($eta$)* \ Efficiency based on shear strength vs solid plate strength],
   [$
-    #text(size: 20pt)[$eta = P_s / (p dot t dot sigma_t) times 100%$] \
+    #text(size: 20pt)[$eta$] &= #text(size: 20pt)[$P_s / (p dot t dot sigma_t) times 100%$] \
     &= 45616 / (66 times 13 times 80) times 100% \
     &= 45616 / 68640 times 100% \
     &=> bold(eta = 66.5%)
@@ -413,6 +419,8 @@
   [*Design Output*],
   [*Zig-zag Lap Joint: Rivet Diameter d = 22 mm | Pitch p = 66 mm | Efficiency eta = 66.5%*]
 )
+
+#figure-page("4", "DOUBLE RIVETED LAP JOINT (ZIG-ZAG)", "Fig 9.23.png", "Fig. 9.23: Double Riveted Lap Joint with Zig-Zag Riveting")
 
 // ==========================================
 // SECTION 5: EXAMPLE 9.5
@@ -430,8 +438,8 @@
 #item-row(
   [*1. Rivet Diameter ($d$)* \ Equating shearing strength $P_s$ to crushing strength $P_c$ ($t < 8 "mm"$)],
   [$
-    #text(size: 20pt)[$n dot pi/4 d^2 dot tau = n dot d dot t dot sigma_c$] \
-    3 times pi/4 d^2 times 60 = 3 times d times 7 times 120 \
+    #text(size: 20pt)[$n dot pi/4 d^2 dot tau$] &= #text(size: 20pt)[$n dot d dot t dot sigma_c$] \
+    3 times pi/4 d^2 times 60 &= 3 times d times 7 times 120 \
     141.37 d &= 2520 \
     d &= 2520 / 141.37 \
     d &= 17.82 "mm" \
@@ -447,8 +455,8 @@
 #item-row(
   [*3. Rivet Pitch ($p$)* \ Equating tearing strength $P_t$ to shearing strength $P_s$ ($n = 3$)],
   [$
-    #text(size: 20pt)[$(p - d) t dot sigma_t = n dot pi/4 d^2 dot tau$] \
-    (p - 19) times 7 times 90 = 3 times pi/4 (19)^2 times 60 \
+    #text(size: 20pt)[$(p - d) t dot sigma_t$] &= #text(size: 20pt)[$n dot pi/4 d^2 dot tau$] \
+    (p - 19) times 7 times 90 &= 3 times pi/4 (19)^2 times 60 \
     630 (p - 19) &= 51035 \
     p - 19 &= 51035 / 630 \
     p - 19 &= 81.01 \
@@ -465,7 +473,7 @@
 #item-row(
   [*5. Transverse Row Pitch ($p_b$)* \ Empirical relation for zig-zag riveting],
   [$
-    #text(size: 20pt)[$p_b = 0.33 p + 0.67 d$] \
+    #text(size: 20pt)[$p_b$] &= #text(size: 20pt)[$0.33 p + 0.67 d$] \
     &= 0.33 (100) + 0.67 (19) \
     &= 33 + 12.73 \
     &= 45.73 "mm" \
@@ -477,6 +485,8 @@
   [*Design Output*],
   [*Triple Lap Joint: d = 19 mm | Pitch p = 100 mm | Row Pitch pb = 46 mm*]
 )
+
+#figure-page("5", "TRIPLE RIVETED LAP JOINT", "Fig 9.24.png", "Fig. 9.24: Triple Riveted Lap Joint with Zig-Zag Pattern")
 
 // ==========================================
 // SECTION 6: EXAMPLE 9.6
@@ -494,7 +504,7 @@
 #item-row(
   [*1. Rivet Diameter ($d$)* \ Unwin's formula for $t = 10 "mm"$],
   [$
-    #text(size: 20pt)[$d = 6 sqrt(t)$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$6 sqrt(t)$] \
     &= 6 sqrt(10) \
     &= 18.97 "mm" \
     &=> bold(d = 19 "mm")
@@ -504,7 +514,7 @@
 #item-row(
   [*2. Double Shear Strength ($P_s$)* \ IS code double shear strength for single rivet ($n = 1$)],
   [$
-    #text(size: 20pt)[$P_s = 1.875 dot n dot pi/4 d^2 dot tau$] \
+    #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$1.875 dot n dot pi/4 d^2 dot tau$] \
     &= 1.875 times 1 times pi/4 (19)^2 times 60 \
     &= 31895 "N"
   $]
@@ -513,8 +523,8 @@
 #item-row(
   [*3. Rivet Pitch ($p$)* \ Equating tearing strength $P_t$ to double shear strength $P_s$],
   [$
-    #text(size: 20pt)[$(p - d) t dot sigma_t = P_s$] \
-    (p - 19) times 10 times 80 = 31895 \
+    #text(size: 20pt)[$(p - d) t dot sigma_t$] &= #text(size: 20pt)[$P_s$] \
+    (p - 19) times 10 times 80 &= 31895 \
     800 (p - 19) &= 31895 \
     p - 19 &= 31895 / 800 \
     p - 19 &= 39.87 \
@@ -526,7 +536,7 @@
 #item-row(
   [*4. Cover Strap Thickness ($t_1$)* \ Standard proportion for double cover butt joint],
   [$
-    #text(size: 20pt)[$t_1 = 0.625 t$] \
+    #text(size: 20pt)[$t_1$] &= #text(size: 20pt)[$0.625 t$] \
     &= 0.625 times 10 \
     &= 6.25 "mm" \
     &=> bold(t_1 = 7 "mm")
@@ -536,7 +546,7 @@
 #item-row(
   [*5. Joint Efficiency ($eta$)* \ Ratio of double shear strength to solid plate strength],
   [$
-    #text(size: 20pt)[$eta = P_s / (p dot t dot sigma_t) times 100%$] \
+    #text(size: 20pt)[$eta$] &= #text(size: 20pt)[$P_s / (p dot t dot sigma_t) times 100%$] \
     &= 31895 / (60 times 10 times 80) times 100% \
     &= 31895 / 48000 times 100% \
     &=> bold(eta = 66.4%)
@@ -547,6 +557,8 @@
   [*Design Output*],
   [*Double Strap Butt Joint: d = 19 mm | Pitch p = 60 mm | Strap t1 = 7 mm | Efficiency eta = 66.4%*]
 )
+
+#figure-page("6", "SINGLE RIVETED DOUBLE STRAP BUTT JOINT", "Fig 9.25.png", "Fig. 9.25: Single Riveted Double Strap Butt Joint")
 
 // ==========================================
 // SECTION 7: EXAMPLE 9.7
@@ -564,7 +576,7 @@
 #item-row(
   [*1. Shell Plate Thickness ($t$)* \ Thin cylinder formula with corrosion allowance],
   [$
-    #text(size: 20pt)[$t = (p_i dot D) / (2 sigma_t dot eta_l) + 1.5$] \
+    #text(size: 20pt)[$t$] &= #text(size: 20pt)[$(p_i dot D) / (2 sigma_t dot eta_l) + 1.5$] \
     &= (0.95 times 1500) / (2 times 90 times 0.75) + 1.5 \
     &= 1425 / 135 + 1.5 \
     &= 10.55 + 1.5 \
@@ -581,7 +593,7 @@
 #item-row(
   [*3. Rivet Diameter ($d$)* \ Unwin's formula for $t = 13 "mm"$],
   [$
-    #text(size: 20pt)[$d = 6 sqrt(t)$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$6 sqrt(t)$] \
     &= 6 sqrt(13) \
     &= 21.63 "mm" \
     &=> bold(d = 22 "mm")
@@ -596,7 +608,7 @@
 #item-row(
   [*5. Double Shear Strength ($P_s$)* \ IS double shear capacity for $n = 2$ rivets per pitch],
   [$
-    #text(size: 20pt)[$P_s = 1.875 dot n dot pi/4 d^2 dot tau$] \
+    #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$1.875 dot n dot pi/4 d^2 dot tau$] \
     &= 1.875 times 2 times pi/4 (22)^2 times 56 \
     &= 79828 "N"
   $]
@@ -605,8 +617,8 @@
 #item-row(
   [*6. Rivet Pitch ($p$)* \ Calculated pitch from $P_t = P_s$ and maximum pitch check ($p_("max")$)],
   [$
-    #text(size: 20pt)[$(p - d) t dot sigma_t = P_s$] \
-    (p - 22) times 13 times 90 = 79828 \
+    #text(size: 20pt)[$(p - d) t dot sigma_t$] &= #text(size: 20pt)[$P_s$] \
+    (p - 22) times 13 times 90 &= 79828 \
     1170 (p - 22) &= 79828 \
     p - 22 &= 68.23 \
     p &= 90.23 "mm" \
@@ -621,6 +633,8 @@
   [*Design Output*],
   [*Boiler Longitudinal Seam: Shell Thickness t = 13 mm | Rivet Diameter d = 22 mm | Pitch p = 86 mm*]
 )
+
+#figure-page("7", "BOILER LONGITUDINAL DOUBLE RIVETED BUTT JOINT", "Fig 9.26.png", "Fig. 9.26: Boiler Longitudinal Double Riveted Double Strap Butt Joint")
 
 // ==========================================
 // SECTION 8: EXAMPLE 9.8
@@ -638,7 +652,7 @@
 #item-row(
   [*1. Plate Thickness ($t$)* \ Thin cylinder formula],
   [$
-    #text(size: 20pt)[$t = (p_i dot D) / (2 sigma_t dot eta_l)$] \
+    #text(size: 20pt)[$t$] &= #text(size: 20pt)[$(p_i dot D) / (2 sigma_t dot eta_l)$] \
     &= (2.75 times 1000) / (2 times 88 times 0.79) \
     &= 2750 / 139.04 \
     &= 19.78 "mm" \
@@ -649,7 +663,7 @@
 #item-row(
   [*2. Rivet Diameter ($d$)* \ Unwin's formula for $t = 20 "mm"$],
   [$
-    #text(size: 20pt)[$d = 6 sqrt(t)$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$6 sqrt(t)$] \
     &= 6 sqrt(20) \
     &= 26.83 "mm" \
     &=> bold(d = 28.5 "mm")
@@ -659,8 +673,10 @@
 #item-row(
   [*3. Outer Pitch ($p$) & Efficiency ($eta$)* \ Selected pitch dimensions and verified efficiency],
   [$
-    #text(size: 20pt)[$p_("outer") = 150 "mm", quad p_("inner") = 75 "mm"$] \
-    P_t &= (150 - 28.5) times 20 times 88 \
+    p_("outer") &= 150 "mm" \
+    p_("inner") &= 75 "mm" \
+    #text(size: 20pt)[$P_t$] &= #text(size: 20pt)[$(p_("outer") - d) t dot sigma_t$] \
+    &= (150 - 28.5) times 20 times 88 \
     &= 213840 "N" \
     P &= 150 times 20 times 88 \
     &= 264000 "N" \
@@ -673,6 +689,8 @@
   [*Design Output*],
   [*Pressure Vessel Joint: Thickness t = 20 mm | Rivet Diameter d = 28.5 mm | Outer Pitch p = 150 mm | Efficiency eta = 81%*]
 )
+
+#figure-page("8", "PRESSURE VESSEL BUTT JOINT", "Fig 9.27&9.28.png", "Fig. 9.27 & 9.28: Pressure Vessel Double Strap Butt Joint")
 
 // ==========================================
 // SECTION 9: EXAMPLE 9.9
@@ -690,12 +708,14 @@
 #item-row(
   [*1. Allowable Working Stresses* \ Ultimate stress divided by FOS = 5],
   [$
-    #text(size: 20pt)[$sigma_t = sigma_("u") / "FOS", quad sigma_c = sigma_("cu") / "FOS", quad tau = tau_("u") / "FOS"$] \
-    sigma_t &= 420 / 5 \
+    sigma_t &= sigma_("u") / "FOS" \
+    &= 420 / 5 \
     &= 84 "MPa" \
-    sigma_c &= 650 / 5 \
+    sigma_c &= sigma_("cu") / "FOS" \
+    &= 650 / 5 \
     &= 130 "MPa" \
-    tau &= 300 / 5 \
+    tau &= tau_("u") / "FOS" \
+    &= 300 / 5 \
     &= 60 "MPa"
   $]
 )
@@ -703,7 +723,7 @@
 #item-row(
   [*2. Plate Thickness ($t$)* \ Thin cylinder formula with corrosion allowance],
   [$
-    #text(size: 20pt)[$t = (p_i dot D) / (2 sigma_t dot eta_l) + 1.5$] \
+    #text(size: 20pt)[$t$] &= #text(size: 20pt)[$(p_i dot D) / (2 sigma_t dot eta_l) + 1.5$] \
     &= (2.5 times 1250) / (2 times 84 times 0.80) + 1.5 \
     &= 3125 / 134.4 + 1.5 \
     &= 23.25 + 1.5 \
@@ -715,7 +735,7 @@
 #item-row(
   [*3. Rivet Diameter ($d$)* \ Unwin's formula for $t = 25 "mm"$],
   [$
-    #text(size: 20pt)[$d = 6 sqrt(t)$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$6 sqrt(t)$] \
     &= 6 sqrt(25) \
     &= 30 "mm" \
     &=> bold(d = 30 "mm")
@@ -726,6 +746,8 @@
   [*Design Output*],
   [*Boiler Seam: Allowable Stresses (84, 130, 60 MPa) | Plate Thickness t = 25 mm | Rivet Diameter d = 30 mm*]
 )
+
+#figure-page("9", "BOILER LONGITUDINAL SEAM", "Fig 9.29&9.30.png", "Fig. 9.29 & 9.30: Boiler Longitudinal Seam Triple Riveted Butt Joint")
 
 // ==========================================
 // SECTION 10: EXAMPLE 9.10
@@ -743,14 +765,15 @@
 #item-row(
   [*1. Longitudinal Joint Parameters* \ Plate thickness and rivet diameter selection],
   [$
-    #text(size: 20pt)[$t = 35 "mm", quad d = 35.5 "mm"$]
+    t &= 35 "mm" \
+    d &= 35.5 "mm"
   $]
 )
 
 #item-row(
   [*2. Total Steam End Thrust ($F$)* \ Axial burst force acting on boiler end cap],
   [$
-    #text(size: 20pt)[$F = pi/4 D^2 dot p_i$] \
+    #text(size: 20pt)[$F$] &= #text(size: 20pt)[$pi/4 D^2 dot p_i$] \
     &= pi/4 (1600)^2 times 2.5 \
     &= 5.026 times 10^6 "N"
   $]
@@ -759,7 +782,7 @@
 #item-row(
   [*3. Number of Circumferential Rivets ($N_c$)* \ Number of single shear rivets required to resist axial thrust],
   [$
-    #text(size: 20pt)[$N_c = F / (pi/4 d^2 dot tau)$] \
+    #text(size: 20pt)[$N_c$] &= #text(size: 20pt)[$F / (pi/4 d^2 dot tau)$] \
     &= (5.026 times 10^6) / (pi/4 (35.5)^2 times 60) \
     &= (5.026 times 10^6) / 59390 \
     &= 84.6 \
@@ -771,6 +794,8 @@
   [*Design Output*],
   [*Longitudinal: t = 35 mm, d = 35.5 mm | Circumferential Joint Thrust F = 5.026 MN | Rivet Count Nc = 85 rivets*]
 )
+
+#figure-page("10", "BOILER CIRCUMFERENTIAL & LONGITUDINAL JOINTS", "Fig 9.31&9.32.png", "Fig. 9.31 & 9.32: Boiler Longitudinal and Circumferential Joints")
 
 // ==========================================
 // SECTION 11: EXAMPLE 9.11
@@ -788,7 +813,7 @@
 #item-row(
   [*1. Rivet Diameter ($d$)* \ Unwin's formula for $t = 12.5 "mm"$],
   [$
-    #text(size: 20pt)[$d = 6 sqrt(t)$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$6 sqrt(t)$] \
     &= 6 sqrt(12.5) \
     &= 21.21 "mm" \
     &=> bold(d = 21.5 "mm")
@@ -798,7 +823,7 @@
 #item-row(
   [*2. Full Tensile Load ($P$)* \ Solid tie-rod tensile capacity],
   [$
-    #text(size: 20pt)[$P = b dot t dot sigma_t$] \
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$b dot t dot sigma_t$] \
     &= 200 times 12.5 times 80 \
     &= 200000 "N" \
     &= 200 "kN"
@@ -808,7 +833,7 @@
 #item-row(
   [*3. Single Rivet Double Shear Capacity ($P_s$)* \ Shear strength per rivet in double cover butt joint],
   [$
-    #text(size: 20pt)[$P_s = 1.875 dot pi/4 d^2 dot tau$] \
+    #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$1.875 dot pi/4 d^2 dot tau$] \
     &= 1.875 times pi/4 (21.5)^2 times 65 \
     &= 44250 "N" \
     &= 44.25 "kN"
@@ -818,7 +843,7 @@
 #item-row(
   [*4. Required Rivet Count ($n$)* \ Total rivets needed per side of joint],
   [$
-    #text(size: 20pt)[$n = P / P_s$] \
+    #text(size: 20pt)[$n$] &= #text(size: 20pt)[$P / P_s$] \
     &= 200 / 44.25 \
     &= 4.52 \
     &=> bold(n = 5 "rivets")
@@ -829,6 +854,8 @@
   [*Design Output*],
   [*Tie Rod Joint: Rivet Diameter d = 21.5 mm | Tensile Load P = 200 kN | Required Rivets n = 5 rivets*]
 )
+
+#figure-page("11", "TIE ROD DOUBLE COVER BUTT JOINT", "Fig 9.33&9.34.png", "Fig. 9.33 & 9.34: Tie Rod Double Cover Butt Joint")
 
 // ==========================================
 // SECTION 12: EXAMPLE 9.12
@@ -846,7 +873,7 @@
 #item-row(
   [*1. Rivet Diameter ($d$)* \ Unwin's formula for $t = 20 "mm"$],
   [$
-    #text(size: 20pt)[$d = 6 sqrt(t)$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$6 sqrt(t)$] \
     &= 6 sqrt(20) \
     &= 26.83 "mm" \
     &=> bold(d = 27 "mm")
@@ -856,7 +883,7 @@
 #item-row(
   [*2. Net Load Capacity ($P$)* \ Tearing strength at critical Section 1-1 (1 rivet hole)],
   [$
-    #text(size: 20pt)[$P = (b - d) t dot sigma_t$] \
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$(b - d) t dot sigma_t$] \
     &= (350 - 27) times 20 times 90 \
     &= 323 times 1800 \
     &= 581400 "N" \
@@ -867,7 +894,7 @@
 #item-row(
   [*3. Single Rivet Double Shear Capacity ($P_s$)* \ Shear resistance per rivet],
   [$
-    #text(size: 20pt)[$P_s = 1.875 dot pi/4 d^2 dot tau$] \
+    #text(size: 20pt)[$P_s$] &= #text(size: 20pt)[$1.875 dot pi/4 d^2 dot tau$] \
     &= 1.875 times pi/4 (27)^2 times 60 \
     &= 64412 "N" \
     &= 64.4 "kN"
@@ -877,7 +904,7 @@
 #item-row(
   [*4. Total Rivet Count ($n$)* \ Total rivets required for lozenge arrangement],
   [$
-    #text(size: 20pt)[$n = P / P_s$] \
+    #text(size: 20pt)[$n$] &= #text(size: 20pt)[$P / P_s$] \
     &= 581.4 / 64.4 \
     &= 9.02 \
     &=> bold(n = 9 "rivets")
@@ -893,6 +920,8 @@
   [*Design Output*],
   [*Bridge Lozenge Joint: d = 27 mm | Net Capacity P = 581.4 kN | Total Rivets n = 9 (Pattern: 1, 2, 3, 3)*]
 )
+
+#figure-page("12", "LOZENGE (DIAMOND) JOINT", "Fig 9.35.png", "Fig. 9.35: Bridge Tie-Bar Lozenge Joint")
 
 // ==========================================
 // SECTION 13: EXAMPLE 9.13
@@ -915,7 +944,7 @@
 #item-row(
   [*2. Net Tearing Strength ($P_t$)* \ Tearing capacity at Section 1-1 with hole diameter $d_h = 25.5 "mm"$],
   [$
-    #text(size: 20pt)[$P_t = (b - d_h) t dot sigma_t$] \
+    #text(size: 20pt)[$P_t$] &= #text(size: 20pt)[$(b - d_h) t dot sigma_t$] \
     &= (200 - 25.5) times 10 times 112 \
     &= 174.5 times 1120 \
     &= 195440 "N" \
@@ -926,10 +955,11 @@
 #item-row(
   [*3. Solid Strength ($P$) & Efficiency ($eta$)* \ Efficiency based on net tearing capacity],
   [$
-    #text(size: 20pt)[$P = b dot t dot sigma_t, quad eta = P_t / P times 100%$] \
-    P &= 200 times 10 times 112 \
+    P &= b dot t dot sigma_t \
+    &= 200 times 10 times 112 \
     &= 224000 "N" \
-    eta &= 195440 / 224000 times 100% \
+    #text(size: 20pt)[$eta$] &= #text(size: 20pt)[$P_t / P times 100%$] \
+    &= 195440 / 224000 times 100% \
     &=> bold(eta = 87.3%)
   $]
 )
@@ -938,6 +968,8 @@
   [*Design Output*],
   [*Flat Lap Joint (Diamond Pattern): Net Tearing Strength Pt = 195.44 kN | Joint Efficiency eta = 87.3%*]
 )
+
+#figure-page("13", "FLAT TIE-BAR LAP JOINT", "Fig 9.36.png", "Fig. 9.36: Flat Tie-Bar Lap Joint (Diamond Pattern)")
 
 // ==========================================
 // SECTION 14: EXAMPLE 9.14
@@ -955,7 +987,7 @@
 #item-row(
   [*1. Direct Shear Force ($F_("s1")$)* \ Uniform load distribution across 4 rivets],
   [$
-    #text(size: 20pt)[$F_("s1") = P / n$] \
+    #text(size: 20pt)[$F_("s1")$] &= #text(size: 20pt)[$P / n$] \
     &= 50000 / 4 \
     &= 12500 "N" \
     &= 12.5 "kN"
@@ -965,11 +997,11 @@
 #item-row(
   [*2. Secondary Shear Force ($F_("s2")$)* \ Torsional shear force on outermost rivet ($r_("max") = 150 "mm"$)],
   [$
-    #text(size: 20pt)[$F_("s2") = (P dot e dot r_("max")) / sum r_i^2$] \
     sum r_i^2 &= 2 (150^2 + 50^2) \
     &= 2 (22500 + 2500) \
     &= 50000 "mm"^2 \
-    F_("s2") &= (50000 times 400 times 150) / 50000 \
+    #text(size: 20pt)[$F_("s2")$] &= #text(size: 20pt)[$(P dot e dot r_("max")) / sum r_i^2$] \
+    &= (50000 times 400 times 150) / 50000 \
     &= 60000 "N" \
     &= 60 "kN"
   $]
@@ -978,7 +1010,7 @@
 #item-row(
   [*3. Maximum Resultant Shear Force ($F_R$)* \ Direct plus secondary shear force (co-linear theta = 0 deg)],
   [$
-    #text(size: 20pt)[$F_R = F_("s1") + F_("s2")$] \
+    #text(size: 20pt)[$F_R$] &= #text(size: 20pt)[$F_("s1") + F_("s2")$] \
     &= 12.5 + 60 \
     &= 72.5 "kN" \
     &= 72500 "N"
@@ -988,12 +1020,12 @@
 #item-row(
   [*4. Rivet Diameter ($d$)* \ Equating $F_R$ to rivet single shear strength],
   [$
-    #text(size: 20pt)[$F_R = pi/4 d^2 dot tau$] \
-    72500 = pi/4 d^2 (65) \
+    F_R &= pi/4 d^2 dot tau \
+    72500 &= pi/4 d^2 (65) \
     d^2 &= (4 times 72500) / (pi times 65) \
     &= 290000 / 204.2 \
     &= 1420.2 \
-    d &= 37.68 "mm" \
+    #text(size: 20pt)[$d$] &= 37.68 "mm" \
     &=> bold(d = 38 "mm")
   $]
 )
@@ -1019,14 +1051,15 @@
 #item-row(
   [*1. Maximum Resultant Shear Force ($F_R$)* \ Critical rivet resultant load from direct and secondary shear],
   [$
-    #text(size: 20pt)[$F_R = 15.2 "kN" = 15200 "N"$]
+    #text(size: 20pt)[$F_R$] &= 15.2 "kN" \
+    &= 15200 "N"
   $]
 )
 
 #item-row(
   [*2. Rivet Diameter ($d$)* \ Single shear area calculation for allowable stress $tau = 40 "MPa"$],
   [$
-    #text(size: 20pt)[$d = sqrt((4 F_R) / (pi tau))$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$sqrt((4 F_R) / (pi tau))$] \
     &= sqrt((4 times 15200) / (pi times 40)) \
     &= sqrt(60800 / 125.66) \
     &= sqrt(483.8) \
@@ -1056,7 +1089,7 @@
 #item-row(
   [*1. Single Rivet Shear Capacity ($F_("R,max")$)* \ Maximum permissible shear force per rivet],
   [$
-    #text(size: 20pt)[$F_("R,max") = pi/4 d^2 dot tau$] \
+    #text(size: 20pt)[$F_("R,max")$] &= #text(size: 20pt)[$pi/4 d^2 dot tau$] \
     &= pi/4 (20)^2 times 100 \
     &= 31416 "N" \
     &= 31.416 "kN"
@@ -1066,14 +1099,14 @@
 #item-row(
   [*2. Resultant Load Relation* \ Critical rivet resultant load expressed in terms of load $P$],
   [$
-    #text(size: 20pt)[$F_R = 0.966 P$]
+    #text(size: 20pt)[$F_R$] &= 0.966 P
   $]
 )
 
 #item-row(
   [*3. Maximum Safe Load ($P$)* \ Equating $F_R$ to single rivet shear capacity],
   [$
-    #text(size: 20pt)[$P = F_("R,max") / 0.966$] \
+    #text(size: 20pt)[$P$] &= #text(size: 20pt)[$F_("R,max") / 0.966$] \
     &= 31.416 / 0.966 \
     &= 32.52 "kN" \
     &=> bold(P = 32.5 "kN")
@@ -1101,24 +1134,26 @@
 #item-row(
   [*1. Primary & Secondary Shear Forces* \ Direct load per rivet and torsional secondary load],
   [$
-    #text(size: 20pt)[$F_("s1") = P / n, quad F_("s2") = (P dot e dot r_("max")) / sum r_i^2$] \
-    F_("s1") &= 60 / 6 \
+    F_("s1") &= P / n \
+    &= 60 / 6 \
     &= 10 "kN" \
-    F_("s2") &= 41.5 "kN"
+    F_("s2") &= (P dot e dot r_("max")) / sum r_i^2 \
+    &= 41.5 "kN"
   $]
 )
 
 #item-row(
   [*2. Maximum Resultant Shear Force ($F_R$)* \ Vector addition of primary and secondary shear],
   [$
-    #text(size: 20pt)[$F_R = 51.5 "kN" = 51500 "N"$]
+    #text(size: 20pt)[$F_R$] &= 51.5 "kN" \
+    &= 51500 "N"
   $]
 )
 
 #item-row(
   [*3. Rivet Diameter ($d$)* \ Equating $F_R$ to single shear capacity],
   [$
-    #text(size: 20pt)[$d = sqrt((4 F_R) / (pi tau))$] \
+    #text(size: 20pt)[$d$] &= #text(size: 20pt)[$sqrt((4 F_R) / (pi tau))$] \
     &= sqrt((4 times 51500) / (pi times 150)) \
     &= sqrt(206000 / 471.24) \
     &= sqrt(437.1) \
@@ -1148,10 +1183,11 @@
 #item-row(
   [*1. Vertical & Horizontal Load Components* \ Resolving inclined 100 kN load at 30 degrees],
   [$
-    #text(size: 20pt)[$P_V = P sin(30^deg), quad P_H = P cos(30^deg)$] \
-    P_V &= 100 sin(30^deg) \
+    P_V &= P sin(30^deg) \
+    &= 100 sin(30^deg) \
     &= 50 "kN" \
-    P_H &= 100 cos(30^deg) \
+    P_H &= P cos(30^deg) \
+    &= 100 cos(30^deg) \
     &= 86.6 "kN"
   $]
 )
@@ -1159,8 +1195,9 @@
 #item-row(
   [*2. Critical Resultant Shear ($F_R$) & Rivet Diameter ($d$)* \ Resultant force on rivet D and single shear sizing],
   [$
-    #text(size: 20pt)[$F_R = 42.4 "kN" = 42400 "N"$] \
-    d &= sqrt((4 F_R) / (pi tau)) \
+    #text(size: 20pt)[$F_R$] &= 42.4 "kN" \
+    &= 42400 "N" \
+    #text(size: 20pt)[$d$] &= sqrt((4 F_R) / (pi tau)) \
     &= sqrt((4 times 42400) / (pi times 80)) \
     &= sqrt(169600 / 251.33) \
     &= sqrt(674.8) \
@@ -1172,9 +1209,10 @@
 #item-row(
   [*3. Bending Moment ($M$) & Bracket Thickness ($t$)* \ Bending stress analysis of bracket plate],
   [$
-    #text(size: 20pt)[$M = P_H dot e, quad sigma_b = (6 M) / (t dot b^2)$] \
-    M &= 86.6 times 10^3 times 150 \
-    &= 1.30 times 10^7 "N" dot "mm" \
+    M &= P_H dot e \
+    &= 86.6 times 10^3 times 150 \
+    &= 1.30 times 10^7 "N"dot"mm" \
+    sigma_b &= (6 M) / (t dot b^2) \
     125 &= (6 times 1.30 times 10^7) / (t times (240)^2) \
     &= (7.80 times 10^7) / (57600 t) \
     &= 1354.17 / t \
