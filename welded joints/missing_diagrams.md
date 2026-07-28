@@ -1,26 +1,32 @@
-# Welded Joints - Missing Diagrams Registry
+# Welded Joints - Diagrams Registry
 
-## 2. Diagrams Referenced in Solved Examples (`examples.md`)
+## 1. Diagrams Integrated in Solved Examples (`examples.md` & `examples_solutions.md`)
 
-| Figure Ref. | Example | Description & Geometry Context |
-| :--- | :--- | :--- |
-| **Fig. 10.12** | **Example 10.2** | 50 mm solid shaft welded circumferentially to a flat plate with 10 mm fillet weld under torsion. |
-| **Fig. 10.13** | **Example 10.3** | 1 m long, 60 mm thick plate welded perpendicular to another plate with 15 mm fillet weld under torsion/bending. |
-| **Fig. 10.15** | **Example 10.5** | 75 mm × 12.5 mm plate joined to another plate using a combination of a single transverse fillet weld and double parallel fillet welds. |
-| **Fig. 10.17 (a) & (b)** | **Example 10.7** | T-joint fabricated with equal fillet welds under: <br> (a) Parallel load along weld length <br> (b) Transverse load perpendicular to weld. |
-| **Fig. 10.21** | **Example 10.8** | $200 \times 150 \times 10\text{ mm}$ angle welded to a steel plate with unsymmetrical weld lengths $l_1$ and $l_2$ under 200 kN static tensile load. |
-| **Fig. 10.24** | **Example 10.9** | Eccentrically loaded welded joint subjected to 2 kN eccentric force. |
-| **Fig. 10.25** | **Example 10.10** | 50 mm solid shaft welded to a flat plate with 15 mm weld size subjected to combined bending and direct loading. |
-| **Fig. 10.26** | **Example 10.11** | Rectangular cross-section bar welded as a cantilever to a vertical support with fillet welds. |
-| **Fig. 10.27** | **Example 10.12** | Arm A welded to a hollow shaft at section '1', hollow shaft welded to plate C at section '2', loaded with $P = 15\text{ kN}$ at arm end. |
-| **Fig. 10.28** | **Example 10.13** | Cantilever bracket carrying an eccentric vertical load of 15 kN. |
-| **Fig. 10.30** | **Example 10.14** | Rectangular steel plate welded as a cantilever to a column supporting concentrated load $P$. |
-| **Fig. 10.32** | **Example 10.15** | Channel section welded to a plate loaded with 20 kN force at an eccentricity distance of 200 mm from the weld group CG. |
-| **Fig. 10.34** | **Example 10.16** | Bracket supporting dead weight $P = 15\text{ kN}$ welded at top and bottom points A and B. |
+All 17 textbook diagrams for solved examples have been provided and embedded:
+
+| Figure Ref. | File | Example | Status | Description & Geometry Context |
+| :--- | :--- | :--- | :--- | :--- |
+| **Fig. 10.12** | `Fig 10.12.png` | **Example 10.2** | Integrated | $50\text{ mm}$ solid shaft welded circumferentially to a flat plate with $10\text{ mm}$ fillet weld under torsion. |
+| **Fig. 10.13** | `Fig 10.13.png` | **Example 10.3** | Integrated | $1\text{ m}$ long, $60\text{ mm}$ thick plate welded perpendicular to another plate with $15\text{ mm}$ fillet weld under torsion. |
+| **Fig. 10.15** | `Fig 10.15.png` | **Example 10.5** | Integrated | $75 \times 12.5\text{ mm}$ plate joined to another plate using a single transverse fillet weld and double parallel fillet welds. |
+| **Fig. 10.16** | `Fig 10.16.png` | **Example 10.6** | Integrated | Long fillet weld subjected to variable dynamic loading. |
+| **Fig. 10.17 (a) & (b)** | `Fig 10.17.png` | **Example 10.7** | Integrated | T-joint fabricated with equal fillet welds under parallel and transverse loads. |
+| **Fig. 10.18** | `Fig 10.18.png` | **Example 10.7** | Integrated | Shear stress throat resolution geometry for parallel loading. |
+| **Fig. 10.19** | `Fig 10.19.png` | **Example 10.7** | Integrated | Normal and shear stress force resolution for transverse loading. |
+| **Fig. 10.21** | `Fig 10.21.png` | **Example 10.8** | Integrated | $200 \times 150 \times 10\text{ mm}$ angle welded to a steel plate with unsymmetrical weld lengths $l_a$ and $l_b$. |
+| **Fig. 10.24** | `Fig 10.24.png` | **Example 10.9** | Integrated | Eccentrically loaded out-of-plane welded joint subjected to $2\text{ kN}$ force. |
+| **Fig. 10.25** | `Fig 10.25.png` | **Example 10.10** | Integrated | $50\text{ mm}$ solid shaft welded to a flat plate with $15\text{ mm}$ weld size subjected to combined bending and direct load. |
+| **Fig. 10.26** | `Fig 10.26.png` | **Example 10.11** | Integrated | Rectangular cross-section bar ($100 \times 150\text{ mm}$) welded as a cantilever to a vertical support with fillet welds on 4 sides. |
+| **Fig. 10.27** | `Fig 10.27.png` | **Example 10.12** | Integrated | Arm A welded to a hollow shaft at section '1', hollow shaft welded to plate C at section '2', loaded with $P = 15\text{ kN}$. |
+| **Fig. 10.28 & 10.29** | `Fig 10.28.&10.29.png` | **Example 10.13** | Integrated | In-plane eccentrically loaded bracket and polar centroid diagram. |
+| **Fig. 10.30 & 10.31** | `Fig 10.30.&10.31.png` | **Example 10.14** | Integrated | Cantilever plate channel weld under eccentric loading and centroid resolution. |
+| **Fig. 10.32** | `Fig 10.32.png` | **Example 10.15** | Integrated | Channel section welded to a plate loaded with $20\text{ kN}$ force at $200\text{ mm}$ eccentricity. |
+| **Fig. 10.33** | `Fig 10.33.png` | **Example 10.15** | Integrated | Channel weld group centroid $G$ and radius vectors. |
+| **Fig. 10.34** | `Fig 10.34.png` | **Example 10.16** | Integrated | Bracket supporting dead weight $P = 15\text{ kN}$ welded at top and bottom points A and B. |
 
 ---
 
-## 3. Diagrams Referenced in Practice Exercises (`exercises.md`)
+## 2. Diagrams Referenced in Practice Exercises (`exercises.md`)
 
 | Figure Ref. | Exercise | Description & Geometry Context |
 | :--- | :--- | :--- |
