@@ -153,20 +153,34 @@ Open 2-column split with a thin vertical center divider line (`0.5pt`).
 }
 ```
 
+### 3.1 Section Heading Component (`section-heading`)
+Every section starting from Section 2 automatically begins on a new page.
+
+```typst
+#let section-heading(sec-num, title) = {
+  if sec-num != "1" { pagebreak() }
+  v(4pt)
+  text(weight: "bold", size: 13.5pt)[SECTION #sec-num: #title]
+  v(2.5pt)
+  line(length: 100%, stroke: 1pt + rgb("#000000"))
+  v(5pt)
+}
+```
+
 ### 3.4 Mechanical Diagram Container (`figure-page`)
-Mechanical diagrams flow inline within section content inside a non-breakable container (`breakable: false`). Figures no longer force a `#pagebreak()`, allowing section text, equations, and diagrams to reside together on the same page where space permits.
+Mechanical diagrams flow inline within section content inside a non-breakable container (`breakable: false`). Compact image sizing (`width: 70%, height: 200pt`) ensures diagrams fit cleanly on the section page.
 
 ```typst
 #let figure-page(sec-num, title, fig-path, caption) = {
-  v(6pt)
+  v(4pt)
   block(width: 100%, breakable: false)[
     #align(center)[
-      #image(fig-path, width: 85%, height: 280pt, fit: "contain")
-      #v(4pt)
-      #text(weight: "bold", size: 10pt)[#caption]
+      #image(fig-path, width: 70%, height: 200pt, fit: "contain")
+      #v(3pt)
+      #text(weight: "bold", size: 9.5pt)[#caption]
     ]
   ]
-  v(6pt)
+  v(4pt)
 }
 ```
 ```

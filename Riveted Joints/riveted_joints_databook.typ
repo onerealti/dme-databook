@@ -40,8 +40,9 @@
 #show image: set image(fit: "contain")
 #show table: set table(stroke: 0.4pt + rgb("#aaaaaa"))
 
-// Custom Clean Section Header
+// Custom Clean Section Header (Each section starts on a new page)
 #let section-heading(sec-num, title) = {
+  if sec-num != "1" { pagebreak() }
   v(4pt)
   text(weight: "bold", size: 13.5pt)[SECTION #sec-num: #title]
   v(2.5pt)
@@ -76,17 +77,17 @@
   line(length: 100%, stroke: 0.3pt + rgb("#cccccc"))
 }
 
-// Mechanical Diagram Component (Flows inline within section without forced pagebreak)
+// Mechanical Diagram Component (Compact inline image sizing)
 #let figure-page(sec-num, title, fig-path, caption) = {
-  v(6pt)
+  v(4pt)
   block(width: 100%, breakable: false)[
     #align(center)[
-      #image(fig-path, width: 85%, height: 280pt, fit: "contain")
-      #v(4pt)
-      #text(weight: "bold", size: 10pt)[#caption]
+      #image(fig-path, width: 70%, height: 200pt, fit: "contain")
+      #v(3pt)
+      #text(weight: "bold", size: 9.5pt)[#caption]
     ]
   ]
-  v(6pt)
+  v(4pt)
 }
 
 // ==========================================
@@ -359,64 +360,73 @@
 #figure-page("3", "DOUBLE RIVETED DOUBLE COVER BUTT JOINT", "Fig 9.22.png", "Fig. 9.22: Double Riveted Double Cover Butt Joint")
 
 // ==========================================
-// SECTION 4: EXAMPLE 9.4
+// SECTION 4: EXAMPLE 9.4 — DOUBLE RIVETED LAP JOINT (ZIG-ZAG)
 // ==========================================
-
-#pagebreak()
 
 #section-heading("4", "DOUBLE RIVETED LAP JOINT — ZIG-ZAG RIVETING")
 
 #section-overview(
-  [*System Parameters:* Plate Thickness $t = 13 "mm"$, Allowable Stresses: Tensile $sigma_t = 80 "MPa"$, Shear $tau = 60 "MPa"$, Crushing $sigma_c = 120 "MPa"$, Number of Rivets per pitch $n = 2$.],
-  [*Design Protocol:* Determine rivet hole diameter using Unwin's formula, equate tearing strength to shearing strength to solve for pitch $p$, and evaluate joint efficiency.]
+  [*System Parameters:* Plate Thickness $t = 13 "mm"$, Tensile Stress $sigma_t = 80 "MPa"$, Shear Stress $tau = 60 "MPa"$, Crushing Stress $sigma_c = 120 "MPa"$, Rivet Rows $n = 2$ (zig-zag).],
+  [*Design Protocol:* Calculate rivet hole diameter $d$ via Unwin's formula, determine pitch $p$ by equating $P_t = P_s$ and verify $p <= p_("max")$, compute row pitch $p_b$ and margin $m$, evaluate governing failure mode ($min(P_t, P_s, P_c)$), and calculate joint efficiency $eta$.]
 )
 
 #item-row(
-  [*1. Rivet Diameter ($d$)* \ Unwin's formula for $t = 13 "mm" >= 8 "mm"$],
+  [*1. Diameter of Rivet Hole ($d$)* \ Unwin's formula for $t = 13 "mm" > 8 "mm"$ and IS standard size],
   [$
     #text(size: 13.5pt)[$d$] &= #text(size: 13.5pt)[$6 sqrt(t)$] \
-    &= 6 sqrt(13) \
-    &= 21.63 "mm" \
-    &=> bold(d = 22 "mm")
+    &= 6 sqrt(13) = 21.63 "mm" \
+    &=> bold("Standard Hole " d = 23 "mm") \
+    &=> bold("Rivet Dia " d_0 = 22 "mm")
   $]
 )
 
 #item-row(
-  [*2. Selected Rivet Standard Size* \ Adopted standard nominal rivet diameter],
-  [*Adopted Rivet Diameter d = 22 mm*]
-)
-
-#item-row(
-  [*3. Rivet Pitch ($p$)* \ Equating tearing strength $P_t$ to shearing strength $P_s$ ($n = 2$)],
+  [*2. Pitch of Rivets ($p$)* \ Equating tearing strength $P_t$ to single shear strength $P_s$ ($n = 2$)],
   [$
-    #text(size: 13.5pt)[$(p - d) t dot sigma_t$] &= #text(size: 13.5pt)[$n dot pi/4 d^2 dot tau$] \
-    (p - 22) times 13 times 80 &= 2 times pi/4 (22)^2 times 60 \
-    1040 (p - 22) &= 45616 \
-    p - 22 &= 45616 / 1040 \
-    p - 22 &= 43.86 \
-    p &= 65.86 "mm" \
-    &=> bold(p = 66 "mm")
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(p - d) t dot sigma_t = (p - 23) 1040 "N"$] \
+    P_s &= 2 times pi/4 (23)^2 times 60 = 49864 "N" \
+    (p - 23) 1040 &= 49864 \
+    p - 23 &= 48 => bold(p = 71 "mm") \
+    p_("max") &= 2.62 t + 41.28 = 75.34 "mm" \
+    &=> bold("Adopt Pitch " p = 71 "mm")
   $]
 )
 
 #item-row(
-  [*4. Adopted Pitch Dimension* \ Selected longitudinal pitch length],
-  [*Adopted Pitch p = 66 mm*]
-)
-
-#item-row(
-  [*5. Joint Efficiency ($eta$)* \ Efficiency based on shear strength vs solid plate strength],
+  [*3. Distance Between Rows & Margin ($p_b, m$)* \ Row pitch for zig-zag arrangement and margin],
   [$
-    #text(size: 13.5pt)[$eta$] &= #text(size: 13.5pt)[$P_s / (p dot t dot sigma_t) times 100%$] \
-    &= 45616 / (66 times 13 times 80) times 100% \
-    &= 45616 / 68640 times 100% \
-    &=> bold(eta = 66.5%)
+    #text(size: 13.5pt)[$p_b$] &= #text(size: 13.5pt)[$0.33 p + 0.67 d$] \
+    &= 0.33 (71) + 0.67 (23) = 38.8 "mm" \
+    &=> bold("Adopt Row Pitch " p_b = 40 "mm") \
+    m &= 1.5 d = 1.5 (23) = 34.5 "mm" \
+    &=> bold("Adopt Margin " m = 35 "mm")
   $]
 )
 
 #item-row(
-  [*Design Output*],
-  [*Zig-zag Lap Joint: Rivet Diameter d = 22 mm | Pitch p = 66 mm | Efficiency eta = 66.5%*]
+  [*4. Failure Mode Analysis* \ Tearing ($P_t$), shearing ($P_s$), and crushing ($P_c$) capacities],
+  [$
+    #text(size: 13.5pt)[$P_t$] &= #text(size: 13.5pt)[$(71 - 23) (13) (80) = 49920 "N"$] \
+    P_s &= 2 (pi/4) (23)^2 (60) = 49864 "N" \
+    P_c &= 2 (23) (13) (120) = 71760 "N" \
+    &=> bold("Governing Strength " P_u = P_s = 49864 "N") \
+    &=> bold("Failure Mode: Shearing of Rivets")
+  $]
+)
+
+#item-row(
+  [*5. Joint Efficiency ($eta$)* \ Solid plate strength $P$ and joint efficiency],
+  [$
+    #text(size: 13.5pt)[$P$] &= #text(size: 13.5pt)[$p dot t dot sigma_t = 71 (13) (80) = 73840 "N"$] \
+    eta &= P_s / P times 100% \
+    &= 49864 / 73840 times 100% \
+    &=> bold(eta = 67.5%)
+  $]
+)
+
+#item-row(
+  [*Design Output Summary*],
+  [*Rivet Hole d = 23 mm | Pitch p = 71 mm | Row Pitch pb = 40 mm | Margin m = 35 mm | Failure: Shearing | Efficiency eta = 67.5%*]
 )
 
 #figure-page("4", "DOUBLE RIVETED LAP JOINT (ZIG-ZAG)", "Fig 9.23.png", "Fig. 9.23: Double Riveted Lap Joint with Zig-Zag Riveting")
